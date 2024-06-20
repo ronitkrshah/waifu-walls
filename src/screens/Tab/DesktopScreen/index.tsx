@@ -1,5 +1,7 @@
+import AppHeader from '@app/components/shared/AppHeader';
+
 function DesktopScreen() {
-  return null;
+  return <AppHeader title="Desktop" />;
 }
 
 export default DesktopScreen;
