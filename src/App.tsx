@@ -1,13 +1,13 @@
-import {PaperProvider} from 'react-native-paper';
+import MaterialYouThemeProvider from './components/theme/MaterialYouThemeProvider';
 import RootNavigation from './navigation/RootNavigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 function App() {
   return (
     <SafeAreaProvider>
-      <PaperProvider>
+      <MaterialYouThemeProvider>
         <RootNavigation />
-      </PaperProvider>
+      </MaterialYouThemeProvider>
     </SafeAreaProvider>
   );
 }
