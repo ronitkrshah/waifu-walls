@@ -3,6 +3,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Dispatch, SetStateAction} from 'react';
 import {Dialog, Portal} from 'react-native-paper';
 import DialogHeader from './DialogHeader';
+import DialogUserProfile from './DialogUserProfile';
+import DialogUserActions from './DialogUserActions';
 
 type Props = {
   visible: boolean;
@@ -33,6 +35,8 @@ function AccountInfoDialog({visible, setVisible}: Props) {
       <Dialog visible={visible} onDismiss={dismissDialog}>
         <Dialog.Content>
           <DialogHeader getObject={getAccountInfoObject} />
+          <DialogUserProfile />
+          <DialogUserActions />
         </Dialog.Content>
       </Dialog>
     </Portal>
