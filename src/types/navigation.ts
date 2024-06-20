@@ -1,4 +1,4 @@
-import {NavigatorScreenParams} from '@react-navigation/native';
+import {NavigationProp, NavigatorScreenParams} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type TStackNavigationParamList = {
@@ -14,3 +14,5 @@ export type TTabNavigationParamList = {
 export type TStackNavigationScreenProps<
   T extends keyof TStackNavigationParamList,
 > = NativeStackScreenProps<TStackNavigationParamList, T>;
+
+export type TUseNavigation = NavigationProp<TStackNavigationParamList>;
