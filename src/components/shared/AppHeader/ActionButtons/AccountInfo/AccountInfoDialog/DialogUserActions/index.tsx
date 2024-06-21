@@ -7,7 +7,7 @@ type Props = {
 };
 
 function DialogUserActions({getObject}: Props) {
-  const {navigation, dismissDialog} = getObject();
+  const {user, navigation, dismissDialog} = getObject();
   const {colors} = useTheme();
 
   function navigateToLoginScreen() {
@@ -21,10 +21,13 @@ function DialogUserActions({getObject}: Props) {
         ...styles.container,
         backgroundColor: colors.surfaceVariant,
       }}>
-      <Button mode="contained" onPress={navigateToLoginScreen}>
-        Log In
-      </Button>
-      <Button mode="contained">Log Out</Button>
+      {user ? (
+        <Button mode="contained">Log Out</Button>
+      ) : (
+        <Button mode="contained" onPress={navigateToLoginScreen}>
+          Log In
+        </Button>
+      )}
     </View>
   );
 }

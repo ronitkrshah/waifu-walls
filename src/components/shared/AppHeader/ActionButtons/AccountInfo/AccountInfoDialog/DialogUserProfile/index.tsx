@@ -1,16 +1,35 @@
 import {Assets} from '@app/constants';
 import {StyleSheet, View} from 'react-native';
 import {Avatar, Text, useTheme} from 'react-native-paper';
+import {TAccountInfoObject} from '..';
 
-function DialogUserProfile() {
+type Props = {
+  getObject: () => TAccountInfoObject;
+};
+
+function DialogUserProfile({getObject}: Props) {
+  const {user} = getObject();
   const {colors} = useTheme();
+
+  // This will disable eslint warning
+  const avatarContainerWidth = user ? undefined : '100%';
 
   return (
     <View style={{...styles.container, backgroundColor: colors.surfaceVariant}}>
-      <Avatar.Image source={Assets.Images.NoAccount} />
+      <View style={{width: avatarContainerWidth}}>
+        <Avatar.Image style={styles.avatar} source={Assets.Images.NoAccount} />
+      </View>
       <View style={styles.textContainer}>
-        <Text variant="titleMedium">Waifu</Text>
-        <Text variant="labelMedium">waifu@jp.com</Text>
+        {user && (
+          <>
+            <Text ellipsizeMode="tail" variant="titleMedium">
+              {user.name}
+            </Text>
+            <Text ellipsizeMode="tail" variant="labelMedium">
+              {user.email}
+            </Text>
+          </>
+        )}
       </View>
     </View>
   );
@@ -25,6 +44,9 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 24,
     borderBottomEndRadius: 10,
     borderBottomStartRadius: 10,
+  },
+  avatar: {
+    alignSelf: 'center',
   },
   textContainer: {
     flex: 1,
