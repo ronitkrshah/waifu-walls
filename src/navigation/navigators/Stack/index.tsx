@@ -3,6 +3,7 @@ import SplashScreen from '@app/screens/Stack/SplashScreen';
 import {TStackNavigationParamList} from '@app/types/navigation';
 import TabNavigation from '../Tab';
 import {MD3Theme, withTheme} from 'react-native-paper';
+import LoginScreen from '@app/screens/Stack/LoginScreen';
 
 type Props = {
   theme: MD3Theme;
@@ -10,17 +11,18 @@ type Props = {
 
 const Stack = createNativeStackNavigator<TStackNavigationParamList>();
 
-function StackNavigation({theme: {dark, colors}}: Props) {
+function StackNavigation({theme}: Props) {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
         statusBarColor: 'transparent',
         statusBarTranslucent: true,
-        statusBarStyle: dark ? 'light' : 'dark',
-        contentStyle: {backgroundColor: colors.surface},
+        statusBarStyle: theme.dark ? 'light' : 'dark',
+        contentStyle: {backgroundColor: theme.colors.surface},
       }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Home" component={TabNavigation} />
     </Stack.Navigator>
   );

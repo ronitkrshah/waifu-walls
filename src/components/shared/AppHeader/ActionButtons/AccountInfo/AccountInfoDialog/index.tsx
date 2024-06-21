@@ -36,7 +36,7 @@ function AccountInfoDialog({visible, setVisible}: Props) {
         <Dialog.Content>
           <DialogHeader getObject={getAccountInfoObject} />
           <DialogUserProfile />
-          <DialogUserActions />
+          <DialogUserActions getObject={getAccountInfoObject} />
         </Dialog.Content>
       </Dialog>
     </Portal>

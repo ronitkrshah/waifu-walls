@@ -3,6 +3,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type TStackNavigationParamList = {
   Splash: undefined;
+  Login: undefined;
   Home: NavigatorScreenParams<TTabNavigationParamList>;
 };
 

@@ -1,8 +1,19 @@
 import {StyleSheet, View} from 'react-native';
 import {Button, useTheme} from 'react-native-paper';
+import {TAccountInfoObject} from '..';
 
-function DialogUserActions() {
+type Props = {
+  getObject: () => TAccountInfoObject;
+};
+
+function DialogUserActions({getObject}: Props) {
+  const {navigation, dismissDialog} = getObject();
   const {colors} = useTheme();
+
+  function navigateToLoginScreen() {
+    dismissDialog();
+    navigation.navigate('Login');
+  }
 
   return (
     <View
@@ -10,7 +21,9 @@ function DialogUserActions() {
         ...styles.container,
         backgroundColor: colors.surfaceVariant,
       }}>
-      <Button mode="contained">Log In</Button>
+      <Button mode="contained" onPress={navigateToLoginScreen}>
+        Log In
+      </Button>
       <Button mode="contained">Log Out</Button>
     </View>
   );
