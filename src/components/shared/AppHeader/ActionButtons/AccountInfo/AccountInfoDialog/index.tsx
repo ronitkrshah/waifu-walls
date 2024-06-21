@@ -5,9 +5,10 @@ import {Dialog, Portal} from 'react-native-paper';
 import DialogHeader from './DialogHeader';
 import DialogUserProfile from './DialogUserProfile';
 import DialogUserActions from './DialogUserActions';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {GlobalStoreRootState} from '@app/store/store';
 import {User} from '@app/store/reducers/userReducer';
+import {UnknownAction, Dispatch as RDispatch} from '@reduxjs/toolkit';
 
 type Props = {
   visible: boolean;
@@ -18,11 +19,13 @@ export type TAccountInfoObject = {
   navigation: TUseNavigation;
   dismissDialog: () => void;
   user: User | null;
+  dispatch: RDispatch<UnknownAction>;
 };
 
 function AccountInfoDialog({visible, setVisible}: Props) {
   const navigation = useNavigation<TUseNavigation>();
   const user = useSelector((state: GlobalStoreRootState) => state.user.user);
+  const dispatch = useDispatch();
 
   function dismissDialog() {
     setVisible(false);
@@ -39,6 +42,7 @@ function AccountInfoDialog({visible, setVisible}: Props) {
       navigation,
       dismissDialog,
       user,
+      dispatch,
     };
   }
 

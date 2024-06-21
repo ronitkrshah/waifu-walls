@@ -1,18 +1,34 @@
 import {StyleSheet, View} from 'react-native';
 import {Button, useTheme} from 'react-native-paper';
 import {TAccountInfoObject} from '..';
+import {authService} from '@app/appwrite/AuthService';
+import {setUserGlobalStore} from '@app/store/reducers/userReducer';
+import {useState} from 'react';
 
 type Props = {
   getObject: () => TAccountInfoObject;
 };
 
 function DialogUserActions({getObject}: Props) {
-  const {user, navigation, dismissDialog} = getObject();
+  const [loading, setLoading] = useState(false);
+  const {user, navigation, dismissDialog, dispatch} = getObject();
   const {colors} = useTheme();
 
   function navigateToLoginScreen() {
     dismissDialog();
     navigation.navigate('Login');
+  }
+
+  async function handleLogout() {
+    try {
+      setLoading(true);
+      await authService.logoutUser();
+      dispatch(setUserGlobalStore(null));
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -22,7 +38,13 @@ function DialogUserActions({getObject}: Props) {
         backgroundColor: colors.surfaceVariant,
       }}>
       {user ? (
-        <Button mode="contained">Log Out</Button>
+        <Button
+          loading={loading}
+          disabled={loading}
+          mode="contained"
+          onPress={handleLogout}>
+          Log Out
+        </Button>
       ) : (
         <Button mode="contained" onPress={navigateToLoginScreen}>
           Log In
