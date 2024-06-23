@@ -11,8 +11,12 @@ function UserInput() {
 
   return (
     <View style={styles.container}>
-      <InputBox ref={emailRef} placeholder="Enter Email" />
-      <InputBox ref={passwordRef} placeholder="Enter Password" />
+      <InputBox mode="outlined" ref={emailRef} placeholder="Enter Email" />
+      <InputBox
+        mode="outlined"
+        ref={passwordRef}
+        placeholder="Enter Password"
+      />
       <Checkbox.Item
         status={acceptedTNC ? 'checked' : 'unchecked'}
         onPress={() => setAcceptedTNC((prev) => !prev)}

@@ -1,6 +1,6 @@
 import {Ref, forwardRef, useImperativeHandle, useState} from 'react';
-import {StyleSheet, TextInput, TextInputProps} from 'react-native';
-import {useTheme} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
+import {useTheme, TextInput, TextInputProps} from 'react-native-paper';
 
 export type InputBoxRef = {
   getValue: () => string;
@@ -22,25 +22,14 @@ function InputBox(props: TextInputProps, ref: Ref<InputBoxRef>) {
 
   return (
     <TextInput
-      {...props}
-      defaultValue={props.defaultValue}
       onChangeText={setText}
       cursorColor={colors.primary}
       placeholderTextColor={'gray'}
-      style={{
-        ...styles.textInput,
-        color: colors.onSecondaryContainer,
-        backgroundColor: colors.secondaryContainer,
-      }}
+      mode="flat"
+      outlineStyle={{borderRadius: 30}}
+      {...props}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  textInput: {
-    borderRadius: 24,
-    paddingHorizontal: 16,
-  },
-});
 
 export default forwardRef(InputBox);
