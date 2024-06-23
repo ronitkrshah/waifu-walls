@@ -2,12 +2,14 @@ import {StyleSheet} from 'react-native';
 import {Surface} from 'react-native-paper';
 import Headline from './Headline';
 import UserInput from './UserInput';
+import CreateAccount from './CreateAccount';
 
 function LoginHandler() {
   return (
     <Surface style={styles.surface}>
       <Headline />
       <UserInput />
+      <CreateAccount />
     </Surface>
   );
 }
