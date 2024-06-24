@@ -1,4 +1,5 @@
 import {authService} from '@app/appwrite/AuthService';
+import {databaseService} from '@app/appwrite/DatabaseService';
 import {InputBoxRef} from '@app/components/common/InputBox';
 import {setUserGlobalStore} from '@app/store/reducers/userReducer';
 import {TUseNavigation} from '@app/types/navigation';
@@ -11,10 +12,9 @@ import {useDispatch} from 'react-redux';
 type Props = {
   emailRef: RefObject<InputBoxRef>;
   passwordRef: RefObject<InputBoxRef>;
-  tncChecked: boolean;
 };
 
-function LoginButton({emailRef, passwordRef, tncChecked}: Props) {
+function LoginButton({emailRef, passwordRef}: Props) {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<TUseNavigation>();
   const dispatch = useDispatch();
@@ -31,16 +31,19 @@ function LoginButton({emailRef, passwordRef, tncChecked}: Props) {
     try {
       setLoading(true);
       const user = await authService.loginUser({email, password});
+      const dbResp = await databaseService.getUserFromDatabase(user.userId);
+
       dispatch(
         setUserGlobalStore({
-          email: user.osName,
-          name: 'Baka',
-          role: undefined,
-          userId: user.$id,
-          avatarUrl: '',
+          userId: dbResp.userId,
+          name: dbResp.name,
+          email: dbResp.email,
+          role: dbResp.role,
+          avatarUrl: dbResp.avatarUrl,
         }),
       );
-      navigation.goBack();
+
+      navigation.popToTop();
     } catch (e) {
       if (e instanceof Error) {
         ToastAndroid.show(e.message, ToastAndroid.SHORT);
@@ -55,7 +58,7 @@ function LoginButton({emailRef, passwordRef, tncChecked}: Props) {
       loading={loading}
       onPress={handleSubmit}
       mode="contained"
-      disabled={!tncChecked || loading}>
+      disabled={loading}>
       Log In
     </Button>
   );

@@ -4,8 +4,8 @@ export type User = {
   userId: string;
   name: string;
   email: string;
-  avatarUrl: string;
-  role: 'admin' | undefined;
+  avatarUrl?: string;
+  role?: 'admin';
 };
 
 type UserReducerState = {

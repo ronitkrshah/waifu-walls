@@ -7,8 +7,6 @@ import {useDispatch} from 'react-redux';
 function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
   const dispatch = useDispatch();
 
-  console.log('SplashScreen');
-
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -23,6 +21,7 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
           }),
         );
       } catch (e) {
+        // ... ignore
       } finally {
         navigation.replace('Home', {screen: 'Mobile'});
       }

@@ -4,6 +4,7 @@ import {TStackNavigationParamList} from '@app/types/navigation';
 import TabNavigation from '../Tab';
 import {MD3Theme, withTheme} from 'react-native-paper';
 import LoginScreen from '@app/screens/Stack/LoginScreen';
+import SignupScreen from '@app/screens/Stack/SignupScreen';
 
 type Props = {
   theme: MD3Theme;
@@ -24,6 +25,7 @@ function StackNavigation({theme}: Props) {
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Home" component={TabNavigation} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
     </Stack.Navigator>
   );
 }
