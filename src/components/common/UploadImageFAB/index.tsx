@@ -1,13 +1,16 @@
 import {GlobalStoreRootState} from '@app/store/store';
+import {TUseNavigation} from '@app/types/navigation';
+import {useNavigation} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
 import {FAB} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 
 function UploadImageFAB() {
   const user = useSelector((state: GlobalStoreRootState) => state.user.user);
+  const navigation = useNavigation<TUseNavigation>();
 
   function handlePress() {
-    console.log('Upload Image');
+    navigation.navigate('UploadImage');
   }
 
   return (

@@ -1,10 +1,17 @@
 import {appwriteConfig} from '@app/conf/conf';
 import AppwriteService from './AppwriteService';
+import {ID} from 'react-native-appwrite';
 
 type TDBCreateUser = {
   name: string;
   email: string;
   userId: string;
+};
+
+type TImageCollection = {
+  imageId: string;
+  userId: string;
+  title: string;
 };
 
 class DatabaseService extends AppwriteService {
@@ -38,6 +45,24 @@ class DatabaseService extends AppwriteService {
     } catch (e) {
       console.log('Appwrite Exception :: getUserFromDatabase() ::', e);
       throw e;
+    }
+  }
+
+  async createImageCollection({imageId, title, userId}: TImageCollection) {
+    try {
+      const data = await this.database.createDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.wallpaperCollectionId,
+        ID.unique(),
+        {
+          title,
+          imageId,
+          user: userId,
+        },
+      );
+      return data;
+    } catch (e) {
+      console.log('Appwrite Exception :: createImageCollection() ::', e);
     }
   }
 }

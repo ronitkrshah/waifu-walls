@@ -5133,7 +5133,9 @@ __metadata:
     react: 18.2.0
     react-native: 0.74.2
     react-native-appwrite: ^0.4.0
+    react-native-compressor: ^1.8.25
     react-native-dotenv: ^3.4.11
+    react-native-image-picker: ^7.1.2
     react-native-paper: ^5.12.3
     react-native-safe-area-context: ^4.10.5
     react-native-screens: ^3.32.0
@@ -10457,6 +10459,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-compressor@npm:^1.8.25":
+  version: 1.8.25
+  resolution: "react-native-compressor@npm:1.8.25"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: ff77edba14be2439f82d74e5a0304dc9f149cd492de356db67d6e33a39737f95bb040c78cb63609b81b43350017bf1c6199d3c0535bc3d8cd62861b1e6baf054
+  languageName: node
+  linkType: hard
+
 "react-native-dotenv@npm:^3.4.11":
   version: 3.4.11
   resolution: "react-native-dotenv@npm:3.4.11"
@@ -10465,6 +10477,16 @@ __metadata:
   peerDependencies:
     "@babel/runtime": ^7.20.6
   checksum: 3ebac2c2ed79dd7e4920fd3fc2da9187413b7190231618e4858b46c47833677838b96d531afe7bd5c4b0a60454dba40cb8708722210df5d522e30aefbf41da05
+  languageName: node
+  linkType: hard
+
+"react-native-image-picker@npm:^7.1.2":
+  version: 7.1.2
+  resolution: "react-native-image-picker@npm:7.1.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: af52328b7cb06c28549442f0d923cfa92dde8d5a968a642336df4c882f81adbf0e5e606a14de27f96883a76fa1e03230061c4080011c9107942edebc8e09c478
   languageName: node
   linkType: hard
 

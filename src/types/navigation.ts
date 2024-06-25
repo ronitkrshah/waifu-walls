@@ -1,4 +1,4 @@
-import {NavigationProp, NavigatorScreenParams} from '@react-navigation/native';
+import {NavigatorScreenParams} from '@react-navigation/native';
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
@@ -8,6 +8,7 @@ export type TStackNavigationParamList = {
   Splash: undefined;
   Login: undefined;
   Signup: undefined;
+  UploadImage: undefined;
   Home: NavigatorScreenParams<TTabNavigationParamList>;
 };
 

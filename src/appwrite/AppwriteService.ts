@@ -1,10 +1,11 @@
 import {appwriteConfig} from '@app/conf/conf';
-import {Account, Client, Databases} from 'react-native-appwrite';
+import {Account, Client, Databases, Storage} from 'react-native-appwrite';
 
 class AppwriteService {
   protected account: Account;
   protected client: Client;
   protected database: Databases;
+  protected storage: Storage;
 
   constructor() {
     this.client = new Client()
@@ -13,6 +14,7 @@ class AppwriteService {
 
     this.account = new Account(this.client);
     this.database = new Databases(this.client);
+    this.storage = new Storage(this.client);
   }
 }
 
