@@ -1,7 +1,8 @@
 import InputBox, {InputBoxRef} from '@app/components/common/InputBox';
 import {useRef} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import SignupBtn from '../SignupButton';
+import {Surface} from 'react-native-paper';
 
 export type TCreateAccountInputs = Partial<{
   name: string;
@@ -23,18 +24,23 @@ function UserInput() {
   }
 
   return (
-    <View style={styles.container}>
+    <Surface style={styles.surface}>
       <InputBox ref={nameRef} placeholder="Enter Name" />
       <InputBox ref={emailRef} placeholder="Enter Email" />
       <InputBox ref={passwordRef} placeholder="Enter Password" />
       <SignupBtn getValues={getValues} />
-    </View>
+    </Surface>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  surface: {
     gap: 16,
+    width: '98%',
+    alignSelf: 'center',
+    paddingVertical: 40,
+    paddingHorizontal: 16,
+    borderRadius: 24,
   },
 });
 
