@@ -8,6 +8,7 @@ export type TStackNavigationParamList = {
   Splash: undefined;
   Login: undefined;
   Signup: undefined;
+  Search: undefined;
   UploadImage: undefined;
   Home: NavigatorScreenParams<TTabNavigationParamList>;
 };
