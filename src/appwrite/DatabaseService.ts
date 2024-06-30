@@ -1,6 +1,7 @@
 import {appwriteConfig} from '@app/conf/conf';
 import AppwriteService from './AppwriteService';
-import {ID} from 'react-native-appwrite';
+import {ID, Query} from 'react-native-appwrite';
+import {TListWallpaper} from '@app/types/wallpaper';
 
 type TDBCreateUser = {
   name: string;
@@ -63,6 +64,33 @@ class DatabaseService extends AppwriteService {
       return data;
     } catch (e) {
       console.log('Appwrite Exception :: createImageCollection() ::', e);
+    }
+  }
+
+  async getHomeScreenWallpapers() {
+    try {
+      const data = await this.database.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.wallpaperCollectionId,
+        [Query.orderAsc('$createdAt'), Query.limit(10)],
+      );
+      const returnItem: TListWallpaper[] = [];
+      data.documents.map((item) => {
+        const previewUrl = this.storage.getFilePreview(
+          appwriteConfig.wallpapersBucketId,
+          item.imageId,
+        );
+
+        returnItem.push({
+          previewUrl: `${previewUrl}`,
+          id: item.$id,
+          uploadedBy: item.user.name,
+        });
+      });
+
+      return returnItem;
+    } catch (e) {
+      console.log('Appwrite Exception :: getHomeScreenWallpapers() ::', e);
     }
   }
 }

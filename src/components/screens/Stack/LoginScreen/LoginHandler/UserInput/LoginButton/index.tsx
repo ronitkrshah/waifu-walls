@@ -31,19 +31,20 @@ function LoginButton({emailRef, passwordRef}: Props) {
     try {
       setLoading(true);
       const user = await authService.loginUser({email, password});
-      const dbResp = await databaseService.getUserFromDatabase(user.userId);
+      if (user) {
+        const dbResp = await databaseService.getUserFromDatabase(user.userId);
+        dispatch(
+          setUserGlobalStore({
+            userId: dbResp.userId,
+            name: dbResp.name,
+            email: dbResp.email,
+            role: dbResp.role,
+            avatarUrl: dbResp.avatarUrl,
+          }),
+        );
 
-      dispatch(
-        setUserGlobalStore({
-          userId: dbResp.userId,
-          name: dbResp.name,
-          email: dbResp.email,
-          role: dbResp.role,
-          avatarUrl: dbResp.avatarUrl,
-        }),
-      );
-
-      navigation.popToTop();
+        navigation.popToTop();
+      }
     } catch (e) {
       if (e instanceof Error) {
         ToastAndroid.show(e.message, ToastAndroid.SHORT);

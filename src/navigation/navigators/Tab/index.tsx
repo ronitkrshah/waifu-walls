@@ -12,17 +12,17 @@ const Tab = createMaterialBottomTabNavigator<TTabNavigationParamList>();
 
 function TabNavigation({theme}: Props) {
   return (
-    <Tab.Navigator theme={theme} shifting backBehavior="none">
+    <Tab.Navigator theme={theme} backBehavior="none">
       <Tab.Screen
         name="Mobile"
         component={MobileScreen}
         options={{tabBarIcon: 'cellphone'}}
       />
-      <Tab.Screen
-        name="Desktop"
-        component={DesktopScreen}
-        options={{tabBarIcon: 'monitor'}}
-      />
+      {/* <Tab.Screen */}
+      {/*   name="Desktop" */}
+      {/*   component={DesktopScreen} */}
+      {/*   options={{tabBarIcon: 'monitor'}} */}
+      {/* /> */}
     </Tab.Navigator>
   );
 }
