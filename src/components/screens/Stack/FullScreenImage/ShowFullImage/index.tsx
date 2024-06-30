@@ -1,9 +1,5 @@
-import {Dimensions, Image, StyleSheet} from 'react-native';
-import Animated, {
-  SharedTransition,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
+import {Dimensions, StyleSheet} from 'react-native';
+import Animated from 'react-native-reanimated';
 
 type Props = {
   url: string;

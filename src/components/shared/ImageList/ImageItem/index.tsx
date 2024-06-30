@@ -1,11 +1,7 @@
 import {TUseNavigation} from '@app/types/navigation';
 import {useNavigation} from '@react-navigation/native';
-import {Image, Pressable, StyleSheet} from 'react-native';
-import Animated, {
-  SharedTransition,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
+import {Pressable, StyleSheet} from 'react-native';
+import Animated from 'react-native-reanimated';
 
 type Props = {
   url: string;
