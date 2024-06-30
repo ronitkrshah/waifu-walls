@@ -7,8 +7,6 @@ type Props = {
 };
 
 function ImageList({data}: Props) {
-  console.log('rendering');
-
   return (
     <FlatList
       data={data}
