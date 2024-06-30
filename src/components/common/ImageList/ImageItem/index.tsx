@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
   image: {
     padding: 10,
     borderRadius: 20,
+    marginHorizontal: 'auto',
+    marginBottom: 15,
   },
 });
 

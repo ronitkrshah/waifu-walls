@@ -1,6 +1,6 @@
 import {TListWallpaper} from '@app/types/wallpaper';
-import {FlatList, StyleSheet} from 'react-native';
 import ImageItem from './ImageItem';
+import {FlashList} from '@shopify/flash-list';
 
 type Props = {
   data: TListWallpaper[];
@@ -8,28 +8,13 @@ type Props = {
 
 function ImageList({data}: Props) {
   return (
-    <FlatList
+    <FlashList
       data={data}
-      style={styles.flatlist}
-      contentContainerStyle={styles.container}
-      columnWrapperStyle={styles.columnStyle}
       numColumns={2}
+      estimatedItemSize={10}
       renderItem={({item}) => <ImageItem url={item.previewUrl} />}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  flatlist: {
-    flex: 1,
-  },
-  container: {
-    alignItems: 'center',
-    gap: 10,
-  },
-  columnStyle: {
-    gap: 10,
-  },
-});
 
 export default ImageList;
