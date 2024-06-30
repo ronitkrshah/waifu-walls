@@ -1,6 +1,11 @@
 import {TUseNavigation} from '@app/types/navigation';
 import {useNavigation} from '@react-navigation/native';
 import {Image, Pressable, StyleSheet} from 'react-native';
+import Animated, {
+  SharedTransition,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 
 type Props = {
   url: string;
@@ -19,12 +24,13 @@ function ImageItem({url, downloadUrl}: Props) {
 
   return (
     <Pressable style={styles.container} onPress={onPress}>
-      <Image
+      <Animated.Image
         style={styles.image}
         source={{uri: url}}
         height={400}
         width={180}
         resizeMode="cover"
+        sharedTransitionTag={`${url}`}
       />
     </Pressable>
   );

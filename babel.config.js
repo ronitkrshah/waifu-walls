@@ -12,5 +12,6 @@ module.exports = {
     ],
     ['react-native-paper/babel'],
     ['module:react-native-dotenv'],
+    ['react-native-reanimated/plugin'],
   ],
 };
