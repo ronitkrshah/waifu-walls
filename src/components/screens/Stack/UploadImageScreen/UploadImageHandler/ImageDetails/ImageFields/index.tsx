@@ -19,12 +19,7 @@ function ImageFields({imagePath}: Props) {
 
   return (
     <View style={styles.container}>
-      <InputBox
-        ref={titleRef}
-        label={'Title'}
-        mode="outlined"
-        outlineStyle={styles.inputOutline}
-      />
+      <InputBox ref={titleRef} placeholder="Enter Image Title" />
       <UploadButton getData={getValues} />
     </View>
   );
