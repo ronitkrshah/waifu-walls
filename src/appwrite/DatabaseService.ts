@@ -81,10 +81,16 @@ class DatabaseService extends AppwriteService {
           item.imageId,
         );
 
+        const downloadUrl = this.storage.getFileDownload(
+          appwriteConfig.wallpapersBucketId,
+          item.imageId,
+        );
+
         returnItem.push({
           previewUrl: `${previewUrl}`,
-          id: item.$id,
+          id: item.imageId,
           uploadedBy: item.user.name,
+          downloadUrl: `${downloadUrl}`,
         });
       });
 

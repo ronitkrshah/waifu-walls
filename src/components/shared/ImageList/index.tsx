@@ -12,7 +12,9 @@ function ImageList({data}: Props) {
       data={data}
       numColumns={2}
       estimatedItemSize={10}
-      renderItem={({item}) => <ImageItem url={item.previewUrl} />}
+      renderItem={({item}) => (
+        <ImageItem url={item.previewUrl} downloadUrl={item.downloadUrl} />
+      )}
     />
   );
 }
