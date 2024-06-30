@@ -72,7 +72,7 @@ class DatabaseService extends AppwriteService {
       const data = await this.database.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.wallpaperCollectionId,
-        [Query.orderAsc('$createdAt'), Query.limit(10)],
+        [Query.orderDesc('$createdAt'), Query.limit(10)],
       );
       const returnItem: TListWallpaper[] = [];
       data.documents.map((item) => {
