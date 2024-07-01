@@ -19,13 +19,12 @@ function UploadButton({getData}: Props) {
     (state: GlobalStoreRootState) => state.user.user?.userId,
   );
 
-  const {
-    imageTitle,
-    uri: originalImagePath,
-    fileSize: imageSizeInBytes,
-  } = getData();
-
   async function handleUpload() {
+    const {
+      imageTitle,
+      uri: originalImagePath,
+      fileSize: imageSizeInBytes,
+    } = getData();
     if (!originalImagePath || !imageTitle) {
       return;
     }
