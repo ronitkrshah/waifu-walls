@@ -8,6 +8,7 @@ import UploadImageScreen from '@app/screens/Stack/UploadImageScreen';
 import SearchScreen from '@app/screens/Stack/SearchScreen';
 import FullScreenImage from '@app/screens/Stack/FullScreenImage';
 import HomeScreen from '@app/screens/Stack/HomeScreen';
+import AppHeader from '@app/components/shared/AppHeader';
 
 type Props = {
   theme: MD3Theme;
@@ -26,7 +27,14 @@ function StackNavigation({theme}: Props) {
         contentStyle: {backgroundColor: theme.colors.surface},
       }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: true,
+          header: () => <AppHeader title="Home" />,
+        }}
+      />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
