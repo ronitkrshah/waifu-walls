@@ -39,7 +39,6 @@ function LoginButton({emailRef, passwordRef}: Props) {
             name: dbResp.name,
             email: dbResp.email,
             role: dbResp.role,
-            avatarUrl: dbResp.avatarUrl,
           }),
         );
 

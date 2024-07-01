@@ -13,13 +13,12 @@ export interface TWallpaper extends Details {
   imageId: string;
   previewUrl: string;
   downloadUrl: string;
-  uploadedBy: UploadedBy;
+  uploadedBy: TDBUser;
 }
 
-interface UploadedBy extends Details {
+export interface TDBUser extends Details {
   email: string;
   name: string;
   userId: string;
   role: string;
-  avatarUrl: string;
 }
