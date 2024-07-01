@@ -3,6 +3,7 @@ import {TWallpaper} from '@app/types/wallpaper';
 import {useNavigation} from '@react-navigation/native';
 import {Pressable, StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
+import UploadedUser from './UploadedUser';
 
 type Props = {
   wallpaper: TWallpaper;
@@ -29,6 +30,7 @@ function ImageItem({wallpaper}: Props) {
         resizeMode="cover"
         sharedTransitionTag={`${wallpaper.imageId}`}
       />
+      <UploadedUser user={wallpaper.uploadedBy} />
     </Pressable>
   );
 }
