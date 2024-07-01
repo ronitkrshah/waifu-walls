@@ -2,14 +2,16 @@ import {TUseRoute} from '@app/types/navigation';
 import {useRoute} from '@react-navigation/native';
 import {IconButton} from 'react-native-paper';
 import {setWallpaper} from './utils/setWallpaper';
-import {ToastAndroid} from 'react-native';
+import {useState} from 'react';
 
 function SetWallpaperButton() {
+  const [loading, setLoading] = useState(false);
   const params = useRoute<TUseRoute<'FullScreenImage'>>().params;
 
-  function onPress() {
-    ToastAndroid.show('Setting Wallpaper!', ToastAndroid.SHORT);
-    setWallpaper(params.downloadUrl);
+  async function onPress() {
+    setLoading(true);
+    await setWallpaper(params.downloadUrl);
+    setLoading(false);
   }
 
   return (
@@ -19,6 +21,7 @@ function SetWallpaperButton() {
       icon={'wallpaper'}
       size={40}
       mode="contained-tonal"
+      loading={loading}
     />
   );
 }
