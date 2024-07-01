@@ -1,7 +1,8 @@
-import {Assets} from '@app/constants';
 import {StyleSheet, View} from 'react-native';
-import {Avatar, Text, useTheme} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 import {TAccountInfoObject} from '..';
+import UserAvatar from './UserAvatar';
+import UserInfo from './UserInfo';
 
 type Props = {
   getObject: () => TAccountInfoObject;
@@ -15,21 +16,12 @@ function DialogUserProfile({getObject}: Props) {
   const avatarContainerWidth = user ? undefined : '100%';
 
   return (
-    <View style={{...styles.container, backgroundColor: colors.surfaceVariant}}>
-      <View style={{width: avatarContainerWidth}}>
-        <Avatar.Image style={styles.avatar} source={Assets.Images.NoAccount} />
+    <View style={{backgroundColor: colors.surfaceVariant, ...styles.container}}>
+      <View style={{width: avatarContainerWidth, ...styles.avatarContainer}}>
+        <UserAvatar name={user?.name} />
       </View>
-      <View style={styles.textContainer}>
-        {user && (
-          <>
-            <Text ellipsizeMode="tail" variant="titleMedium">
-              {user.name}
-            </Text>
-            <Text ellipsizeMode="tail" variant="labelMedium">
-              {user.email}
-            </Text>
-          </>
-        )}
+      <View style={styles.userInfo}>
+        <UserInfo user={user} />
       </View>
     </View>
   );
@@ -45,10 +37,10 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 10,
     borderBottomStartRadius: 10,
   },
-  avatar: {
-    alignSelf: 'center',
+  avatarContainer: {
+    alignItems: 'center',
   },
-  textContainer: {
+  userInfo: {
     flex: 1,
     justifyContent: 'center',
     paddingLeft: 15,
