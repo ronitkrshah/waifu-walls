@@ -1,4 +1,4 @@
-import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
+import {RouteProp} from '@react-navigation/native';
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
@@ -11,12 +11,7 @@ export type TStackNavigationParamList = {
   Search: undefined;
   UploadImage: undefined;
   FullScreenImage: {uri: string; downloadUri: string};
-  Home: NavigatorScreenParams<TTabNavigationParamList>;
-};
-
-export type TTabNavigationParamList = {
-  Mobile: undefined;
-  Desktop: undefined;
+  Home: undefined;
 };
 
 export type TStackNavigationScreenProps<
