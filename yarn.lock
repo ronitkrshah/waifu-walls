@@ -5174,6 +5174,7 @@ __metadata:
     react-native: 0.74.2
     react-native-appwrite: ^0.4.0
     react-native-compressor: ^1.8.25
+    react-native-device-wallpaper-manager: ^0.0.2
     react-native-dotenv: ^3.4.11
     react-native-image-picker: ^7.1.2
     react-native-paper: ^5.12.3
@@ -10514,6 +10515,16 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: ff77edba14be2439f82d74e5a0304dc9f149cd492de356db67d6e33a39737f95bb040c78cb63609b81b43350017bf1c6199d3c0535bc3d8cd62861b1e6baf054
+  languageName: node
+  linkType: hard
+
+"react-native-device-wallpaper-manager@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "react-native-device-wallpaper-manager@npm:0.0.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 34e861436453ab1ab187342f532400f38c9a6798017f593d6d4a2287abbb4503f4cab628dc0a522b5a96ea04076b3c216cd75082ded52d1045bf56eb32ba50f4
   languageName: node
   linkType: hard
 

@@ -21,6 +21,7 @@
     "react-native": "0.74.2",
     "react-native-appwrite": "^0.4.0",
     "react-native-compressor": "^1.8.25",
+    "react-native-device-wallpaper-manager": "^0.0.2",
     "react-native-image-picker": "^7.1.2",
     "react-native-paper": "^5.12.3",
     "react-native-reanimated": "^3.12.1",
