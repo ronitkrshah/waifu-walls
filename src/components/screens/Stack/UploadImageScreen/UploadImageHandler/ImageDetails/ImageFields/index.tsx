@@ -2,18 +2,19 @@ import InputBox, {InputBoxRef} from '@app/components/common/InputBox';
 import {StyleSheet, View} from 'react-native';
 import UploadButton from './UploadButton';
 import {useRef} from 'react';
+import {Asset} from 'react-native-image-picker';
 
 type Props = {
-  imagePath: string;
+  imageData?: Asset;
 };
 
-function ImageFields({imagePath}: Props) {
+function ImageFields({imageData}: Props) {
   const titleRef = useRef<InputBoxRef>(null);
 
   function getValues() {
     return {
       imageTitle: titleRef.current?.getValue()!,
-      imagePath,
+      ...imageData,
     };
   }
 

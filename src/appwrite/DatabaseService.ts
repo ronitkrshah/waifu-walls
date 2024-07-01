@@ -1,7 +1,7 @@
 import {appwriteConfig} from '@app/conf/conf';
 import AppwriteService from './AppwriteService';
 import {ID, Query} from 'react-native-appwrite';
-import {TListWallpaper} from '@app/types/wallpaper';
+import {TWallpaper} from '@app/types/wallpaper';
 
 type TDBCreateUser = {
   name: string;
@@ -11,8 +11,8 @@ type TDBCreateUser = {
 
 type TImageCollection = {
   imageId: string;
-  userId: string;
   title: string;
+  userId: string;
 };
 
 class DatabaseService extends AppwriteService {
@@ -58,45 +58,36 @@ class DatabaseService extends AppwriteService {
         {
           title,
           imageId,
-          user: userId,
+          uploadedBy: userId,
+          previewUrl: this.storage.getFilePreview(
+            appwriteConfig.wallpapersBucketId,
+            imageId,
+          ),
+          downloadUrl: this.storage.getFileDownload(
+            appwriteConfig.wallpapersBucketId,
+            imageId,
+          ),
         },
       );
       return data;
     } catch (e) {
       console.log('Appwrite Exception :: createImageCollection() ::', e);
+      throw e;
     }
   }
 
-  async getHomeScreenWallpapers() {
+  async getHomeScreenWallpapers(): Promise<TWallpaper[]> {
     try {
       const data = await this.database.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.wallpaperCollectionId,
         [Query.orderDesc('$createdAt'), Query.limit(10)],
       );
-      const returnItem: TListWallpaper[] = [];
-      data.documents.map((item) => {
-        const previewUrl = this.storage.getFilePreview(
-          appwriteConfig.wallpapersBucketId,
-          item.imageId,
-        );
 
-        const downloadUrl = this.storage.getFileDownload(
-          appwriteConfig.wallpapersBucketId,
-          item.imageId,
-        );
-
-        returnItem.push({
-          previewUrl: `${previewUrl}`,
-          id: item.imageId,
-          uploadedBy: item.user.name,
-          downloadUrl: `${downloadUrl}`,
-        });
-      });
-
-      return returnItem;
+      return data.documents as TWallpaper[];
     } catch (e) {
       console.log('Appwrite Exception :: getHomeScreenWallpapers() ::', e);
+      throw e;
     }
   }
 }

@@ -11,7 +11,7 @@ function DownloadButton() {
 
   async function onPress() {
     setDownloading(true);
-    await downloadWallpaper(params.downloadUri);
+    await downloadWallpaper(params.downloadUrl);
     setDownloading(false);
     setIcon('check');
     setTimeout(() => {

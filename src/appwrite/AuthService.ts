@@ -1,15 +1,20 @@
 import {ID} from 'react-native-appwrite';
 import AppwriteService from './AppwriteService';
+import {databaseService} from './DatabaseService';
 
 export type TUserCredentials = {
   email: string;
   password: string;
+  name?: string;
 };
 
 class AuthService extends AppwriteService {
-  async createAccount({password, email}: TUserCredentials) {
+  async createAccount({password, email, name}: TUserCredentials) {
     try {
-      return await this.account.create(ID.unique(), email, password);
+      const user = await this.account.create(ID.unique(), email, password);
+      await this.loginUser({email, password});
+      await databaseService.createUser({email, name: name!, userId: user.$id});
+      return user;
     } catch (e) {
       console.log('Appwrite Exception : createAccount() :', e);
       throw e;

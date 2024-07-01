@@ -7,10 +7,16 @@ export type TUploadImageProps = {
   uri: string;
   title: string;
   userId: string;
+  size: number;
 };
 
 class StorageService extends AppwriteService {
-  async uploadMobileWallpaper({title, userId: userid, uri}: TUploadImageProps) {
+  async uploadMobileWallpaper({
+    title,
+    userId: userid,
+    uri,
+    size,
+  }: TUploadImageProps) {
     try {
       const resp = await this.storage.createFile(
         appwriteConfig.wallpapersBucketId,
@@ -19,13 +25,7 @@ class StorageService extends AppwriteService {
           type: 'image/jpeg',
           name: title,
           uri,
-          /**
-           * I don't have any idea about the size value. Maybe it will be the
-           * size of the image in bytes.
-           *
-           * TODO: Generate base64 Image blob and get that size
-           */
-          size: 50,
+          size,
         },
       );
       await databaseService.createImageCollection({
@@ -35,6 +35,7 @@ class StorageService extends AppwriteService {
       });
     } catch (e) {
       console.log('Appwrite Exception :: uploadImage() ::', e);
+      throw e;
     }
   }
 }

@@ -16,14 +16,14 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
             avatarUrl: '',
             userId: user.$id,
             role: undefined,
-            name: 'Baka',
+            name: user.name,
             email: user.email,
           }),
         );
       } catch (e) {
         // ... ignore
       } finally {
-        navigation.replace('Home', {screen: 'Mobile'});
+        navigation.replace('Home');
       }
     };
 

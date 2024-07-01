@@ -1,20 +1,21 @@
 import {TUseNavigation} from '@app/types/navigation';
+import {TWallpaper} from '@app/types/wallpaper';
 import {useNavigation} from '@react-navigation/native';
 import {Pressable, StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 
 type Props = {
-  url: string;
-  downloadUrl: string;
+  wallpaper: TWallpaper;
 };
 
-function ImageItem({url, downloadUrl}: Props) {
+function ImageItem({wallpaper}: Props) {
   const navigation = useNavigation<TUseNavigation>();
 
   function onPress() {
     navigation.navigate('FullScreenImage', {
-      uri: url,
-      downloadUri: downloadUrl,
+      previewUrl: wallpaper.previewUrl,
+      downloadUrl: wallpaper.downloadUrl,
+      imageId: wallpaper.imageId,
     });
   }
 
@@ -22,11 +23,11 @@ function ImageItem({url, downloadUrl}: Props) {
     <Pressable style={styles.container} onPress={onPress}>
       <Animated.Image
         style={styles.image}
-        source={{uri: url}}
+        source={{uri: wallpaper.previewUrl}}
         height={400}
         width={180}
         resizeMode="cover"
-        sharedTransitionTag={`${url}`}
+        sharedTransitionTag={`${wallpaper.imageId}`}
       />
     </Pressable>
   );

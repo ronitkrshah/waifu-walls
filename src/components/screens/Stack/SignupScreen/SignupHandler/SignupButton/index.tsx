@@ -29,13 +29,7 @@ function SignupBtn({getValues}: Props) {
 
     setLoading(true);
     try {
-      const user = await authService.createAccount({email, password});
-      await authService.loginUser({email, password});
-      await databaseService.createUser({
-        name,
-        email,
-        userId: user.$id,
-      });
+      const user = await authService.createAccount({email, password, name});
       dispatch(
         setUserGlobalStore({
           userId: user.$id,

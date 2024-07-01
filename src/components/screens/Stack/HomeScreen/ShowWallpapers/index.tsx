@@ -1,10 +1,10 @@
 import {databaseService} from '@app/appwrite/DatabaseService';
 import ImageList from '@app/components/shared/ImageList';
-import {TListWallpaper} from '@app/types/wallpaper';
+import {TWallpaper} from '@app/types/wallpaper';
 import {useEffect, useState} from 'react';
 
 function ShowWallpapers() {
-  const [images, setImages] = useState<TListWallpaper[]>([]);
+  const [images, setImages] = useState<TWallpaper[]>([]);
 
   useEffect(() => {
     const getImages = async () => {

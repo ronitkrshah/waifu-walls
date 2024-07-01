@@ -1,18 +1,18 @@
-import {useState} from 'react';
 import ImagePreview from './ImagePreview';
 import ImageFields from './ImageFields';
+import {Asset} from 'react-native-image-picker';
+import {useState} from 'react';
 
 function ImageDetails() {
-  const [imagePath, setImagePath] = useState('');
+  const [imageData, setImageData] = useState<Asset | undefined>(undefined);
 
-  function getImagePath(path: string) {
-    setImagePath(path);
+  function getImageData(data: Asset) {
+    setImageData(data);
   }
-
   return (
     <>
-      <ImagePreview getImagePath={getImagePath} />
-      <ImageFields imagePath={imagePath} />
+      <ImagePreview getImageData={getImageData} />
+      <ImageFields imageData={imageData} />
     </>
   );
 }

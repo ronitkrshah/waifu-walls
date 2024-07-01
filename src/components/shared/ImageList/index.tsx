@@ -1,9 +1,9 @@
-import {TListWallpaper} from '@app/types/wallpaper';
+import {TWallpaper} from '@app/types/wallpaper';
 import ImageItem from './ImageItem';
 import {FlashList} from '@shopify/flash-list';
 
 type Props = {
-  data: TListWallpaper[];
+  data: TWallpaper[];
 };
 
 function ImageList({data}: Props) {
@@ -12,9 +12,7 @@ function ImageList({data}: Props) {
       data={data}
       numColumns={2}
       estimatedItemSize={10}
-      renderItem={({item}) => (
-        <ImageItem url={item.previewUrl} downloadUrl={item.downloadUrl} />
-      )}
+      renderItem={({item}) => <ImageItem wallpaper={item} />}
     />
   );
 }

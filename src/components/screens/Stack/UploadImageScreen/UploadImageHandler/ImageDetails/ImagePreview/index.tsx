@@ -1,27 +1,29 @@
 import {useState} from 'react';
 import {Dimensions, Image, StyleSheet} from 'react-native';
 import {View} from 'react-native';
-import {launchImageLibrary} from 'react-native-image-picker';
+import {Asset, launchImageLibrary} from 'react-native-image-picker';
 import {Button} from 'react-native-paper';
 
 type Props = {
-  getImagePath: (path: string) => void;
+  getImageData: (data: Asset) => void;
 };
 
 const {width} = Dimensions.get('window');
 
-function ImagePreview({getImagePath}: Props) {
-  const [imagePath, setImagePath] = useState('');
+function ImagePreview({getImageData}: Props) {
+  const [localImagePath, setLocalImagePath] = useState('');
 
   async function handleSelectImage() {
     try {
-      const resp = await launchImageLibrary({mediaType: 'photo'});
-      if (resp.assets === undefined) {
-        return;
+      const resp = await launchImageLibrary({
+        mediaType: 'photo',
+      });
+
+      if (resp.assets && resp.assets.length > 0) {
+        const path = resp.assets[0].uri!;
+        setLocalImagePath(path);
+        getImageData(resp.assets[0]);
       }
-      const image = resp.assets[0];
-      setImagePath(image.uri!);
-      getImagePath(image.uri!);
     } catch (e) {
       // ... Ignore
     }
@@ -29,13 +31,13 @@ function ImagePreview({getImagePath}: Props) {
 
   return (
     <View style={styles.container}>
-      {imagePath !== '' && (
+      {localImagePath !== '' && (
         <Image
           resizeMode="contain"
           style={styles.previewImage}
-          source={{uri: imagePath}}
+          source={{uri: localImagePath}}
           width={width - 32}
-          height={640}
+          height={600}
         />
       )}
       <Button mode="contained-tonal" onPress={handleSelectImage}>
