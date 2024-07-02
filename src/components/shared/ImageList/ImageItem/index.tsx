@@ -30,7 +30,6 @@ function ImageItem({wallpaper}: Props) {
         height={TOTAL_HEIGHT / 2}
         width={TOTAL_WIDTH / 2 - 10}
         resizeMode="cover"
-        sharedTransitionTag={`${wallpaper.imageId}`}
       />
       <UploadedUser user={wallpaper.uploadedBy} />
     </Pressable>

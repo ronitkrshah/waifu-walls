@@ -9,6 +9,7 @@ import SearchScreen from '@app/screens/Stack/SearchScreen';
 import FullScreenImage from '@app/screens/Stack/FullScreenImage';
 import HomeScreen from '@app/screens/Stack/HomeScreen';
 import AppHeader from '@app/components/shared/AppHeader';
+import SettingsScreen from '@app/screens/Stack/SettingsScreen';
 
 type Props = {
   theme: MD3Theme;
@@ -40,6 +41,7 @@ function StackNavigation({theme}: Props) {
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="UploadImage" component={UploadImageScreen} />
       <Stack.Screen name="FullScreenImage" component={FullScreenImage} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
 }

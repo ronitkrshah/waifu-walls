@@ -6,13 +6,13 @@ import {store} from './store/store';
 
 function App() {
   return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <MaterialYouThemeProvider>
+    <MaterialYouThemeProvider>
+      <Provider store={store}>
+        <SafeAreaProvider>
           <RootNavigation />
-        </MaterialYouThemeProvider>
-      </SafeAreaProvider>
-    </Provider>
+        </SafeAreaProvider>
+      </Provider>
+    </MaterialYouThemeProvider>
   );
 }
 

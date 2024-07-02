@@ -12,6 +12,7 @@ export type TStackNavigationParamList = {
   UploadImage: undefined;
   FullScreenImage: {previewUrl: string; downloadUrl: string; imageId: string};
   Home: undefined;
+  Settings: undefined;
 };
 
 export type TStackNavigationScreenProps<
