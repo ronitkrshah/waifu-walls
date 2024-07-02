@@ -11,9 +11,10 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
     const getUser = async () => {
       try {
         const user = await authService.getCurrentUser();
+
         dispatch(
           setUserGlobalStore({
-            userId: user.$id,
+            userId: user.userId,
             role: undefined,
             name: user.name,
             email: user.email,
