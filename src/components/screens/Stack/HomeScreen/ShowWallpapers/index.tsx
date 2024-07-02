@@ -1,22 +1,31 @@
-import {databaseService} from '@app/appwrite/DatabaseService';
-import ImageList from '@app/components/shared/ImageList';
-import {TWallpaper} from '@app/types/wallpaper';
-import {useEffect, useState} from 'react';
+import ImageItem from '@app/components/shared/ImageList/ImageItem';
+import usePagination from '@app/hooks/usePagination';
+import {FlashList} from '@shopify/flash-list';
+import {RefreshControl} from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
 
 function ShowWallpapers() {
-  const [images, setImages] = useState<TWallpaper[]>([]);
+  const {data, handleRefresh, loadingMore, refreshing, loadMore} =
+    usePagination();
 
-  useEffect(() => {
-    const getImages = async () => {
-      const data = await databaseService.getHomeScreenWallpapers();
-      if (data) {
-        setImages(data);
+  return (
+    <FlashList
+      data={data}
+      numColumns={2}
+      estimatedItemSize={14}
+      onEndReached={loadMore}
+      onEndReachedThreshold={0.1}
+      ListFooterComponent={<RenderFooter loading={loadingMore} />}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
       }
-    };
-
-    getImages();
-  }, []);
-
-  return <ImageList data={images} />;
+      renderItem={({item}) => <ImageItem wallpaper={item} />}
+    />
+  );
 }
+
+const RenderFooter = ({loading = false}) => {
+  return loading ? <ActivityIndicator animating size={'large'} /> : null;
+};
+
 export default ShowWallpapers;
