@@ -1,13 +1,15 @@
 import {TUseNavigation} from '@app/types/navigation';
 import {TWallpaper} from '@app/types/wallpaper';
 import {useNavigation} from '@react-navigation/native';
-import {Pressable, StyleSheet} from 'react-native';
+import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import UploadedUser from './UploadedUser';
 
 type Props = {
   wallpaper: TWallpaper;
 };
+
+const {height: TOTAL_HEIGHT, width: TOTAL_WIDTH} = Dimensions.get('window');
 
 function ImageItem({wallpaper}: Props) {
   const navigation = useNavigation<TUseNavigation>();
@@ -25,8 +27,8 @@ function ImageItem({wallpaper}: Props) {
       <Animated.Image
         style={styles.image}
         source={{uri: wallpaper.previewUrl}}
-        height={400}
-        width={180}
+        height={TOTAL_HEIGHT / 2}
+        width={TOTAL_WIDTH / 2 - 10}
         resizeMode="cover"
         sharedTransitionTag={`${wallpaper.imageId}`}
       />

@@ -8,7 +8,7 @@ type Props = {
   getImageData: (data: Asset) => void;
 };
 
-const {width} = Dimensions.get('window');
+const {width: TOTAL_WIDTH} = Dimensions.get('window');
 
 function ImagePreview({getImageData}: Props) {
   const [localImagePath, setLocalImagePath] = useState('');
@@ -36,7 +36,7 @@ function ImagePreview({getImageData}: Props) {
           resizeMode="contain"
           style={styles.previewImage}
           source={{uri: localImagePath}}
-          width={width - 32}
+          width={TOTAL_WIDTH - 32}
           height={600}
         />
       )}
