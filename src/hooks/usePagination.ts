@@ -39,12 +39,12 @@ export default function usePagination() {
 
   useEffect(() => {
     fetchWallpapers();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRefresh = useCallback(() => {
     setRefreshing(true);
     fetchWallpapers(0);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadMore = () => {
     if (!loadingMore) {
