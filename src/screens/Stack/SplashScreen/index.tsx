@@ -1,6 +1,9 @@
 import {authService} from '@app/appwrite/AuthService';
+import {SETTINGS_KEY} from '@app/constants/keys';
+import {updateAppSettingsGlobalStore} from '@app/store/reducers/settingsReducer';
 import {setUserGlobalStore} from '@app/store/reducers/userReducer';
 import {TStackNavigationScreenProps} from '@app/types/navigation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 
@@ -8,7 +11,8 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getUser = async () => {
+    const loadSavedData = async () => {
+      // Get Logged in User
       try {
         const user = await authService.getCurrentUser();
 
@@ -20,14 +24,20 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
             email: user.email,
           }),
         );
-      } catch (e) {
-        // ... ignore
-      } finally {
-        navigation.replace('Home');
-      }
+      } catch (e) {}
+
+      try {
+        const savedAppSettings = await AsyncStorage.getItem(SETTINGS_KEY);
+        if (savedAppSettings) {
+          dispatch(updateAppSettingsGlobalStore(JSON.parse(savedAppSettings)));
+        }
+      } catch (e) {}
+
+      // Finaly Load Home Screen
+      navigation.replace('Home');
     };
 
-    getUser();
+    loadSavedData();
   }, [dispatch, navigation]);
 
   return null;

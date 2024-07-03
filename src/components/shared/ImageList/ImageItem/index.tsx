@@ -4,6 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import UploadedUser from './UploadedUser';
+import {useSelector} from 'react-redux';
+import {GlobalStoreRootState} from '@app/store/store';
 
 type Props = {
   wallpaper: TWallpaper;
@@ -13,6 +15,10 @@ const {height: TOTAL_HEIGHT, width: TOTAL_WIDTH} = Dimensions.get('window');
 
 function ImageItem({wallpaper}: Props) {
   const navigation = useNavigation<TUseNavigation>();
+  const isTransitionEnabled = useSelector(
+    (state: GlobalStoreRootState) =>
+      state.settings.unstableSettings.wallpaperTransition,
+  );
 
   function onPress() {
     navigation.navigate('FullScreenImage', {
@@ -30,6 +36,9 @@ function ImageItem({wallpaper}: Props) {
         height={TOTAL_HEIGHT / 2}
         width={TOTAL_WIDTH / 2 - 10}
         resizeMode="cover"
+        sharedTransitionTag={
+          isTransitionEnabled ? wallpaper.imageId : undefined
+        }
       />
       <UploadedUser user={wallpaper.uploadedBy} />
     </Pressable>
