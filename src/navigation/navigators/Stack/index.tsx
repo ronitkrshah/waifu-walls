@@ -35,7 +35,13 @@ function StackNavigation() {
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="UploadImage" component={UploadImageScreen} />
-      <Stack.Screen name="FullScreenImage" component={FullScreenImage} />
+      <Stack.Screen
+        name="FullScreenImage"
+        component={FullScreenImage}
+        options={{
+          animation: 'fade',
+        }}
+      />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
