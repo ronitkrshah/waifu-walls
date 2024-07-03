@@ -1,12 +1,19 @@
-import EmptyFlatlistComponent from '@app/components/shared/EmptyFlatlistComponent';
-import ImageItem from '@app/components/shared/ImageItem';
 import usePagination from '@app/hooks/usePagination';
 import {FlashList} from '@shopify/flash-list';
 import {RefreshControl} from 'react-native';
-import {ActivityIndicator} from 'react-native-paper';
+import ImageItem from '@app/components/shared/ImageItem';
+import {ActivityIndicator, Text} from 'react-native-paper';
+import EmptyFlatlistComponent from '@app/components/shared/EmptyFlatlistComponent';
 
-function ShowWallpapers() {
-  const {data, handleRefresh, refreshing, loadMore, loading} = usePagination();
+type Props = {
+  query: string;
+};
+
+function ShowResults({query}: Props) {
+  const {data, handleRefresh, refreshing, loadMore, loading} = usePagination(
+    'SEARCH',
+    query,
+  );
 
   return (
     <FlashList
@@ -16,7 +23,10 @@ function ShowWallpapers() {
       onEndReached={loadMore}
       onEndReachedThreshold={0.1}
       ListEmptyComponent={
-        <EmptyFlatlistComponent loading={loading} text="Nothing To Show!" />
+        <EmptyFlatlistComponent
+          loading={loading}
+          text="Oops! No Results Found"
+        />
       }
       ListFooterComponent={<ActivityIndicator animating={loading} />}
       refreshControl={
@@ -27,4 +37,4 @@ function ShowWallpapers() {
   );
 }
 
-export default ShowWallpapers;
+export default ShowResults;

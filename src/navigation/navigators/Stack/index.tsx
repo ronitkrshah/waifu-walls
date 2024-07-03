@@ -10,6 +10,7 @@ import HomeScreen from '@app/screens/Stack/HomeScreen';
 import AppHeader from '@app/components/shared/AppHeader';
 import SettingsScreen from '@app/screens/Stack/SettingsScreen';
 import {useAppTheme} from '@app/components/theme/MaterialYouThemeProvider';
+import SearchReslutsScreen from '@app/screens/Stack/SearchResultsScreen';
 
 const Stack = createNativeStackNavigator<TStackNavigationParamList>();
 
@@ -35,6 +36,7 @@ function StackNavigation() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="SearchResluts" component={SearchReslutsScreen} />
       <Stack.Screen name="UploadImage" component={UploadImageScreen} />
       <Stack.Screen
         name="FullScreenImage"

@@ -15,7 +15,7 @@ type TImageCollection = {
   userId: string;
 };
 
-export type THomeScreenWallpaper = {
+export type TWallpaperDataResponse = {
   totalItems: number;
   data: TWallpaper[];
 };
@@ -84,7 +84,7 @@ class DatabaseService extends AppwriteService {
   async getHomeScreenWallpapers(
     limit = 10,
     queries = [''],
-  ): Promise<THomeScreenWallpaper> {
+  ): Promise<TWallpaperDataResponse> {
     try {
       const data = await this.database.listDocuments(
         appwriteConfig.databaseId,
@@ -98,6 +98,27 @@ class DatabaseService extends AppwriteService {
       };
     } catch (e) {
       console.log('Appwrite Exception :: getHomeScreenWallpapers() ::', e);
+      throw e;
+    }
+  }
+
+  async searchWallpaper(query: string): Promise<TWallpaperDataResponse> {
+    try {
+      const data = await this.database.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.wallpaperCollectionId,
+        [
+          Query.orderDesc('$createdAt'),
+          Query.search('title', query),
+          Query.limit(10),
+        ],
+      );
+      return {
+        totalItems: data.total,
+        data: data.documents as TWallpaper[],
+      };
+    } catch (e) {
+      console.log('Appwrite Exception :: searchWallpaper() ::', e);
       throw e;
     }
   }

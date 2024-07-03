@@ -1,20 +1,33 @@
-import {databaseService} from '@app/appwrite/DatabaseService';
+import {
+  TWallpaperDataResponse,
+  databaseService,
+} from '@app/appwrite/DatabaseService';
 import {TWallpaper} from '@app/types/wallpaper';
 import {useCallback, useEffect, useState} from 'react';
 import {Query} from 'react-native-appwrite';
 
-export default function usePagination() {
+type PaginationType = 'SEARCH' | 'HOME';
+
+export default function usePagination(
+  type: PaginationType = 'HOME',
+  query = '',
+) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<TWallpaper[]>([]);
-  const [totalItems, setTotalItems] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
 
   async function fetchWallpapers(offset = 0) {
+    let response: TWallpaperDataResponse;
+    setLoading(true);
     try {
-      const response = await databaseService.getHomeScreenWallpapers(14, [
-        Query.offset(offset),
-      ]);
+      if (type === 'HOME') {
+        response = await databaseService.getHomeScreenWallpapers(14, [
+          Query.offset(offset),
+        ]);
+      } else {
+        response = await databaseService.searchWallpaper(query);
+      }
 
       const result = {
         wallpapers: response.data,
@@ -33,7 +46,6 @@ export default function usePagination() {
     } finally {
       setLoading(false);
       setRefreshing(false);
-      setLoadingMore(false);
     }
   }
 
@@ -47,9 +59,8 @@ export default function usePagination() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadMore = () => {
-    if (!loadingMore) {
+    if (!loading) {
       if (data.length < totalItems) {
-        setLoadingMore(true);
         fetchWallpapers(data.length);
       }
     }
@@ -59,7 +70,6 @@ export default function usePagination() {
     data,
     totalItems,
     refreshing,
-    loadingMore,
     loading,
     handleRefresh,
     loadMore,

@@ -9,6 +9,7 @@ export type TStackNavigationParamList = {
   Login: undefined;
   Signup: undefined;
   Search: undefined;
+  SearchResluts: {query: string};
   UploadImage: undefined;
   FullScreenImage: {previewUrl: string; downloadUrl: string; imageId: string};
   Home: undefined;
