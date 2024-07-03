@@ -1,4 +1,4 @@
-import ImageItem from '@app/components/shared/ImageList/ImageItem';
+import ImageItem from '@app/components/shared/ImageItem';
 import usePagination from '@app/hooks/usePagination';
 import {FlashList} from '@shopify/flash-list';
 import {RefreshControl} from 'react-native';
