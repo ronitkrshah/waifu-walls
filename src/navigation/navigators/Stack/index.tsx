@@ -21,6 +21,7 @@ function StackNavigation() {
       screenOptions={{
         headerShown: false,
         contentStyle: {backgroundColor: theme.colors.surface},
+        navigationBarColor: theme.colors.surface,
       }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen
