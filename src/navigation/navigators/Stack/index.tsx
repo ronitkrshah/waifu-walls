@@ -1,7 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SplashScreen from '@app/screens/Stack/SplashScreen';
 import {TStackNavigationParamList} from '@app/types/navigation';
-import {MD3Theme, withTheme} from 'react-native-paper';
 import LoginScreen from '@app/screens/Stack/LoginScreen';
 import SignupScreen from '@app/screens/Stack/SignupScreen';
 import UploadImageScreen from '@app/screens/Stack/UploadImageScreen';
@@ -10,21 +9,17 @@ import FullScreenImage from '@app/screens/Stack/FullScreenImage';
 import HomeScreen from '@app/screens/Stack/HomeScreen';
 import AppHeader from '@app/components/shared/AppHeader';
 import SettingsScreen from '@app/screens/Stack/SettingsScreen';
-
-type Props = {
-  theme: MD3Theme;
-};
+import {useAppTheme} from '@app/components/theme/MaterialYouThemeProvider';
 
 const Stack = createNativeStackNavigator<TStackNavigationParamList>();
 
-function StackNavigation({theme}: Props) {
+function StackNavigation() {
+  const theme = useAppTheme();
+
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        statusBarColor: 'transparent',
-        statusBarTranslucent: true,
-        statusBarStyle: theme.dark ? 'light' : 'dark',
         contentStyle: {backgroundColor: theme.colors.surface},
       }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
@@ -46,4 +41,4 @@ function StackNavigation({theme}: Props) {
   );
 }
 
-export default withTheme(StackNavigation);
+export default StackNavigation;

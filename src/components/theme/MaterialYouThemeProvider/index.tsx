@@ -1,15 +1,30 @@
-import {useMaterial3Theme} from '@pchmn/expo-material3-theme';
+import {Material3Scheme, useMaterial3Theme} from '@pchmn/expo-material3-theme';
 import {PropsWithChildren, useMemo} from 'react';
-import {useColorScheme} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 import {
   MD3DarkTheme,
   MD3LightTheme,
+  MD3Theme,
   Provider as PaperProvider,
+  useTheme,
 } from 'react-native-paper';
+import {MaterialYouThemeProviderContext} from './context';
 
-function MaterialYouThemeProvider({children}: PropsWithChildren) {
+type Props = {
+  sourceColor?: string;
+  fallbackSourceColor?: string;
+} & PropsWithChildren;
+
+function MaterialYouThemeProvider({
+  children,
+  sourceColor,
+  fallbackSourceColor,
+}: Props) {
   const colorScheme = useColorScheme();
-  const {theme} = useMaterial3Theme();
+  const {theme, resetTheme, updateTheme} = useMaterial3Theme({
+    sourceColor,
+    fallbackSourceColor,
+  });
 
   const paperTheme = useMemo(
     () =>
@@ -19,7 +34,18 @@ function MaterialYouThemeProvider({children}: PropsWithChildren) {
     [colorScheme, theme],
   );
 
-  return <PaperProvider theme={paperTheme}>{children}</PaperProvider>;
+  return (
+    <MaterialYouThemeProviderContext.Provider
+      value={{theme, resetTheme, updateTheme}}>
+      <StatusBar
+        translucent
+        backgroundColor={'transparent'}
+        barStyle={paperTheme.dark ? 'light-content' : 'dark-content'}
+      />
+      <PaperProvider theme={paperTheme}>{children}</PaperProvider>
+    </MaterialYouThemeProviderContext.Provider>
+  );
 }
 
+export const useAppTheme = useTheme<MD3Theme & {colors: Material3Scheme}>;
 export default MaterialYouThemeProvider;

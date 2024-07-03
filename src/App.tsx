@@ -6,7 +6,7 @@ import {store} from './store/store';
 
 function App() {
   return (
-    <MaterialYouThemeProvider>
+    <MaterialYouThemeProvider fallbackSourceColor="#756FAB">
       <Provider store={store}>
         <SafeAreaProvider>
           <RootNavigation />
