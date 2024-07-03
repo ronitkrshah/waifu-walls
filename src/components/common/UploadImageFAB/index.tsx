@@ -23,7 +23,7 @@ function UploadImageFAB() {
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 16,
+    bottom: 32,
     right: 16,
   },
 });
