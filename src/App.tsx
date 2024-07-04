@@ -1,19 +1,30 @@
+import 'react-native-reanimated';
 import {Provider} from 'react-redux';
 import MaterialYouThemeProvider from './components/theme/MaterialYouThemeProvider';
 import RootNavigation from './navigation/RootNavigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {store} from './store/store';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {StyleSheet} from 'react-native';
 
 function App() {
   return (
-    <MaterialYouThemeProvider fallbackSourceColor="#756FAB">
-      <Provider store={store}>
-        <SafeAreaProvider>
-          <RootNavigation />
-        </SafeAreaProvider>
-      </Provider>
-    </MaterialYouThemeProvider>
+    <GestureHandlerRootView style={styles.rootView}>
+      <MaterialYouThemeProvider fallbackSourceColor="#756FAB">
+        <Provider store={store}>
+          <SafeAreaProvider>
+            <RootNavigation />
+          </SafeAreaProvider>
+        </Provider>
+      </MaterialYouThemeProvider>
+    </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  rootView: {
+    flex: 1,
+  },
+});
 
 export default App;

@@ -25,7 +25,6 @@ function LoginLogoutBtn({getObject}: Props) {
       await authService.logoutUser();
       dispatch(setUserGlobalStore(null));
     } catch (e) {
-      console.log(e);
     } finally {
       setLoading(false);
     }

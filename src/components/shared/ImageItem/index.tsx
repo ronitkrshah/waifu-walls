@@ -1,24 +1,17 @@
 import {TUseNavigation} from '@app/types/navigation';
 import {TWallpaper} from '@app/types/wallpaper';
 import {useNavigation} from '@react-navigation/native';
-import {Dimensions, Pressable, StyleSheet} from 'react-native';
-import Animated from 'react-native-reanimated';
+import {Pressable, StyleSheet} from 'react-native';
 import UploadedUser from './UploadedUser';
-import {useSelector} from 'react-redux';
-import {GlobalStoreRootState} from '@app/store/store';
+import ActualImage from './ActualImage';
+import {memo} from 'react';
 
 type Props = {
   wallpaper: TWallpaper;
 };
 
-const {height: TOTAL_HEIGHT, width: TOTAL_WIDTH} = Dimensions.get('window');
-
 function ImageItem({wallpaper}: Props) {
   const navigation = useNavigation<TUseNavigation>();
-  const isTransitionEnabled = useSelector(
-    (state: GlobalStoreRootState) =>
-      state.settings.unstableSettings.wallpaperTransition,
-  );
 
   function onPress() {
     navigation.navigate('FullScreenImage', {
@@ -30,16 +23,7 @@ function ImageItem({wallpaper}: Props) {
 
   return (
     <Pressable style={styles.container} onPress={onPress}>
-      <Animated.Image
-        style={styles.image}
-        source={{uri: wallpaper.previewUrl}}
-        height={TOTAL_HEIGHT / 2}
-        width={TOTAL_WIDTH / 2 - 10}
-        resizeMode="cover"
-        sharedTransitionTag={
-          isTransitionEnabled ? wallpaper.imageId : undefined
-        }
-      />
+      <ActualImage wallpaper={wallpaper} />
       <UploadedUser user={wallpaper.uploadedBy} />
     </Pressable>
   );
@@ -51,9 +35,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginHorizontal: 'auto',
   },
-  image: {
-    borderRadius: 20,
-  },
 });
 
-export default ImageItem;
+export default memo(ImageItem);
