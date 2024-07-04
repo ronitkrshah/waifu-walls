@@ -24,7 +24,7 @@ export default function usePagination(
     setLoading(true);
     try {
       if (type === 'HOME') {
-        response = await databaseService.getHomeScreenWallpapers(14, [
+        response = await databaseService.getHomeScreenWallpapers(10, [
           Query.offset(offset),
         ]);
       } else {
