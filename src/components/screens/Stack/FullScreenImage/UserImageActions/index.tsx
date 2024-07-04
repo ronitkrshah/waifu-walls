@@ -1,12 +1,14 @@
 import {StyleSheet, View} from 'react-native';
 import DownloadButton from './Actions/DownloadButton';
 import SetWallpaperButton from './Actions/SetWallpaperButton';
+import GoBackButton from './Actions/GoBackButton';
 
 function UserImageActions() {
   return (
     <View style={styles.container}>
       <DownloadButton />
       <SetWallpaperButton />
+      <GoBackButton />
     </View>
   );
 }
