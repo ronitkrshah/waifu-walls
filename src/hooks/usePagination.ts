@@ -17,7 +17,11 @@ export default function usePagination(
   const [totalItems, setTotalItems] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
 
-  async function fetchWallpapers(offset = 0) {
+  const fetchWallpapers = useCallback(async function fetchWallpapers(
+    offset = 0,
+  ) {
+    console.log('Callback Render');
+
     let response: TWallpaperDataResponse;
     setLoading(true);
     try {
@@ -47,7 +51,8 @@ export default function usePagination(
       setLoading(false);
       setRefreshing(false);
     }
-  }
+  },
+  []);
 
   useEffect(() => {
     fetchWallpapers();
