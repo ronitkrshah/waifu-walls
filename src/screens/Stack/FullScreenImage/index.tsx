@@ -9,7 +9,7 @@ function FullScreenImage({
   const params = route.params;
   return (
     <View style={styles.container}>
-      <ShowFullImage url={params.previewUrl} imageId={params.imageId} />
+      <ShowFullImage url={params.previewUrl} />
       <UserImageActions />
     </View>
   );
