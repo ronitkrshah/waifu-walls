@@ -1,20 +1,8 @@
-import {
-  PayloadAction,
-  PayloadActionCreator,
-  createSlice,
-} from '@reduxjs/toolkit';
+import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
-export type TSettingsReducer = {
-  unstableSettings: {
-    wallpaperTransition: boolean;
-  };
-};
+export type TSettingsReducer = {};
 
-const initialState: TSettingsReducer = {
-  unstableSettings: {
-    wallpaperTransition: false,
-  },
-};
+const initialState: TSettingsReducer = {};
 
 const settingsSlice = createSlice({
   name: 'settings',

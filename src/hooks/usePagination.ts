@@ -20,8 +20,6 @@ export default function usePagination(
   const fetchWallpapers = useCallback(async function fetchWallpapers(
     offset = 0,
   ) {
-    console.log('Callback Render');
-
     let response: TWallpaperDataResponse;
     setLoading(true);
     try {
