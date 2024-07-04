@@ -14,11 +14,7 @@ function ImageItem({wallpaper}: Props) {
   const navigation = useNavigation<TUseNavigation>();
 
   function onPress() {
-    navigation.navigate('FullScreenImage', {
-      previewUrl: wallpaper.previewUrl,
-      downloadUrl: wallpaper.downloadUrl,
-      imageId: wallpaper.imageId,
-    });
+    navigation.navigate('FullScreenImage', {wallpaper});
   }
 
   return (

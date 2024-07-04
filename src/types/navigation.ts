@@ -3,6 +3,7 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
+import {IDatabaseWallpaper} from './wallpaper';
 
 export type TStackNavigationParamList = {
   Splash: undefined;
@@ -11,7 +12,7 @@ export type TStackNavigationParamList = {
   Search: undefined;
   SearchResluts: {query: string};
   UploadImage: undefined;
-  FullScreenImage: {previewUrl: string; downloadUrl: string; imageId: string};
+  FullScreenImage: {wallpaper: IDatabaseWallpaper};
   Home: undefined;
   Settings: undefined;
 };

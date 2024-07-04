@@ -6,10 +6,10 @@ import {StyleSheet, View} from 'react-native';
 function FullScreenImage({
   route,
 }: TStackNavigationScreenProps<'FullScreenImage'>) {
-  const params = route.params;
+  const wallpaper = route.params.wallpaper;
   return (
     <View style={styles.container}>
-      <ShowFullImage url={params.previewUrl} />
+      <ShowFullImage url={wallpaper.previewUrl} />
       <UserImageActions />
     </View>
   );
