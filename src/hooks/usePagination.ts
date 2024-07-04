@@ -50,7 +50,7 @@ export default function usePagination(
       setRefreshing(false);
     }
   },
-  []);
+  []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     fetchWallpapers();
