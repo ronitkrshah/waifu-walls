@@ -1,5 +1,5 @@
 import {TUseNavigation} from '@app/types/navigation';
-import {TWallpaper} from '@app/types/wallpaper';
+import {IDatabaseWallpaper} from '@app/types/wallpaper';
 import {useNavigation} from '@react-navigation/native';
 import {Pressable, StyleSheet} from 'react-native';
 import UploadedUser from './UploadedUser';
@@ -7,7 +7,7 @@ import ActualImage from './ActualImage';
 import {memo} from 'react';
 
 type Props = {
-  wallpaper: TWallpaper;
+  wallpaper: IDatabaseWallpaper;
 };
 
 function ImageItem({wallpaper}: Props) {

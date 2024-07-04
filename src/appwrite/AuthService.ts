@@ -2,7 +2,7 @@ import {ID} from 'react-native-appwrite';
 import AppwriteService from './AppwriteService';
 import {databaseService} from './DatabaseService';
 import {appwriteConfig} from '@app/conf/conf';
-import {TDBUser} from '@app/types/wallpaper';
+import {IDatabaseUser} from '@app/types/wallpaper';
 
 export type TUserCredentials = {
   email: string;
@@ -48,7 +48,7 @@ class AuthService extends AppwriteService {
         appwriteConfig.databaseId,
         appwriteConfig.userCollectionId,
         user.$id,
-      )) as TDBUser;
+      )) as IDatabaseUser;
     } catch (e) {
       console.log('Appwrite Exception : getCurrentUser() :', e);
       throw e;

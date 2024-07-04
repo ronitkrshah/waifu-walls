@@ -1,4 +1,4 @@
-import {TWallpaper} from '@app/types/wallpaper';
+import {IDatabaseWallpaper} from '@app/types/wallpaper';
 import {Image} from 'moti';
 import {Skeleton} from 'moti/skeleton';
 import React, {useState} from 'react';
@@ -6,7 +6,7 @@ import {Dimensions} from 'react-native';
 import {useTheme} from 'react-native-paper';
 
 type Props = {
-  wallpaper: TWallpaper;
+  wallpaper: IDatabaseWallpaper;
 };
 const {height: TOTAL_HEIGHT, width: TOTAL_WIDTH} = Dimensions.get('window');
 const IMG_HEIGHT = TOTAL_HEIGHT / 2;

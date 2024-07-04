@@ -1,10 +1,10 @@
-import {TDBUser} from '@app/types/wallpaper';
+import {IDatabaseUser} from '@app/types/wallpaper';
 import {StyleSheet, View} from 'react-native';
 import {Text, useTheme} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type Props = {
-  user: TDBUser;
+  user: IDatabaseUser;
 };
 
 function UploadedUser({user}: Props) {

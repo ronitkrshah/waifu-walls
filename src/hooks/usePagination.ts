@@ -2,7 +2,7 @@ import {
   TWallpaperDataResponse,
   databaseService,
 } from '@app/appwrite/DatabaseService';
-import {TWallpaper} from '@app/types/wallpaper';
+import {IDatabaseWallpaper} from '@app/types/wallpaper';
 import {useCallback, useEffect, useState} from 'react';
 import {Query} from 'react-native-appwrite';
 
@@ -13,7 +13,7 @@ export default function usePagination(
   query = '',
 ) {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<TWallpaper[]>([]);
+  const [data, setData] = useState<IDatabaseWallpaper[]>([]);
   const [totalItems, setTotalItems] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
 

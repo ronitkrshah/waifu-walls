@@ -1,4 +1,4 @@
-interface Details {
+interface IDetails {
   $id: string;
   $tenant: string;
   $createdAt: string;
@@ -8,17 +8,21 @@ interface Details {
   $collectionId: string;
 }
 
-export interface TWallpaper extends Details {
+interface IWallpaper extends IDetails {
   title: string;
   imageId: string;
   previewUrl: string;
   downloadUrl: string;
-  uploadedBy: TDBUser;
 }
 
-export interface TDBUser extends Details {
+export interface IDatabaseWallpaper extends IWallpaper {
+  uploadedBy: IDatabaseUser;
+}
+
+export interface IDatabaseUser extends IDetails {
   email: string;
   name: string;
   userId: string;
   role: string;
+  wallpapers: IWallpaper[];
 }

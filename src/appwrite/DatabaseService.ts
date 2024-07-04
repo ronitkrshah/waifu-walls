@@ -1,7 +1,7 @@
 import {appwriteConfig} from '@app/conf/conf';
 import AppwriteService from './AppwriteService';
 import {ID, Query} from 'react-native-appwrite';
-import {TWallpaper} from '@app/types/wallpaper';
+import {IDatabaseWallpaper} from '@app/types/wallpaper';
 
 type TDBCreateUser = {
   name: string;
@@ -17,7 +17,7 @@ type TImageCollection = {
 
 export type TWallpaperDataResponse = {
   totalItems: number;
-  data: TWallpaper[];
+  data: IDatabaseWallpaper[];
 };
 
 class DatabaseService extends AppwriteService {
@@ -94,7 +94,7 @@ class DatabaseService extends AppwriteService {
 
       return {
         totalItems: data.total,
-        data: data.documents as TWallpaper[],
+        data: data.documents as IDatabaseWallpaper[],
       };
     } catch (e) {
       console.log('Appwrite Exception :: getHomeScreenWallpapers() ::', e);
@@ -115,7 +115,7 @@ class DatabaseService extends AppwriteService {
       );
       return {
         totalItems: data.total,
-        data: data.documents as TWallpaper[],
+        data: data.documents as IDatabaseWallpaper[],
       };
     } catch (e) {
       console.log('Appwrite Exception :: searchWallpaper() ::', e);
