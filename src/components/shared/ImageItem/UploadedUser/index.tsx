@@ -9,6 +9,9 @@ type Props = {
 
 function UploadedUser({user}: Props) {
   const {colors} = useTheme();
+  const username =
+    user.name.length <= 6 ? user.name : `${user.name.slice(0, 6)}...`;
+
   return (
     <View style={{backgroundColor: colors.primary, ...styles.container}}>
       <MaterialCommunityIcons
@@ -17,7 +20,7 @@ function UploadedUser({user}: Props) {
         color={colors.onPrimary}
       />
       <Text variant="titleSmall" style={{color: colors.onPrimary}}>
-        {user.name}
+        {username}
       </Text>
     </View>
   );
