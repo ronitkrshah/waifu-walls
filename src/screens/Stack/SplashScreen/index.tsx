@@ -11,11 +11,9 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const loadSavedData = async () => {
-      // Get Logged in User
-      try {
-        const user = await authService.getCurrentUser();
-
+    authService
+      .getCurrentUser()
+      .then((user) => {
         dispatch(
           setUserGlobalStore({
             userId: user.userId,
@@ -24,7 +22,11 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
             email: user.email,
           }),
         );
-      } catch (e) {}
+      })
+      .catch(() => {});
+
+    const loadSavedData = async () => {
+      // Get Logged in User
 
       try {
         const savedAppSettings = await AsyncStorage.getItem(SETTINGS_KEY);
