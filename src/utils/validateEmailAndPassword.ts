@@ -14,7 +14,7 @@ export function validateEmailAndPassword(email: string, password: string) {
     }
   }
 
-  if (password.length > 8) {
+  if (password.length > 7) {
     returnObj.passwordVerified = true;
   }
 
