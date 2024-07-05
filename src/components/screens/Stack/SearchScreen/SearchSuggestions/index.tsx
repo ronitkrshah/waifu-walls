@@ -4,6 +4,7 @@ import {StyleSheet} from 'react-native';
 
 const suggestionList = [
   'Shinobu',
+  'Hinata',
   'Kurumi',
   'Nezuko',
   'Rem',
