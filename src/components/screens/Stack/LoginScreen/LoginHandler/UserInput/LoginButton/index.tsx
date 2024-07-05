@@ -3,6 +3,7 @@ import {databaseService} from '@app/appwrite/DatabaseService';
 import {InputBoxRef} from '@app/components/common/InputBox';
 import {setUserGlobalStore} from '@app/store/reducers/userReducer';
 import {TUseNavigation} from '@app/types/navigation';
+import {validateEmailAndPassword} from '@app/utils/validateEmailAndPassword';
 import {useNavigation} from '@react-navigation/native';
 import {RefObject, useState} from 'react';
 import {ToastAndroid} from 'react-native';
@@ -25,6 +26,16 @@ function LoginButton({emailRef, passwordRef}: Props) {
 
     if (!email || !password) {
       ToastAndroid.show('Missing Fields!', ToastAndroid.SHORT);
+      return;
+    }
+
+    const {passwordVerified, emailVerified} = validateEmailAndPassword(
+      email,
+      password,
+    );
+
+    if (!passwordVerified || !emailVerified) {
+      ToastAndroid.show('Inavalid Email or Password!', ToastAndroid.SHORT);
       return;
     }
 

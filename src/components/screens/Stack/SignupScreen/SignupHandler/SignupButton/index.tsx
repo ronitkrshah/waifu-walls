@@ -5,9 +5,9 @@ import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {TUseNavigation} from '@app/types/navigation';
 import {authService} from '@app/appwrite/AuthService';
-import {databaseService} from '@app/appwrite/DatabaseService';
 import {useDispatch} from 'react-redux';
 import {setUserGlobalStore} from '@app/store/reducers/userReducer';
+import {validateEmailAndPassword} from '@app/utils/validateEmailAndPassword';
 
 type Props = {
   getValues: () => TCreateAccountInputs;
@@ -24,6 +24,15 @@ function SignupBtn({getValues}: Props) {
 
     if (!name || !email || !password) {
       ToastAndroid.show('Missing Fields!', ToastAndroid.SHORT);
+      return;
+    }
+    const {passwordVerified, emailVerified} = validateEmailAndPassword(
+      email,
+      password,
+    );
+
+    if (!passwordVerified || !emailVerified) {
+      ToastAndroid.show('Inavalid Email or Password!', ToastAndroid.SHORT);
       return;
     }
 
