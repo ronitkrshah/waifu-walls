@@ -27,7 +27,11 @@ function UserInput() {
     <Surface style={styles.surface}>
       <InputBox ref={nameRef} placeholder="Enter Name" />
       <InputBox ref={emailRef} placeholder="Enter Email" />
-      <InputBox ref={passwordRef} placeholder="Enter Password" />
+      <InputBox
+        ref={passwordRef}
+        placeholder="Enter Password"
+        secureTextEntry
+      />
       <SignupBtn getValues={getValues} />
     </Surface>
   );
