@@ -1,5 +1,5 @@
-import {Pressable, StyleSheet, View} from 'react-native';
-import {ActivityIndicator, Button, Text, useTheme} from 'react-native-paper';
+import {Pressable, StyleSheet} from 'react-native';
+import {ActivityIndicator, Text, useTheme} from 'react-native-paper';
 import {authService} from '@app/appwrite/AuthService';
 import {User, setUserGlobalStore} from '@app/store/reducers/userReducer';
 import {useState} from 'react';
