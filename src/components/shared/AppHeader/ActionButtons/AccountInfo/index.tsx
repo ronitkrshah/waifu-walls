@@ -1,19 +1,12 @@
 import {Appbar} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
-import {TUseNavigation} from '@app/types/navigation';
+import {THeaderNavigationProp} from '../..';
 
-function AccountInfo() {
-  const navigation = useNavigation<TUseNavigation>();
-
+function AccountInfo({navigation}: THeaderNavigationProp) {
   function handlePress() {
     navigation.navigate('Settings');
   }
 
-  return (
-    <>
-      <Appbar.Action icon={'account-cog'} onPress={handlePress} />
-    </>
-  );
+  return <Appbar.Action icon={'account-cog'} onPress={handlePress} />;
 }
 
 export default AccountInfo;

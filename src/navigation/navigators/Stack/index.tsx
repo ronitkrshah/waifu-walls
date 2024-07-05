@@ -30,7 +30,9 @@ function StackNavigation() {
         component={HomeScreen}
         options={{
           headerShown: true,
-          header: () => <AppHeader title="Home" />,
+          header: ({navigation}) => (
+            <AppHeader title="Home" showActions navigation={navigation} />
+          ),
         }}
       />
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -45,7 +47,20 @@ function StackNavigation() {
           animation: 'fade',
         }}
       />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          headerShown: true,
+          header: ({navigation}) => (
+            <AppHeader
+              title="Settings"
+              showBackButton
+              navigation={navigation}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 }

@@ -1,12 +1,11 @@
 import UserAccount from '@app/components/screens/Stack/SettingsScreen/UserAccount';
-import {StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {StyleSheet, View} from 'react-native';
 
 function SettingsScreen() {
   return (
-    <SafeAreaView style={styles.rootContainer}>
+    <View style={styles.rootContainer}>
       <UserAccount />
-    </SafeAreaView>
+    </View>
   );
 }
 

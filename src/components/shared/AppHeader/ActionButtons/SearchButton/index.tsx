@@ -1,10 +1,7 @@
-import {TUseNavigation} from '@app/types/navigation';
-import {useNavigation} from '@react-navigation/native';
 import {Appbar} from 'react-native-paper';
+import {THeaderNavigationProp} from '../..';
 
-function SearchButton() {
-  const navigation = useNavigation<TUseNavigation>();
-
+function SearchButton({navigation}: THeaderNavigationProp) {
   function handlePress() {
     navigation.navigate('Search');
   }
