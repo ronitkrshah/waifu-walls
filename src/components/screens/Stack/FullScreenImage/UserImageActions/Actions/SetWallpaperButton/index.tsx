@@ -14,7 +14,7 @@ function SetWallpaperButton() {
 
   async function onPress() {
     setLoading(true);
-    await setWallpaper(params.downloadUrl);
+    await setWallpaper(params.wallpaper.downloadUrl);
     setLoading(false);
   }
 
