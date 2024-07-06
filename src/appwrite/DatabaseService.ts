@@ -3,6 +3,24 @@ import AppwriteService from './AppwriteService';
 import {ID, Query} from 'react-native-appwrite';
 import {IDatabaseWallpaper} from '@app/types/wallpaper';
 
+export enum GetWallpapersType {
+  Search,
+  Latest,
+}
+
+type SearchProps = {
+  type: GetWallpapersType.Search;
+  query: string;
+};
+
+type LatesProps = {
+  type: GetWallpapersType.Latest;
+};
+
+type TGetWallpapers = {
+  offset: number;
+} & (SearchProps | LatesProps);
+
 type TDBCreateUser = {
   name: string;
   email: string;
@@ -81,43 +99,40 @@ class DatabaseService extends AppwriteService {
     }
   }
 
-  async getHomeScreenWallpapers(
-    offset: number,
-  ): Promise<TWallpaperDataResponse> {
+  async getWallpapers(props: TGetWallpapers): Promise<TWallpaperDataResponse> {
+    let databaseResponse: TWallpaperDataResponse;
     try {
-      const data = await this.database.listDocuments(
-        appwriteConfig.databaseId,
-        appwriteConfig.wallpaperCollectionId,
-        [Query.orderDesc('$createdAt'), Query.limit(10), Query.offset(offset)],
-      );
+      const query = [
+        Query.orderDesc('$createdAt'),
+        Query.limit(10),
+        Query.offset(props.offset),
+      ];
 
-      return {
-        totalItems: data.total,
-        data: data.documents as IDatabaseWallpaper[],
-      };
-    } catch (e) {
-      console.log('Appwrite Exception :: getHomeScreenWallpapers() ::', e);
-      throw e;
-    }
-  }
+      if (props.type === GetWallpapersType.Latest) {
+        const data = await this.database.listDocuments(
+          appwriteConfig.databaseId,
+          appwriteConfig.wallpaperCollectionId,
+          query,
+        );
+        databaseResponse = {
+          totalItems: data.total,
+          data: data.documents as IDatabaseWallpaper[],
+        };
+      } else {
+        const data = await this.database.listDocuments(
+          appwriteConfig.databaseId,
+          appwriteConfig.wallpaperCollectionId,
+          [...query, Query.search('title', props.query)],
+        );
+        databaseResponse = {
+          totalItems: data.total,
+          data: data.documents as IDatabaseWallpaper[],
+        };
+      }
 
-  async searchWallpaper(query: string): Promise<TWallpaperDataResponse> {
-    try {
-      const data = await this.database.listDocuments(
-        appwriteConfig.databaseId,
-        appwriteConfig.wallpaperCollectionId,
-        [
-          Query.orderDesc('$createdAt'),
-          Query.search('title', query),
-          Query.limit(10),
-        ],
-      );
-      return {
-        totalItems: data.total,
-        data: data.documents as IDatabaseWallpaper[],
-      };
+      return databaseResponse;
     } catch (e) {
-      console.log('Appwrite Exception :: searchWallpaper() ::', e);
+      console.log('Appwrite Exception :: getWallpapers() ::', e);
       throw e;
     }
   }

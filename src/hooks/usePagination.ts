@@ -1,4 +1,5 @@
 import {
+  GetWallpapersType,
   TWallpaperDataResponse,
   databaseService,
 } from '@app/appwrite/DatabaseService';
@@ -33,11 +34,16 @@ function usePagintaion(props: TFetchWallpapersProps) {
       let databaseResponse: TWallpaperDataResponse;
 
       if (props.paginationType === UsePaginationPaginationType.Search) {
-        databaseResponse = await databaseService.searchWallpaper(props.query);
-      } else {
-        databaseResponse = await databaseService.getHomeScreenWallpapers(
+        databaseResponse = await databaseService.getWallpapers({
+          type: GetWallpapersType.Search,
+          query: props.query,
           offset,
-        );
+        });
+      } else {
+        databaseResponse = await databaseService.getWallpapers({
+          type: GetWallpapersType.Latest,
+          offset,
+        });
       }
       setTotalItems(databaseResponse.totalItems);
 
