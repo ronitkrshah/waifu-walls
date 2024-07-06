@@ -3,6 +3,7 @@ import {TTabNavigationParamList} from '@app/types/navigation';
 import {MD3Theme, withTheme} from 'react-native-paper';
 import HomeScreen from '@app/screens/Tab/HomeScreen';
 import SearchScreen from '@app/screens/Tab/SearchScreen';
+import AccountScreen from '@app/screens/Tab/AccountScreen';
 
 type Props = {
   theme: MD3Theme;
@@ -33,13 +34,14 @@ function TabNavigation({theme}: Props) {
           tabBarLabel: 'Search',
         }}
       />
-      {/* <Tab.Screen */}
-      {/*   name="AccountScreen" */}
-      {/*   component={HomeScreen} */}
-      {/*   options={{ */}
-      {/*     tabBarIcon: 'account', */}
-      {/*   }} */}
-      {/* /> */}
+      <Tab.Screen
+        name="AccountScreen"
+        component={AccountScreen}
+        options={{
+          tabBarIcon: 'account',
+          tabBarLabel: 'Account',
+        }}
+      />
     </Tab.Navigator>
   );
 }

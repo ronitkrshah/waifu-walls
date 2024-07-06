@@ -6,8 +6,6 @@ import LoginScreen from '@app/screens/Stack/LoginScreen';
 import SignupScreen from '@app/screens/Stack/SignupScreen';
 import UploadImageScreen from '@app/screens/Stack/UploadImageScreen';
 import FullScreenImage from '@app/screens/Stack/FullScreenImage';
-import AppHeader from '@app/components/shared/AppHeader';
-import SettingsScreen from '@app/screens/Stack/SettingsScreen';
 import {useAppTheme} from '@app/components/theme/MaterialYouThemeProvider';
 import SearchReslutsScreen from '@app/screens/Stack/SearchResultsScreen';
 
@@ -33,14 +31,6 @@ function StackNavigation() {
         component={FullScreenImage}
         options={{
           animation: 'fade',
-        }}
-      />
-      <Stack.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          headerShown: true,
-          header: () => <AppHeader title="Settings" mode="medium" />,
         }}
       />
       <Stack.Screen name="Home" component={TabNavigation} />
