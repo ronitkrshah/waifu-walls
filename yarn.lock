@@ -5287,6 +5287,7 @@ __metadata:
     react-native-compressor: ^1.8.25
     react-native-device-wallpaper-manager: ^0.0.2
     react-native-dotenv: ^3.4.11
+    react-native-fast-image: ^8.6.3
     react-native-gesture-handler: ^2.17.1
     react-native-image-picker: ^7.1.2
     react-native-paper: ^5.12.3
@@ -10734,6 +10735,16 @@ __metadata:
   peerDependencies:
     "@babel/runtime": ^7.20.6
   checksum: 3ebac2c2ed79dd7e4920fd3fc2da9187413b7190231618e4858b46c47833677838b96d531afe7bd5c4b0a60454dba40cb8708722210df5d522e30aefbf41da05
+  languageName: node
+  linkType: hard
+
+"react-native-fast-image@npm:^8.6.3":
+  version: 8.6.3
+  resolution: "react-native-fast-image@npm:8.6.3"
+  peerDependencies:
+    react: ^17 || ^18
+    react-native: ">=0.60.0"
+  checksum: 29289cb6b2eae0983c8922b22e2d9de3be07322bb7991c5def19f95eadefaedb0e308ff0b38cc1d0444e8bd4fe94a7621a99a2d3d9298100bcb60b3144677234
   languageName: node
   linkType: hard
 

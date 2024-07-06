@@ -1,8 +1,8 @@
 import {IDatabaseWallpaper} from '@app/types/wallpaper';
-import {Image} from 'moti';
 import {Skeleton} from 'moti/skeleton';
 import React, {useState} from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {useTheme} from 'react-native-paper';
 
 type Props = {
@@ -28,16 +28,25 @@ function ActualImage({wallpaper}: Props) {
         type: 'decay',
         duration: 2000,
       }}>
-      <Image
-        borderRadius={20}
+      <FastImage
         onLoadEnd={() => setLoading(false)}
-        source={{uri: wallpaper.previewUrl}}
-        height={IMG_HEIGHT}
-        width={IMG_WIDTH}
-        resizeMode="cover"
+        source={{
+          uri: wallpaper.previewUrl,
+          priority: FastImage.priority.normal,
+        }}
+        resizeMode={FastImage.resizeMode.cover}
+        style={styles.image}
       />
     </Skeleton>
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    width: IMG_WIDTH,
+    height: IMG_HEIGHT,
+    borderRadius: 20,
+  },
+});
 
 export default ActualImage;
