@@ -3,6 +3,7 @@ import {GlobalStoreRootState} from '@app/store/store';
 import {TUseNavigation} from '@app/types/navigation';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
+import {ToastAndroid} from 'react-native';
 import {Image} from 'react-native-compressor';
 import {Asset} from 'react-native-image-picker';
 import {Button} from 'react-native-paper';
@@ -43,7 +44,7 @@ function UploadButton({getData}: Props) {
       });
       navigation.goBack();
     } catch (e) {
-      // ... ignore
+      ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
     } finally {
       setLoading(false);
     }
