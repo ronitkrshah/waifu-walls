@@ -59,13 +59,13 @@ function usePagintaion(props: TFetchWallpapersProps) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadMoreData = () => {
-    if ((!loading || !refreshing) && totalItems !== data.length) {
+    if (!loading && totalItems !== data.length) {
       fetchWallpapers(data.length);
     }
   };
 
   const refreshData = () => {
-    if (!loading || !refreshing) {
+    if (!refreshing) {
       setRefreshing(true);
       fetchWallpapers();
     }
