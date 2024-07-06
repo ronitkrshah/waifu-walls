@@ -1,8 +1,10 @@
-import usePagination from '@app/hooks/usePagination';
+import usePagination, {
+  UsePaginationPaginationType,
+} from '@app/hooks/usePagination';
 import {FlashList} from '@shopify/flash-list';
 import {RefreshControl} from 'react-native';
 import ImageItem from '@app/components/shared/ImageItem';
-import {ActivityIndicator, Text} from 'react-native-paper';
+import {ActivityIndicator} from 'react-native-paper';
 import EmptyFlatlistComponent from '@app/components/shared/EmptyFlatlistComponent';
 
 type Props = {
@@ -10,18 +12,18 @@ type Props = {
 };
 
 function ShowResults({query}: Props) {
-  const {data, handleRefresh, refreshing, loadMore, loading} = usePagination(
-    'SEARCH',
+  const {data, loadMoreData, loading, refreshing, refreshData} = usePagination({
+    paginationType: UsePaginationPaginationType.Search,
     query,
-  );
+  });
 
   return (
     <FlashList
       data={data}
       numColumns={2}
       estimatedItemSize={14}
-      onEndReached={loadMore}
-      onEndReachedThreshold={0.1}
+      onEndReached={loadMoreData}
+      onEndReachedThreshold={0.2}
       ListEmptyComponent={
         <EmptyFlatlistComponent
           loading={loading}
@@ -30,7 +32,7 @@ function ShowResults({query}: Props) {
       }
       ListFooterComponent={<ActivityIndicator animating={loading} />}
       refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+        <RefreshControl refreshing={refreshing} onRefresh={refreshData} />
       }
       renderItem={({item}) => <ImageItem wallpaper={item} />}
     />

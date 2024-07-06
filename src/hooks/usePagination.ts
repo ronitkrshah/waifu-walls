@@ -4,77 +4,81 @@ import {
 } from '@app/appwrite/DatabaseService';
 import {IDatabaseWallpaper} from '@app/types/wallpaper';
 import {useCallback, useEffect, useState} from 'react';
-import {Query} from 'react-native-appwrite';
 
-type PaginationType = 'SEARCH' | 'HOME';
+export enum UsePaginationPaginationType {
+  Search,
+  Latest,
+}
 
-export default function usePagination(
-  type: PaginationType = 'HOME',
-  query = '',
-) {
-  const [loading, setLoading] = useState(false);
+type SearchProps = {
+  paginationType: UsePaginationPaginationType.Search;
+  query: string;
+};
+
+type HomeScreenProps = {
+  paginationType: UsePaginationPaginationType.Latest;
+};
+
+type TFetchWallpapersProps = SearchProps | HomeScreenProps;
+
+function usePagintaion(props: TFetchWallpapersProps) {
   const [data, setData] = useState<IDatabaseWallpaper[]>([]);
-  const [totalItems, setTotalItems] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [totalItems, setTotalItems] = useState(0);
 
-  const fetchWallpapers = useCallback(async function fetchWallpapers(
-    offset = 0,
-  ) {
-    let response: TWallpaperDataResponse;
-    setLoading(true);
+  const fetchWallpapers = useCallback(async (offset = 0) => {
     try {
-      if (type === 'HOME') {
-        response = await databaseService.getHomeScreenWallpapers(10, [
-          Query.offset(offset),
-        ]);
-      } else {
-        response = await databaseService.searchWallpaper(query);
-      }
+      setLoading(true);
+      let databaseResponse: TWallpaperDataResponse;
 
-      const result = {
-        wallpapers: response.data,
-        items: response.data.length,
-        total: response.totalItems,
-      };
+      if (props.paginationType === UsePaginationPaginationType.Search) {
+        databaseResponse = await databaseService.searchWallpaper(props.query);
+      } else {
+        databaseResponse = await databaseService.getHomeScreenWallpapers(
+          offset,
+        );
+      }
+      setTotalItems(databaseResponse.totalItems);
 
       if (offset === 0) {
-        setData(result.wallpapers);
+        setData(databaseResponse.data);
       } else {
-        setData([...data, ...result.wallpapers]);
+        setData((prev) => [...prev, ...databaseResponse.data]);
       }
-
-      setTotalItems(result.total);
     } catch (e) {
+      // ... ignore
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
-  },
-  []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     fetchWallpapers();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleRefresh = useCallback(() => {
-    setRefreshing(true);
-    fetchWallpapers(0);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const loadMoreData = () => {
+    if ((!loading || !refreshing) && totalItems !== data.length) {
+      fetchWallpapers(data.length);
+    }
+  };
 
-  const loadMore = () => {
-    if (!loading) {
-      if (data.length < totalItems) {
-        fetchWallpapers(data.length);
-      }
+  const refreshData = () => {
+    if (!loading || !refreshing) {
+      setRefreshing(true);
+      fetchWallpapers();
     }
   };
 
   return {
-    data,
-    totalItems,
-    refreshing,
     loading,
-    handleRefresh,
-    loadMore,
+    data,
+    loadMoreData,
+    totalItems,
+    refreshData,
+    refreshing,
   };
 }
+
+export default usePagintaion;

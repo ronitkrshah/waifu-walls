@@ -82,14 +82,13 @@ class DatabaseService extends AppwriteService {
   }
 
   async getHomeScreenWallpapers(
-    limit = 10,
-    queries = [''],
+    offset: number,
   ): Promise<TWallpaperDataResponse> {
     try {
       const data = await this.database.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.wallpaperCollectionId,
-        [Query.orderDesc('$createdAt'), Query.limit(limit), ...queries],
+        [Query.orderDesc('$createdAt'), Query.limit(10), Query.offset(offset)],
       );
 
       return {
