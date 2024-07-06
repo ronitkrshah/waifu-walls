@@ -40,13 +40,7 @@ function StackNavigation() {
         component={SettingsScreen}
         options={{
           headerShown: true,
-          header: ({navigation}) => (
-            <AppHeader
-              title="Settings"
-              showBackButton
-              navigation={navigation}
-            />
-          ),
+          header: () => <AppHeader title="Settings" mode="medium" />,
         }}
       />
       <Stack.Screen name="Home" component={TabNavigation} />
