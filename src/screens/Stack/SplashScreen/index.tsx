@@ -35,7 +35,7 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
       } catch (e) {}
 
       // Finaly Load Home Screen
-      navigation.replace('Home');
+      navigation.replace('Home', {screen: 'HomeScreen'});
     };
 
     loadSavedData();

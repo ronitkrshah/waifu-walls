@@ -1,5 +1,5 @@
 import UploadImageFAB from '@app/components/common/UploadImageFAB';
-import ShowWallpapers from '@app/components/screens/Stack/HomeScreen/ShowWallpapers';
+import ShowWallpapers from '@app/components/screens/Tab/HomeScreen/ShowWallpapers';
 
 function HomeScreen() {
   return (

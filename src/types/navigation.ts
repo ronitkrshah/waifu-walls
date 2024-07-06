@@ -1,4 +1,4 @@
-import {RouteProp} from '@react-navigation/native';
+import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
@@ -13,8 +13,14 @@ export type TStackNavigationParamList = {
   SearchResluts: {query: string};
   UploadImage: undefined;
   FullScreenImage: {wallpaper: IDatabaseWallpaper};
-  Home: undefined;
   Settings: undefined;
+  Home: NavigatorScreenParams<TTabNavigationParamList>;
+};
+
+export type TTabNavigationParamList = {
+  HomeScreen: undefined;
+  SearchScreen: undefined;
+  AccountScreen: undefined;
 };
 
 export type TStackNavigationScreenProps<
