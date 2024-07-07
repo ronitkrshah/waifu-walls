@@ -3,8 +3,8 @@ import {GlobalStoreRootState} from '@app/store/store';
 import {TUseNavigation} from '@app/types/navigation';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
-import {ToastAndroid} from 'react-native';
-import {Image} from 'react-native-compressor';
+import {Image, ToastAndroid} from 'react-native';
+import {Image as ImageCommpressor} from 'react-native-compressor';
 import {Asset} from 'react-native-image-picker';
 import {Button} from 'react-native-paper';
 import {useSelector} from 'react-redux';
@@ -21,32 +21,43 @@ function UploadButton({getData}: Props) {
   );
 
   async function handleUpload() {
-    const {
-      imageTitle,
-      uri: originalImagePath,
-      fileSize: imageSizeInBytes,
-    } = getData();
+    const {imageTitle, uri: originalImagePath} = getData();
     if (!originalImagePath || !imageTitle) {
       return;
     }
     setLoading(true);
     try {
       // compressing image
-      const compressedImagePath = await Image.compress(originalImagePath, {
-        disablePngTransparency: true,
-      });
+      const compressedImagePath = await ImageCommpressor.compress(
+        originalImagePath,
+        {
+          disablePngTransparency: true,
+        },
+      );
 
-      await storageService.uploadMobileWallpaper({
-        uri: compressedImagePath,
-        title: imageTitle,
-        userId: userId!,
-        size: imageSizeInBytes!,
-      });
-      navigation.goBack();
+      Image.getSize(
+        compressedImagePath,
+        (size) => {
+          console.log('Image Size:', size);
+          storageService
+            .uploadMobileWallpaper({
+              uri: compressedImagePath,
+              title: imageTitle,
+              userId: userId!,
+              size,
+            })
+            .catch((e) => {
+              throw e;
+            })
+            .finally(() => {
+              setLoading(false);
+              navigation.goBack();
+            });
+        },
+        () => {},
+      );
     } catch (e) {
-      ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
-    } finally {
-      setLoading(false);
+      ToastAndroid.show('Upload Failed!', ToastAndroid.SHORT);
     }
   }
 
