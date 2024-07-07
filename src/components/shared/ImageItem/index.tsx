@@ -27,7 +27,7 @@ function ImageItem({wallpaper}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 8,
     borderRadius: 20,
     marginHorizontal: 'auto',
   },

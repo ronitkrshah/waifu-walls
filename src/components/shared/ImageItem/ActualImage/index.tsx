@@ -8,9 +8,10 @@ import {useTheme} from 'react-native-paper';
 type Props = {
   wallpaper: IDatabaseWallpaper;
 };
+
 const {height: TOTAL_HEIGHT, width: TOTAL_WIDTH} = Dimensions.get('window');
 const IMG_HEIGHT = TOTAL_HEIGHT / 2;
-const IMG_WIDTH = TOTAL_WIDTH / 2 - 10;
+const IMG_WIDTH = TOTAL_WIDTH / 2 - 16;
 
 function ActualImage({wallpaper}: Props) {
   const [loading, setLoading] = useState(true);
@@ -43,8 +44,7 @@ function ActualImage({wallpaper}: Props) {
 
 const styles = StyleSheet.create({
   image: {
-    width: IMG_WIDTH,
-    height: IMG_HEIGHT,
+    flexGrow: 1,
     borderRadius: 20,
   },
 });
