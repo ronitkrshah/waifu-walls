@@ -104,7 +104,7 @@ class DatabaseService extends AppwriteService {
     try {
       const query = [
         Query.orderDesc('$createdAt'),
-        Query.limit(10),
+        Query.limit(20),
         Query.offset(props.offset),
       ];
 
