@@ -5,8 +5,9 @@ import usePagination, {
 } from '@app/hooks/usePagination';
 import {FlashList} from '@shopify/flash-list';
 import {memo} from 'react';
-import {RefreshControl} from 'react-native';
+import {RefreshControl, StyleSheet} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
+import SeacrhSuggestion from './SearchSuggestions';
 
 function ShowWallpapers() {
   const {data, refreshData, refreshing, loadMoreData, loading} = usePagination({
@@ -20,6 +21,8 @@ function ShowWallpapers() {
       estimatedItemSize={14}
       onEndReached={loadMoreData}
       onEndReachedThreshold={0.2}
+      ListHeaderComponent={SeacrhSuggestion}
+      ListHeaderComponentStyle={styles.header}
       ListEmptyComponent={
         <EmptyFlatlistComponent loading={loading} text="Nothing To Show!" />
       }
@@ -31,5 +34,11 @@ function ShowWallpapers() {
     />
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    paddingHorizontal: 16,
+  },
+});
 
 export default memo(ShowWallpapers);
