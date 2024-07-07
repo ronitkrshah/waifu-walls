@@ -26,7 +26,7 @@ function ActualImage({wallpaper}: Props) {
       colorMode={theme.dark ? 'dark' : 'light'}
       radius={20}
       transition={{
-        type: 'decay',
+        type: 'timing',
         duration: 2000,
       }}>
       <FastImage
