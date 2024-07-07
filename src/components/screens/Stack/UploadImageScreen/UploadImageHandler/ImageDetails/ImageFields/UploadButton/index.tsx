@@ -50,7 +50,6 @@ function UploadButton({getData}: Props) {
       Image.getSize(
         compressedImagePath,
         (size) => {
-          console.log('Image Size:', size);
           storageService
             .uploadMobileWallpaper({
               uri: compressedImagePath,
