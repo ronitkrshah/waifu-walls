@@ -1,8 +1,8 @@
-import UserAccount from '@app/components/screens/Tab/AccountScreen/UserAccount';
+import UserAccount from '@app/components/screens/Tab/AccountTab/UserAccount';
 import AppHeader from '@app/components/shared/AppHeader';
 import {StyleSheet, View} from 'react-native';
 
-function AccountScreen() {
+function AccountTab() {
   return (
     <>
       <AppHeader title="Account" mode="medium" />
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccountScreen;
+export default AccountTab;

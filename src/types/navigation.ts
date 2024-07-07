@@ -17,9 +17,9 @@ export type TStackNavigationParamList = {
 };
 
 export type TTabNavigationParamList = {
-  HomeScreen: undefined;
-  SearchScreen: undefined;
-  AccountScreen: undefined;
+  HomeTab: undefined;
+  SearchTab: undefined;
+  AccountTab: undefined;
 };
 
 export type TStackNavigationScreenProps<

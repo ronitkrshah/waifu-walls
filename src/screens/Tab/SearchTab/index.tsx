@@ -1,9 +1,9 @@
-import SearchBox from '@app/components/screens/Tab/SearchScreen/SeachBox';
-import SeacrhSuggestion from '@app/components/screens/Tab/SearchScreen/SearchSuggestions';
+import SearchBox from '@app/components/screens/Tab/SearchTab/SeachBox';
+import SeacrhSuggestion from '@app/components/screens/Tab/SearchTab/SearchSuggestions';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-function SearchScreen() {
+function SearchTab() {
   return (
     <SafeAreaView style={styles.container}>
       <SearchBox />
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchScreen;
+export default SearchTab;

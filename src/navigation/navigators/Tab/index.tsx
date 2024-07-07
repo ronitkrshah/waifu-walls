@@ -1,9 +1,9 @@
 import {createMaterialBottomTabNavigator} from 'react-native-paper/react-navigation';
 import {TTabNavigationParamList} from '@app/types/navigation';
 import {MD3Theme, withTheme} from 'react-native-paper';
-import HomeScreen from '@app/screens/Tab/HomeScreen';
-import SearchScreen from '@app/screens/Tab/SearchScreen';
-import AccountScreen from '@app/screens/Tab/AccountScreen';
+import HomeTab from '@app/screens/Tab/HomeTab';
+import SearchTab from '@app/screens/Tab/SearchTab';
+import AccountTab from '@app/screens/Tab/AccountTab';
 
 type Props = {
   theme: MD3Theme;
@@ -19,24 +19,24 @@ function TabNavigation({theme}: Props) {
       shifting
       sceneAnimationType="shifting">
       <Tab.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="HomeTab"
+        component={HomeTab}
         options={{
           tabBarIcon: 'home',
           tabBarLabel: 'Home',
         }}
       />
       <Tab.Screen
-        name="SearchScreen"
-        component={SearchScreen}
+        name="SearchTab"
+        component={SearchTab}
         options={{
           tabBarIcon: 'magnify',
           tabBarLabel: 'Search',
         }}
       />
       <Tab.Screen
-        name="AccountScreen"
-        component={AccountScreen}
+        name="AccountTab"
+        component={AccountTab}
         options={{
           tabBarIcon: 'account',
           tabBarLabel: 'Account',

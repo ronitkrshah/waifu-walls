@@ -16,11 +16,11 @@ type SearchProps = {
   query: string;
 };
 
-type HomeScreenProps = {
+type HomeTabProps = {
   paginationType: UsePaginationPaginationType.Latest;
 };
 
-type TFetchWallpapersProps = SearchProps | HomeScreenProps;
+type TFetchWallpapersProps = SearchProps | HomeTabProps;
 
 function usePagintaion(props: TFetchWallpapersProps) {
   const [data, setData] = useState<IDatabaseWallpaper[]>([]);
