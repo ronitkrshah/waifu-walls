@@ -5,4 +5,6 @@ export const appwriteConfig = {
   wallpaperCollectionId: process.env.APPWRITE_WALLPAPERS_COLLECTION_ID!,
   databaseId: process.env.APPWRITE_DATABASE_ID!,
   wallpapersBucketId: process.env.APPWRITE_WALLPAPER_BUCKET_ID!,
+  accessCollectionId: process.env.APPWRITE_ACCESS_COLLECTION_ID!,
+  accessDocumentId: process.env.APPWRITE_ACCESS_DOCUMENT_ID!,
 };

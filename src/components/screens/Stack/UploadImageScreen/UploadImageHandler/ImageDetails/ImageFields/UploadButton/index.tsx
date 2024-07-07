@@ -1,3 +1,4 @@
+import appAccessService from '@app/appwrite/AppAccessService';
 import {storageService} from '@app/appwrite/StorageService';
 import {GlobalStoreRootState} from '@app/store/store';
 import {TUseNavigation} from '@app/types/navigation';
@@ -27,6 +28,17 @@ function UploadButton({getData}: Props) {
     }
     setLoading(true);
     try {
+      // Can User Upload Images
+      const canUploadImages = await appAccessService.canUploadImages();
+      if (!canUploadImages) {
+        ToastAndroid.show(
+          'Uploading Images Is Currenty Disabled!',
+          ToastAndroid.LONG,
+        );
+        setLoading(false);
+        return;
+      }
+
       // compressing image
       const compressedImagePath = await ImageCommpressor.compress(
         originalImagePath,
