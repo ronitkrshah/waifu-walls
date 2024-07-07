@@ -36,7 +36,7 @@ function LoginLogoutBtn({user}: Props) {
     <Pressable
       onPress={user ? handleLogout : navigateToLoginScreen}
       style={{...styles.container, backgroundColor: colors.error}}>
-      <Text variant="headlineSmall" style={{color: colors.onError}}>
+      <Text variant="titleLarge" style={{color: colors.onError}}>
         {user ? 'Log out' : 'Log In'}
       </Text>
       {loading && <ActivityIndicator animating color={colors.onError} />}
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     gap: 10,
-    padding: 10,
+    padding: 16,
     borderTopEndRadius: 5,
     borderTopStartRadius: 5,
     borderBottomEndRadius: 24,
