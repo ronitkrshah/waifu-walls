@@ -23,6 +23,6 @@ export interface IDatabaseUser extends IDetails {
   email: string;
   name: string;
   userId: string;
-  role: string;
+  role?: 'admin';
   wallpapers: IWallpaper[];
 }
