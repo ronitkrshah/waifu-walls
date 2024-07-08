@@ -5,7 +5,7 @@ import AppHeader from '@app/components/shared/AppHeader';
 function HomeTab() {
   return (
     <>
-      <AppHeader title="Home" mode="medium" />
+      <AppHeader title="Home" mode="medium" showVerticalDotsMenu />
       <ShowWallpapers />
       <UploadImageFAB />
     </>
