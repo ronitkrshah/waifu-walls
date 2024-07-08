@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     gap: 12,
-    transform: [{translateY: 40}],
+    marginVertical: 16,
   },
 });
 
