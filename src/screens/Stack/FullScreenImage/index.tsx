@@ -1,3 +1,4 @@
+import FullScreenImageDetails from '@app/components/screens/Stack/FullScreenImage/FullScreenImageDetails';
 import ShowFullImage from '@app/components/screens/Stack/FullScreenImage/ShowFullImage';
 import UserImageActions from '@app/components/screens/Stack/FullScreenImage/UserImageActions';
 import AppHeader from '@app/components/shared/AppHeader';
@@ -14,6 +15,7 @@ function FullScreenImage({
       <AppHeader title="Home" showBackButton />
       <ScrollView contentContainerStyle={styles.container}>
         <ShowFullImage url={wallpaper.previewUrl} />
+        <FullScreenImageDetails wallpaper={wallpaper} />
         <UserImageActions />
       </ScrollView>
     </>
