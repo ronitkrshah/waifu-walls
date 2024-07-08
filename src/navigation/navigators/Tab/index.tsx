@@ -19,6 +19,7 @@ function TabNavigation({theme}: Props) {
       backBehavior="none"
       shifting
       sceneAnimationType="shifting"
+      sceneAnimationEnabled
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color}) => {
           let currentRoute = route.name;
