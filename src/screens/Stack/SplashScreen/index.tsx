@@ -5,6 +5,7 @@ import {setUserGlobalStore} from '@app/store/reducers/userReducer';
 import {TStackNavigationScreenProps} from '@app/types/navigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
+import {Query} from 'react-native-appwrite';
 import {useDispatch} from 'react-redux';
 
 function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
@@ -14,7 +15,7 @@ function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
     const loadSavedData = async () => {
       // Get Logged in User
       authService
-        .getCurrentUser()
+        .getCurrentUser([Query.select(['userId', 'role', 'name', 'email'])])
         .then((user) => {
           dispatch(
             setUserGlobalStore({
