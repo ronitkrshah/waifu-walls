@@ -1,5 +1,4 @@
-import {Pressable, StyleSheet} from 'react-native';
-import {ActivityIndicator, Text, useTheme} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {authService} from '@app/appwrite/AuthService';
 import {User, setUserGlobalStore} from '@app/store/reducers/userReducer';
 import {useState} from 'react';
@@ -15,7 +14,6 @@ function LoginLogoutBtn({user}: Props) {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<TUseNavigation>();
   const dispatch = useDispatch();
-  const {colors} = useTheme();
 
   function navigateToLoginScreen() {
     navigation.navigate('Login');
@@ -33,29 +31,14 @@ function LoginLogoutBtn({user}: Props) {
   }
 
   return (
-    <Pressable
+    <Button
       onPress={user ? handleLogout : navigateToLoginScreen}
-      style={{...styles.container, backgroundColor: colors.error}}>
-      <Text variant="titleLarge" style={{color: colors.onError}}>
-        {user ? 'Log out' : 'Log In'}
-      </Text>
-      {loading && <ActivityIndicator animating color={colors.onError} />}
-    </Pressable>
+      disabled={loading}
+      loading={loading}
+      mode={user ? 'contained-tonal' : 'contained'}>
+      {user ? 'Log out' : 'Log In'}
+    </Button>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    gap: 10,
-    padding: 16,
-    borderTopEndRadius: 5,
-    borderTopStartRadius: 5,
-    borderBottomEndRadius: 24,
-    borderBottomStartRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default LoginLogoutBtn;
