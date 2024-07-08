@@ -11,7 +11,7 @@ function FullScreenImage({
   const wallpaper = route.params.wallpaper;
   return (
     <>
-      <AppHeader title="Home" mode="medium" showBackButton />
+      <AppHeader title="Home" showBackButton />
       <ScrollView contentContainerStyle={styles.container}>
         <ShowFullImage url={wallpaper.previewUrl} />
         <UserImageActions />

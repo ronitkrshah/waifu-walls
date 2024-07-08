@@ -1,12 +1,8 @@
 import {TUseRoute} from '@app/types/navigation';
 import {useRoute} from '@react-navigation/native';
-import {IconButton} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {useState} from 'react';
 import {downloadWallpaper} from '@app/utils/downloadWallpaper';
-import Animated, {ZoomIn} from 'react-native-reanimated';
-import {ICON_BTN_ANIMATION_DURATION} from '@app/constants';
-
-const AIconButton = Animated.createAnimatedComponent(IconButton);
 
 function DownloadButton() {
   const [downloading, setDownloading] = useState(false);
@@ -24,16 +20,13 @@ function DownloadButton() {
   }
 
   return (
-    <AIconButton
-      animated
-      entering={ZoomIn.duration(ICON_BTN_ANIMATION_DURATION).springify()}
-      onPress={onPress}
-      icon={icon}
-      size={40}
-      mode="contained-tonal"
+    <Button
+      mode="contained"
       loading={downloading}
       disabled={downloading || icon === 'check'}
-    />
+      onPress={onPress}>
+      Download
+    </Button>
   );
 }
 

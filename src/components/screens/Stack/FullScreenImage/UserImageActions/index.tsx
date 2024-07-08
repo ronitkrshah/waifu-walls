@@ -1,14 +1,12 @@
 import {StyleSheet, View} from 'react-native';
 import DownloadButton from './Actions/DownloadButton';
 import SetWallpaperButton from './Actions/SetWallpaperButton';
-import GoBackButton from './Actions/GoBackButton';
 
 function UserImageActions() {
   return (
     <View style={styles.container}>
       <DownloadButton />
       <SetWallpaperButton />
-      <GoBackButton />
     </View>
   );
 }
@@ -16,8 +14,8 @@ function UserImageActions() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    gap: 12,
-    marginVertical: 16,
+    gap: 16,
+    marginVertical: 28,
   },
 });
 

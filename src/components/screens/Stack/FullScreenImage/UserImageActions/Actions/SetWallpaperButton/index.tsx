@@ -1,12 +1,8 @@
 import {TUseRoute} from '@app/types/navigation';
 import {useRoute} from '@react-navigation/native';
-import {IconButton} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {useState} from 'react';
-import Animated, {ZoomIn} from 'react-native-reanimated';
-import {ICON_BTN_ANIMATION_DURATION} from '@app/constants';
 import WallpaperSetOptionsDialog from './WallpaperSetOptionsDialog';
-
-const AIconButton = Animated.createAnimatedComponent(IconButton);
 
 function SetWallpaperButton() {
   const [showDialog, setShowDialog] = useState(false);
@@ -18,14 +14,9 @@ function SetWallpaperButton() {
 
   return (
     <>
-      <AIconButton
-        animated
-        entering={ZoomIn.delay(ICON_BTN_ANIMATION_DURATION).springify()}
-        onPress={onPress}
-        icon={'wallpaper'}
-        size={40}
-        mode="contained-tonal"
-      />
+      <Button mode="contained" onPress={onPress}>
+        Apply
+      </Button>
       <WallpaperSetOptionsDialog
         visible={showDialog}
         setVisble={setShowDialog}
