@@ -3,6 +3,8 @@ import {StyleSheet, View} from 'react-native';
 import UploadButton from './UploadButton';
 import {useRef} from 'react';
 import {Asset} from 'react-native-image-picker';
+import HintUser from '@app/components/common/HintUser';
+import {Divider} from 'react-native-paper';
 
 type Props = {
   imageData?: Asset;
@@ -22,6 +24,8 @@ function ImageFields({imageData}: Props) {
     <View style={styles.container}>
       <InputBox ref={titleRef} placeholder="Enter Image Title" />
       <UploadButton getData={getValues} />
+      <Divider />
+      <HintUser hint="Choosing Character names as titles ensures accurate wallpaper searches." />
     </View>
   );
 }
