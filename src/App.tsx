@@ -10,7 +10,7 @@ import {StyleSheet} from 'react-native';
 function App() {
   return (
     <GestureHandlerRootView style={styles.rootView}>
-      <MaterialYouThemeProvider fallbackSourceColor="#756FAB">
+      <MaterialYouThemeProvider>
         <Provider store={store}>
           <SafeAreaProvider>
             <RootNavigation />
