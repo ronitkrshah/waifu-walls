@@ -14,7 +14,7 @@ function UserInfo({user}: Props) {
   return (
     <View style={styles.container}>
       <Text ellipsizeMode="tail" variant="titleMedium">
-        {user.name}
+        {user.name} {user.role === 'admin' && '(Admin)'}
       </Text>
     </View>
   );
