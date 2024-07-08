@@ -18,7 +18,7 @@ function ShowWallpapers() {
     <FlashList
       data={data}
       numColumns={2}
-      estimatedItemSize={14}
+      estimatedItemSize={20}
       onEndReached={loadMoreData}
       onEndReachedThreshold={0.2}
       ListHeaderComponent={SeacrhSuggestion}

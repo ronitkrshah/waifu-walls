@@ -21,7 +21,7 @@ function ShowResults({query}: Props) {
     <FlashList
       data={data}
       numColumns={2}
-      estimatedItemSize={14}
+      estimatedItemSize={20}
       onEndReached={loadMoreData}
       onEndReachedThreshold={0.2}
       ListEmptyComponent={
