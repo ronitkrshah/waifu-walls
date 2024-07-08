@@ -4,14 +4,25 @@ import {StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import SourceCode from './Items/SourceCode';
 import Donate from './Items/Donate';
+import {useNavigation} from '@react-navigation/native';
+import {TUseNavigation} from '@app/types/navigation';
 
-export type TItemProps = {
+export type AppHeaderContext = {
   hideMenu: () => void;
+  navigation: TUseNavigation;
 };
 
 function VerticalDotsMenu() {
   const [visible, setVisible] = useState(false);
   const {top} = useSafeAreaInsets();
+  const navigation = useNavigation<TUseNavigation>();
+
+  function getContext(): AppHeaderContext {
+    return {
+      hideMenu,
+      navigation,
+    };
+  }
 
   function showMenu() {
     setVisible(true);
@@ -28,8 +39,8 @@ function VerticalDotsMenu() {
       onDismiss={hideMenu}
       statusBarHeight={top}
       anchor={<Appbar.Action icon={'dots-vertical'} onPress={showMenu} />}>
-      <SourceCode hideMenu={hideMenu} />
-      {/* <Donate hideMenu={hideMenu} /> */}
+      <SourceCode getContext={getContext} />
+      <Donate getContext={getContext} />
     </Menu>
   );
 }

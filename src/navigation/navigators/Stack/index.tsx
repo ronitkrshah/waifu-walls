@@ -8,6 +8,7 @@ import UploadImageScreen from '@app/screens/Stack/UploadImageScreen';
 import FullScreenImage from '@app/screens/Stack/FullScreenImage';
 import {useAppTheme} from '@app/components/theme/MaterialYouThemeProvider';
 import SearchReslutsScreen from '@app/screens/Stack/SearchResultsScreen';
+import DonationScreen from '@app/screens/Stack/DonationScreen';
 
 const Stack = createNativeStackNavigator<TStackNavigationParamList>();
 
@@ -33,6 +34,7 @@ function StackNavigation() {
           animation: 'fade',
         }}
       />
+      <Stack.Screen name="Donation" component={DonationScreen} />
       <Stack.Screen name="Home" component={TabNavigation} />
     </Stack.Navigator>
   );

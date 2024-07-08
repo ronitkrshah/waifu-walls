@@ -1,8 +1,13 @@
 import {Menu} from 'react-native-paper';
 import {Linking} from 'react-native';
-import {TItemProps} from '../..';
+import {AppHeaderContext} from '../..';
 
-function SourceCode({hideMenu}: TItemProps) {
+type Props = {
+  getContext: () => AppHeaderContext;
+};
+
+function SourceCode({getContext}: Props) {
+  const {hideMenu} = getContext();
   function openSourceCodeOnBrowser() {
     const repoLink = 'https://github.com/ronitkrshah/waifu-walls.git';
     Linking.openURL(repoLink);

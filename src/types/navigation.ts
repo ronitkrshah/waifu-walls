@@ -13,6 +13,7 @@ export type TStackNavigationParamList = {
   SearchResluts: {query: string};
   UploadImage: undefined;
   FullScreenImage: {wallpaper: IDatabaseWallpaper};
+  Donation: undefined;
   Home: NavigatorScreenParams<TTabNavigationParamList>;
 };
 

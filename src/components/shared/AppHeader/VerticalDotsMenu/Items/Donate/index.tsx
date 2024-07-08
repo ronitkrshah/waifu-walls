@@ -1,9 +1,16 @@
 import {Menu} from 'react-native-paper';
-import {TItemProps} from '../..';
+import {AppHeaderContext} from '../..';
 
-function Donate({hideMenu}: TItemProps) {
+type Props = {
+  getContext: () => AppHeaderContext;
+};
+
+function Donate({getContext}: Props) {
+  const {hideMenu, navigation} = getContext();
+
   function handlePress() {
-    // ... later
+    hideMenu();
+    navigation.navigate('Donation');
   }
 
   return <Menu.Item title="Donate" onPress={handlePress} />;
