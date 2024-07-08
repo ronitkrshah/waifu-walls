@@ -43,7 +43,10 @@ function UploadButton({getData}: Props) {
       const compressedImagePath = await ImageCommpressor.compress(
         originalImagePath,
         {
+          compressionMethod: 'manual',
           disablePngTransparency: true,
+          output: 'jpg',
+          quality: 0.9,
         },
       );
 
