@@ -11,8 +11,6 @@
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/87dcb094-49ae-4ccc-a09a-406fabd2d3a7" width=30%>
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/247d285b-4c11-4873-9982-578d17363dfc" width=30%>
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/b8377e65-9601-465f-ae53-37f6587c45da" width=30%>
-
-  
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/373fd710-6ca5-4507-adff-fbdbd9071049" width=30%>
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/48e5df62-9170-4da2-9580-e0d01fd50537" width=30%>
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/1fc829f8-a5b7-4ff8-a24c-39b7b3fde94b" width=30%>
@@ -34,22 +32,10 @@
 ### 5. Community and Sharing
 - **User Submissions**: Users can submit their own waifu wallpapers to be featured in the app.
 
-## Getting Started
-
-### Installation
-1. Download the WaifuWalls app from the [Google Play Store](#) or [Apple App Store](#).
-2. Install the app on your mobile device.
-
-### Navigation
-- **Home**: Browse the latest and most popular waifu wallpapers.
-- **Categories**: Explore wallpapers by different categories such as anime series or themes.
-- **Favorites**: Access your saved wallpapers.
-- **Search**: Use the search function to find specific wallpapers.
-
 ### Setting a Wallpaper
 1. Browse or search for the wallpaper you like.
 2. Tap on the wallpaper to open the preview.
-3. Tap the "Set as Wallpaper" button to apply it to your home screen
+3. Tap the "Apply" button to apply it to your home screen
 
 ## Conclusion
 WaifuWalls is the ultimate app for anime and manga fans who want to personalize their mobile devices with stunning waifu wallpapers. Enjoy a seamless experience with our extensive library, high-quality images, and user-friendly features. Download WaifuWalls today and bring your favorite waifus to your home screen!
