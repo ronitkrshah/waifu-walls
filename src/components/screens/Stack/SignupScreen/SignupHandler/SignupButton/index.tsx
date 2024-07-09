@@ -1,6 +1,6 @@
-import {StyleSheet, ToastAndroid, View} from 'react-native';
+import {ToastAndroid} from 'react-native';
 import {TCreateAccountInputs} from '../UserInput';
-import {Button, Checkbox} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {TUseNavigation} from '@app/types/navigation';
@@ -15,7 +15,6 @@ type Props = {
 
 function SignupBtn({getValues}: Props) {
   const [loading, setLoading] = useState(false);
-  const [tnc, setTnc] = useState(false);
   const navigation = useNavigation<TUseNavigation>();
   const dispatch = useDispatch();
 
@@ -57,28 +56,14 @@ function SignupBtn({getValues}: Props) {
   }
 
   return (
-    <View style={styles.container}>
-      <Checkbox.Item
-        label="Accept Terms and Conditions"
-        status={tnc ? 'checked' : 'unchecked'}
-        onPress={() => setTnc((p) => !p)}
-      />
-
-      <Button
-        loading={loading}
-        onPress={handleSubmit}
-        disabled={!tnc || loading}
-        mode="contained">
-        Sign Up
-      </Button>
-    </View>
+    <Button
+      loading={loading}
+      onPress={handleSubmit}
+      disabled={loading}
+      mode="contained">
+      Sign Up
+    </Button>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 12,
-  },
-});
 
 export default SignupBtn;
