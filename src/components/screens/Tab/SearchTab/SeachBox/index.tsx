@@ -9,6 +9,12 @@ function SearchBox() {
   const navigation = useNavigation<TUseNavigation>();
 
   function handleSubmit() {
+    if (query.startsWith('user:')) {
+      const userId = query.replace('user:', '').trim();
+      navigation.navigate('UserInformation', {userId});
+      return;
+    }
+
     if (query.length < 3) {
       ToastAndroid.show('Query must be 3 characters long', ToastAndroid.SHORT);
     } else {
