@@ -1,7 +1,5 @@
-import {FlatList} from 'react-native-gesture-handler';
 import SuggestionButton from './SuggestionButton';
-import {StyleSheet} from 'react-native';
-import {ProgressBar} from 'react-native-paper';
+import {FlatList, StyleSheet} from 'react-native';
 
 const suggestionList = [
   'Shinobu',
