@@ -1,6 +1,7 @@
 import {IDatabaseUser} from '@app/types/wallpaper';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {Avatar, Surface, Text} from 'react-native-paper';
+import UserId from './UserId';
 
 type Props = {
   user: IDatabaseUser;
@@ -13,8 +14,10 @@ function UserProfileInfo({user}: Props) {
     <Surface style={styles.surface}>
       <Avatar.Icon icon={'account'} />
       <View style={styles.infoContainer}>
-        <Text variant="titleLarge">{user.name}</Text>
-        <Text>{user.userId}</Text>
+        <Text style={styles.username} variant="titleLarge">
+          {user.name}
+        </Text>
+        <UserId userId={user.userId} />
       </View>
     </Surface>
   );
@@ -22,15 +25,19 @@ function UserProfileInfo({user}: Props) {
 
 const styles = StyleSheet.create({
   surface: {
-    width: SCREEN_WIDTH - 16,
+    width: SCREEN_WIDTH - 32,
     padding: 20,
     borderRadius: 28,
     marginHorizontal: 'auto',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 16,
   },
   infoContainer: {
-    justifyContent: 'center',
+    gap: 4,
+  },
+  username: {
+    textAlign: 'center',
   },
 });
 
