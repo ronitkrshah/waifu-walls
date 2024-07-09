@@ -14,6 +14,7 @@ export type TStackNavigationParamList = {
   UploadImage: undefined;
   FullScreenImage: {wallpaper: IDatabaseWallpaper};
   Donation: undefined;
+  UserInformation: {userId: string};
   Home: NavigatorScreenParams<TTabNavigationParamList>;
 };
 

@@ -44,14 +44,23 @@ class AuthService extends AppwriteService {
   async getCurrentUser(queries?: string[]) {
     try {
       const user = await this.account.get();
+      return await this.getUserAccountInformation(user.$id, queries);
+    } catch (e) {
+      console.log('Appwrite Exception : getCurrentUser() :', e);
+      throw e;
+    }
+  }
+
+  async getUserAccountInformation(userId: string, queries?: string[]) {
+    try {
       return (await this.database.getDocument(
         appwriteConfig.databaseId,
         appwriteConfig.userCollectionId,
-        user.$id,
+        userId,
         queries,
       )) as IDatabaseUser;
     } catch (e) {
-      console.log('Appwrite Exception : getCurrentUser() :', e);
+      console.log('Appwrite Exception : getUserAccountInformation() :', e);
       throw e;
     }
   }

@@ -4,6 +4,7 @@ import {Surface} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
 import UserProfile from './UserProfile';
 import LoginLogoutBtn from './LoginLogoutBtn';
+import ManageAccountButton from './ManageAccountButton';
 
 function UserAccount() {
   const user = useSelector((state: GlobalStoreRootState) => state.user.user);
@@ -11,6 +12,7 @@ function UserAccount() {
   return (
     <Surface style={styles.container}>
       <UserProfile user={user} />
+      {user && <ManageAccountButton userId={user.userId} />}
       <LoginLogoutBtn user={user} />
     </Surface>
   );

@@ -9,6 +9,7 @@ import UploadImageScreen from '@app/screens/Stack/UploadImageScreen';
 import FullScreenImage from '@app/screens/Stack/FullScreenImage';
 import SearchReslutsScreen from '@app/screens/Stack/SearchResultsScreen';
 import DonationScreen from '@app/screens/Stack/DonationScreen';
+import UserInformationScreen from '@app/screens/Stack/UserInformationScreen';
 
 type Props = {
   theme: MD3Theme;
@@ -40,6 +41,7 @@ function StackNavigation({theme}: Props) {
         }}
       />
       <Stack.Screen name="Donation" component={DonationScreen} />
+      <Stack.Screen name="UserInformation" component={UserInformationScreen} />
       <Stack.Screen name="Home" component={TabNavigation} />
     </Stack.Navigator>
   );

@@ -8,7 +8,7 @@ interface IDetails {
   $collectionId: string;
 }
 
-interface IWallpaper extends IDetails {
+export interface IWallpaper extends IDetails {
   title: string;
   imageId: string;
   previewUrl: string;
