@@ -1,48 +1,54 @@
-import {authService} from '@app/appwrite/AuthService';
+import UserAgreement from '@app/components/screens/Stack/SplashScreen/UserAgreement';
 import {SETTINGS_KEY} from '@app/constants/keys';
-import {updateAppSettingsGlobalStore} from '@app/store/reducers/settingsReducer';
-import {setUserGlobalStore} from '@app/store/reducers/userReducer';
+import {
+  TSettingsReducer,
+  updateAppSettings,
+} from '@app/store/reducers/settingsReducer';
 import {TStackNavigationScreenProps} from '@app/types/navigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useEffect} from 'react';
-import {Query} from 'react-native-appwrite';
+import {useEffect, useState} from 'react';
+import {StyleSheet} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch} from 'react-redux';
 
 function SplashScreen({navigation}: TStackNavigationScreenProps<'Splash'>) {
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const loadSavedData = async () => {
-      // Get Logged in User
-      authService
-        .getCurrentUser([Query.select(['userId', 'role', 'name', 'email'])])
-        .then((user) => {
-          dispatch(
-            setUserGlobalStore({
-              userId: user.userId,
-              role: user.role,
-              name: user.name,
-              email: user.email,
-            }),
-          );
-        })
-        .catch(() => {});
-
+      setLoading(true);
       try {
         const savedAppSettings = await AsyncStorage.getItem(SETTINGS_KEY);
-        if (savedAppSettings) {
-          dispatch(updateAppSettingsGlobalStore(JSON.parse(savedAppSettings)));
+        if (!savedAppSettings) {
+          setLoading(false);
+        } else {
+          const parsedSettings: TSettingsReducer = JSON.parse(savedAppSettings);
+          if (parsedSettings.setupCompleted) {
+            navigation.replace('Home', {screen: 'HomeTab'});
+          } else {
+            setLoading(false);
+          }
+          dispatch(updateAppSettings(parsedSettings));
         }
       } catch (e) {}
-
-      // Finaly Load Home Screen
-      navigation.replace('Home', {screen: 'HomeTab'});
     };
 
     loadSavedData();
   }, [dispatch, navigation]);
 
-  return null;
+  return !loading ? (
+    <SafeAreaView style={styles.container}>
+      <UserAgreement />
+    </SafeAreaView>
+  ) : null;
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+  },
+});
 
 export default SplashScreen;
