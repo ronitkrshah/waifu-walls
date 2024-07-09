@@ -8,6 +8,7 @@ import {memo} from 'react';
 import {RefreshControl, StyleSheet} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import SeacrhSuggestion from './SearchSuggestions';
+import FlatlistFooterActivityIndicator from '@app/components/common/FlatlistFooterActivityIndicator';
 
 function ShowWallpapers() {
   const {data, refreshData, refreshing, loadMoreData, loading} = usePagination({
@@ -26,7 +27,7 @@ function ShowWallpapers() {
       ListEmptyComponent={
         <EmptyFlatlistComponent loading={loading} text="Nothing To Show!" />
       }
-      ListFooterComponent={<ActivityIndicator animating={loading} />}
+      ListFooterComponent={<FlatlistFooterActivityIndicator show={loading} />}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={refreshData} />
       }
