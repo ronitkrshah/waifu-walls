@@ -4,10 +4,9 @@
 **WaifuWalls** is an application dedicated to providing high-quality wallpapers of your favorite waifus. Unlike other wallpaper applications that feature a wide variety of themes, WaifuWalls is focused exclusively on waifus, ensuring that every wallpaper caters to anime and manga enthusiasts.
 
 ## Screenshots
-## Screenshots
 <div style="display: flex; flex-direction: 'row';">
-  <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/e950ab41-f188-4ab2-a2f3-b067832c5e1f" width=30%>
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/603999ab-3aa0-4d95-afc6-d6dd2b2f3d65" width=30%>
+  <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/e950ab41-f188-4ab2-a2f3-b067832c5e1f" width=30%>
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/87dcb094-49ae-4ccc-a09a-406fabd2d3a7" width=30%>
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/247d285b-4c11-4873-9982-578d17363dfc" width=30%>
   <img src="https://github.com/ronitkrshah/waifu-walls/assets/118371892/b8377e65-9601-465f-ae53-37f6587c45da" width=30%>
