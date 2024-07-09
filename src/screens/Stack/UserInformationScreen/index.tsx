@@ -9,21 +9,19 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 function UserInformationScreen({
   route,
+  navigation,
 }: TStackNavigationScreenProps<'UserInformation'>) {
   const [user, setUser] = useState<IDatabaseUser>();
 
-  console.log('UserInformationScreen Rendered');
-
   useEffect(() => {
-    console.log('useEffect Rendered');
-
     authService
       .getUserAccountInformation(route.params.userId)
       .then((data) => setUser(data))
-      .catch((e) => {
-        ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
+      .catch(() => {
+        ToastAndroid.show('User Not Found!', ToastAndroid.SHORT);
+        navigation.goBack();
       });
-  }, [route.params.userId]);
+  }, [route.params.userId, navigation]);
 
   return (
     <SafeAreaView>
