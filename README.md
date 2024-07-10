@@ -1,4 +1,4 @@
-# WaifuWalls Documentation
+# WaifuWalls
 
 ## Overview
 **WaifuWalls** is an application dedicated to providing high-quality wallpapers of your favorite waifus. Unlike other wallpaper applications that feature a wide variety of themes, WaifuWalls is focused exclusively on waifus, ensuring that every wallpaper caters to anime and manga enthusiasts.
@@ -17,18 +17,18 @@
 
 ## Features
 
-### 2. High-Quality Images
+### High-Quality Images
 - **Optimized for Mobile Devices**: Wallpapers are optimized for mobile devices, ensuring they look stunning on all screen types.
 
-### 3. User-Friendly Interface
+### User-Friendly Interface
 - **Easy Navigation**: The app features a clean and intuitive interface, making it easy to browse and find your favorite waifu wallpapers.
 - **Search and Filters**: Advanced search options and filters help you quickly find wallpapers based on specific waifus, anime series, or themes.
 
-### 4. Personalization
+### Personalization
 - **Favorites**: Save your favorite wallpapers for quick access later.
 - **Customizable Home Screen**: Set your favorite waifu wallpaper directly from the app with just a few taps.
 
-### 5. Community and Sharing
+### Community and Sharing
 - **User Submissions**: Users can submit their own waifu wallpapers to be featured in the app.
 
 ### Setting a Wallpaper
