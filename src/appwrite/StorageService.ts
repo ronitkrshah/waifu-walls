@@ -10,13 +10,27 @@ export type TUploadImageProps = {
   size: number;
 };
 
+/**
+ * @class StorageService
+ * @classdesc Provides methods for storing and retriveing files from storage
+ * @extends AppwriteService
+ */
 class StorageService extends AppwriteService {
-  async uploadMobileWallpaper({
-    title,
-    userId: userid,
-    uri,
-    size,
-  }: TUploadImageProps) {
+  /**
+   * @async
+   * @method uploadMobileWallpaper
+   *
+   * @param {TUploadImageProps} props
+   * @param {string} props.title - Image Title
+   * @param {string} props.userId - User Id for author
+   * @param {string} props.uri - Local path of the image
+   * @param {number} props.size - Image Size
+   *
+   * @description Upload Image to storage
+   * @throws {AppwriteException}
+   */
+  async uploadMobileWallpaper(props: TUploadImageProps) {
+    const {title, userId, uri, size} = props;
     try {
       const resp = await this.storage.createFile(
         appwriteConfig.wallpapersBucketId,
@@ -29,7 +43,7 @@ class StorageService extends AppwriteService {
         },
       );
       await databaseService.createImageCollection({
-        userId: userid,
+        userId,
         title,
         imageId: resp.$id,
       });

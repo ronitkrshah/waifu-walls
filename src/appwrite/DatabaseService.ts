@@ -38,8 +38,26 @@ export type TWallpaperDataResponse = {
   data: IDatabaseWallpaper[];
 };
 
+/**
+ * @class DatabaseService
+ * @classdesc Provides methods for database operations
+ * @extends AppwriteService
+ */
 class DatabaseService extends AppwriteService {
-  async createUser({name, email, userId}: TDBCreateUser) {
+  /**
+   * @async
+   * @method createUser
+   *
+   * @param {TDBCreateUser} user
+   * @param {string} user.email - User Email
+   * @param {string} user.password - User Password
+   * @param {string} user.name - User Name
+   *
+   * @description Create a new user document in database
+   * @throws {AppwriteException}
+   */
+  async createUser(user: TDBCreateUser) {
+    const {name, email, userId} = user;
     try {
       const resp = await this.database.createDocument(
         appwriteConfig.databaseId,
@@ -58,6 +76,15 @@ class DatabaseService extends AppwriteService {
     }
   }
 
+  /**
+   * @async
+   * @method getUserFromDatabase
+   *
+   * @param {string} id - User ID
+   *
+   * @description Get user document from database
+   * @throws {AppwriteException}
+   */
   async getUserFromDatabase(id: string) {
     try {
       const data = await this.database.getDocument(
@@ -72,7 +99,20 @@ class DatabaseService extends AppwriteService {
     }
   }
 
-  async createImageCollection({imageId, title, userId}: TImageCollection) {
+  /**
+   * @async
+   * @method createImageCollection
+   *
+   * @param {TImageCollection} image
+   * @param {string} image.imageId - Unique image id
+   * @param {string} image.title - Image Title
+   * @param {string} image.userId - UserId for author
+   *
+   * @description Create a new image document in database
+   * @throws {AppwriteException}
+   */
+  async createImageCollection(image: TImageCollection) {
+    const {imageId, title, userId} = image;
     try {
       const data = await this.database.createDocument(
         appwriteConfig.databaseId,
@@ -99,6 +139,17 @@ class DatabaseService extends AppwriteService {
     }
   }
 
+  /**
+   * @async
+   * @method getWallpapers
+   *
+   * @param {TGetWallpapers} props
+   * @param {GetWallpapersType.Latest | GetWallpapersType.Search} props.type - Request type
+   * @param {string} props.query - Query
+   *
+   * @description Get List of Wallpapers
+   * @throws {AppwriteException}
+   */
   async getWallpapers(props: TGetWallpapers): Promise<TWallpaperDataResponse> {
     let databaseResponse: TWallpaperDataResponse;
     try {

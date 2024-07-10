@@ -10,20 +10,56 @@ export type TUserCredentials = {
   name?: string;
 };
 
+/**
+ * @class AuthService
+ * @classdesc Provides methods for Authentication Service
+ * @extends AppwriteService
+ */
 class AuthService extends AppwriteService {
-  async createAccount({password, email, name}: TUserCredentials) {
+  /**
+   * @async
+   * @method createAccount
+   *
+   * @param {TUserCredentials} user
+   * @param {string} user.email - User Email
+   * @param {string} user.password - User Password
+   * @param {string} user.name - User Name
+   *
+   * @description Create a new user
+   * @throws {AppwriteException}
+   */
+  async createAccount(user: TUserCredentials) {
+    const {password, email, name} = user;
+
     try {
-      const user = await this.account.create(ID.unique(), email, password);
+      const response = await this.account.create(ID.unique(), email, password);
       await this.loginUser({email, password});
-      await databaseService.createUser({email, name: name!, userId: user.$id});
-      return user;
+      await databaseService.createUser({
+        email,
+        name: name!,
+        userId: response.$id,
+      });
+      return response;
     } catch (e) {
       console.log('Appwrite Exception : createAccount() :', e);
       throw e;
     }
   }
 
-  async loginUser({password, email}: TUserCredentials) {
+  /**
+   * @async
+   * @method loginUser
+   *
+   * @param {TUserCredentials} user
+   * @param {string} user.email - User Email
+   * @param {string} user.password - User Password
+   *
+   * @description Login existing user
+   * @throws {AppwriteException}
+   */
+  async loginUser(user: TUserCredentials) {
+    const {email, password} = user;
+
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (e) {
@@ -32,6 +68,13 @@ class AuthService extends AppwriteService {
     }
   }
 
+  /**
+   * @async
+   * @method logoutUser
+   *
+   * @description Logout a user
+   * @throws {AppwriteException}
+   */
   async logoutUser() {
     try {
       await this.account.deleteSession('current');
@@ -41,6 +84,15 @@ class AuthService extends AppwriteService {
     }
   }
 
+  /**
+   * @async
+   * @method getCurrentUser
+   *
+   * @param {Array<string>} queries - Custom Queries Array
+   *
+   * @description Get information about currently logged in user
+   * @throws {AppwriteException}
+   */
   async getCurrentUser(queries?: string[]) {
     try {
       const user = await this.account.get();
@@ -51,6 +103,16 @@ class AuthService extends AppwriteService {
     }
   }
 
+  /**
+   * @async
+   * @method getUserAccountInformation
+   *
+   * @param {string} userId - User ID
+   * @param {Array<string>} queries - Custom Queries Array
+   *
+   * @description Get user account details
+   * @throws {AppwriteException}
+   */
   async getUserAccountInformation(userId: string, queries?: string[]) {
     try {
       return (await this.database.getDocument(
