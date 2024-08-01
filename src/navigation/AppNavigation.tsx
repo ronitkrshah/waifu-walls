@@ -10,11 +10,20 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native';
-import StackNavigator from './StackNavigator/inedx';
-import {useColorScheme} from 'react-native';
+import StackNavigator from './StackNavigator';
+import {StatusBar, useColorScheme} from 'react-native';
+import {MD3Theme, withTheme} from 'react-native-paper';
 
-function AppNavigation() {
+type Props = {
+  theme: MD3Theme;
+};
+
+function AppNavigation({theme: {colors}}: Props) {
   const isDarkMode = useColorScheme() === 'dark';
+
+  // Update Statusbar Colors
+  StatusBar.setBackgroundColor(colors.surface);
+  StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
 
   return (
     <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
@@ -23,4 +32,4 @@ function AppNavigation() {
   );
 }
 
-export default AppNavigation;
+export default withTheme(AppNavigation);

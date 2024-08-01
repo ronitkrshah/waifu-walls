@@ -11,15 +11,32 @@ import {
   StackNavigationRoutes,
 } from '@app/types/navigation';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {MD3Theme, withTheme} from 'react-native-paper';
+import BottomTabNavigator from '../BottomTabNavigator';
+
+type Props = {
+  theme: MD3Theme;
+};
 
 const Stack = createNativeStackNavigator<StackNavigationParamList>();
 
-function StackNavigator() {
+function StackNavigator({theme}: Props) {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        contentStyle: {backgroundColor: theme.colors.surface},
+        navigationBarHidden: true,
+      }}>
       <Stack.Screen
         name={StackNavigationRoutes.SPLASH_SCREEN}
         component={SplashScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={StackNavigationRoutes.HOME_SCREEN}
+        component={BottomTabNavigator}
         options={{
           headerShown: false,
         }}
@@ -28,4 +45,4 @@ function StackNavigator() {
   );
 }
 
-export default StackNavigator;
+export default withTheme(StackNavigator);

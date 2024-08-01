@@ -10,5 +10,6 @@ module.exports = {
         },
       },
     ],
+    ['react-native-paper/babel'],
   ],
 };

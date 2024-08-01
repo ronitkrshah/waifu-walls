@@ -5,7 +5,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-function SplashScreen() {
+import {
+  BottomTabNavigationRoutes,
+  StackNavigationRoutes,
+  StackNavigationScreenProps,
+} from '@app/types/navigation';
+import {useEffect} from 'react';
+
+function SplashScreen({
+  navigation,
+}: StackNavigationScreenProps<StackNavigationRoutes.SPLASH_SCREEN>) {
+  useEffect(() => {
+    const t = setTimeout(() => {
+      navigation.replace(StackNavigationRoutes.HOME_SCREEN, {
+        screen: BottomTabNavigationRoutes.WAIFUS,
+      });
+    }, 1000);
+
+    return () => clearTimeout(t);
+  });
+
   return null;
 }
 
