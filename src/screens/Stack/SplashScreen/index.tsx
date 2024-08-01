@@ -5,10 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import AppNavigation from './navigation/AppNavigation';
-
-function App() {
-  return <AppNavigation />;
+function SplashScreen() {
+  return null;
 }
 
-export default App;
+export default SplashScreen;
