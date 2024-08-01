@@ -5,7 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {NavigatorScreenParams} from '@react-navigation/native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import {MaterialBottomTabNavigationProp} from 'react-native-paper';
 
 export const enum StackNavigationRoutes {
   SPLASH_SCREEN = 'SplashScreen',
@@ -33,3 +37,9 @@ export type StackNavigationParamList = {
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =
   NativeStackScreenProps<StackNavigationParamList, T>;
+
+export type StackUseNavigation =
+  NativeStackNavigationProp<StackNavigationParamList>;
+
+export type BottomTabUseNavigation =
+  MaterialBottomTabNavigationProp<BottomTabNavigationParamList>;
