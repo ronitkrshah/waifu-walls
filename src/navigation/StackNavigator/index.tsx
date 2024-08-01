@@ -25,7 +25,7 @@ function StackNavigator({theme}: Props) {
     <Stack.Navigator
       screenOptions={{
         contentStyle: {backgroundColor: theme.colors.surface},
-        navigationBarHidden: true,
+        navigationBarColor: theme.colors.inverseOnSurface,
       }}>
       <Stack.Screen
         name={StackNavigationRoutes.SPLASH_SCREEN}
