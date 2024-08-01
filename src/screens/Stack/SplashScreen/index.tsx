@@ -6,7 +6,6 @@
  */
 
 import {
-  BottomTabNavigationRoutes,
   StackNavigationRoutes,
   StackNavigationScreenProps,
 } from '@app/types/navigation';
@@ -17,9 +16,7 @@ function SplashScreen({
 }: StackNavigationScreenProps<StackNavigationRoutes.SPLASH_SCREEN>) {
   useEffect(() => {
     const t = setTimeout(() => {
-      navigation.replace(StackNavigationRoutes.HOME_SCREEN, {
-        screen: BottomTabNavigationRoutes.WAIFUS,
-      });
+      navigation.push(StackNavigationRoutes.REGISTER_AND_LOGIN_SCREEN);
     }, 1000);
 
     return () => clearTimeout(t);
