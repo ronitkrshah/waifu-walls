@@ -27,14 +27,13 @@ function SetupWizardScreen() {
           variant="headlineSmall"
           style={[
             {
-              color: colors.tertiary,
-              textDecorationColor: colors.tertiary,
+              color: colors.error,
             },
             styles.textUnderline,
           ]}>
           Disclaimer
         </Text>
-        <Text style={{color: colors.onPrimaryContainer}} variant="bodyLarge">
+        <Text variant="bodyLarge">
           {DefaultStrings.MATURE_CONTENT_DISCLAIMER}
         </Text>
       </View>
