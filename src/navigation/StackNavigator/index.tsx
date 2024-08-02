@@ -8,6 +8,7 @@
 import {
   RegisterAndLoginScreen,
   SearchResultsScreen,
+  SettingsScreen,
   SplashScreen,
 } from '@app/screens/Stack';
 import {
@@ -58,6 +59,14 @@ function StackNavigator({theme}: Props) {
         options={{
           headerShown: true,
           header: SearchResultsScreen.Appbar,
+        }}
+      />
+      <Stack.Screen
+        name={StackNavigationRoutes.SETTINGS_SCREEN}
+        component={SettingsScreen}
+        options={{
+          headerShown: true,
+          header: SettingsScreen.Appbar,
         }}
       />
     </Stack.Navigator>

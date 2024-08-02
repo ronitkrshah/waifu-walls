@@ -6,24 +6,38 @@
  */
 
 import AccountTabUserDashboard from '@app/components/screens/BottomTab/AccountTab/AccountTabUserDashboard';
+import {
+  BottomTabNavigationRoutes,
+  BottomTabNavigationScreenProps,
+  StackNavigationRoutes,
+} from '@app/types/navigation';
 import {Fragment} from 'react';
 import {Appbar} from 'react-native-paper';
 
-function AccountTab() {
+function AccountTab({
+  navigation,
+}: BottomTabNavigationScreenProps<BottomTabNavigationRoutes.ACCOUNT>) {
+  function navigateToSettings() {
+    navigation.push(StackNavigationRoutes.SETTINGS_SCREEN);
+  }
   return (
     <Fragment>
-      <MyAppbar />
+      <MyAppbar onCogPress={navigateToSettings} />
       <AccountTabUserDashboard />
     </Fragment>
   );
 }
 
 /** Header */
-function MyAppbar() {
+type Props = {
+  onCogPress(): void;
+};
+
+function MyAppbar({onCogPress}: Props) {
   return (
     <Appbar.Header mode="large">
       <Appbar.Content title="Profile" />
-      <Appbar.Action icon={'cog'} />
+      <Appbar.Action icon={'cog'} onPress={onCogPress} />
     </Appbar.Header>
   );
 }

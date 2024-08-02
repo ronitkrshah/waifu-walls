@@ -6,13 +6,17 @@
  */
 import {
   CompositeNavigationProp,
+  CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import {MaterialBottomTabNavigationProp} from 'react-native-paper';
+import {
+  MaterialBottomTabNavigationProp,
+  MaterialBottomTabScreenProps,
+} from 'react-native-paper';
 
 export const enum SearchScreenSearchType {
   QUERY = 'query',
@@ -24,6 +28,7 @@ export const enum StackNavigationRoutes {
   HOME_SCREEN = 'HomeScreen',
   REGISTER_AND_LOGIN_SCREEN = 'RegisterAndLoginScreen',
   SEARCH_RESULTS_SCREEN = 'SearchResultsScreen',
+  SETTINGS_SCREEN = 'SettingsScreen',
 }
 
 export const enum BottomTabNavigationRoutes {
@@ -46,10 +51,18 @@ export type StackNavigationParamList = {
     type: SearchScreenSearchType;
     query: string | string[];
   };
+  [StackNavigationRoutes.SETTINGS_SCREEN]: undefined;
 };
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =
   NativeStackScreenProps<StackNavigationParamList, T>;
+
+export type BottomTabNavigationScreenProps<
+  T extends BottomTabNavigationRoutes,
+> = CompositeScreenProps<
+  MaterialBottomTabScreenProps<BottomTabNavigationParamList, T>,
+  NativeStackScreenProps<StackNavigationParamList>
+>;
 
 /** Type for useNavigation hook inside tab bar */
 export type BottomTabNavigationProp<T extends BottomTabNavigationRoutes> =
