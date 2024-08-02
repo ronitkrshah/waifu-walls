@@ -27,9 +27,6 @@ function AccountTabLoginBox() {
   return (
     <Surface style={styles.surface}>
       <Avatar.Icon icon={'account'} />
-      <Text variant="titleMedium" style={styles.helperText}>
-        {DefaultStrings.LOGIN_FEATURE_HELPER_TEXT}
-      </Text>
       <Button mode="contained" onPress={handleLoginPress}>
         Log In Now
       </Button>
