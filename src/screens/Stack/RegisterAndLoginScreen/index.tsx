@@ -22,13 +22,13 @@ function RegisterAndLoginScreen() {
   /** Active Bar Width for SignIn */
   const signInBarWidth = scrollX.interpolate({
     inputRange: [0, SCREEN_WIDTH],
-    outputRange: ['100%', '0%'],
+    outputRange: ['100%', '10%'],
     extrapolate: 'clamp',
   });
   /** Active Bar Width for SignUp */
   const signUpBarWidth = scrollX.interpolate({
     inputRange: [0, SCREEN_WIDTH],
-    outputRange: ['0%', '100%'],
+    outputRange: ['10%', '100%'],
     extrapolate: 'clamp',
   });
 
