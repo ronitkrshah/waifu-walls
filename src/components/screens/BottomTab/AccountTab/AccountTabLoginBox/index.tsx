@@ -10,11 +10,10 @@ import {
   BottomTabNavigationRoutes,
   StackNavigationRoutes,
 } from '@app/types/navigation';
-import {DefaultStrings} from '@app/utils/constants/strings';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {useNavigation} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
-import {Avatar, Button, Surface, Text} from 'react-native-paper';
+import {Avatar, Button, Surface} from 'react-native-paper';
 
 function AccountTabLoginBox() {
   const navigation =
