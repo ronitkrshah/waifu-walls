@@ -14,10 +14,16 @@ import {
 } from '@react-navigation/native-stack';
 import {MaterialBottomTabNavigationProp} from 'react-native-paper';
 
+export const enum SearchScreenSearchType {
+  QUERY = 'query',
+  TAGS = 'tags',
+}
+
 export const enum StackNavigationRoutes {
   SPLASH_SCREEN = 'SplashScreen',
   HOME_SCREEN = 'HomeScreen',
   REGISTER_AND_LOGIN_SCREEN = 'RegisterAndLoginScreen',
+  SEARCH_RESULTS_SCREEN = 'SearchResultsScreen',
 }
 
 export const enum BottomTabNavigationRoutes {
@@ -36,6 +42,10 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.SPLASH_SCREEN]: undefined;
   [StackNavigationRoutes.HOME_SCREEN]: NavigatorScreenParams<BottomTabNavigationParamList>;
   [StackNavigationRoutes.REGISTER_AND_LOGIN_SCREEN]: undefined;
+  [StackNavigationRoutes.SEARCH_RESULTS_SCREEN]: {
+    type: SearchScreenSearchType;
+    query: string | string[];
+  };
 };
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =

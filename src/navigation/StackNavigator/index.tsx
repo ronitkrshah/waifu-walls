@@ -5,7 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {RegisterAndLoginScreen, SplashScreen} from '@app/screens/Stack';
+import {
+  RegisterAndLoginScreen,
+  SearchResultsScreen,
+  SplashScreen,
+} from '@app/screens/Stack';
 import {
   StackNavigationParamList,
   StackNavigationRoutes,
@@ -46,6 +50,14 @@ function StackNavigator({theme}: Props) {
         component={RegisterAndLoginScreen}
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={StackNavigationRoutes.SEARCH_RESULTS_SCREEN}
+        component={SearchResultsScreen}
+        options={{
+          headerShown: true,
+          header: SearchResultsScreen.Appbar,
         }}
       />
     </Stack.Navigator>

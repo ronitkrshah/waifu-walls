@@ -8,6 +8,8 @@
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
+  SearchScreenSearchType,
+  StackNavigationRoutes,
 } from '@app/types/navigation';
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {useNavigation} from '@react-navigation/native';
@@ -25,7 +27,11 @@ function AppSearchBar() {
   }
 
   function onSubmitQuery() {
-    console.log(query);
+    setQuery('');
+    navigation.push(StackNavigationRoutes.SEARCH_RESULTS_SCREEN, {
+      type: SearchScreenSearchType.QUERY,
+      query,
+    });
   }
 
   return (
