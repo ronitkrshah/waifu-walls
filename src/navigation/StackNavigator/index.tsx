@@ -11,6 +11,7 @@ import {
   SettingsScreen,
   SetupWizardScreen,
   SplashScreen,
+  UploadWallpaperScreen,
 } from '@app/screens/Stack';
 import {
   StackNavigationParamList,
@@ -75,6 +76,14 @@ function StackNavigator({theme}: Props) {
         options={{
           headerShown: true,
           header: SettingsScreen.Appbar,
+        }}
+      />
+      <Stack.Screen
+        name={StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN}
+        component={UploadWallpaperScreen}
+        options={{
+          headerShown: true,
+          header: UploadWallpaperScreen.Appbar,
         }}
       />
     </Stack.Navigator>

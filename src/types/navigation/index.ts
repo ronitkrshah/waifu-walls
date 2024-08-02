@@ -30,6 +30,7 @@ export const enum StackNavigationRoutes {
   SEARCH_RESULTS_SCREEN = 'SearchResultsScreen',
   SETTINGS_SCREEN = 'SettingsScreen',
   SETUP_WIZARD_SCREEN = 'SetupScreen',
+  UPLOAD_WALLPAPER_SCREEN = 'UploadWallpaper',
 }
 
 export const enum BottomTabNavigationRoutes {
@@ -54,6 +55,7 @@ export type StackNavigationParamList = {
   };
   [StackNavigationRoutes.SETTINGS_SCREEN]: undefined;
   [StackNavigationRoutes.SETUP_WIZARD_SCREEN]: undefined;
+  [StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN]: undefined;
 };
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =

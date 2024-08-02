@@ -6,17 +6,33 @@
  */
 
 import AppSearchBar from '@app/components/screens/BottomTab/WaifusTab/AppSearchBar';
+import {
+  BottomTabNavigationRoutes,
+  BottomTabNavigationScreenProps,
+  StackNavigationRoutes,
+} from '@app/types/navigation';
 import {DefaultStyles} from '@app/utils/constants/style';
+import {Fragment} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {FAB} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-function WaifusTab() {
+function WaifusTab({
+  navigation,
+}: BottomTabNavigationScreenProps<BottomTabNavigationRoutes.WAIFUS>) {
+  function onFabPress() {
+    navigation.push(StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN);
+  }
+
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <AppSearchBar />
-      </View>
-    </SafeAreaView>
+    <Fragment>
+      <SafeAreaView>
+        <View style={styles.container}>
+          <AppSearchBar />
+        </View>
+      </SafeAreaView>
+      <FAB icon={'file-upload'} style={styles.fab} onPress={onFabPress} />
+    </Fragment>
   );
 }
 
@@ -24,6 +40,11 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: DefaultStyles.SPACING,
     paddingHorizontal: DefaultStyles.SPACING,
+  },
+  fab: {
+    position: 'absolute',
+    bottom: DefaultStyles.SPACING,
+    right: DefaultStyles.SPACING,
   },
 });
 
