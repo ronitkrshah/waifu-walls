@@ -6,8 +6,8 @@
  */
 
 import {
+  BottomTabNavigationProp,
   BottomTabNavigationRoutes,
-  BottomTabUseNavigation,
 } from '@app/types/navigation';
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {useNavigation} from '@react-navigation/native';
@@ -17,7 +17,8 @@ import {Searchbar, useTheme} from 'react-native-paper';
 function AppSearchBar() {
   const [query, setQuery] = useState('');
   const {colors} = useTheme();
-  const navigation = useNavigation<BottomTabUseNavigation>();
+  const navigation =
+    useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.WAIFUS>>();
 
   function onFilterPress() {
     navigation.jumpTo(BottomTabNavigationRoutes.FLAVOURS);

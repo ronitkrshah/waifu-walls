@@ -4,7 +4,10 @@
  * The source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {NavigatorScreenParams} from '@react-navigation/native';
+import {
+  CompositeNavigationProp,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
@@ -38,8 +41,9 @@ export type StackNavigationParamList = {
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =
   NativeStackScreenProps<StackNavigationParamList, T>;
 
-export type StackUseNavigation =
-  NativeStackNavigationProp<StackNavigationParamList>;
-
-export type BottomTabUseNavigation =
-  MaterialBottomTabNavigationProp<BottomTabNavigationParamList>;
+/** Type for useNavigation hook inside tab bar */
+export type BottomTabNavigationProp<T extends BottomTabNavigationRoutes> =
+  CompositeNavigationProp<
+    MaterialBottomTabNavigationProp<BottomTabNavigationParamList, T>,
+    NativeStackNavigationProp<StackNavigationParamList>
+  >;

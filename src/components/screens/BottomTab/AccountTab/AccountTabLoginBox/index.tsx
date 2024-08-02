@@ -5,7 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {StackNavigationRoutes, StackUseNavigation} from '@app/types/navigation';
+import {
+  BottomTabNavigationProp,
+  BottomTabNavigationRoutes,
+  StackNavigationRoutes,
+} from '@app/types/navigation';
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {useNavigation} from '@react-navigation/native';
@@ -13,7 +17,8 @@ import {StyleSheet} from 'react-native';
 import {Avatar, Button, Surface, Text} from 'react-native-paper';
 
 function AccountTabLoginBox() {
-  const navigation = useNavigation<StackUseNavigation>();
+  const navigation =
+    useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.ACCOUNT>>();
 
   function handleLoginPress() {
     navigation.push(StackNavigationRoutes.REGISTER_AND_LOGIN_SCREEN);
