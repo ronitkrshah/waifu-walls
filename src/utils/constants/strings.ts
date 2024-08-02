@@ -18,4 +18,9 @@ export const DefaultStrings = {
    * Search Bar
    */
   SEARCH_BAR_PLACEHOLDER: "Search Waifu's",
+
+  /**
+   * Something
+   */
+  FLAVOURS_HELP_TEXT: 'Choose Your Flavour',
 };

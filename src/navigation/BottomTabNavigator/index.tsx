@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {AccountTab, WaifusTab} from '@app/screens/BottomTab';
+import {AccountTab, FlavoursTab, WaifusTab} from '@app/screens/BottomTab';
 import {
   BottomTabNavigationParamList,
   BottomTabNavigationRoutes,
@@ -38,7 +38,7 @@ function BottomTabNavigator({theme}: Props) {
       />
       <Tab.Screen
         name={BottomTabNavigationRoutes.FLAVOURS}
-        component={WaifusTab}
+        component={FlavoursTab}
         options={() => ({
           tabBarLabel: 'Flavours',
           tabBarIcon: ({color, focused}) =>
