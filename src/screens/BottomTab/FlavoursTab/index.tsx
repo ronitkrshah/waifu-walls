@@ -6,81 +6,26 @@
  */
 
 import FlavoursTabList from '@app/components/screens/BottomTab/FlavoursTab/FlavoursTabList';
+import AnimatedScrollViewWithActiveTabIndicator from '@app/components/shared/AnimatedScrollViewWithActiveTabIndicator';
 import {NSFWList} from '@app/utils/constants/NSFWList';
 import {SFWList} from '@app/utils/constants/SFWList';
 import {DefaultStyles} from '@app/utils/constants/style';
-import {Fragment, useRef} from 'react';
-import {Animated, Dimensions, ScrollView, StyleSheet, View} from 'react-native';
-import {Divider, Text, Button, useTheme} from 'react-native-paper';
+import {Fragment} from 'react';
+import {Dimensions, StyleSheet, View} from 'react-native';
+import {Divider, Text, useTheme} from 'react-native-paper';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
-
 function FlavoursTab() {
-  const scrollRef = useRef<ScrollView>(null);
-  const scrollX = useRef(new Animated.Value(0)).current;
-  const {colors} = useTheme();
-
-  /** Active Bar Width for SFW */
-  const SFWBarWidth = scrollX.interpolate({
-    inputRange: [0, SCREEN_WIDTH],
-    outputRange: ['100%', '10%'],
-    extrapolate: 'clamp',
-  });
-  /** Active Bar Width for SignUp */
-  const NSFWBarWidth = scrollX.interpolate({
-    inputRange: [0, SCREEN_WIDTH],
-    outputRange: ['10%', '100%'],
-    extrapolate: 'clamp',
-  });
-
   return (
     <Fragment>
       <Headline />
-      <View>
-        <Divider style={styles.divider} />
-        <View style={styles.buttonOuterContainer}>
-          <View style={styles.buttonInnerContainer}>
-            <Button>SFW</Button>
-            <Animated.View
-              style={[
-                {backgroundColor: colors.inversePrimary, width: SFWBarWidth},
-                styles.activeBar,
-              ]}
-            />
-          </View>
-          <View style={styles.buttonInnerContainer}>
-            <Button>NSFW</Button>
-            <Animated.View
-              style={[
-                {backgroundColor: colors.inversePrimary, width: NSFWBarWidth},
-                styles.activeBar,
-              ]}
-            />
-          </View>
-        </View>
-        <Animated.ScrollView
-          ref={scrollRef}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: {
-                    x: scrollX,
-                  },
-                },
-              },
-            ],
-            {
-              useNativeDriver: false,
-            },
-          )}>
-          <FlavoursTabList list={SFWList} />
-          <FlavoursTabList list={NSFWList} />
-        </Animated.ScrollView>
-      </View>
+      <Divider style={styles.divider} />
+      <AnimatedScrollViewWithActiveTabIndicator
+        buttonLabelOne="SFW"
+        buttonLabelTwo="NSFW">
+        <FlavoursTabList list={SFWList} />
+        <FlavoursTabList list={NSFWList} />
+      </AnimatedScrollViewWithActiveTabIndicator>
     </Fragment>
   );
 }
@@ -103,25 +48,9 @@ function Headline() {
 
 const styles = StyleSheet.create({
   divider: {
-    height: 1,
     width: SCREEN_WIDTH - DefaultStyles.SPACING * 2,
     marginHorizontal: 'auto',
   },
-  buttonOuterContainer: {
-    marginVertical: 30,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: DefaultStyles.SPACING,
-  },
-  buttonInnerContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  activeBar: {
-    height: 5,
-    borderRadius: 10,
-  },
-
   headlineContainer: {
     justifyContent: 'center',
     alignItems: 'center',
