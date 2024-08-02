@@ -29,6 +29,7 @@ export const enum StackNavigationRoutes {
   REGISTER_AND_LOGIN_SCREEN = 'RegisterAndLoginScreen',
   SEARCH_RESULTS_SCREEN = 'SearchResultsScreen',
   SETTINGS_SCREEN = 'SettingsScreen',
+  SETUP_WIZARD_SCREEN = 'SetupScreen',
 }
 
 export const enum BottomTabNavigationRoutes {
@@ -52,6 +53,7 @@ export type StackNavigationParamList = {
     query: string | string[];
   };
   [StackNavigationRoutes.SETTINGS_SCREEN]: undefined;
+  [StackNavigationRoutes.SETUP_WIZARD_SCREEN]: undefined;
 };
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =
@@ -63,6 +65,9 @@ export type BottomTabNavigationScreenProps<
   MaterialBottomTabScreenProps<BottomTabNavigationParamList, T>,
   NativeStackScreenProps<StackNavigationParamList>
 >;
+
+export type StackNavigationProp =
+  NativeStackNavigationProp<StackNavigationParamList>;
 
 /** Type for useNavigation hook inside tab bar */
 export type BottomTabNavigationProp<T extends BottomTabNavigationRoutes> =

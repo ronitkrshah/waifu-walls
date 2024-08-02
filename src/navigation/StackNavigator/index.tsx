@@ -9,6 +9,7 @@ import {
   RegisterAndLoginScreen,
   SearchResultsScreen,
   SettingsScreen,
+  SetupWizardScreen,
   SplashScreen,
 } from '@app/screens/Stack';
 import {
@@ -35,6 +36,13 @@ function StackNavigator({theme}: Props) {
       <Stack.Screen
         name={StackNavigationRoutes.SPLASH_SCREEN}
         component={SplashScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={StackNavigationRoutes.SETUP_WIZARD_SCREEN}
+        component={SetupWizardScreen}
         options={{
           headerShown: false,
         }}
