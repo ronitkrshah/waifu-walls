@@ -6,7 +6,7 @@
  */
 
 import {DefaultStyles} from '@app/utils/constants/style';
-import React, {Fragment} from 'react';
+import React, {Fragment, PropsWithChildren} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import Animated, {
   Extrapolation,
@@ -17,35 +17,22 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import AnimatedTabbarButton from './AnimatedTabBar';
-import {ReanimatedFlatList} from 'react-native-reanimated/lib/typescript/component/FlatList';
+import {AnimatedScrollView} from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
 type Props = {
   buttonLabelOne: string;
   buttonLabelTwo: string;
-  children: [React.JSX.Element, React.JSX.Element];
-};
+} & Required<PropsWithChildren>;
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
-/**
- * Render A Scrollable Tab List with Flatlist
- *
- * `children` Only Two JSX Element
- */
 function AnimatedScrollableTab({
   buttonLabelOne,
   buttonLabelTwo,
   children,
 }: Props) {
   const scrollX = useSharedValue(0);
-  const flatListRef =
-    useAnimatedRef<ReanimatedFlatList<(typeof RenderData)[0]>>();
-
-  /** Data Will Be Render On Flatlist */
-  const RenderData = [
-    {id: 'firstComponent', Component: children[0]},
-    {id: 'secondComoponent', Component: children[1]},
-  ];
+  const scrollViewRef = useAnimatedRef<AnimatedScrollView>();
 
   const firstBtnBarAnimatedStyle = useAnimatedStyle(() => ({
     width: interpolate(
@@ -67,10 +54,10 @@ function AnimatedScrollableTab({
 
   /**  Functions for Scroll*/
   function scrollToSecondPage() {
-    flatListRef.current?.scrollToIndex({index: 1, animated: true});
+    scrollViewRef.current?.scrollTo({x: SCREEN_WIDTH, y: 0, animated: true});
   }
   function scrollToFirstPage() {
-    flatListRef.current?.scrollToIndex({index: 0, animated: true});
+    scrollViewRef.current?.scrollTo({x: 0, y: 0, animated: true});
   }
 
   /** Handle Scroll Event */
@@ -95,16 +82,14 @@ function AnimatedScrollableTab({
           animatedStyle={secondBtnBarAnimatedStyle}
         />
       </View>
-      <Animated.FlatList
-        ref={flatListRef}
+      <Animated.ScrollView
+        ref={scrollViewRef}
         horizontal
         pagingEnabled
-        data={RenderData}
         showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => item.Component}
-        keyExtractor={item => item.id}
-        onScroll={scrollHandler}
-      />
+        onScroll={scrollHandler}>
+        {children}
+      </Animated.ScrollView>
     </Fragment>
   );
 }
