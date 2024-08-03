@@ -59,7 +59,8 @@ function StackNavigator({theme}: Props) {
         name={StackNavigationRoutes.REGISTER_AND_LOGIN_SCREEN}
         component={RegisterAndLoginScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          header: RegisterAndLoginScreen.Appbar,
         }}
       />
       <Stack.Screen

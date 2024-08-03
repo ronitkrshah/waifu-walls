@@ -9,17 +9,13 @@ import FlavoursTabList from '@app/components/screens/BottomTab/FlavoursTab/Flavo
 import AnimatedScrollViewWithActiveTabIndicator from '@app/components/shared/AnimatedScrollViewWithActiveTabIndicator';
 import {NSFWList} from '@app/utils/constants/NSFWList';
 import {SFWList} from '@app/utils/constants/SFWList';
-import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import {Divider, Text, useTheme} from 'react-native-paper';
+import {Appbar} from 'react-native-paper';
 
-const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 function FlavoursTab() {
   return (
     <Fragment>
-      <Headline />
-      <Divider style={styles.divider} />
+      <MyAppbar />
       <AnimatedScrollViewWithActiveTabIndicator
         buttonLabelOne="SFW"
         buttonLabelTwo="NSFW">
@@ -30,32 +26,13 @@ function FlavoursTab() {
   );
 }
 
-/**
- * This component isn't that big that's why creating in same file
- */
-function Headline() {
-  const {colors} = useTheme();
-
+/** Appbar */
+function MyAppbar() {
   return (
-    <View style={styles.headlineContainer}>
-      <Text variant="headlineSmall">Choose Your</Text>
-      <Text variant="headlineLarge" style={{color: colors.primary}}>
-        Flavour
-      </Text>
-    </View>
+    <Appbar.Header mode="large">
+      <Appbar.Content title="Flavours" />
+    </Appbar.Header>
   );
 }
-
-const styles = StyleSheet.create({
-  divider: {
-    width: SCREEN_WIDTH - DefaultStyles.SPACING * 2,
-    marginHorizontal: 'auto',
-  },
-  headlineContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: DefaultStyles.SPACING,
-  },
-});
 
 export default FlavoursTab;
