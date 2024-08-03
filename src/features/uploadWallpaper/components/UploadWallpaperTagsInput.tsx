@@ -7,52 +7,41 @@
 
 import {NSFWList} from '@app/utils/constants/NSFWList';
 import {SFWList} from '@app/utils/constants/SFWList';
-import {DefaultStyles} from '@app/utils/constants/style';
-import {Fragment, useEffect, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Chip, Text} from 'react-native-paper';
+import {Fragment, memo} from 'react';
+import {Checkbox, List} from 'react-native-paper';
 import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
+import UploadWallpaperSelectImageTags from './UploadWallpaperSelectImageTags';
 
-type Props = {
-  isMatureContent: boolean;
-};
+function UploadWallpaperTagsInput() {
+  const {isMatureContent, setIsMatureContent} = useUploadWallpaperController();
 
-function UploadWallpaperTagsInput({isMatureContent}: Props) {
-  const [tagList, setTagList] = useState<string[]>([]);
-  const {imageTags, updateSelectedTags} = useUploadWallpaperController();
-
-  useEffect(() => {
-    setTagList(isMatureContent ? NSFWList : SFWList);
-  }, [isMatureContent]);
+  const tagList = isMatureContent ? NSFWList : SFWList;
 
   return (
     <Fragment>
-      <Text variant="titleMedium">Select Tags</Text>
-      <View style={styles.container}>
-        {tagList.map(item => {
-          let _isSelected = imageTags.includes(item);
-          return (
-            <Chip
-              key={item}
-              icon={_isSelected ? 'heart' : undefined}
-              onPress={() => updateSelectedTags(item)}
-              selected={_isSelected}>
-              {item}
-            </Chip>
-          );
-        })}
-      </View>
+      <UploadWallpaperSelectImageTags tagList={tagList} />
+
+      <List.Item
+        title="This Image Contains Adult Content"
+        onPress={() => setIsMatureContent(!isMatureContent)}
+        left={() =>
+          LeftCheckBox(isMatureContent, () =>
+            setIsMatureContent(!isMatureContent),
+          )
+        }
+      />
     </Fragment>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: DefaultStyles.SPACING,
-    justifyContent: 'center',
-  },
-});
+/** Check Box */
+function LeftCheckBox(isMatureContent: boolean, onPress: () => void) {
+  return (
+    <Checkbox
+      status={isMatureContent ? 'checked' : 'unchecked'}
+      onPress={onPress}
+    />
+  );
+}
 
-export default UploadWallpaperTagsInput;
+export default memo(UploadWallpaperTagsInput);

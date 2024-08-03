@@ -6,37 +6,36 @@
  */
 
 import {DefaultStyles} from '@app/utils/constants/style';
-import {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Checkbox, List, TextInput} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import UploadWallpaperTagsInput from './UploadWallpaperTagsInput';
-import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
+import {useState} from 'react';
 
 function UploadWallpaperDetailsInput() {
-  const [isMatureContent, setIsMatureContent] = useState(false);
-  const {setIsMatureContent: setStoreMatureContent} =
-    useUploadWallpaperController();
-
-  useEffect(() => {
-    setStoreMatureContent(isMatureContent);
-  }, [isMatureContent, setStoreMatureContent]);
+  const [details, setDetails] = useState({
+    title: '',
+    author: '',
+    originalLink: '',
+  });
 
   return (
     <View style={styles.container}>
-      <TextInput placeholder="Enter Title" />
-      <TextInput placeholder="Enter Author Name (Optional)" />
-      <TextInput placeholder="Original Image Link (Optional)" />
-      <UploadWallpaperTagsInput isMatureContent={isMatureContent} />
-      <List.Item
-        title="This Image Contains Adult Content"
-        onPress={() => setIsMatureContent(p => !p)}
-        left={() => (
-          <Checkbox
-            status={isMatureContent ? 'checked' : 'unchecked'}
-            onPress={() => setIsMatureContent(p => !p)}
-          />
-        )}
+      <TextInput
+        placeholder="Enter Title"
+        value={details.title}
+        onChangeText={e => setDetails(s => ({...s, title: e}))}
       />
+      <TextInput
+        placeholder="Enter Author Name (Optional)"
+        value={details.author}
+        onChangeText={e => setDetails(s => ({...s, author: e}))}
+      />
+      <TextInput
+        value={details.originalLink}
+        placeholder="Original Image Link (Optional)"
+        onChangeText={e => setDetails(s => ({...s, originalLink: e}))}
+      />
+      <UploadWallpaperTagsInput />
     </View>
   );
 }

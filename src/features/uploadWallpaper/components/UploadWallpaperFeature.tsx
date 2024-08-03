@@ -10,7 +10,7 @@ import UploadWallpaperButton from './UploadWallpaperButton';
 import UploadWallpaperDetailsInput from './UploadWallpaperDetailsInput';
 import UploadWallpaperPicker from './UploadWallpaperPicker';
 
-function UploadWallpaperHandler() {
+function UploadWallpaperFeature() {
   return (
     <UploadWallpaperContextProvider>
       <UploadWallpaperPicker />
@@ -20,4 +20,4 @@ function UploadWallpaperHandler() {
   );
 }
 
-export default UploadWallpaperHandler;
+export default UploadWallpaperFeature;

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import UploadWallpaperHandler from '@app/features/uploadWallpaper/components/UploadWallpaperHandler';
+import UploadWallpaperFeature from '@app/features/uploadWallpaper/components/UploadWallpaperFeature';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {KeyboardAvoidingView, ScrollView, StyleSheet} from 'react-native';
 import {Appbar} from 'react-native-paper';
@@ -14,9 +14,10 @@ function UploadWallpaperScreen() {
   return (
     <KeyboardAvoidingView style={styles.rootContainer} behavior="padding">
       <ScrollView
+        nestedScrollEnabled
         style={styles.rootContainer}
         contentContainerStyle={styles.contentContainer}>
-        <UploadWallpaperHandler />
+        <UploadWallpaperFeature />
       </ScrollView>
     </KeyboardAvoidingView>
   );
