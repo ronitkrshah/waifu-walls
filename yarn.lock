@@ -4192,7 +4192,7 @@ __metadata:
     react: 18.2.0
     react-devtools: ^5.3.1
     react-native: 0.74.4
-    react-native-fast-image: ^8.6.3
+    react-native-fast-image: "https://github.com/HyopeR/react-native-fast-image"
     react-native-image-picker: ^7.1.2
     react-native-paper: ^5.12.5
     react-native-reanimated: ^3.14.0
@@ -8995,13 +8995,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-fast-image@npm:^8.6.3":
+"react-native-fast-image@https://github.com/HyopeR/react-native-fast-image":
   version: 8.6.3
-  resolution: "react-native-fast-image@npm:8.6.3"
+  resolution: "react-native-fast-image@https://github.com/HyopeR/react-native-fast-image.git#commit=a1b0a2dc24f3c93703a52a346b257600ba2479e2"
   peerDependencies:
     react: ^17 || ^18
     react-native: ">=0.60.0"
-  checksum: 29289cb6b2eae0983c8922b22e2d9de3be07322bb7991c5def19f95eadefaedb0e308ff0b38cc1d0444e8bd4fe94a7621a99a2d3d9298100bcb60b3144677234
+  checksum: c8bb92dc865fd10da8fce04e3ac5bea085c1c0b021ead8136a4341df491ee46e9b122dbf34fbac5b5a639075211654bd8516ce564c7ca2c9a02e46ba76e5f4fb
   languageName: node
   linkType: hard
 

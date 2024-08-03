@@ -11,14 +11,19 @@ import {useNavigation} from '@react-navigation/native';
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
-  StackNavigationProp,
+  StackNavigationRoutes,
 } from '@app/types/navigation';
+import LatestWallpaperRepositoryImpl from '../repositories/LatestWallpaperRepositoryImpl';
+import {LatestWallpaperDTO} from '../dto';
 
 function useLatestWallpaperFeatureController() {
-  const wallpaperService = new LatestWallpaperFeatureService();
+  const wallpaperService = new LatestWallpaperFeatureService(
+    new LatestWallpaperRepositoryImpl(),
+  );
   const {
     isLoading,
     data: wallpaperList,
+    error,
     isError,
   } = useQuery({
     queryKey: ['latestWallpaper'],
@@ -30,14 +35,17 @@ function useLatestWallpaperFeatureController() {
   /**
    * Function To handle on press on waifus
    */
-  function handleWallpaperPress(wallpaperId: string) {
-    // ... do something later
+  function handleWallpaperPress(wallpaper: LatestWallpaperDTO) {
+    navigation.push(StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN, {
+      wallpaper,
+    });
   }
 
   return {
     isLoading,
     wallpaperList,
     isError,
+    handleWallpaperPress,
   };
 }
 

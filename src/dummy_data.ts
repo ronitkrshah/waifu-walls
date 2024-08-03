@@ -1,15 +1,4 @@
-interface Image {
-  id: string;
-  title: string;
-  is_nsfw: boolean;
-  preview_url: string;
-  download_url: string;
-  author: string;
-  uploaded_by: string;
-  original_post_link: string;
-}
-
-export const latestImagesDummyData: Image[] = [
+export const latestImagesDummyData = [
   {
     id: '001',
     title: 'Sunset Over the City',
@@ -17,7 +6,10 @@ export const latestImagesDummyData: Image[] = [
     preview_url: 'https://wallpaperaccess.com/full/2781983.jpg',
     download_url: 'https://wallpaperaccess.com/full/2781983.jpg',
     author: 'Manga',
-    uploaded_by: 'User123',
+    uploaded_by: {
+      name: 'Shankar',
+      id: 'asdhasd',
+    },
     original_post_link: 'https://example.com/post001',
   },
   {
@@ -27,7 +19,10 @@ export const latestImagesDummyData: Image[] = [
     preview_url: 'https://wallpapercave.com/wp/wp6289373.jpg',
     download_url: 'https://wallpaperaccess.com/full/2781983.jpg',
     author: 'Manga',
-    uploaded_by: 'User456',
+    uploaded_by: {
+      name: 'Shankar',
+      id: 'asdhasd',
+    },
     original_post_link: 'https://example.com/post002',
   },
   {
@@ -38,7 +33,10 @@ export const latestImagesDummyData: Image[] = [
       'https://www.mordeo.org/files/uploads/2017/08/Beautiful-Aurora-Borealis-HD-Mobile-Wallpaper-950x1520.jpg',
     download_url: 'https://wallpaperaccess.com/full/2781983.jpg',
     author: 'Manga',
-    uploaded_by: 'User789',
+    uploaded_by: {
+      name: 'Shankar',
+      id: 'asdhasd',
+    },
     original_post_link: 'https://example.com/post003',
   },
   {
@@ -49,7 +47,10 @@ export const latestImagesDummyData: Image[] = [
       'https://as1.ftcdn.net/v2/jpg/05/57/13/36/1000_F_557133662_rqejTDBAowk780L08DuKJdHYcXXO7qup.jpg',
     download_url: 'https://wallpaperaccess.com/full/2781983.jpg',
     author: 'Manga',
-    uploaded_by: 'User101',
+    uploaded_by: {
+      name: 'Shankar',
+      id: 'asdhasd',
+    },
     original_post_link: 'https://example.com/post004',
   },
   {
@@ -60,7 +61,10 @@ export const latestImagesDummyData: Image[] = [
       'https://w0.peakpx.com/wallpaper/629/126/HD-wallpaper-streets-city-night-rain-street.jpg',
     download_url: 'https://wallpaperaccess.com/full/2781983.jpg',
     author: 'Manga',
-    uploaded_by: 'User102',
+    uploaded_by: {
+      name: 'Shankar',
+      id: 'asdhasd',
+    },
     original_post_link: 'https://example.com/post005',
   },
   {
@@ -70,7 +74,10 @@ export const latestImagesDummyData: Image[] = [
     preview_url: 'https://wallpapercave.com/wp/wp10035936.jpg',
     download_url: 'https://wallpaperaccess.com/full/2781983.jpg',
     author: 'Manga',
-    uploaded_by: 'User103',
+    uploaded_by: {
+      name: 'Shankar',
+      id: 'asdhasd',
+    },
     original_post_link: 'https://example.com/post006',
   },
 ];

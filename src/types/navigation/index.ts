@@ -4,6 +4,7 @@
  * The source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import {LatestWallpaperDTO} from '@app/features/latestWallpaperList/dto';
 import {
   CompositeNavigationProp,
   CompositeScreenProps,
@@ -31,6 +32,7 @@ export const enum StackNavigationRoutes {
   SETTINGS_SCREEN = 'SettingsScreen',
   SETUP_WIZARD_SCREEN = 'SetupScreen',
   UPLOAD_WALLPAPER_SCREEN = 'UploadWallpaper',
+  WALLPAPER_PREVIEW_SCREEN = 'WallpaperPreviewScreen',
 }
 
 export const enum BottomTabNavigationRoutes {
@@ -56,6 +58,9 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.SETTINGS_SCREEN]: undefined;
   [StackNavigationRoutes.SETUP_WIZARD_SCREEN]: undefined;
   [StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN]: undefined;
+  [StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN]: {
+    wallpaper: LatestWallpaperDTO;
+  };
 };
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =

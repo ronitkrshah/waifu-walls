@@ -5,21 +5,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {latestImagesDummyData} from '@app/dummy_data';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {memo} from 'react';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import {LatestWallpaperDTO} from '../dto';
+import useLatestWallpaperFeatureController from '../controllers/useLatestWallpaperFeatureController';
 
 type Props = {
-  wallpaper: (typeof latestImagesDummyData)[number];
+  wallpaper: LatestWallpaperDTO;
 };
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
 function LatestWallpaerFeatureListItem({wallpaper}: Props) {
+  const {handleWallpaperPress} = useLatestWallpaperFeatureController();
+
   return (
-    <Pressable style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => handleWallpaperPress(wallpaper)}>
       <FastImage
         style={[StyleSheet.absoluteFill, styles.image]}
         source={{

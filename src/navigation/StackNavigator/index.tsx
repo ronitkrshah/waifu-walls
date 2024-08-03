@@ -12,6 +12,7 @@ import {
   SetupWizardScreen,
   SplashScreen,
   UploadWallpaperScreen,
+  WallpaperPreviewScreen,
 } from '@app/screens/Stack';
 import {
   StackNavigationParamList,
@@ -32,7 +33,7 @@ function StackNavigator({theme}: Props) {
     <Stack.Navigator
       screenOptions={{
         contentStyle: {backgroundColor: theme.colors.surface},
-        navigationBarColor: theme.colors.inverseOnSurface,
+        navigationBarHidden: true,
       }}>
       <Stack.Screen
         name={StackNavigationRoutes.SPLASH_SCREEN}
@@ -85,6 +86,14 @@ function StackNavigator({theme}: Props) {
         options={{
           headerShown: true,
           header: UploadWallpaperScreen.Appbar,
+        }}
+      />
+      <Stack.Screen
+        name={StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN}
+        component={WallpaperPreviewScreen}
+        options={{
+          headerShown: false,
+          animation: 'fade',
         }}
       />
     </Stack.Navigator>

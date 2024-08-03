@@ -5,23 +5,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {latestImagesDummyData} from '@app/dummy_data';
+import LatestWallpaperRepository from '../domain/repositories/LatestWallpaperRepository';
+import {LatestWallpaperDTO} from '../dto';
+import transformToDto from '../dto/transformToDto';
 
 class LatestWallpaperFeatureService {
-  // TODO: Actual Repository Implementation
-  constructor() {}
+  repository: LatestWallpaperRepository;
+
+  constructor(repository: LatestWallpaperRepository) {
+    this.repository = repository;
+  }
 
   /**
    * Get Latest Wallpapers
    */
-  public async getLatestWallpapers(): Promise<typeof latestImagesDummyData> {
-    const response = await new Promise(resolve => {
-      setTimeout(() => {
-        resolve(latestImagesDummyData);
-      }, 2000);
-    });
-
-    return response as typeof latestImagesDummyData;
+  public async getLatestWallpapers(): Promise<LatestWallpaperDTO[]> {
+    const data = await this.repository.getLatestWallpapers();
+    return data.map(item => transformToDto(item));
   }
 }
 

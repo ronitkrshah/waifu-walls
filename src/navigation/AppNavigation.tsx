@@ -12,17 +12,13 @@ import {
 } from '@react-navigation/native';
 import StackNavigator from './StackNavigator';
 import {StatusBar, useColorScheme} from 'react-native';
-import {MD3Theme, withTheme} from 'react-native-paper';
 
-type Props = {
-  theme: MD3Theme;
-};
-
-function AppNavigation({theme: {colors}}: Props) {
+function AppNavigation() {
   const isDarkMode = useColorScheme() === 'dark';
 
   // Update Statusbar Colors
-  StatusBar.setBackgroundColor(colors.surface);
+  StatusBar.setBackgroundColor('transparent');
+  StatusBar.setTranslucent(true);
   StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
 
   return (
@@ -32,4 +28,4 @@ function AppNavigation({theme: {colors}}: Props) {
   );
 }
 
-export default withTheme(AppNavigation);
+export default AppNavigation;
