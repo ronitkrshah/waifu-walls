@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import AccountTabLoginBox from '@app/components/screens/BottomTab/AccountTab/AccountTabLoginBox';
 import AccountTabUserDashboard from '@app/components/screens/BottomTab/AccountTab/AccountTabUserDashboard';
 import {
   BottomTabNavigationRoutes,
@@ -24,6 +25,7 @@ function AccountTab({
     <Fragment>
       <MyAppbar onCogPress={navigateToSettings} />
       <AccountTabUserDashboard />
+      <AccountTabLoginBox />
     </Fragment>
   );
 }

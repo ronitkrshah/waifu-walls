@@ -6,9 +6,18 @@
  */
 
 import {DefaultStyles} from '@app/utils/constants/style';
-import {Fragment, PropsWithChildren, useRef} from 'react';
-import {Animated, Dimensions, ScrollView, StyleSheet, View} from 'react-native';
+import {Fragment, PropsWithChildren} from 'react';
+import {Dimensions, StyleSheet, View, ViewStyle} from 'react-native';
 import {Button, useTheme} from 'react-native-paper';
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedRef,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
+import {AnimatedScrollView} from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
 type Props = {
   buttonLabelOne: string;
@@ -22,81 +31,91 @@ function AnimatedScrollViewWithActiveTabIndicator({
   buttonLabelTwo,
   children,
 }: Props) {
-  const scrollRef = useRef<ScrollView>(null);
-  const scrollX = useRef(new Animated.Value(0)).current;
-  const {colors} = useTheme();
+  const scrollX = useSharedValue(0);
+  const scrollViewRef = useAnimatedRef<AnimatedScrollView>();
 
-  /** Active Bar Width for Buton One */
-  const buttonOneActiveBarWidth = scrollX.interpolate({
-    inputRange: [0, SCREEN_WIDTH],
-    outputRange: ['100%', '10%'],
-    extrapolate: 'clamp',
-  });
-  /** Active Bar Width for Button Two */
-  const buttonTwoActiveBarWidth = scrollX.interpolate({
-    inputRange: [0, SCREEN_WIDTH],
-    outputRange: ['10%', '100%'],
-    extrapolate: 'clamp',
-  });
+  const firstBtnBarStyle = useAnimatedStyle(() => ({
+    width: interpolate(
+      scrollX.value,
+      [0, SCREEN_WIDTH],
+      [80, 10],
+      Extrapolation.CLAMP,
+    ),
+  }));
+
+  const secondBtnBarStyle = useAnimatedStyle(() => ({
+    width: interpolate(
+      scrollX.value,
+      [0, SCREEN_WIDTH],
+      [10, 80],
+      Extrapolation.CLAMP,
+    ),
+  }));
 
   /**  Functions for Scroll*/
   function scrollToSecondPage() {
-    scrollRef.current?.scrollTo({x: SCREEN_WIDTH, y: 0, animated: true});
+    scrollViewRef.current?.scrollTo({x: SCREEN_WIDTH, y: 0, animated: true});
   }
   function scrollToFirstPage() {
-    scrollRef.current?.scrollTo({x: 0, y: 0, animated: true});
+    scrollViewRef.current?.scrollTo({x: 0, y: 0, animated: true});
   }
+
+  /** Handle Scroll Event */
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: e => {
+      scrollX.value = e.contentOffset.x;
+    },
+  });
 
   return (
     <Fragment>
       <View style={styles.buttonOuterContainer}>
-        <View style={styles.buttonInnerContainer}>
-          <Button onPress={scrollToFirstPage}>{buttonLabelOne}</Button>
-          <Animated.View
-            style={[
-              {
-                backgroundColor: colors.inversePrimary,
-                width: buttonOneActiveBarWidth,
-              },
-              styles.activeBar,
-            ]}
-          />
-        </View>
-        <View style={styles.buttonInnerContainer}>
-          <Button onPress={scrollToSecondPage}>{buttonLabelTwo}</Button>
-          <Animated.View
-            style={[
-              {
-                backgroundColor: colors.inversePrimary,
-                width: buttonTwoActiveBarWidth,
-              },
-              styles.activeBar,
-            ]}
-          />
-        </View>
+        <TabbarButton
+          label={buttonLabelOne}
+          onPress={scrollToFirstPage}
+          animatedStyle={firstBtnBarStyle}
+        />
+
+        <TabbarButton
+          label={buttonLabelTwo}
+          onPress={scrollToSecondPage}
+          animatedStyle={secondBtnBarStyle}
+        />
       </View>
       <Animated.ScrollView
-        ref={scrollRef}
         horizontal
+        ref={scrollViewRef}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {
-                contentOffset: {
-                  x: scrollX,
-                },
-              },
-            },
-          ],
-          {
-            useNativeDriver: false,
-          },
-        )}>
+        onScroll={scrollHandler}>
         {children}
       </Animated.ScrollView>
     </Fragment>
+  );
+}
+
+/** Tab Bar Buttons */
+type TabbarButtonProps = {
+  label: string;
+  onPress(): void;
+  animatedStyle: ViewStyle;
+};
+
+function TabbarButton({label, onPress, animatedStyle}: TabbarButtonProps) {
+  const {colors} = useTheme();
+  return (
+    <View style={styles.buttonInnerContainer}>
+      <Button onPress={onPress}>{label}</Button>
+      <Animated.View
+        style={[
+          {
+            backgroundColor: colors.inversePrimary,
+          },
+          styles.activeBar,
+          animatedStyle,
+        ]}
+      />
+    </View>
   );
 }
 
@@ -104,12 +123,12 @@ const styles = StyleSheet.create({
   buttonOuterContainer: {
     marginVertical: 30,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     gap: DefaultStyles.SPACING,
   },
   buttonInnerContainer: {
-    justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   activeBar: {
     height: 5,
