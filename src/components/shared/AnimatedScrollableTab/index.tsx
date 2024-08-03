@@ -6,9 +6,8 @@
  */
 
 import {DefaultStyles} from '@app/utils/constants/style';
-import {Fragment, PropsWithChildren} from 'react';
-import {Dimensions, StyleSheet, View, ViewStyle} from 'react-native';
-import {Button, useTheme} from 'react-native-paper';
+import React, {Fragment} from 'react';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -18,23 +17,36 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import {AnimatedScrollView} from 'react-native-reanimated/lib/typescript/component/ScrollView';
+import AnimatedTabbarButton from './AnimatedTabBar';
 
 type Props = {
   buttonLabelOne: string;
   buttonLabelTwo: string;
-} & Required<PropsWithChildren>;
+  children: [React.JSX.Element, React.JSX.Element];
+};
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
-function AnimatedScrollViewWithActiveTabIndicator({
+/**
+ * Render A Scrollable Tab List with Flatlist
+ *
+ * `children` Only Two JSX Element
+ */
+function AnimatedScrollableTab({
   buttonLabelOne,
   buttonLabelTwo,
   children,
 }: Props) {
   const scrollX = useSharedValue(0);
-  const scrollViewRef = useAnimatedRef<AnimatedScrollView>();
+  const flatListRef = useAnimatedRef<AnimatedScrollView>();
 
-  const firstBtnBarStyle = useAnimatedStyle(() => ({
+  /** Data Will Be Render On Flatlist */
+  const RenderData = [
+    {id: 'firstComponent', Component: children[0]},
+    {id: 'secondComoponent', Component: children[1]},
+  ];
+
+  const firstBtnBarAnimatedStyle = useAnimatedStyle(() => ({
     width: interpolate(
       scrollX.value,
       [0, SCREEN_WIDTH],
@@ -43,7 +55,7 @@ function AnimatedScrollViewWithActiveTabIndicator({
     ),
   }));
 
-  const secondBtnBarStyle = useAnimatedStyle(() => ({
+  const secondBtnBarAnimatedStyle = useAnimatedStyle(() => ({
     width: interpolate(
       scrollX.value,
       [0, SCREEN_WIDTH],
@@ -54,10 +66,10 @@ function AnimatedScrollViewWithActiveTabIndicator({
 
   /**  Functions for Scroll*/
   function scrollToSecondPage() {
-    scrollViewRef.current?.scrollTo({x: SCREEN_WIDTH, y: 0, animated: true});
+    flatListRef.current?.scrollTo({x: SCREEN_WIDTH, y: 0, animated: true});
   }
   function scrollToFirstPage() {
-    scrollViewRef.current?.scrollTo({x: 0, y: 0, animated: true});
+    flatListRef.current?.scrollTo({x: 0, y: 0, animated: true});
   }
 
   /** Handle Scroll Event */
@@ -69,70 +81,38 @@ function AnimatedScrollViewWithActiveTabIndicator({
 
   return (
     <Fragment>
-      <View style={styles.buttonOuterContainer}>
-        <TabbarButton
+      <View style={styles.container}>
+        <AnimatedTabbarButton
           label={buttonLabelOne}
           onPress={scrollToFirstPage}
-          animatedStyle={firstBtnBarStyle}
+          animatedStyle={firstBtnBarAnimatedStyle}
         />
 
-        <TabbarButton
+        <AnimatedTabbarButton
           label={buttonLabelTwo}
           onPress={scrollToSecondPage}
-          animatedStyle={secondBtnBarStyle}
+          animatedStyle={secondBtnBarAnimatedStyle}
         />
       </View>
-      <Animated.ScrollView
+      <Animated.FlatList
         horizontal
-        ref={scrollViewRef}
         pagingEnabled
+        data={RenderData}
         showsHorizontalScrollIndicator={false}
-        onScroll={scrollHandler}>
-        {children}
-      </Animated.ScrollView>
+        renderItem={({item}) => item.Component}
+        keyExtractor={item => item.id}
+        onScroll={scrollHandler}
+      />
     </Fragment>
   );
 }
 
-/** Tab Bar Buttons */
-type TabbarButtonProps = {
-  label: string;
-  onPress(): void;
-  animatedStyle: ViewStyle;
-};
-
-function TabbarButton({label, onPress, animatedStyle}: TabbarButtonProps) {
-  const {colors} = useTheme();
-  return (
-    <View style={styles.buttonInnerContainer}>
-      <Button onPress={onPress}>{label}</Button>
-      <Animated.View
-        style={[
-          {
-            backgroundColor: colors.inversePrimary,
-          },
-          styles.activeBar,
-          animatedStyle,
-        ]}
-      />
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
-  buttonOuterContainer: {
+  container: {
     marginVertical: 30,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     gap: DefaultStyles.SPACING,
   },
-  buttonInnerContainer: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  activeBar: {
-    height: 5,
-    borderRadius: 10,
-  },
 });
-export default AnimatedScrollViewWithActiveTabIndicator;
+export default AnimatedScrollableTab;

@@ -7,18 +7,16 @@
 
 import RegisterPage from '@app/components/screens/Stack/RegisterAndLoginScreen/RegisterPage';
 import LoginPage from '@app/components/screens/Stack/RegisterAndLoginScreen/LoginPage';
-import AnimatedScrollViewWithActiveTabIndicator from '@app/components/shared/AnimatedScrollViewWithActiveTabIndicator';
 import {Appbar} from 'react-native-paper';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
+import AnimatedScrollableTab from '@app/components/shared/AnimatedScrollableTab';
 
 function RegisterAndLoginScreen() {
   return (
-    <AnimatedScrollViewWithActiveTabIndicator
-      buttonLabelOne="Sign In"
-      buttonLabelTwo="Sign Up">
+    <AnimatedScrollableTab buttonLabelOne="Sign In" buttonLabelTwo="Sign Up">
       <LoginPage />
       <RegisterPage />
-    </AnimatedScrollViewWithActiveTabIndicator>
+    </AnimatedScrollableTab>
   );
 }
 

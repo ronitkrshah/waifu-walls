@@ -6,7 +6,7 @@
  */
 
 import FlavoursTabList from '@app/components/screens/BottomTab/FlavoursTab/FlavoursTabList';
-import AnimatedScrollViewWithActiveTabIndicator from '@app/components/shared/AnimatedScrollViewWithActiveTabIndicator';
+import AnimatedScrollableTab from '@app/components/shared/AnimatedScrollableTab';
 import {NSFWList} from '@app/utils/constants/NSFWList';
 import {SFWList} from '@app/utils/constants/SFWList';
 import {Fragment} from 'react';
@@ -16,12 +16,10 @@ function FlavoursTab() {
   return (
     <Fragment>
       <MyAppbar />
-      <AnimatedScrollViewWithActiveTabIndicator
-        buttonLabelOne="SFW"
-        buttonLabelTwo="NSFW">
+      <AnimatedScrollableTab buttonLabelOne="SFW" buttonLabelTwo="NSFW">
         <FlavoursTabList list={SFWList} />
         <FlavoursTabList list={NSFWList} />
-      </AnimatedScrollViewWithActiveTabIndicator>
+      </AnimatedScrollableTab>
     </Fragment>
   );
 }
