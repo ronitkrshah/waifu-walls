@@ -12,8 +12,10 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
+    "@tanstack/react-query": "^5.51.21",
     "react": "18.2.0",
     "react-native": "0.74.4",
+    "react-native-fast-image": "^8.6.3",
     "react-native-image-picker": "^7.1.2",
     "react-native-paper": "^5.12.5",
     "react-native-reanimated": "^3.14.0",

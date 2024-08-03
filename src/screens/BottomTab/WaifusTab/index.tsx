@@ -6,6 +6,7 @@
  */
 
 import AppSearchBar from '@app/components/screens/BottomTab/WaifusTab/AppSearchBar';
+import LatestWallpaperFeature from '@app/features/latestWallpaperList/components/LatestWallpaperFeature';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
@@ -31,6 +32,7 @@ function WaifusTab({
           <AppSearchBar />
         </View>
       </SafeAreaView>
+      <LatestWallpaperFeature />
       <FAB icon={'file-upload'} style={styles.fab} onPress={onFabPress} />
     </Fragment>
   );
