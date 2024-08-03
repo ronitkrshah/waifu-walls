@@ -16,8 +16,8 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import {AnimatedScrollView} from 'react-native-reanimated/lib/typescript/component/ScrollView';
 import AnimatedTabbarButton from './AnimatedTabBar';
+import {ReanimatedFlatList} from 'react-native-reanimated/lib/typescript/component/FlatList';
 
 type Props = {
   buttonLabelOne: string;
@@ -38,7 +38,8 @@ function AnimatedScrollableTab({
   children,
 }: Props) {
   const scrollX = useSharedValue(0);
-  const flatListRef = useAnimatedRef<AnimatedScrollView>();
+  const flatListRef =
+    useAnimatedRef<ReanimatedFlatList<(typeof RenderData)[0]>>();
 
   /** Data Will Be Render On Flatlist */
   const RenderData = [
@@ -66,10 +67,10 @@ function AnimatedScrollableTab({
 
   /**  Functions for Scroll*/
   function scrollToSecondPage() {
-    flatListRef.current?.scrollTo({x: SCREEN_WIDTH, y: 0, animated: true});
+    flatListRef.current?.scrollToIndex({index: 1, animated: true});
   }
   function scrollToFirstPage() {
-    flatListRef.current?.scrollTo({x: 0, y: 0, animated: true});
+    flatListRef.current?.scrollToIndex({index: 0, animated: true});
   }
 
   /** Handle Scroll Event */
@@ -95,6 +96,7 @@ function AnimatedScrollableTab({
         />
       </View>
       <Animated.FlatList
+        ref={flatListRef}
         horizontal
         pagingEnabled
         data={RenderData}
