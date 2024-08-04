@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import useGlobalStore from '@app/store';
 import {
   BottomTabNavigationRoutes,
   StackNavigationProp,
@@ -18,6 +19,9 @@ function useMatureContentAgreementController() {
   const [isMatured, setIsMatured] = useState(false);
   const [acceptedTOC, setAcceptedTOC] = useState(false);
   const navigation = useNavigation<StackNavigationProp>();
+  const setAgreementAccepted = useGlobalStore(
+    state => state.acceptMatureContentAgreement,
+  );
 
   /** Handle On User Clicks Proceed */
   function handleProceed() {
@@ -25,6 +29,7 @@ function useMatureContentAgreementController() {
       ToastAndroid.show('Accept End User Agreements', ToastAndroid.SHORT);
       return;
     }
+    setAgreementAccepted();
     navigation.replace(StackNavigationRoutes.HOME_SCREEN, {
       screen: BottomTabNavigationRoutes.WAIFUS,
     });
