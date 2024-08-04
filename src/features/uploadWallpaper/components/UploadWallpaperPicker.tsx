@@ -8,15 +8,16 @@
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
 import {Dimensions, Image, Pressable, StyleSheet, View} from 'react-native';
-import {Icon, Text, useTheme} from 'react-native-paper';
+import {Icon, Text} from 'react-native-paper';
 import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 const IMG_HEIGHT = SCREEN_WIDTH * 1.3;
 
 function UploadWallpaperPicker() {
   const {chooseImage, wallpaperUri} = useUploadWallpaperController();
-  const {colors} = useTheme();
+  const {colors} = useAppTheme();
 
   return (
     <Pressable

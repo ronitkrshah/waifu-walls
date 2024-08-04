@@ -5,8 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {StyleSheet, View, ViewStyle} from 'react-native';
-import {Button, useTheme} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 
 type Props = {
@@ -16,7 +17,7 @@ type Props = {
 };
 
 function AnimatedTabbarButton({label, onPress, animatedStyle}: Props) {
-  const {colors} = useTheme();
+  const {colors} = useAppTheme();
   return (
     <View style={styles.container}>
       <Button onPress={onPress}>{label}</Button>

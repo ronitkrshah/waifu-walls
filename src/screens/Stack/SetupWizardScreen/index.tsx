@@ -6,13 +6,14 @@
  */
 
 import MatureContentAgreementControls from '@app/features/matureContentAgreement/components/MatureContentAgreementControls';
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {StyleSheet, View} from 'react-native';
-import {Text, useTheme} from 'react-native-paper';
+import {Text} from 'react-native-paper';
 
 function SetupWizardScreen() {
-  const {colors} = useTheme();
+  const {colors} = useAppTheme();
   return (
     <View style={styles.rootContainer}>
       <View style={styles.titleContainer}>

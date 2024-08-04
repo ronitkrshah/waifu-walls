@@ -5,9 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Pressable, StyleSheet, View} from 'react-native';
-import {Checkbox, Text, useTheme} from 'react-native-paper';
+import {Checkbox, Text} from 'react-native-paper';
 
 type Props = {
   label: string;
@@ -16,7 +17,7 @@ type Props = {
 };
 
 function MatureContentCheckBox({label, isChecked, onPress}: Props) {
-  const {colors} = useTheme();
+  const {colors} = useAppTheme();
 
   return (
     <View style={styles.container}>

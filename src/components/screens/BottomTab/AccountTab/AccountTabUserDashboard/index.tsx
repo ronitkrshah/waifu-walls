@@ -6,9 +6,10 @@
  */
 
 import LogoutButton from '@app/features/auth/logout/components/LogoutButton';
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Dimensions, StyleSheet} from 'react-native';
-import {Avatar, Surface, Text, useTheme} from 'react-native-paper';
+import {Avatar, Surface, Text} from 'react-native-paper';
 
 const user = {
   avatar:
@@ -20,7 +21,7 @@ const user = {
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
 function AccountTabUserDashboard() {
-  const {colors} = useTheme();
+  const {colors} = useAppTheme();
 
   return (
     <Surface style={styles.surface}>

@@ -5,8 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {StyleSheet, View} from 'react-native';
-import {Text, useTheme} from 'react-native-paper';
+import {Text} from 'react-native-paper';
 
 type Props = {
   title: string;
@@ -14,7 +15,7 @@ type Props = {
 };
 
 function Headline({title, subtitle}: Props) {
-  const {colors} = useTheme();
+  const {colors} = useAppTheme();
   return (
     <View style={styles.headlineContainer}>
       <Text

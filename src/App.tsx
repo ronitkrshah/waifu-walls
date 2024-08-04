@@ -5,21 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {PaperProvider} from 'react-native-paper';
 import AppNavigation from './navigation/AppNavigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import MaterialYouThemeProvider from './theme/MaterialYouTheme';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <PaperProvider>
+      <MaterialYouThemeProvider>
         <SafeAreaProvider>
           <AppNavigation />
         </SafeAreaProvider>
-      </PaperProvider>
+      </MaterialYouThemeProvider>
     </QueryClientProvider>
   );
 }

@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
@@ -14,11 +15,11 @@ import {
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
-import {Searchbar, useTheme} from 'react-native-paper';
+import {Searchbar} from 'react-native-paper';
 
 function AppSearchBar() {
   const [query, setQuery] = useState('');
-  const {colors} = useTheme();
+  const {colors} = useAppTheme();
   const navigation =
     useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.WAIFUS>>();
 

@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {StyleSheet, TextInput} from 'react-native';
 import {TextInputProps} from 'react-native';
-import {useTheme} from 'react-native-paper';
 
 function AuthTextInput(props: TextInputProps) {
-  const {colors} = useTheme();
+  const {colors} = useAppTheme();
   return (
     <TextInput
       multiline={false}
