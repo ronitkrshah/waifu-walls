@@ -17,7 +17,7 @@ class LatestWallpaperRepositoryImpl implements LatestWallpaperRepository {
     const response = await new Promise(resolve => {
       setTimeout(() => {
         resolve(latestImagesDummyData);
-      }, 2000);
+      }, 3000);
     });
 
     return response as LatestWallpaperModel[];

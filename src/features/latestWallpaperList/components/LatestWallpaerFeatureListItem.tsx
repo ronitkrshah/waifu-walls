@@ -6,11 +6,12 @@
  */
 
 import {DefaultStyles} from '@app/utils/constants/style';
-import {memo} from 'react';
+import {memo, useState} from 'react';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {LatestWallpaperDTO} from '../dto';
 import useLatestWallpaperFeatureController from '../controllers/useLatestWallpaperFeatureController';
+import LatestWallpaperSkeletonLoader from './LatestWallpaperSkeletonLoader';
 
 type Props = {
   wallpaper: LatestWallpaperDTO;
@@ -19,19 +20,30 @@ type Props = {
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
 function LatestWallpaerFeatureListItem({wallpaper}: Props) {
+  const [isLoading, setIsLoading] = useState(false);
   const {handleWallpaperPress} = useLatestWallpaperFeatureController();
+
+  function handleLoadStart() {
+    setIsLoading(true);
+  }
+  function handleLoadEnd() {
+    setIsLoading(false);
+  }
 
   return (
     <Pressable
       style={styles.container}
       onPress={() => handleWallpaperPress(wallpaper)}>
       <FastImage
-        style={[StyleSheet.absoluteFill, styles.image]}
+        style={[StyleSheet.absoluteFill]}
         source={{
           uri: wallpaper.preview_url,
         }}
+        onLoadStart={handleLoadStart}
+        onLoadEnd={handleLoadEnd}
         resizeMode={FastImage.resizeMode.cover}
       />
+      <LatestWallpaperSkeletonLoader isAnimating={isLoading} />
     </Pressable>
   );
 }
@@ -40,9 +52,8 @@ const styles = StyleSheet.create({
   container: {
     width: SCREEN_WIDTH / 2 - DefaultStyles.SPACING,
     height: SCREEN_WIDTH * 0.85,
-  },
-  image: {
     borderRadius: DefaultStyles.SPACING,
+    overflow: 'hidden',
   },
 });
 
