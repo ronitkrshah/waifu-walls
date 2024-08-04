@@ -34,7 +34,7 @@ setUpdateIntervalForType(SensorTypes.accelerometer, 50);
 
 const AImage = Animated.createAnimatedComponent(FastImage);
 
-function WallpaperPreviewFloatingImage({wallpaper}: Props) {
+function AccelerometerPreviewMovingImage({wallpaper}: Props) {
   const accXValue = useSharedValue(0);
   const accYValue = useSharedValue(0);
 
@@ -120,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WallpaperPreviewFloatingImage;
+export default AccelerometerPreviewMovingImage;

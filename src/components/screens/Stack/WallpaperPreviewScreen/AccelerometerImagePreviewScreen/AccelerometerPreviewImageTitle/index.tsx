@@ -14,7 +14,7 @@ type Props = {
   title: string;
 };
 
-function WallpaperPreviewFloatingImageTitle({title}: Props) {
+function AccelerometerPreviewImageTitle({title}: Props) {
   const {top} = useSafeAreaInsets();
 
   return (
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WallpaperPreviewFloatingImageTitle;
+export default AccelerometerPreviewImageTitle;

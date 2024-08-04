@@ -6,24 +6,49 @@
  */
 
 import Flex from '@app/components/common/Flex';
-import WallpaperPreviewFloatingImage from '@app/components/screens/Stack/WallpaperPreviewScreen/WallpaperPreviewFloatingImage';
-import WallpaperPreviewFloatingImageTitle from '@app/components/screens/Stack/WallpaperPreviewScreen/WallpaperPreviewFloatingImageTitle';
+import AccelerometerImagePreviewScreen from '@app/components/screens/Stack/WallpaperPreviewScreen/AccelerometerImagePreviewScreen';
+import NormalImagePreviewScreen from '@app/components/screens/Stack/WallpaperPreviewScreen/NormalImagePreviewScreen';
+import useGlobalStore from '@app/store';
 import {
   StackNavigationRoutes,
   StackNavigationScreenProps,
 } from '@app/types/navigation';
+import {Fragment} from 'react';
+import {Appbar} from 'react-native-paper';
 
 function WallpaperPreviewScreen({
+  navigation,
   route,
 }: StackNavigationScreenProps<StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN>) {
+  const showCustomizePreviewScreen = useGlobalStore(
+    state => state.appSettings.useCustomizePreviewScreen,
+  );
   const {wallpaper} = route.params;
 
-  return (
-    <Flex flex={1} center>
-      <WallpaperPreviewFloatingImage wallpaper={wallpaper} />
-      <WallpaperPreviewFloatingImageTitle title={wallpaper.title} />
+  return showCustomizePreviewScreen ? (
+    <Flex flex={1} center={showCustomizePreviewScreen ? true : undefined}>
+      <AccelerometerImagePreviewScreen wallpaper={wallpaper} />
     </Flex>
+  ) : (
+    <Fragment>
+      <MyAppbar title={wallpaper.title} backFunc={navigation.goBack} />
+      <NormalImagePreviewScreen wallpaper={wallpaper} />
+    </Fragment>
   );
 }
 
+/** Appbar */
+type MyAppbarProps = {
+  title: string;
+  backFunc(): void;
+};
+
+function MyAppbar({title, backFunc}: MyAppbarProps) {
+  return (
+    <Appbar.Header>
+      <Appbar.BackAction onPress={backFunc} />
+      <Appbar.Content title={title} />
+    </Appbar.Header>
+  );
+}
 export default WallpaperPreviewScreen;
