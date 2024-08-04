@@ -22,9 +22,8 @@ function useAppSettingsController() {
     {
       id: 'customizePreview',
       type: AppSettingsType.SWITCH,
-      title: 'Use Customize Waifu Preview Screen',
-      subtitle:
-        'Use customize preview screen instead of default one. Using Accelerometer',
+      title: 'Custom Waifu Preview Screen',
+      subtitle: 'Animating with accelerometer value',
       disabled: false,
       isEnabled: globalState.customizePreview,
       onPress: globalState.toggleCustomizePreview,
