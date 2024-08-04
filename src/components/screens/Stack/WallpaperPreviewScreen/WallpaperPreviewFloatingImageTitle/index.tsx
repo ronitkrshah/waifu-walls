@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     position: 'absolute',
+    color: 'hsla(360, 100%, 100%, 0.68)',
   },
 });
 

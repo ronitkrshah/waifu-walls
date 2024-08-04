@@ -7,14 +7,16 @@
 
 import {LatestWallpaperDTO} from '@app/features/latestWallpaperList/dto';
 import {DefaultStyles} from '@app/utils/constants/style';
-import {useEffect} from 'react';
+import {Fragment, useEffect} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Animated, {
+  Extrapolation,
   FadeIn,
   interpolate,
   useAnimatedStyle,
   useSharedValue,
+  withSpring,
 } from 'react-native-reanimated';
 import {
   SensorTypes,
@@ -28,7 +30,7 @@ type Props = {
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
-setUpdateIntervalForType(SensorTypes.accelerometer, 5);
+setUpdateIntervalForType(SensorTypes.accelerometer, 50);
 
 const AImage = Animated.createAnimatedComponent(FastImage);
 
@@ -38,29 +40,73 @@ function WallpaperPreviewFloatingImage({wallpaper}: Props) {
 
   useEffect(() => {
     const subscribe = accelerometer.subscribe(({x, y}) => {
-      accXValue.value = Number(x.toFixed(2));
-      accYValue.value = Number(y.toFixed(2));
+      accXValue.value = withSpring(Number(x.toFixed(2)));
+      accYValue.value = withSpring(Number(y.toFixed(2)));
     });
     return () => subscribe.unsubscribe();
   }, [accXValue, accYValue]);
 
   /** Animated Style Based On Accelerometer */
-  const animatedStyle = useAnimatedStyle(() => ({
+  const rFloatingImageStyle = useAnimatedStyle(() => ({
     transform: [
       {perspective: SCREEN_WIDTH},
-      {rotateY: `${interpolate(accXValue.value, [-8, 8], [15, -15])}deg`},
-      {rotateX: `${interpolate(accYValue.value, [-8, 8], [15, -5])}deg`},
+      {
+        rotateY: `${interpolate(
+          accXValue.value,
+          [-4, 4],
+          [5, -5],
+          Extrapolation.CLAMP,
+        )}deg`,
+      },
+      {
+        rotateX: `${interpolate(
+          accYValue.value,
+          [-4, 4],
+          [5, -5],
+          Extrapolation.CLAMP,
+        )}deg`,
+      },
+      {
+        translateY: interpolate(
+          accYValue.value,
+          [-4, 4],
+          [20, -20],
+          Extrapolation.CLAMP,
+        ),
+      },
+      {
+        translateX: interpolate(
+          accXValue.value,
+          [-4, 4],
+          [20, -20],
+          Extrapolation.CLAMP,
+        ),
+      },
+    ],
+  }));
+
+  const rBackgroundBlurStyle = useAnimatedStyle(() => ({
+    transform: [
+      {scaleY: interpolate(accYValue.value, [-8, 8], [2, 3])},
+      {scaleX: interpolate(accXValue.value, [-8, 8], [2, 3])},
     ],
   }));
 
   return (
-    <Animated.View style={[styles.container, animatedStyle]}>
+    <Fragment>
       <AImage
-        entering={FadeIn.duration(800)}
         source={{uri: wallpaper.preview_url}}
-        style={[StyleSheet.absoluteFillObject]}
+        style={[StyleSheet.absoluteFillObject, rBackgroundBlurStyle]}
+        blurRadius={10}
       />
-    </Animated.View>
+      <Animated.View style={[styles.container, rFloatingImageStyle]}>
+        <AImage
+          entering={FadeIn.duration(800)}
+          source={{uri: wallpaper.preview_url}}
+          style={[StyleSheet.absoluteFillObject]}
+        />
+      </Animated.View>
+    </Fragment>
   );
 }
 
@@ -69,6 +115,7 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH * 0.7,
     height: SCREEN_WIDTH * 1.2,
     borderRadius: DefaultStyles.SPACING * 2,
+    elevation: 2,
     overflow: 'hidden',
   },
 });

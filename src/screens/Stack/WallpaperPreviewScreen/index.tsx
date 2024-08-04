@@ -6,14 +6,12 @@
  */
 
 import Flex from '@app/components/common/Flex';
-import WallpaperPreviewBackgroundImage from '@app/components/screens/Stack/WallpaperPreviewScreen/WallpaperPreviewBackgroundImage';
 import WallpaperPreviewFloatingImage from '@app/components/screens/Stack/WallpaperPreviewScreen/WallpaperPreviewFloatingImage';
 import WallpaperPreviewFloatingImageTitle from '@app/components/screens/Stack/WallpaperPreviewScreen/WallpaperPreviewFloatingImageTitle';
 import {
   StackNavigationRoutes,
   StackNavigationScreenProps,
 } from '@app/types/navigation';
-import {Fragment} from 'react';
 
 function WallpaperPreviewScreen({
   route,
@@ -21,13 +19,10 @@ function WallpaperPreviewScreen({
   const {wallpaper} = route.params;
 
   return (
-    <Fragment>
-      <WallpaperPreviewBackgroundImage imageUrl={wallpaper.preview_url} />
-      <Flex flex={1} center>
-        <WallpaperPreviewFloatingImageTitle title={wallpaper.title} />
-        <WallpaperPreviewFloatingImage wallpaper={wallpaper} />
-      </Flex>
-    </Fragment>
+    <Flex flex={1} center>
+      <WallpaperPreviewFloatingImage wallpaper={wallpaper} />
+      <WallpaperPreviewFloatingImageTitle title={wallpaper.title} />
+    </Flex>
   );
 }
 
