@@ -5,11 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import PendingRequestsFeature from '@app/features/pendingRequests/components/PendingRequestsFeature';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Appbar} from 'react-native-paper';
 
 function PendingRequestsScreen() {
-  return null;
+  return <PendingRequestsFeature />;
 }
 
 /** Appbar */

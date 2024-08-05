@@ -163,3 +163,38 @@ export const latestImagesDummyData = [
     original_post_link: 'https://example.com/post006',
   },
 ];
+
+export const pendingRequestsDummyData = [
+  {
+    request_id: '001',
+    image_title: 'Ancient Forests',
+    preview_url:
+      'https://as1.ftcdn.net/v2/jpg/05/57/13/36/1000_F_557133662_rqejTDBAowk780L08DuKJdHYcXXO7qup.jpg',
+    original_author: 'Adobe',
+    original_post_link: undefined,
+    is_nsfw: false,
+    tags: ['maid', 'school girl'],
+    requested_on: Date.toString(), // Date,
+    requested_by: {
+      user_id: '0045',
+      name: 'Dattebayo',
+      email: 'temp@mail.anime',
+    },
+  },
+  {
+    request_id: '002',
+    image_title: 'Ancient Forests',
+    preview_url:
+      'https://as1.ftcdn.net/v2/jpg/05/57/13/36/1000_F_557133662_rqejTDBAowk780L08DuKJdHYcXXO7qup.jpg',
+    original_author: 'Adobe',
+    original_post_link: undefined,
+    is_nsfw: true,
+    tags: ['ecchi', 'ass'],
+    requested_on: Date.toString(), // Date,
+    requested_by: {
+      user_id: '0045',
+      name: 'Dattebayo',
+      email: 'temp@mail.anime',
+    },
+  },
+];
