@@ -34,6 +34,7 @@ export const enum StackNavigationRoutes {
   UPLOAD_WALLPAPER_SCREEN = 'UploadWallpaper',
   WALLPAPER_PREVIEW_SCREEN = 'WallpaperPreviewScreen',
   ADMIN_CONTROLS_SCREEN = 'AdminControlsScreen',
+  PENDING_REQUESTS_SCREEN = 'PendingRequestsScreen',
 }
 
 export const enum BottomTabNavigationRoutes {
@@ -63,6 +64,7 @@ export type StackNavigationParamList = {
     wallpaper: LatestWallpaperDTO;
   };
   [StackNavigationRoutes.ADMIN_CONTROLS_SCREEN]: undefined;
+  [StackNavigationRoutes.PENDING_REQUESTS_SCREEN]: undefined;
 };
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =
