@@ -24,7 +24,6 @@ function LatestWallpaperFeature() {
         <ActivityIndicator />
       ) : (
         <FlatList
-          decelerationRate={'fast'}
           numColumns={2}
           columnWrapperStyle={styles.columnWrapper}
           onEndReachedThreshold={0.5}
