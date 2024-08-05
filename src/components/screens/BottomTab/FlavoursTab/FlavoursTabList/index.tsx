@@ -5,7 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  BottomTabNavigationProp,
+  BottomTabNavigationRoutes,
+  SearchScreenSearchType,
+  StackNavigationRoutes,
+} from '@app/types/navigation';
 import {DefaultStyles} from '@app/utils/constants/style';
+import {useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {ActivityIndicator, Button} from 'react-native-paper';
@@ -18,6 +25,17 @@ const {width: SCREEN_WIDTH, height: SCREN_HEIGHT} = Dimensions.get('screen');
 
 function FlavoursTabList({list}: Props) {
   const [shouldLoad, setShouldLoad] = useState(false);
+  const navigation =
+    useNavigation<
+      BottomTabNavigationProp<BottomTabNavigationRoutes.FLAVOURS>
+    >();
+
+  function handlePress(tag: string) {
+    navigation.push(StackNavigationRoutes.SEARCH_RESULTS_SCREEN, {
+      type: SearchScreenSearchType.TAGS,
+      query: tag,
+    });
+  }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -32,6 +50,7 @@ function FlavoursTabList({list}: Props) {
       {shouldLoad ? (
         list.map((item, index) => (
           <Button
+            onPress={() => handlePress(item)}
             key={`${index}-${item}`}
             mode={index % 2 === 0 ? 'contained-tonal' : 'text'}>
             {item}
