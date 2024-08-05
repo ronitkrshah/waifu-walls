@@ -14,21 +14,28 @@ import {Fragment} from 'react';
 import SizedBox from '@app/components/common/SizedBox';
 
 function LatestWallpaperFeature() {
-  const {isLoading, wallpaperList} = useLatestWallpaperFeatureController();
+  const {isLoading, wallpaperList, isFetchingMore, fetchMore} =
+    useLatestWallpaperFeatureController();
 
   return (
     <Fragment>
       <SizedBox vertical={DefaultStyles.SPACING} />
-      <FlatList
-        numColumns={2}
-        columnWrapperStyle={styles.columnWrapper}
-        ListFooterComponent={<ActivityIndicator animating={isLoading} />}
-        data={wallpaperList}
-        renderItem={({item}) => (
-          <LatestWallpaerFeatureListItem wallpaper={item} />
-        )}
-        keyExtractor={({id}) => id}
-      />
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <FlatList
+          decelerationRate={'fast'}
+          numColumns={2}
+          columnWrapperStyle={styles.columnWrapper}
+          onEndReachedThreshold={0.5}
+          onEndReached={() => fetchMore()}
+          ListFooterComponent={<ActivityIndicator animating={isFetchingMore} />}
+          data={wallpaperList}
+          renderItem={({item}) => (
+            <LatestWallpaerFeatureListItem wallpaper={item} />
+          )}
+        />
+      )}
     </Fragment>
   );
 }

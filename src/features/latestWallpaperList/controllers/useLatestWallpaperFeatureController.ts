@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useQuery} from '@tanstack/react-query';
+import {useInfiniteQuery} from '@tanstack/react-query';
 import LatestWallpaperFeatureService from '../services/WallpaperFeatureService';
 import {useNavigation} from '@react-navigation/native';
 import {
@@ -20,31 +20,35 @@ function useLatestWallpaperFeatureController() {
   const wallpaperService = new LatestWallpaperFeatureService(
     new LatestWallpaperRepositoryImpl(),
   );
-  const {
-    isLoading,
-    data: wallpaperList,
-    error,
-    isError,
-  } = useQuery({
+  const wallpaperListQuery = useInfiniteQuery({
     queryKey: ['latestWallpaper'],
-    queryFn: () => wallpaperService.getLatestWallpapers(),
+    queryFn: ({pageParam}) => wallpaperService.getLatestWallpapers(pageParam),
+    initialPageParam: 0,
+    getNextPageParam: lastPage => lastPage.hasNextPage,
   });
+
+  /** Wallpaper List */
   const navigation =
     useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.WAIFUS>>();
 
   /**
    * Function To handle on press on waifus
    */
-  function handleWallpaperPress(wallpaper: LatestWallpaperDTO) {
+  function handleWallpaperPress(
+    wallpaper: LatestWallpaperDTO['wallpaperDetails'],
+  ) {
     navigation.push(StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN, {
       wallpaper,
     });
   }
 
   return {
-    isLoading,
-    wallpaperList,
-    isError,
+    isLoading: wallpaperListQuery.isLoading,
+    wallpaperList: wallpaperListQuery.data?.pages.flatMap(page =>
+      page.data.map(item => item.wallpaperDetails),
+    ),
+    isFetchingMore: wallpaperListQuery.isFetchingNextPage,
+    fetchMore: wallpaperListQuery.fetchNextPage,
     handleWallpaperPress,
   };
 }

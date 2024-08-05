@@ -6,13 +6,16 @@
  */
 
 export type LatestWallpaperDTO = {
-  id: string;
-  title: string;
-  is_nsfw: boolean;
-  preview_url: string;
-  download_url: string;
-  author?: string;
-  uploader_name: string;
-  uploader_id: string;
-  original_post_link?: string;
+  hasNextPage?: number | null;
+  wallpaperDetails: {
+    id: string;
+    title: string;
+    is_nsfw: boolean;
+    preview_url: string;
+    download_url: string;
+    author?: string;
+    uploader_name: string;
+    uploader_id: string;
+    original_post_link?: string;
+  };
 };

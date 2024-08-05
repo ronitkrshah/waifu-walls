@@ -10,17 +10,28 @@ import LatestWallpaperRepository from '../domain/repositories/LatestWallpaperRep
 import LatestWallpaperModel from '../domain/models/LatestWallpaperModel';
 
 class LatestWallpaperRepositoryImpl implements LatestWallpaperRepository {
+  private LIMIT = 4;
+
   /**
    * Getting Latest Wallpapers from Database
    */
-  async getLatestWallpapers() {
+  async getLatestWallpapers(offset = 0): Promise<LatestWallpaperModel> {
     const response = await new Promise(resolve => {
       setTimeout(() => {
-        resolve(latestImagesDummyData);
+        resolve({
+          total: latestImagesDummyData.length,
+          data: latestImagesDummyData.slice(offset, this.LIMIT + offset),
+        });
       }, 3000);
     });
 
-    return response as LatestWallpaperModel[];
+    return {
+      currentOffset: offset,
+      hasNextPage:
+        offset + this.LIMIT < response.total ? offset + this.LIMIT : undefined,
+      data: response.data,
+      total: response.total,
+    };
   }
 }
 

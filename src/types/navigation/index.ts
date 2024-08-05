@@ -61,7 +61,7 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.SETUP_WIZARD_SCREEN]: undefined;
   [StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN]: undefined;
   [StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN]: {
-    wallpaper: LatestWallpaperDTO;
+    wallpaper: LatestWallpaperDTO['wallpaperDetails'];
   };
   [StackNavigationRoutes.ADMIN_CONTROLS_SCREEN]: undefined;
   [StackNavigationRoutes.PENDING_REQUESTS_SCREEN]: undefined;

@@ -6,9 +6,17 @@
  */
 
 type LatestWallpaperModel = {
+  currentOffset: number;
+  hasNextPage?: number | null;
+  total: number;
+  data: Array<ActualData>;
+};
+
+type ActualData = {
   id: string;
   title: string;
   is_nsfw: boolean;
+  tags: string[];
   preview_url: string;
   download_url: string;
   author?: string;

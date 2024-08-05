@@ -19,9 +19,18 @@ class LatestWallpaperFeatureService {
   /**
    * Get Latest Wallpapers
    */
-  public async getLatestWallpapers(): Promise<LatestWallpaperDTO[]> {
-    const data = await this.repository.getLatestWallpapers();
-    return data.map(item => transformToDto(item));
+  public async getLatestWallpapers(offset: number): Promise<{
+    data: LatestWallpaperDTO[];
+    hasNextPage?: number | null;
+  }> {
+    const {data, hasNextPage} = await this.repository.getLatestWallpapers(
+      offset,
+    );
+
+    return {
+      data: data.map(item => transformToDto(item)),
+      hasNextPage: hasNextPage,
+    };
   }
 }
 

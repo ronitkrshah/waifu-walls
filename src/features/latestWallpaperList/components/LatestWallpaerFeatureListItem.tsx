@@ -14,7 +14,7 @@ import useLatestWallpaperFeatureController from '../controllers/useLatestWallpap
 import LatestWallpaperSkeletonLoader from './LatestWallpaperSkeletonLoader';
 
 type Props = {
-  wallpaper: LatestWallpaperDTO;
+  wallpaper: LatestWallpaperDTO['wallpaperDetails'];
 };
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
