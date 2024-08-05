@@ -8,8 +8,10 @@
 import LogoutButton from '@app/features/auth/logout/components/LogoutButton';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStyles} from '@app/utils/constants/style';
+import {Fragment} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 import {Avatar, Surface, Text} from 'react-native-paper';
+import AdminsOnlyFeatures from './AdminsOnlyOptions';
 
 const user = {
   avatar:
@@ -24,22 +26,26 @@ function AccountTabUserDashboard() {
   const {colors} = useAppTheme();
 
   return (
-    <Surface style={styles.surface}>
-      <Avatar.Image
-        style={styles.avatar}
-        source={{
-          uri: user.avatar,
-        }}
-      />
-      <Text
-        style={[{color: colors.primary}, styles.textCenter]}
-        variant="headlineMedium">
-        {user.fullName}
-      </Text>
-      <LogoutButton />
-    </Surface>
+    <Fragment>
+      <Surface style={styles.surface}>
+        <Avatar.Image
+          style={styles.avatar}
+          source={{
+            uri: user.avatar,
+          }}
+        />
+        <Text
+          style={[{color: colors.primary}, styles.textCenter]}
+          variant="headlineMedium">
+          {user.fullName}
+        </Text>
+        <AdminsOnlyFeatures />
+        <LogoutButton />
+      </Surface>
+    </Fragment>
   );
 }
+
 const styles = StyleSheet.create({
   surface: {
     width: SCREEN_WIDTH - DefaultStyles.SPACING * 2,

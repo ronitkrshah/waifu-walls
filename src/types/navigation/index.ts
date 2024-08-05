@@ -33,6 +33,7 @@ export const enum StackNavigationRoutes {
   SETUP_WIZARD_SCREEN = 'SetupScreen',
   UPLOAD_WALLPAPER_SCREEN = 'UploadWallpaper',
   WALLPAPER_PREVIEW_SCREEN = 'WallpaperPreviewScreen',
+  ADMIN_CONTROLS_SCREEN = 'AdminControlsScreen',
 }
 
 export const enum BottomTabNavigationRoutes {
@@ -61,6 +62,7 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN]: {
     wallpaper: LatestWallpaperDTO;
   };
+  [StackNavigationRoutes.ADMIN_CONTROLS_SCREEN]: undefined;
 };
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =

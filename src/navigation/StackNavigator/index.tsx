@@ -6,6 +6,7 @@
  */
 
 import {
+  AdminControlsScreen,
   RegisterAndLoginScreen,
   SearchResultsScreen,
   SettingsScreen,
@@ -94,6 +95,14 @@ function StackNavigator({theme}: Props) {
         options={{
           headerShown: false,
           animation: 'fade',
+        }}
+      />
+      <Stack.Screen
+        name={StackNavigationRoutes.ADMIN_CONTROLS_SCREEN}
+        component={AdminControlsScreen}
+        options={{
+          headerShown: true,
+          header: AdminControlsScreen.Appbar,
         }}
       />
     </Stack.Navigator>
