@@ -28,6 +28,7 @@ function LatestWallpaperFeature() {
           columnWrapperStyle={styles.columnWrapper}
           onEndReachedThreshold={0.5}
           onEndReached={() => fetchMore()}
+          ListFooterComponentStyle={styles.footer}
           ListFooterComponent={<ActivityIndicator animating={isFetchingMore} />}
           data={wallpaperList}
           renderItem={({item}) => (
@@ -44,6 +45,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 10,
     marginBottom: DefaultStyles.SPACING - 4,
+  },
+  footer: {
+    paddingBottom: 24,
   },
 });
 
