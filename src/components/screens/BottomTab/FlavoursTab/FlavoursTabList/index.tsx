@@ -13,9 +13,9 @@ import {
 } from '@app/types/navigation';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {useNavigation} from '@react-navigation/native';
-import {useEffect, useState} from 'react';
+import {Fragment, useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {ActivityIndicator, Button} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 
 type Props = {
   list: string[];
@@ -24,42 +24,65 @@ type Props = {
 const {width: SCREEN_WIDTH, height: SCREN_HEIGHT} = Dimensions.get('screen');
 
 function FlavoursTabList({list}: Props) {
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const navigation =
     useNavigation<
       BottomTabNavigationProp<BottomTabNavigationRoutes.FLAVOURS>
     >();
 
-  function handlePress(tag: string) {
+  /** Insert tags to selected list */
+  function insertTagInSelectedTags(tag: string) {
+    let _currentTags = selectedTags;
+    if (_currentTags.includes(tag)) {
+      _currentTags = _currentTags.filter(item => item !== tag);
+    } else {
+      _currentTags.push(tag);
+    }
+    setSelectedTags([..._currentTags]);
+  }
+
+  /** Will navigate with single element array */
+  function handleSingleTagPress(tag: string) {
+    if (selectedTags.length > 0) {
+      insertTagInSelectedTags(tag);
+    } else {
+      navigation.push(StackNavigationRoutes.SEARCH_RESULTS_SCREEN, {
+        type: SearchScreenSearchType.TAGS,
+        query: [tag],
+      });
+    }
+  }
+
+  /** Handle Search Button */
+  function handleSearchPress() {
     navigation.push(StackNavigationRoutes.SEARCH_RESULTS_SCREEN, {
       type: SearchScreenSearchType.TAGS,
-      query: tag,
+      query: selectedTags,
     });
   }
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShouldLoad(true);
-    }, 500);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
-    <View style={styles.rootContainer}>
-      {shouldLoad ? (
-        list.map((item, index) => (
-          <Button
-            onPress={() => handlePress(item)}
-            key={`${index}-${item}`}
-            mode={index % 2 === 0 ? 'contained-tonal' : 'text'}>
-            {item}
+    <Fragment>
+      <View style={styles.rootContainer}>
+        <View style={styles.listContainer}>
+          {list.map((item, index) => (
+            <Button
+              icon={selectedTags.includes(item) ? 'heart' : undefined}
+              onPress={() => handleSingleTagPress(item)}
+              onLongPress={() => insertTagInSelectedTags(item)}
+              key={`${index}-${item}`}
+              mode={index % 2 === 0 ? 'contained-tonal' : 'text'}>
+              {item}
+            </Button>
+          ))}
+        </View>
+        {selectedTags.length > 0 && (
+          <Button mode="contained" onPress={handleSearchPress}>
+            Search
           </Button>
-        ))
-      ) : (
-        <ActivityIndicator />
-      )}
-    </View>
+        )}
+      </View>
+    </Fragment>
   );
 }
 
@@ -68,6 +91,9 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     minHeight: SCREN_HEIGHT,
     paddingHorizontal: DefaultStyles.SPACING * 2,
+    gap: DefaultStyles.SPACING * 2,
+  },
+  listContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: DefaultStyles.SPACING,
