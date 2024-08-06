@@ -6,8 +6,8 @@
  */
 
 import {WallpaperResponseData} from '@app/types/api/wallpaper';
-import {Fragment, useState} from 'react';
-import {Appbar, Dialog, Portal, Text} from 'react-native-paper';
+import {Fragment} from 'react';
+import {Dialog, Portal, Text} from 'react-native-paper';
 
 type Props = {
   show: boolean;
