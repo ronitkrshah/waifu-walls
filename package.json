@@ -18,6 +18,7 @@
     "immer": "^10.1.1",
     "react": "18.2.0",
     "react-native": "0.74.4",
+    "react-native-device-wallpaper-manager": "^0.0.2",
     "react-native-fast-image": "https://github.com/HyopeR/react-native-fast-image",
     "react-native-gesture-handler": "^2.18.1",
     "react-native-image-picker": "^7.1.2",

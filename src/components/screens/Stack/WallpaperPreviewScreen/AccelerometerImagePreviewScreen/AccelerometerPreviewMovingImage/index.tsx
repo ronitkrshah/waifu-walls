@@ -23,6 +23,7 @@ import {
   accelerometer,
   setUpdateIntervalForType,
 } from 'react-native-sensors';
+import DoubleTapShowControls from '../DoubleTabShowControls';
 
 type Props = {
   wallpaper: WallpaperResponseData;
@@ -100,11 +101,13 @@ function AccelerometerPreviewMovingImage({wallpaper}: Props) {
         blurRadius={10}
       />
       <Animated.View style={[styles.container, rFloatingImageStyle]}>
-        <AImage
-          entering={FadeIn.duration(800)}
-          source={{uri: wallpaper.preview_url}}
-          style={[StyleSheet.absoluteFillObject]}
-        />
+        <DoubleTapShowControls wallpaper={wallpaper}>
+          <AImage
+            entering={FadeIn.duration(800)}
+            source={{uri: wallpaper.preview_url}}
+            style={[StyleSheet.absoluteFillObject]}
+          />
+        </DoubleTapShowControls>
       </Animated.View>
     </Fragment>
   );

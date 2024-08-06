@@ -5056,6 +5056,7 @@ __metadata:
     react: 18.2.0
     react-devtools: ^5.3.1
     react-native: 0.74.4
+    react-native-device-wallpaper-manager: ^0.0.2
     react-native-fast-image: "https://github.com/HyopeR/react-native-fast-image"
     react-native-gesture-handler: ^2.18.1
     react-native-image-picker: ^7.1.2
@@ -10811,6 +10812,16 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react-native-device-wallpaper-manager@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "react-native-device-wallpaper-manager@npm:0.0.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 34e861436453ab1ab187342f532400f38c9a6798017f593d6d4a2287abbb4503f4cab628dc0a522b5a96ea04076b3c216cd75082ded52d1045bf56eb32ba50f4
   languageName: node
   linkType: hard
 

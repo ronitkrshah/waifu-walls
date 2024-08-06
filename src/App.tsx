@@ -9,17 +9,20 @@ import AppNavigation from './navigation/AppNavigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MaterialYouThemeProvider from './theme/MaterialYouTheme';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <MaterialYouThemeProvider>
-        <SafeAreaProvider>
-          <AppNavigation />
-        </SafeAreaProvider>
-      </MaterialYouThemeProvider>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <MaterialYouThemeProvider>
+          <SafeAreaProvider>
+            <AppNavigation />
+          </SafeAreaProvider>
+        </MaterialYouThemeProvider>
+      </GestureHandlerRootView>
     </QueryClientProvider>
   );
 }
