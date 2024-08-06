@@ -8,14 +8,19 @@
 import {ActivityIndicator} from 'react-native-paper';
 import useLatestWallpaperFeatureController from '../controllers/useLatestWallpaperFeatureController';
 import {FlatList, StyleSheet} from 'react-native';
-import LatestWallpaerFeatureListItem from './LatestWallpaerFeatureListItem';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
 import SizedBox from '@app/components/common/SizedBox';
+import WallpaperListItem from '@app/features/shared/components/WallpaperListItem';
 
 function LatestWallpaperFeature() {
-  const {isLoading, wallpaperList, isFetchingMore, fetchMore} =
-    useLatestWallpaperFeatureController();
+  const {
+    isLoading,
+    wallpaperList,
+    isFetchingMore,
+    fetchMore,
+    handleWallpaperPress,
+  } = useLatestWallpaperFeatureController();
 
   return (
     <Fragment>
@@ -32,7 +37,10 @@ function LatestWallpaperFeature() {
           ListFooterComponent={<ActivityIndicator animating={isFetchingMore} />}
           data={wallpaperList}
           renderItem={({item}) => (
-            <LatestWallpaerFeatureListItem wallpaper={item} />
+            <WallpaperListItem
+              wallpaper={item}
+              onPress={handleWallpaperPress}
+            />
           )}
         />
       )}

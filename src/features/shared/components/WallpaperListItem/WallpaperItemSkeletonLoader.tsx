@@ -21,7 +21,7 @@ type Props = {
   isAnimating: boolean;
 };
 
-function LatestWallpaperSkeletonLoader({isAnimating}: Props) {
+function WallpaperItemSkeletonLoader({isAnimating}: Props) {
   const opacity = useSharedValue(0);
 
   // Animation configuration
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(LatestWallpaperSkeletonLoader);
+export default memo(WallpaperItemSkeletonLoader);

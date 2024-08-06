@@ -5,23 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {WallpaperResponseData} from '@app/types/api/wallpaper';
 import {DefaultStyles} from '@app/utils/constants/style';
-import {memo, useState} from 'react';
+import {useState} from 'react';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import useLatestWallpaperFeatureController from '../controllers/useLatestWallpaperFeatureController';
-import LatestWallpaperSkeletonLoader from './LatestWallpaperSkeletonLoader';
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import WallpaperItemSkeletonLoader from './WallpaperItemSkeletonLoader';
 
 type Props = {
   wallpaper: WallpaperResponseData;
+  onPress(wallpaper: WallpaperResponseData): void;
 };
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
-function LatestWallpaerFeatureListItem({wallpaper}: Props) {
+function WallpaperListItem({onPress, wallpaper}: Props) {
   const [isLoading, setIsLoading] = useState(false);
-  const {handleWallpaperPress} = useLatestWallpaperFeatureController();
 
   function handleLoadStart() {
     setIsLoading(true);
@@ -31,9 +30,7 @@ function LatestWallpaerFeatureListItem({wallpaper}: Props) {
   }
 
   return (
-    <Pressable
-      style={styles.container}
-      onPress={() => handleWallpaperPress(wallpaper)}>
+    <Pressable style={styles.container} onPress={() => onPress(wallpaper)}>
       <FastImage
         style={[StyleSheet.absoluteFill]}
         source={{
@@ -43,7 +40,7 @@ function LatestWallpaerFeatureListItem({wallpaper}: Props) {
         onLoadEnd={handleLoadEnd}
         resizeMode={FastImage.resizeMode.cover}
       />
-      <LatestWallpaperSkeletonLoader isAnimating={isLoading} />
+      <WallpaperItemSkeletonLoader isAnimating={isLoading} />
     </Pressable>
   );
 }
@@ -57,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(LatestWallpaerFeatureListItem);
+export default WallpaperListItem;
