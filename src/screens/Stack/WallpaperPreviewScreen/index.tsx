@@ -8,12 +8,14 @@
 import Flex from '@app/components/common/Flex';
 import AccelerometerImagePreviewScreen from '@app/components/screens/Stack/WallpaperPreviewScreen/AccelerometerImagePreviewScreen';
 import NormalImagePreviewScreen from '@app/components/screens/Stack/WallpaperPreviewScreen/NormalImagePreviewScreen';
+import WallpaperInformationDialog from '@app/components/screens/Stack/WallpaperPreviewScreen/WallpaperInformationDialog';
 import useGlobalStore from '@app/store';
+import {WallpaperResponseData} from '@app/types/api/wallpaper';
 import {
   StackNavigationRoutes,
   StackNavigationScreenProps,
 } from '@app/types/navigation';
-import {Fragment} from 'react';
+import {Fragment, useState} from 'react';
 import {Appbar} from 'react-native-paper';
 
 function WallpaperPreviewScreen({
@@ -31,7 +33,7 @@ function WallpaperPreviewScreen({
     </Flex>
   ) : (
     <Fragment>
-      <MyAppbar title={wallpaper.title} backFunc={navigation.goBack} />
+      <MyAppbar wallpaper={wallpaper} backFunc={navigation.goBack} />
       <NormalImagePreviewScreen wallpaper={wallpaper} />
     </Fragment>
   );
@@ -39,15 +41,25 @@ function WallpaperPreviewScreen({
 
 /** Appbar */
 type MyAppbarProps = {
-  title: string;
+  wallpaper: WallpaperResponseData;
   backFunc(): void;
 };
 
-function MyAppbar({title, backFunc}: MyAppbarProps) {
+function MyAppbar({wallpaper, backFunc}: MyAppbarProps) {
+  const [showInfo, setShowInfo] = useState(false);
   return (
     <Appbar.Header>
       <Appbar.BackAction onPress={backFunc} />
-      <Appbar.Content title={title} />
+      <Appbar.Content title={wallpaper.title} />
+      <Appbar.Action
+        icon={'information-outline'}
+        onPress={() => setShowInfo(true)}
+      />
+      <WallpaperInformationDialog
+        wallpaper={wallpaper}
+        show={showInfo}
+        onDismiss={() => setShowInfo(false)}
+      />
     </Appbar.Header>
   );
 }

@@ -10,35 +10,49 @@ import {WallpaperResponseData} from '@app/types/api/wallpaper';
 import {Fragment, PropsWithChildren, useState} from 'react';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {Dialog, Portal} from 'react-native-paper';
+import WallpaperInformationDialog from '../../WallpaperInformationDialog';
 
 type Props = {
   wallpaper: WallpaperResponseData;
 } & Required<PropsWithChildren>;
 
 function DoubleTapShowControls({wallpaper, children}: Props) {
-  const [showDialog, setShowDialog] = useState(false);
-  const tap = Gesture.Tap()
-    .numberOfTaps(2)
-    .onEnd(() => {
-      setShowDialog(true);
+  const [showApplyAndDownload, setShowApplyAndDownload] = useState(false);
+  const [showInfoDialog, setShowInfoDialog] = useState(false);
+
+  const longPress = Gesture.LongPress()
+    .onStart(() => {
+      setShowInfoDialog(true);
     })
     .runOnJS(true);
 
-  function dismissDialog() {
-    setShowDialog(false);
-  }
+  const tap = Gesture.Tap()
+    .numberOfTaps(2)
+    .onEnd(() => {
+      setShowApplyAndDownload(true);
+    })
+    .runOnJS(true);
+
+  const composed = Gesture.Race(tap, longPress);
 
   return (
     <Fragment>
-      <GestureDetector gesture={tap}>{children}</GestureDetector>
+      <GestureDetector gesture={composed}>{children}</GestureDetector>
       <Portal>
-        <Dialog visible={showDialog} onDismiss={dismissDialog}>
+        <Dialog
+          visible={showApplyAndDownload}
+          onDismiss={() => setShowApplyAndDownload(false)}>
           <Dialog.Title>Actions</Dialog.Title>
           <Dialog.Actions>
             <ShowWallpaperActions wallpaper={wallpaper} />
           </Dialog.Actions>
         </Dialog>
       </Portal>
+      <WallpaperInformationDialog
+        show={showInfoDialog}
+        onDismiss={() => setShowInfoDialog(false)}
+        wallpaper={wallpaper}
+      />
     </Fragment>
   );
 }
