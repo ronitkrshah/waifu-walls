@@ -10,6 +10,7 @@ import {StateCreator} from 'zustand';
 type AppSettingsState = {
   appSettings: {
     useCustomizePreviewScreen: boolean;
+    showMatureContent: boolean;
   };
 };
 
@@ -19,12 +20,13 @@ export const enum AppSettingsActionType {
 
 type AppSettingsActions = {
   toggleUseCustomizePreviewScreen(): void;
+  toggleSetShowMatureContent(): void;
 };
 
 export type AppSettingsSlice = AppSettingsState & AppSettingsActions;
 
 const initialState: AppSettingsState = {
-  appSettings: {useCustomizePreviewScreen: false},
+  appSettings: {useCustomizePreviewScreen: false, showMatureContent: false},
 };
 
 const createAppSettingsSlice: StateCreator<
@@ -38,6 +40,11 @@ const createAppSettingsSlice: StateCreator<
     set(state => {
       state.appSettings.useCustomizePreviewScreen =
         !state.appSettings.useCustomizePreviewScreen;
+    }),
+  toggleSetShowMatureContent: () =>
+    set(state => {
+      state.appSettings.showMatureContent =
+        !state.appSettings.showMatureContent;
     }),
 });
 

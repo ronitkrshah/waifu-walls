@@ -21,9 +21,11 @@ class LatestWallpaperFeatureService {
    */
   public async getLatestWallpapers(
     offset: number,
+    showAdultImages: boolean,
   ): Promise<LatestWallpaperDTO> {
     const {data, hasNextPage} = await this.repository.getLatestWallpapers(
       offset,
+      showAdultImages,
     );
 
     return {

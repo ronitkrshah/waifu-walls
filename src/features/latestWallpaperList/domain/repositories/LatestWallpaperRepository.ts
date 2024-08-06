@@ -8,7 +8,10 @@
 import LatestWallpaperModel from '../models/LatestWallpaperModel';
 
 type LatestWallpaperRepository = {
-  getLatestWallpapers(offset?: number): Promise<LatestWallpaperModel>;
+  getLatestWallpapers(
+    offset?: number,
+    showAdultImages?: boolean,
+  ): Promise<LatestWallpaperModel>;
 };
 
 export default LatestWallpaperRepository;

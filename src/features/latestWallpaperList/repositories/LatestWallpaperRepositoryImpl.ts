@@ -16,12 +16,19 @@ class LatestWallpaperRepositoryImpl implements LatestWallpaperRepository {
   /**
    * Getting Latest Wallpapers from Database
    */
-  async getLatestWallpapers(offset = 0): Promise<LatestWallpaperModel> {
+  async getLatestWallpapers(
+    offset = 0,
+    showAdultImages = false,
+  ): Promise<LatestWallpaperModel> {
     const response = await new Promise(resolve => {
       setTimeout(() => {
         resolve({
           total: latestImagesDummyData.length,
-          data: latestImagesDummyData.slice(offset, this.LIMIT + offset),
+          data: latestImagesDummyData
+            .slice(offset, this.LIMIT + offset)
+            .filter(item =>
+              showAdultImages ? item : item.is_nsfw === showAdultImages,
+            ),
         });
       }, 3000);
     });

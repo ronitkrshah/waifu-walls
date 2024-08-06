@@ -15,14 +15,19 @@ import {
 } from '@app/types/navigation';
 import LatestWallpaperRepositoryImpl from '../repositories/LatestWallpaperRepositoryImpl';
 import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import useGlobalStore from '@app/store';
 
 function useLatestWallpaperFeatureController() {
+  const showMatureImages = useGlobalStore(
+    state => state.appSettings.showMatureContent,
+  );
   const wallpaperService = new LatestWallpaperFeatureService(
     new LatestWallpaperRepositoryImpl(),
   );
   const wallpaperListQuery = useInfiniteQuery({
     queryKey: ['latestWallpaper'],
-    queryFn: ({pageParam}) => wallpaperService.getLatestWallpapers(pageParam),
+    queryFn: ({pageParam}) =>
+      wallpaperService.getLatestWallpapers(pageParam, showMatureImages),
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.hasNextPage,
   });

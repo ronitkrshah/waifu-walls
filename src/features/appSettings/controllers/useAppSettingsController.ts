@@ -14,11 +14,22 @@ function useAppSettingsController() {
     useShallow(state => ({
       customizePreview: state.appSettings.useCustomizePreviewScreen,
       toggleCustomizePreview: state.toggleUseCustomizePreviewScreen,
+      showMatureContent: state.appSettings.showMatureContent,
+      toggleShowMatureContent: state.toggleSetShowMatureContent,
     })),
   );
 
   /** List Of App Settings */
   const AppSettingsList: AppSettings[] = [
+    {
+      id: 'showMatureContentOnHome',
+      type: AppSettingsType.SWITCH,
+      title: 'Show Adult Waifus',
+      subtitle: 'Show 18+ images on home screen',
+      disabled: false,
+      isEnabled: globalState.showMatureContent,
+      onPress: globalState.toggleShowMatureContent,
+    },
     {
       id: 'customizePreview',
       type: AppSettingsType.SWITCH,
