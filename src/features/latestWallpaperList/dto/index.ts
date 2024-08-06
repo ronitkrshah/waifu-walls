@@ -5,17 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {WallpaperResponseData} from '@app/types/api/wallpaper';
+
 export type LatestWallpaperDTO = {
   hasNextPage?: number | null;
-  wallpaperDetails: {
-    id: string;
-    title: string;
-    is_nsfw: boolean;
-    preview_url: string;
-    download_url: string;
-    author?: string;
-    uploader_name: string;
-    uploader_id: string;
-    original_post_link?: string;
-  };
+  wallpaperDetails: WallpaperResponseData[];
 };

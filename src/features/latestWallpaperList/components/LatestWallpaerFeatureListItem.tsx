@@ -9,12 +9,12 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import {memo, useState} from 'react';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {LatestWallpaperDTO} from '../dto';
 import useLatestWallpaperFeatureController from '../controllers/useLatestWallpaperFeatureController';
 import LatestWallpaperSkeletonLoader from './LatestWallpaperSkeletonLoader';
+import {WallpaperResponseData} from '@app/types/api/wallpaper';
 
 type Props = {
-  wallpaper: LatestWallpaperDTO['wallpaperDetails'];
+  wallpaper: WallpaperResponseData;
 };
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');

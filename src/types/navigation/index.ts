@@ -4,7 +4,6 @@
  * The source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {LatestWallpaperDTO} from '@app/features/latestWallpaperList/dto';
 import {
   CompositeNavigationProp,
   CompositeScreenProps,
@@ -18,6 +17,7 @@ import {
   MaterialBottomTabNavigationProp,
   MaterialBottomTabScreenProps,
 } from 'react-native-paper';
+import {WallpaperResponseData} from '../api/wallpaper';
 
 export const enum SearchScreenSearchType {
   QUERY = 'query',
@@ -61,7 +61,7 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.SETUP_WIZARD_SCREEN]: undefined;
   [StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN]: undefined;
   [StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN]: {
-    wallpaper: LatestWallpaperDTO['wallpaperDetails'];
+    wallpaper: WallpaperResponseData;
   };
   [StackNavigationRoutes.ADMIN_CONTROLS_SCREEN]: undefined;
   [StackNavigationRoutes.PENDING_REQUESTS_SCREEN]: undefined;

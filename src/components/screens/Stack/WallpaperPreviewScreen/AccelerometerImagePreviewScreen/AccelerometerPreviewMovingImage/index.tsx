@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {LatestWallpaperDTO} from '@app/features/latestWallpaperList/dto';
+import {WallpaperResponseData} from '@app/types/api/wallpaper';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment, useEffect} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
@@ -25,7 +25,7 @@ import {
 } from 'react-native-sensors';
 
 type Props = {
-  wallpaper: LatestWallpaperDTO;
+  wallpaper: WallpaperResponseData;
 };
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');

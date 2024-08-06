@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {LatestWallpaperDTO} from '@app/features/latestWallpaperList/dto';
 import {Fragment} from 'react';
 import AccelerometerPreviewMovingImage from './AccelerometerPreviewMovingImage';
 import AccelerometerPreviewImageTitle from './AccelerometerPreviewImageTitle';
+import {WallpaperResponseData} from '@app/types/api/wallpaper';
 
 type Props = {
-  wallpaper: LatestWallpaperDTO;
+  wallpaper: WallpaperResponseData;
 };
 
 function AccelerometerPreviewScreen({wallpaper}: Props) {

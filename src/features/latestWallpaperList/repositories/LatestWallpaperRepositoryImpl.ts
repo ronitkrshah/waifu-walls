@@ -10,6 +10,7 @@ import LatestWallpaperRepository from '../domain/repositories/LatestWallpaperRep
 import LatestWallpaperModel from '../domain/models/LatestWallpaperModel';
 
 class LatestWallpaperRepositoryImpl implements LatestWallpaperRepository {
+  /** Limit Of Data On Every Page */
   private LIMIT = 4;
 
   /**

@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {LatestWallpaperDTO} from '@app/features/latestWallpaperList/dto';
 import {Fragment} from 'react';
 import NormalPreviewImage from './NormalPreviewImage';
+import {WallpaperResponseData} from '@app/types/api/wallpaper';
 
 type Props = {
-  wallpaper: LatestWallpaperDTO;
+  wallpaper: WallpaperResponseData;
 };
 
 function NormalImagePreviewScreen({wallpaper}: Props) {

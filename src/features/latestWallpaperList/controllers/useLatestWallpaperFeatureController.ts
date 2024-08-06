@@ -14,7 +14,7 @@ import {
   StackNavigationRoutes,
 } from '@app/types/navigation';
 import LatestWallpaperRepositoryImpl from '../repositories/LatestWallpaperRepositoryImpl';
-import {LatestWallpaperDTO} from '../dto';
+import {WallpaperResponseData} from '@app/types/api/wallpaper';
 
 function useLatestWallpaperFeatureController() {
   const wallpaperService = new LatestWallpaperFeatureService(
@@ -34,9 +34,7 @@ function useLatestWallpaperFeatureController() {
   /**
    * Function To handle on press on waifus
    */
-  function handleWallpaperPress(
-    wallpaper: LatestWallpaperDTO['wallpaperDetails'],
-  ) {
+  function handleWallpaperPress(wallpaper: WallpaperResponseData) {
     navigation.push(StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN, {
       wallpaper,
     });
@@ -44,8 +42,8 @@ function useLatestWallpaperFeatureController() {
 
   return {
     isLoading: wallpaperListQuery.isLoading,
-    wallpaperList: wallpaperListQuery.data?.pages.flatMap(page =>
-      page.data.map(item => item.wallpaperDetails),
+    wallpaperList: wallpaperListQuery.data?.pages.flatMap(
+      page => page.wallpaperDetails,
     ),
     isFetchingMore: wallpaperListQuery.isFetchingNextPage,
     fetchMore: wallpaperListQuery.fetchNextPage,
