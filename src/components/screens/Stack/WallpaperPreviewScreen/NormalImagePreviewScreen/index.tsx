@@ -7,11 +7,11 @@
 
 import {Fragment} from 'react';
 import NormalPreviewImage from './NormalPreviewImage';
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import ShowWallpaperActions from '@app/features/wallpaperActions/components/ShowWallpaperActions';
 
 type Props = {
-  wallpaper: WallpaperResponseData;
+  wallpaper: Wallpaper;
 };
 
 function NormalImagePreviewScreen({wallpaper}: Props) {

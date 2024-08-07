@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 
 export type LatestWallpaperDTO = {
   hasNextPage?: number | null;
-  wallpaperDetails: WallpaperResponseData[];
+  wallpaperDetails: Wallpaper[];
 };

@@ -17,7 +17,7 @@ import {
   MaterialBottomTabNavigationProp,
   MaterialBottomTabScreenProps,
 } from 'react-native-paper';
-import {WallpaperResponseData} from '../api/wallpaper';
+import {Wallpaper} from '../api/wallpaper';
 
 export const enum SearchScreenSearchType {
   QUERY = 'query',
@@ -62,7 +62,7 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.SETUP_WIZARD_SCREEN]: undefined;
   [StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN]: undefined;
   [StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN]: {
-    wallpaper: WallpaperResponseData;
+    wallpaper: Wallpaper;
   };
   [StackNavigationRoutes.ADMIN_CONTROLS_SCREEN]: undefined;
   [StackNavigationRoutes.PENDING_REQUESTS_SCREEN]: undefined;

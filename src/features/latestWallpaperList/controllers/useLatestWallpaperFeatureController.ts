@@ -14,7 +14,7 @@ import {
   StackNavigationRoutes,
 } from '@app/types/navigation';
 import LatestWallpaperRepositoryImpl from '../repositories/LatestWallpaperRepositoryImpl';
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import useGlobalStore from '@app/store';
 
 function useLatestWallpaperFeatureController() {
@@ -39,7 +39,7 @@ function useLatestWallpaperFeatureController() {
   /**
    * Function To handle on press on waifus
    */
-  function handleWallpaperPress(wallpaper: WallpaperResponseData) {
+  function handleWallpaperPress(wallpaper: Wallpaper) {
     navigation.push(StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN, {
       wallpaper,
     });

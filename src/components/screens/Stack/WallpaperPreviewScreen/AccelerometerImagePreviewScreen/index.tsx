@@ -8,10 +8,10 @@
 import {Fragment} from 'react';
 import AccelerometerPreviewMovingImage from './AccelerometerPreviewMovingImage';
 import AccelerometerPreviewImageTitle from './AccelerometerPreviewImageTitle';
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 
 type Props = {
-  wallpaper: WallpaperResponseData;
+  wallpaper: Wallpaper;
 };
 
 function AccelerometerPreviewScreen({wallpaper}: Props) {

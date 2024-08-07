@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -14,7 +14,7 @@ import useWallpaperActionsController from '../controllers/useWallpaperActionsCon
 import {SetWallpaperDestination} from '../utils/setWallpaper';
 
 type Props = {
-  wallpaper: WallpaperResponseData;
+  wallpaper: Wallpaper;
 };
 
 /**
@@ -23,7 +23,7 @@ type Props = {
  * this will help users to download wallpaper or directly set wallpaper from
  * the App.
  *
- * Requires `WallpaperResponseData`
+ * Requires `Wallpaper`
  */
 function ShowWallpaperActions({wallpaper}: Props) {
   const [showDestinationOptions, setShowDestinationOptions] = useState(false);

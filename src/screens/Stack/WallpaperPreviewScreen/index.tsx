@@ -10,7 +10,7 @@ import AccelerometerImagePreviewScreen from '@app/components/screens/Stack/Wallp
 import NormalImagePreviewScreen from '@app/components/screens/Stack/WallpaperPreviewScreen/NormalImagePreviewScreen';
 import WallpaperInformationDialog from '@app/components/screens/Stack/WallpaperPreviewScreen/WallpaperInformationDialog';
 import useGlobalStore from '@app/store';
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import {
   StackNavigationRoutes,
   StackNavigationScreenProps,
@@ -41,7 +41,7 @@ function WallpaperPreviewScreen({
 
 /** Appbar */
 type MyAppbarProps = {
-  wallpaper: WallpaperResponseData;
+  wallpaper: Wallpaper;
   backFunc(): void;
 };
 

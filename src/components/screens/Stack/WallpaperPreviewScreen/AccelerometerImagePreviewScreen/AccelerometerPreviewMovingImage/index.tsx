@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment, useEffect} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
@@ -26,7 +26,7 @@ import {
 import DoubleTapShowControls from '../DoubleTabShowControls';
 
 type Props = {
-  wallpaper: WallpaperResponseData;
+  wallpaper: Wallpaper;
 };
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');

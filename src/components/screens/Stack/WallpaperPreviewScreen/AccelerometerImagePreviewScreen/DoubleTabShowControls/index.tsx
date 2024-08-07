@@ -6,14 +6,14 @@
  */
 
 import ShowWallpaperActions from '@app/features/wallpaperActions/components/ShowWallpaperActions';
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import {Fragment, PropsWithChildren, useState} from 'react';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {Dialog, Portal} from 'react-native-paper';
 import WallpaperInformationDialog from '../../WallpaperInformationDialog';
 
 type Props = {
-  wallpaper: WallpaperResponseData;
+  wallpaper: Wallpaper;
 } & Required<PropsWithChildren>;
 
 function DoubleTapShowControls({wallpaper, children}: Props) {

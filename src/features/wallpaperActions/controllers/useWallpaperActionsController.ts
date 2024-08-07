@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import {useState} from 'react';
 import setWallpaper, {SetWallpaperDestination} from '../utils/setWallpaper';
 import {ToastAndroid} from 'react-native';
 
 type Props = {
-  wallpaper: WallpaperResponseData;
+  wallpaper: Wallpaper;
 };
 
 function useWallpaperActionsController({wallpaper}: Props) {

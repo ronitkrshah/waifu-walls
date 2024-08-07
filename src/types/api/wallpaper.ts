@@ -11,7 +11,7 @@
  * actual response model becuase there are some information that are useless
  * in screens where they only need only wallpaper data.
  */
-export type WallpaperResponseData = {
+export type Wallpaper = {
   id: string;
   title: string;
   is_nsfw: boolean;

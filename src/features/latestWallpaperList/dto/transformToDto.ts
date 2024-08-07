@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import LatestWallpaperModel from '../domain/models/LatestWallpaperModel';
 
 function transformToDto(
   model: LatestWallpaperModel['data'][number],
-): WallpaperResponseData {
+): Wallpaper {
   return {
     id: model.id,
     title: model.title,

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {useState} from 'react';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
@@ -13,8 +13,8 @@ import FastImage from 'react-native-fast-image';
 import WallpaperItemSkeletonLoader from './WallpaperItemSkeletonLoader';
 
 type Props = {
-  wallpaper: WallpaperResponseData;
-  onPress(wallpaper: WallpaperResponseData): void;
+  wallpaper: Wallpaper;
+  onPress(wallpaper: Wallpaper): void;
 };
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');

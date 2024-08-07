@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperResponseData} from '@app/types/api/wallpaper';
+import {Wallpaper} from '@app/types/api/wallpaper';
 import {Fragment} from 'react';
 import {Dialog, Portal, Text} from 'react-native-paper';
 
 type Props = {
   show: boolean;
   onDismiss(): void;
-  wallpaper: WallpaperResponseData;
+  wallpaper: Wallpaper;
 };
 
 function WallpaperInformationDialog({wallpaper, show, onDismiss}: Props) {
