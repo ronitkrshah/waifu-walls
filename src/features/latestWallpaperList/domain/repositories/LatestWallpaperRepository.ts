@@ -7,11 +7,11 @@
 
 import LatestWallpaperModel from '../models/LatestWallpaperModel';
 
-type LatestWallpaperRepository = {
+interface LatestWallpaperRepository {
   getLatestWallpapers(
     offset?: number,
     showAdultImages?: boolean,
   ): Promise<LatestWallpaperModel>;
-};
+}
 
 export default LatestWallpaperRepository;

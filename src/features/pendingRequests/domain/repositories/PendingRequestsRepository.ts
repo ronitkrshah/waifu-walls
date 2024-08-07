@@ -7,10 +7,10 @@
 
 import PendingRequestModel from '../models/PendingRequestModel';
 
-type PendingRequestsRepository = {
+interface PendingRequestsRepository {
   getPendingRequests(): Promise<PendingRequestModel[]>;
   rejectRequest(requestId: string): Promise<void>;
   approveRequest(requestId: string): Promise<void>;
-};
+}
 
 export default PendingRequestsRepository;
