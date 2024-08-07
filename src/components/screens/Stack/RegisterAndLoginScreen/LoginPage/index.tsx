@@ -11,7 +11,7 @@ import {Dimensions} from 'react-native';
 import {StyleSheet, View} from 'react-native';
 import {Surface} from 'react-native-paper';
 import Headline from '../Headline';
-import LoginHandler from '@app/features/auth/login/components/LoginHandler';
+import LoginHandler from '@app/features/auth/components/LoginHandler';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 

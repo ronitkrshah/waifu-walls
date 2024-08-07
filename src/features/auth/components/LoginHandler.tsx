@@ -6,17 +6,16 @@
  */
 
 import {StyleSheet, View} from 'react-native';
-import AuthTextInput from '../../shared/components/AuthTextInput';
 import {Button} from 'react-native-paper';
 import {DefaultStyles} from '@app/utils/constants/style';
+import AuthTextInput from '../shared/components/AuthTextInput';
 
-function RegisterHandler() {
+function LoginHandler() {
   return (
     <View style={styles.container}>
-      <AuthTextInput placeholder="Enter Your Name" />
       <AuthTextInput placeholder="Enter Email" />
-      <AuthTextInput placeholder="Enter Password" secureTextEntry />
-      <Button mode="contained">Sign Up</Button>
+      <AuthTextInput placeholder="Enter Password" />
+      <Button mode="contained">Sign In</Button>
     </View>
   );
 }
@@ -28,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterHandler;
+export default LoginHandler;

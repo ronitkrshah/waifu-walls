@@ -10,7 +10,7 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {Surface} from 'react-native-paper';
 import Headline from '../Headline';
-import RegisterHandler from '@app/features/auth/register/components/RegisterHandler';
+import RegisterHandler from '@app/features/auth/components/RegisterHandler';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 

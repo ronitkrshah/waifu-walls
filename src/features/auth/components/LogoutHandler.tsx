@@ -7,8 +7,8 @@
 
 import {Button} from 'react-native-paper';
 
-function LogoutButton() {
+function LogoutHandler() {
   return <Button mode="contained">Log Out</Button>;
 }
 
-export default LogoutButton;
+export default LogoutHandler;

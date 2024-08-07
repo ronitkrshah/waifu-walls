@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import LogoutButton from '@app/features/auth/logout/components/LogoutButton';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 import {Avatar, Surface, Text} from 'react-native-paper';
 import AdminsOnlyFeatures from './AdminsOnlyOptions';
+import LogoutHandler from '@app/features/auth/components/LogoutHandler';
 
 const user = {
   avatar:
@@ -40,7 +40,7 @@ function AccountTabUserDashboard() {
           {user.fullName}
         </Text>
         <AdminsOnlyFeatures />
-        <LogoutButton />
+        <LogoutHandler />
       </Surface>
     </Fragment>
   );

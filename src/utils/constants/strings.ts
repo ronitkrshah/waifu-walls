@@ -1,5 +1,7 @@
 export const DefaultStrings = {
   APP_NAME: 'Waifu Walls',
+  PACKAGE_NAME: 'com.rks.waifuwalls',
+
   MATURE_CONTENT_DISCLAIMER:
     'This app contains content intended for adults only, including material related to nudity, sexuality, and other mature themes. By continuing, you confirm that you are 18 years of age or older, or have parental consent to view such content. If you do not meet these criteria, please exit the app immediately.',
   MATURE_CONTENT_ACKNOWLEDGEMENT:
