@@ -7,6 +7,7 @@
 
 import {
   AdminControlsScreen,
+  PendingRequestsPreviewScreen,
   PendingRequestsScreen,
   RegisterAndLoginScreen,
   SearchResultsScreen,
@@ -112,6 +113,13 @@ function StackNavigator({theme}: Props) {
         options={{
           headerShown: true,
           header: PendingRequestsScreen.Appbar,
+        }}
+      />
+      <Stack.Screen
+        name={StackNavigationRoutes.PENDING_REQUESTS_PREVIEW_SCREEN}
+        component={PendingRequestsPreviewScreen}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

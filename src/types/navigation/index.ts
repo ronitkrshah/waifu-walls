@@ -35,6 +35,7 @@ export const enum StackNavigationRoutes {
   WALLPAPER_PREVIEW_SCREEN = 'WallpaperPreviewScreen',
   ADMIN_CONTROLS_SCREEN = 'AdminControlsScreen',
   PENDING_REQUESTS_SCREEN = 'PendingRequestsScreen',
+  PENDING_REQUESTS_PREVIEW_SCREEN = 'PendingRequestsPreviewScreen',
 }
 
 export const enum BottomTabNavigationRoutes {
@@ -65,6 +66,7 @@ export type StackNavigationParamList = {
   };
   [StackNavigationRoutes.ADMIN_CONTROLS_SCREEN]: undefined;
   [StackNavigationRoutes.PENDING_REQUESTS_SCREEN]: undefined;
+  [StackNavigationRoutes.PENDING_REQUESTS_PREVIEW_SCREEN]: undefined;
 };
 
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =
