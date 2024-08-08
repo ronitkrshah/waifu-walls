@@ -24,6 +24,7 @@ import {
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {MD3Theme, withTheme} from 'react-native-paper';
 import BottomTabNavigator from '../BottomTabNavigator';
+import useGlobalStore from '@app/store';
 
 type Props = {
   theme: MD3Theme;
@@ -32,11 +33,14 @@ type Props = {
 const Stack = createNativeStackNavigator<StackNavigationParamList>();
 
 function StackNavigator({theme}: Props) {
+  const isCustomPreviewScreenEnabled = useGlobalStore(
+    state => state.appSettings.useCustomizePreviewScreen,
+  );
+
   return (
     <Stack.Navigator
       screenOptions={{
         contentStyle: {backgroundColor: theme.colors.surface},
-        navigationBarHidden: true,
       }}>
       <Stack.Screen
         name={StackNavigationRoutes.SPLASH_SCREEN}
@@ -95,6 +99,7 @@ function StackNavigator({theme}: Props) {
         name={StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN}
         component={WallpaperPreviewScreen}
         options={{
+          navigationBarHidden: isCustomPreviewScreenEnabled,
           headerShown: false,
           animation: 'fade',
         }}
