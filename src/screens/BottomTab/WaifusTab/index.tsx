@@ -7,6 +7,7 @@
 
 import AppSearchBar from '@app/components/screens/BottomTab/WaifusTab/AppSearchBar';
 import LatestWallpaperFeature from '@app/features/latestWallpaperList/components/LatestWallpaperFeature';
+import useGlobalStore from '@app/store';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
@@ -21,6 +22,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 function WaifusTab({
   navigation,
 }: BottomTabNavigationScreenProps<BottomTabNavigationRoutes.WAIFUS>) {
+  const isAuthenticated = useGlobalStore(state => state.user.isAuthenticated);
   function onFabPress() {
     navigation.push(StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN);
   }
@@ -33,7 +35,9 @@ function WaifusTab({
         </View>
       </SafeAreaView>
       <LatestWallpaperFeature />
-      <FAB icon={'file-upload'} style={styles.fab} onPress={onFabPress} />
+      {isAuthenticated && (
+        <FAB icon={'file-upload'} style={styles.fab} onPress={onFabPress} />
+      )}
     </Fragment>
   );
 }
