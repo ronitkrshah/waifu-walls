@@ -30,6 +30,7 @@ function useLatestWallpaperFeatureController() {
       wallpaperService.getLatestWallpapers(pageParam, showMatureImages),
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.hasNextPage,
+    refetchOnMount: false,
   });
 
   /** Wallpaper List */
@@ -53,6 +54,8 @@ function useLatestWallpaperFeatureController() {
     isFetchingMore: wallpaperListQuery.isFetchingNextPage,
     fetchMore: wallpaperListQuery.fetchNextPage,
     handleWallpaperPress,
+    refreshData: wallpaperListQuery.refetch,
+    isRefreshing: wallpaperListQuery.isRefetching,
   };
 }
 

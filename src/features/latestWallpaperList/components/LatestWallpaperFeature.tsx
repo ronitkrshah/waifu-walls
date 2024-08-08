@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {ActivityIndicator} from 'react-native-paper';
+import {ActivityIndicator, Text} from 'react-native-paper';
 import useLatestWallpaperFeatureController from '../controllers/useLatestWallpaperFeatureController';
 import {FlatList, StyleSheet} from 'react-native';
 import {DefaultStyles} from '@app/utils/constants/style';
@@ -20,6 +20,8 @@ function LatestWallpaperFeature() {
     isFetchingMore,
     fetchMore,
     handleWallpaperPress,
+    refreshData,
+    isRefreshing,
   } = useLatestWallpaperFeatureController();
 
   return (
@@ -36,6 +38,8 @@ function LatestWallpaperFeature() {
           ListFooterComponentStyle={styles.footer}
           ListFooterComponent={<ActivityIndicator animating={isFetchingMore} />}
           data={wallpaperList}
+          refreshing={isRefreshing}
+          onRefresh={refreshData}
           renderItem={({item}) => (
             <WallpaperListItem
               wallpaper={item}

@@ -1,5 +1,21 @@
 export const latestImagesDummyData = [
   {
+    id: '00111',
+    title: 'Hyuga Hinata',
+    is_nsfw: false,
+    tags: ['Uniform', 'School Girl', 'Oppai'],
+    preview_url:
+      'https://i.pinimg.com/originals/4c/e4/4b/4ce44b26d5fcfaf30fd2e9d12eeae2ce.jpg',
+    download_url:
+      'https://i.pinimg.com/originals/4c/e4/4b/4ce44b26d5fcfaf30fd2e9d12eeae2ce.jpg',
+    author: 'Pinimg',
+    uploaded_by: {
+      name: 'Unknown',
+      id: 'unknown',
+    },
+    original_post_link: 'https://example.com/post001',
+  },
+  {
     id: '001',
     title: 'Hyuga Hinata',
     is_nsfw: false,
@@ -14,6 +30,64 @@ export const latestImagesDummyData = [
       id: 'unknown',
     },
     original_post_link: 'https://example.com/post001',
+  },
+  {
+    id: '1232',
+    title: 'Yamanaka Ino',
+    is_nsfw: false,
+    tags: [],
+    preview_url: 'https://s1.zerochan.net/Yamanaka.Ino.600.2585945.jpg',
+    download_url: 'https://s1.zerochan.net/Yamanaka.Ino.600.2585945.jpg',
+    author: 'Zerochan',
+    uploaded_by: {
+      name: 'Unknown',
+      id: 'unknown',
+    },
+    original_post_link: 'https://example.com/post003',
+  },
+  {
+    id: '1032',
+    title: 'Yamanaka Ino',
+    is_nsfw: false,
+    tags: [],
+    preview_url: 'https://s1.zerochan.net/Yamanaka.Ino.600.2585945.jpg',
+    download_url: 'https://s1.zerochan.net/Yamanaka.Ino.600.2585945.jpg',
+    author: 'Zerochan',
+    uploaded_by: {
+      name: 'Unknown',
+      id: 'unknown',
+    },
+    original_post_link: 'https://example.com/post003',
+  },
+  {
+    id: '0032',
+    title: 'Yamanaka Ino',
+    is_nsfw: false,
+    tags: [],
+    preview_url: 'https://s1.zerochan.net/Yamanaka.Ino.600.2585945.jpg',
+    download_url: 'https://s1.zerochan.net/Yamanaka.Ino.600.2585945.jpg',
+    author: 'Zerochan',
+    uploaded_by: {
+      name: 'Unknown',
+      id: 'unknown',
+    },
+    original_post_link: 'https://example.com/post003',
+  },
+  {
+    id: '00q2',
+    title: 'Rem',
+    is_nsfw: false,
+    tags: ['Maid', 'Uniform'],
+    preview_url:
+      'https://pm1.narvii.com/6356/c0a4d9323958f8fbaae8bae63b64dc6df8e4ef37_hq.jpg',
+    download_url:
+      'https://pm1.narvii.com/6356/c0a4d9323958f8fbaae8bae63b64dc6df8e4ef37_hq.jpg',
+    author: 'Narvii',
+    uploaded_by: {
+      name: 'Unknown',
+      id: 'unknown',
+    },
+    original_post_link: 'https://example.com/post002',
   },
   {
     id: '002',
@@ -44,6 +118,22 @@ export const latestImagesDummyData = [
       id: 'unknown',
     },
     original_post_link: 'https://example.com/post003',
+  },
+  {
+    id: '111',
+    title: 'Tsunade Senju',
+    is_nsfw: true,
+    tags: [],
+    preview_url:
+      'https://wallpapers.com/images/hd/tsunade-running-lxz892u020ynn1dh.jpg',
+    download_url:
+      'https://wallpapers.com/images/hd/tsunade-running-lxz892u020ynn1dh.jpg',
+    author: 'Wallpapers',
+    uploaded_by: {
+      name: 'Unknown',
+      id: 'unknown',
+    },
+    original_post_link: 'https://example.com/post001',
   },
   {
     id: '004',
