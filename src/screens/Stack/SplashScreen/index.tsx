@@ -5,10 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import Flex from '@app/components/common/Flex';
+import AnimatedLoadingCircleIndicator from '@app/components/shared/AnimatedLoadingCircleIndicator';
 import GetLoggedInUser from '@app/features/auth/components/GetLoggedInUser';
 
 function SplashScreen() {
-  return <GetLoggedInUser />;
+  return (
+    <Flex flex={1} center>
+      <AnimatedLoadingCircleIndicator />
+      <GetLoggedInUser />
+    </Flex>
+  );
 }
 
 export default SplashScreen;
