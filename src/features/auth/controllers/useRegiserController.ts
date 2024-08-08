@@ -36,7 +36,7 @@ function useRegisterController() {
     onError(error) {
       ToastAndroid.show(error.message, ToastAndroid.SHORT);
     },
-    retry: 0,
+    retry: false,
   });
 
   /**
@@ -54,7 +54,7 @@ function useRegisterController() {
       setUserGlobalStore(data);
       navigation.popToTop();
     },
-    retry: 0,
+    retry: false,
   });
 
   /**
