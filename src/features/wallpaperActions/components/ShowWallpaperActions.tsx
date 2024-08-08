@@ -86,8 +86,7 @@ function ShowWallpaperActions({wallpaper}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 'auto',
-    marginBottom: DefaultStyles.SPACING,
+    marginVertical: 'auto',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     gap: DefaultStyles.SPACING,
