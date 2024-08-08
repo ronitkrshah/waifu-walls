@@ -40,12 +40,11 @@ function LatestWallpaperFeature() {
         refreshControl={
           <RefreshControl
             refreshing={isLoading}
+            onRefresh={refreshData}
             colors={[colors.onPrimaryContainer]}
             progressBackgroundColor={colors.primaryContainer}
           />
         }
-        refreshing={isLoading}
-        onRefresh={refreshData}
         renderItem={({item}) => (
           <WallpaperListItem wallpaper={item} onPress={handleWallpaperPress} />
         )}
