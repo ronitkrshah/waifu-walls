@@ -12,8 +12,11 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
 import SizedBox from '@app/components/common/SizedBox';
 import WallpaperListItem from '@app/features/shared/components/WallpaperListItem';
+import {RefreshControl} from 'react-native-gesture-handler';
+import {useAppTheme} from '@app/theme/MaterialYouTheme';
 
 function LatestWallpaperFeature() {
+  const {colors} = useAppTheme();
   const {
     isLoading,
     wallpaperList,
@@ -34,6 +37,13 @@ function LatestWallpaperFeature() {
         ListFooterComponentStyle={styles.footer}
         ListFooterComponent={<ActivityIndicator animating={isFetchingMore} />}
         data={wallpaperList}
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoading}
+            colors={[colors.onPrimaryContainer]}
+            progressBackgroundColor={colors.primaryContainer}
+          />
+        }
         refreshing={isLoading}
         onRefresh={refreshData}
         renderItem={({item}) => (
