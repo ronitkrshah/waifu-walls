@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useInfiniteQuery} from '@tanstack/react-query';
+import {useInfiniteQuery, useQueryClient} from '@tanstack/react-query';
 import LatestWallpaperFeatureService from '../services/WallpaperFeatureService';
 import {useNavigation} from '@react-navigation/native';
 import {
@@ -18,24 +18,37 @@ import {Wallpaper} from '@app/types/api/wallpaper';
 import useGlobalStore from '@app/store';
 
 function useLatestWallpaperFeatureController() {
+  const queryClient = useQueryClient();
   const showMatureImages = useGlobalStore(
     state => state.appSettings.showMatureContent,
   );
   const wallpaperService = new LatestWallpaperFeatureService(
     new LatestWallpaperRepositoryImpl(),
   );
+  const navigation =
+    useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.WAIFUS>>();
+
+  /**
+   * Infinte Scroll Of Latest Wallpapers
+   */
   const wallpaperListQuery = useInfiniteQuery({
     queryKey: ['latestWallpaper'],
     queryFn: ({pageParam}) =>
       wallpaperService.getLatestWallpapers(pageParam, showMatureImages),
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.hasNextPage,
-    refetchOnMount: false,
+    //refetchOnMount: false,
   });
 
-  /** Wallpaper List */
-  const navigation =
-    useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.WAIFUS>>();
+  /**
+   * React Query refetch function fetches all pages that are previously fetched
+   * this will hit api more times. This behaviour isn't suitable for our app
+   * Example: If the user is on number 10 page and then use pull-to-refresh
+   * then api will hit 10 times for refresh the pages.
+   */
+  function refreshDataOnlyFirstPage() {
+    queryClient.resetQueries({queryKey: ['latestWallpaper'], exact: true});
+  }
 
   /**
    * Function To handle on press on waifus
@@ -54,7 +67,7 @@ function useLatestWallpaperFeatureController() {
     isFetchingMore: wallpaperListQuery.isFetchingNextPage,
     fetchMore: wallpaperListQuery.fetchNextPage,
     handleWallpaperPress,
-    refreshData: wallpaperListQuery.refetch,
+    refreshData: refreshDataOnlyFirstPage,
     isRefreshing: wallpaperListQuery.isRefetching,
   };
 }

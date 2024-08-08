@@ -21,33 +21,25 @@ function LatestWallpaperFeature() {
     fetchMore,
     handleWallpaperPress,
     refreshData,
-    isRefreshing,
   } = useLatestWallpaperFeatureController();
 
   return (
     <Fragment>
       <SizedBox vertical={DefaultStyles.SPACING} />
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
-        <FlatList
-          numColumns={2}
-          columnWrapperStyle={styles.columnWrapper}
-          onEndReachedThreshold={0.5}
-          onEndReached={() => fetchMore()}
-          ListFooterComponentStyle={styles.footer}
-          ListFooterComponent={<ActivityIndicator animating={isFetchingMore} />}
-          data={wallpaperList}
-          refreshing={isRefreshing}
-          onRefresh={refreshData}
-          renderItem={({item}) => (
-            <WallpaperListItem
-              wallpaper={item}
-              onPress={handleWallpaperPress}
-            />
-          )}
-        />
-      )}
+      <FlatList
+        numColumns={2}
+        columnWrapperStyle={styles.columnWrapper}
+        onEndReachedThreshold={0.5}
+        onEndReached={() => fetchMore()}
+        ListFooterComponentStyle={styles.footer}
+        ListFooterComponent={<ActivityIndicator animating={isFetchingMore} />}
+        data={wallpaperList}
+        refreshing={isLoading}
+        onRefresh={refreshData}
+        renderItem={({item}) => (
+          <WallpaperListItem wallpaper={item} onPress={handleWallpaperPress} />
+        )}
+      />
     </Fragment>
   );
 }
