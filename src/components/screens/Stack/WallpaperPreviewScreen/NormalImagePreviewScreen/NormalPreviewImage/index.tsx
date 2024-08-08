@@ -29,7 +29,7 @@ function NormalPreviewImage({uri}: Props) {
 
 const styles = StyleSheet.create({
   image: {
-    height: SCREEN_WIDTH * 1.7,
+    height: SCREEN_WIDTH * 1.6,
     width: SCREEN_WIDTH - DefaultStyles.SPACING * 2,
     marginHorizontal: 'auto',
     borderRadius: DefaultStyles.SPACING * 2,
