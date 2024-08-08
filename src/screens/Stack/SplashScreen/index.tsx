@@ -5,32 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import useGlobalStore from '@app/store';
-import {
-  BottomTabNavigationRoutes,
-  StackNavigationRoutes,
-  StackNavigationScreenProps,
-} from '@app/types/navigation';
-import {useEffect} from 'react';
+import GetLoggedInUser from '@app/features/auth/components/GetLoggedInUser';
 
-function SplashScreen({
-  navigation,
-}: StackNavigationScreenProps<StackNavigationRoutes.SPLASH_SCREEN>) {
-  const isAgreementAccepted = useGlobalStore(
-    state => state.matureContentAgreement.isAgreementAccepted,
-  );
-
-  useEffect(() => {
-    if (isAgreementAccepted) {
-      navigation.replace(StackNavigationRoutes.HOME_SCREEN, {
-        screen: BottomTabNavigationRoutes.WAIFUS,
-      });
-    } else {
-      navigation.replace(StackNavigationRoutes.SETUP_WIZARD_SCREEN);
-    }
-  }, []);
-
-  return null;
+function SplashScreen() {
+  return <GetLoggedInUser />;
 }
 
 export default SplashScreen;
