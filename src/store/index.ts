@@ -15,14 +15,18 @@ import zustandStorage from './storage';
 import createMatureContentAgreementSlice, {
   MatureContentAgreementSlice,
 } from '@app/features/matureContentAgreement/zustand/createMatureContentSlice';
+import createUserSlice, {UserSlice} from '@app/features/auth/zustand/userSlice';
 
-type GloablStoreType = AppSettingsSlice & MatureContentAgreementSlice;
+type GloablStoreType = AppSettingsSlice &
+  MatureContentAgreementSlice &
+  UserSlice;
 
 const useGlobalStore = create<GloablStoreType>()(
   persist(
     immer((...a) => ({
       ...createMatureContentAgreementSlice(...a),
       ...createAppSettingsSlice(...a),
+      ...createUserSlice(...a),
     })),
     {
       name: 'GLOBAL_STATE',

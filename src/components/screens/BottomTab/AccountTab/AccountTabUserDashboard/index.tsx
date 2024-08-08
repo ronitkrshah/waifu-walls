@@ -12,32 +12,22 @@ import {Dimensions, StyleSheet} from 'react-native';
 import {Avatar, Surface, Text} from 'react-native-paper';
 import AdminsOnlyFeatures from './AdminsOnlyOptions';
 import LogoutHandler from '@app/features/auth/components/LogoutHandler';
-
-const user = {
-  avatar:
-    'https://i.pinimg.com/originals/28/fe/78/28fe78fa581c129728e1b494749b5597.jpg',
-  fullName: 'Hyuga Hinata',
-  isAdmin: true,
-};
+import useGlobalStore from '@app/store';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
 function AccountTabUserDashboard() {
+  const user = useGlobalStore(state => state.user);
   const {colors} = useAppTheme();
 
   return (
     <Fragment>
       <Surface style={styles.surface}>
-        <Avatar.Image
-          style={styles.avatar}
-          source={{
-            uri: user.avatar,
-          }}
-        />
+        <Avatar.Text label={user.name.charAt(0)} style={styles.avatar} />
         <Text
           style={[{color: colors.primary}, styles.textCenter]}
           variant="headlineMedium">
-          {user.fullName}
+          {user.name}
         </Text>
         <AdminsOnlyFeatures />
         <LogoutHandler />

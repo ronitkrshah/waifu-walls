@@ -6,9 +6,19 @@
  */
 
 import {Button} from 'react-native-paper';
+import useLogoutController from '../controllers/useLogoutController';
 
 function LogoutHandler() {
-  return <Button mode="contained">Log Out</Button>;
+  const {isPending, logOut} = useLogoutController();
+  return (
+    <Button
+      mode="contained"
+      onPress={logOut}
+      disabled={isPending}
+      loading={isPending}>
+      Log Out
+    </Button>
+  );
 }
 
 export default LogoutHandler;

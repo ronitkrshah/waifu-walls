@@ -7,6 +7,7 @@
 
 import AccountTabLoginBox from '@app/components/screens/BottomTab/AccountTab/AccountTabLoginBox';
 import AccountTabUserDashboard from '@app/components/screens/BottomTab/AccountTab/AccountTabUserDashboard';
+import useGlobalStore from '@app/store';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
@@ -18,14 +19,15 @@ import {Appbar} from 'react-native-paper';
 function AccountTab({
   navigation,
 }: BottomTabNavigationScreenProps<BottomTabNavigationRoutes.ACCOUNT>) {
+  const isAuthenticated = useGlobalStore(state => state.user.isAuthenticated);
+
   function navigateToSettings() {
     navigation.push(StackNavigationRoutes.SETTINGS_SCREEN);
   }
   return (
     <Fragment>
       <MyAppbar onCogPress={navigateToSettings} />
-      <AccountTabUserDashboard />
-      <AccountTabLoginBox />
+      {isAuthenticated ? <AccountTabUserDashboard /> : <AccountTabLoginBox />}
     </Fragment>
   );
 }

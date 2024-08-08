@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export type RegisterUserModel = {
+export type GetLoggedInUserModel = {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
@@ -19,20 +19,7 @@ export type RegisterUserModel = {
   emailVerification: boolean;
   phoneVerification: boolean;
   mfa: boolean;
-  prefs: Prefs;
-  targets: Target[];
+  prefs: Record<string, any>;
+  targets: any[];
   accessedAt: string;
-};
-
-type Prefs = {};
-
-type Target = {
-  $id: string;
-  $createdAt: string;
-  $updatedAt: string;
-  name: string;
-  userId: string;
-  providerId?: string;
-  providerType: string;
-  identifier: string;
 };

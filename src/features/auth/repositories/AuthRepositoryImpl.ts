@@ -11,15 +11,23 @@ import AuthRepository, {
 } from '../domain/repositories/AuthRepository';
 import {ID} from 'react-native-appwrite';
 import {RegisterUserModel} from '../domain/models/RegisterUserModel';
+import {LoginSessionModel} from '../domain/models/LoginSessionModel';
+import {env} from '@app/utils/env/env';
+import {UserDocumentModel} from '../domain/models/UserDocumentModel';
+import {GetLoggedInUserModel} from '../domain/models/GetLoggedInUserModel';
 
 class AuthRepositoryImpl implements AuthRepository {
+  private _api: AppwriteService;
+
+  constructor() {
+    this._api = AppwriteService.getInstance();
+  }
+
   /**
    * Create a new user account
    */
   async registerNewUser(props: UserCredentials): Promise<RegisterUserModel> {
-    const api = AppwriteService.getInstance().account;
-    console.log('Creating Account');
-    const user = await api.create(
+    const user = await this._api.account.create(
       ID.unique(),
       props.email,
       props.password,
@@ -31,22 +39,49 @@ class AuthRepositoryImpl implements AuthRepository {
   /**
    * Login an existing registered user
    */
-  async loginUser(props: Omit<UserCredentials, 'name'>): Promise<void> {
-    throw new Error('Method not implemented.');
+  async loginUser(
+    props: Omit<UserCredentials, 'name'>,
+  ): Promise<LoginSessionModel> {
+    const session = await this._api.account.createEmailPasswordSession(
+      props.email,
+      props.password,
+    );
+    return session;
   }
 
   /**
-   * Create a new user document
+   * Storing user document
    */
-  async createUserDocument(): Promise<void> {
-    throw new Error('Method not implemented.');
+  async createUserDocument(
+    user: RegisterUserModel,
+  ): Promise<UserDocumentModel> {
+    const databaseResponse = await this._api.database.createDocument(
+      env.APPWRITE_DATABASE_ID,
+      env.APPWRITE_USERS_COLLECTION_ID,
+      user.$id,
+      {
+        name: user.name,
+        email: user.email,
+        user_id: user.$id,
+      },
+    );
+
+    return databaseResponse as UserDocumentModel;
   }
 
   /**
    * Log out currently logged in user on current device
    */
   async logOutUser(): Promise<void> {
-    throw new Error('Method not implemented.');
+    await this._api.account.deleteSession('current');
+  }
+
+  /**
+   * Get Currently Logged In user
+   */
+  async getCurrentUser() {
+    const currentUser: GetLoggedInUserModel = await this._api.account.get();
+    return currentUser;
   }
 }
 

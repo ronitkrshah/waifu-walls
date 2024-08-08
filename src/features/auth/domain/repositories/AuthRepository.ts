@@ -5,7 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {GetLoggedInUserModel} from '../models/GetLoggedInUserModel';
+import {LoginSessionModel} from '../models/LoginSessionModel';
 import {RegisterUserModel} from '../models/RegisterUserModel';
+import {UserDocumentModel} from '../models/UserDocumentModel';
 
 export type UserCredentials = {
   name: string;
@@ -15,9 +18,10 @@ export type UserCredentials = {
 
 interface AuthRepository {
   registerNewUser(props: UserCredentials): Promise<RegisterUserModel>;
-  loginUser(props: Omit<UserCredentials, 'name'>): Promise<void>;
-  createUserDocument(): Promise<void>;
+  loginUser(props: Omit<UserCredentials, 'name'>): Promise<LoginSessionModel>;
   logOutUser(): Promise<void>;
+  createUserDocument(user: RegisterUserModel): Promise<UserDocumentModel>;
+  getCurrentUser(): Promise<GetLoggedInUserModel>;
 }
 
 export default AuthRepository;

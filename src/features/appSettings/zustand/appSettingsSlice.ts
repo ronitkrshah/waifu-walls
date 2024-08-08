@@ -14,10 +14,6 @@ type AppSettingsState = {
   };
 };
 
-export const enum AppSettingsActionType {
-  TOGGLE_CUSTOMIZE_PREVIEW,
-}
-
 type AppSettingsActions = {
   toggleUseCustomizePreviewScreen(): void;
   toggleSetShowMatureContent(): void;

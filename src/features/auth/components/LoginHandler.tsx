@@ -6,17 +6,64 @@
  */
 
 import {StyleSheet, View} from 'react-native';
-import {Button} from 'react-native-paper';
+import {
+  ActivityIndicator,
+  Button,
+  Dialog,
+  Portal,
+  Text,
+} from 'react-native-paper';
 import {DefaultStyles} from '@app/utils/constants/style';
 import AuthTextInput from '../shared/components/AuthTextInput';
+import useLoginController from '../controllers/useLoginController';
+import {Fragment} from 'react';
 
 function LoginHandler() {
+  const {form, isPending} = useLoginController();
+
   return (
-    <View style={styles.container}>
-      <AuthTextInput placeholder="Enter Email" />
-      <AuthTextInput placeholder="Enter Password" />
-      <Button mode="contained">Sign In</Button>
-    </View>
+    <Fragment>
+      <View style={styles.container}>
+        <AuthTextInput
+          placeholder="Enter Email"
+          value={form.values.email}
+          onChangeText={form.handleChange('email')}
+        />
+        {form.touched.email && form.errors.email && (
+          <Text>{form.errors.email}</Text>
+        )}
+        <AuthTextInput
+          placeholder="Enter Password"
+          secureTextEntry
+          value={form.values.password}
+          onChangeText={form.handleChange('password')}
+        />
+        {form.touched.password && form.errors.password && (
+          <Text>{form.errors.password}</Text>
+        )}
+        <Button mode="contained" onPress={() => form.handleSubmit()}>
+          Sign In
+        </Button>
+      </View>
+      <ShowStatus visible={isPending} />
+    </Fragment>
+  );
+}
+
+/** Portal For Showing Status */
+type Props = {
+  visible: boolean;
+};
+
+function ShowStatus({visible}: Props) {
+  return (
+    <Portal>
+      <Dialog visible={visible} dismissable={false}>
+        <Dialog.Content>
+          <ActivityIndicator animating size={'large'} />
+        </Dialog.Content>
+      </Dialog>
+    </Portal>
   );
 }
 
