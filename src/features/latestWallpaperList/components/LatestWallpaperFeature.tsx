@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {ActivityIndicator, Text} from 'react-native-paper';
+import {ActivityIndicator} from 'react-native-paper';
 import useLatestWallpaperFeatureController from '../controllers/useLatestWallpaperFeatureController';
 import {FlatList, StyleSheet} from 'react-native';
 import {DefaultStyles} from '@app/utils/constants/style';
