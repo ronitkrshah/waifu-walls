@@ -24,8 +24,6 @@ function useWallpaperActionsController({wallpaper}: Props) {
       await setWallpaper(wallpaper.download_url, destination);
       ToastAndroid.show('Wallpaper Applied', ToastAndroid.SHORT);
     } catch (e) {
-      console.log(e);
-
       ToastAndroid.show('Faild To Apply Wallpaper', ToastAndroid.SHORT);
     } finally {
       setIsApplyingWallpaper(false);

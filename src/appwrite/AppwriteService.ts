@@ -7,7 +7,7 @@
 
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {env} from '@app/utils/env/env';
-import {Account, Client, Databases} from 'react-native-appwrite';
+import {Account, Client, Databases, Storage} from 'react-native-appwrite';
 
 class AppwriteService {
   private static _instance: AppwriteService;
@@ -15,6 +15,7 @@ class AppwriteService {
   private client: Client;
   public account: Account;
   public database: Databases;
+  public storage: Storage;
 
   private constructor() {
     this.client = new Client()
@@ -24,6 +25,7 @@ class AppwriteService {
 
     this.account = new Account(this.client);
     this.database = new Databases(this.client);
+    this.storage = new Storage(this.client);
   }
 
   public static getInstance() {

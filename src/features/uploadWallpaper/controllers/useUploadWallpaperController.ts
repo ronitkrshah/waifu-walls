@@ -9,40 +9,60 @@ import {
   UploadWallpaperActionTypes,
   useUploadWallpaperContext,
 } from '../store/UploadWallpaperContext';
-import {Image} from 'react-native';
+import {ToastAndroid} from 'react-native';
 import pickImageFromGallery from '../utils/pickImageFromGallery';
 import {useCallback} from 'react';
+import {useMutation} from '@tanstack/react-query';
+import UploadWallpaperService from '../services/UploadWallpaperService';
+import UploadWallpaperRepositoryImpl from '../repositories/UploadWallpaperRepository';
+import {UploadWallpaperProps} from '../types';
+import useGlobalStore from '@app/store';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@app/types/navigation';
 
 function useUploadWallpaperController() {
+  const uploadService = new UploadWallpaperService(
+    new UploadWallpaperRepositoryImpl(),
+  );
+  const userId = useGlobalStore(state => state.user.userId);
+  const navigation = useNavigation<StackNavigationProp>();
   const {
     isMatureContent,
     dispatch,
     imageTags,
     imagePath,
     title,
-    wallpaperSize,
     orignialAuthor,
     originalPostLink,
   } = useUploadWallpaperContext();
+
+  /**
+   * Wallpaper Mutation
+   */
+  const uploadWallpaperMutation = useMutation({
+    mutationFn: (props: UploadWallpaperProps) =>
+      uploadService.uploadWallpaper(props),
+    retry: false,
+    onError(error) {
+      ToastAndroid.show(error.message, ToastAndroid.SHORT);
+    },
+    onSuccess() {
+      ToastAndroid.show('Image Uploaded', ToastAndroid.SHORT);
+      navigation.popToTop();
+    },
+  });
 
   /**
    * Open Gallery For Image Pick
    */
   async function chooseImage() {
     const image = await pickImageFromGallery();
-    if (Array.isArray(image)) {
-      return;
-    }
-    Image.getSize(image.uri!, size => {
+    if (!Array.isArray(image)) {
       dispatch({
-        type: UploadWallpaperActionTypes.UPDATE_WALLPAPER_SIZE,
-        payload: size,
+        type: UploadWallpaperActionTypes.UPDATE_IMAGE_PATH,
+        payload: image.uri,
       });
-    });
-    dispatch({
-      type: UploadWallpaperActionTypes.UPDATE_IMAGE_PATH,
-      payload: image.uri,
-    });
+    }
   }
 
   /**
@@ -72,13 +92,15 @@ function useUploadWallpaperController() {
    * Handle Upload
    */
   function handleUpload() {
-    console.log('Image Path:', imagePath);
-    console.log('Image Size:', wallpaperSize);
-    console.log('Image Tags:', imageTags);
-    console.log('Is Mature', isMatureContent);
-    console.log('Image Title:', title);
-    console.log('Image Original Author:', orignialAuthor);
-    console.log('Image Original Post Link:', originalPostLink);
+    uploadWallpaperMutation.mutate({
+      title,
+      originalPostLink,
+      imagePath,
+      tags: imageTags,
+      userId,
+      isAdultContent: isMatureContent,
+      originalAuthorName: orignialAuthor,
+    });
   }
 
   return {
@@ -112,6 +134,7 @@ function useUploadWallpaperController() {
       });
     },
     handleUpload,
+    isUploading: uploadWallpaperMutation.isPending,
   };
 }
 

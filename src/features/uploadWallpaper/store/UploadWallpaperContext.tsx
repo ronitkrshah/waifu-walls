@@ -19,7 +19,6 @@ type UploadWallpaperState = {
   orignialAuthor?: string;
   originalPostLink?: string;
   imagePath: string;
-  wallpaperSize?: number;
   isMatureContent: boolean;
   imageTags: string[];
 };
@@ -29,7 +28,6 @@ export const enum UploadWallpaperActionTypes {
   UPDATE_ORIGINAL_AUTHOR,
   UPDATE_ORIGINAL_POST_LINK,
   UPDATE_IMAGE_PATH,
-  UPDATE_WALLPAPER_SIZE,
   UPDATE_IMAGE_TAGS,
   TOGGLE_MATURE_CONTENT,
 }
@@ -60,10 +58,6 @@ function reducerFunc(
       return produce(state, draft => {
         draft.imagePath = action.payload;
       });
-    case UploadWallpaperActionTypes.UPDATE_WALLPAPER_SIZE:
-      return produce(state, draft => {
-        draft.wallpaperSize = action.payload;
-      });
     case UploadWallpaperActionTypes.UPDATE_IMAGE_TAGS:
       return produce(state, draft => {
         draft.imageTags = [...action.payload];
@@ -85,7 +79,6 @@ const UploadWallpaperContext = createContext<
 const initialState: UploadWallpaperState = {
   title: '',
   imagePath: '',
-  wallpaperSize: undefined,
   isMatureContent: false,
   imageTags: [],
 };

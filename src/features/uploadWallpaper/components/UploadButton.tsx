@@ -12,10 +12,14 @@ import {Button} from 'react-native-paper';
 import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
 
 function UploadButton() {
-  const {handleUpload} = useUploadWallpaperController();
+  const {handleUpload, isUploading} = useUploadWallpaperController();
   return (
     <View style={styles.container}>
-      <Button onPress={handleUpload} mode="contained">
+      <Button
+        onPress={handleUpload}
+        loading={isUploading}
+        disabled={isUploading}
+        mode="contained">
         Upload Wallpaper
       </Button>
     </View>
