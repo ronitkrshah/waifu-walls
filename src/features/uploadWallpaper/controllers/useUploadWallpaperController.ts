@@ -5,20 +5,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useUploadWallpaperContext} from '../store/UploadWallpaperContext';
+import {
+  UploadWallpaperActionTypes,
+  useUploadWallpaperContext,
+} from '../store/UploadWallpaperContext';
 import {Image} from 'react-native';
 import pickImageFromGallery from '../utils/pickImageFromGallery';
-import {useCallback, useEffect} from 'react';
+import {useCallback} from 'react';
 
 function useUploadWallpaperController() {
   const {
-    wallpaperUri,
     isMatureContent,
-    setWallpaperSize,
-    setWallpaperUri,
+    dispatch,
     imageTags,
-    setImageTags,
-    setIsMatureContent,
+    imagePath,
+    title,
+    wallpaperSize,
+    orignialAuthor,
+    originalPostLink,
   } = useUploadWallpaperContext();
 
   /**
@@ -30,9 +34,15 @@ function useUploadWallpaperController() {
       return;
     }
     Image.getSize(image.uri!, size => {
-      setWallpaperSize(size);
+      dispatch({
+        type: UploadWallpaperActionTypes.UPDATE_WALLPAPER_SIZE,
+        payload: size,
+      });
     });
-    setWallpaperUri(image.uri!);
+    dispatch({
+      type: UploadWallpaperActionTypes.UPDATE_IMAGE_PATH,
+      payload: image.uri,
+    });
   }
 
   /**
@@ -43,26 +53,65 @@ function useUploadWallpaperController() {
       const _tempArray = [...imageTags];
       if (_tempArray.includes(item)) {
         const _filteredArray = _tempArray.filter(current => current !== item);
-        setImageTags(_filteredArray);
+        dispatch({
+          type: UploadWallpaperActionTypes.UPDATE_IMAGE_TAGS,
+          payload: _filteredArray,
+        });
       } else {
         _tempArray.push(item);
-        setImageTags(_tempArray);
+        dispatch({
+          type: UploadWallpaperActionTypes.UPDATE_IMAGE_TAGS,
+          payload: _tempArray,
+        });
       }
     },
-    [setImageTags, imageTags],
+    [imageTags, dispatch],
   );
 
-  useEffect(() => {
-    setImageTags([]);
-  }, [isMatureContent, setImageTags]);
+  /**
+   * Handle Upload
+   */
+  function handleUpload() {
+    console.log('Image Path:', imagePath);
+    console.log('Image Size:', wallpaperSize);
+    console.log('Image Tags:', imageTags);
+    console.log('Is Mature', isMatureContent);
+    console.log('Image Title:', title);
+    console.log('Image Original Author:', orignialAuthor);
+    console.log('Image Original Post Link:', originalPostLink);
+  }
 
   return {
-    wallpaperUri,
+    wallpaperUri: imagePath,
     chooseImage,
     updateSelectedTags,
     imageTags,
     isMatureContent,
-    setIsMatureContent,
+    toggleIsMatureContent: () => {
+      dispatch({
+        type: UploadWallpaperActionTypes.TOGGLE_MATURE_CONTENT,
+        payload: undefined,
+      });
+    },
+    updateImageTitle: (str: string) => {
+      dispatch({
+        type: UploadWallpaperActionTypes.UPDATE_TITLE,
+        payload: str,
+      });
+    },
+    updateOriginalAuthor: (author: string) => {
+      dispatch({
+        type: UploadWallpaperActionTypes.UPDATE_ORIGINAL_AUTHOR,
+        payload: author,
+      });
+    },
+    updateOriginalPostLink: (link: string) => {
+      dispatch({
+        type: UploadWallpaperActionTypes.UPDATE_ORIGINAL_POST_LINK,
+        payload: link,
+      });
+    },
+    handleUpload,
   };
 }
 

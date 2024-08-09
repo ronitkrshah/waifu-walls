@@ -10,25 +10,22 @@ import {SFWList} from '@app/utils/constants/SFWList';
 import {Fragment, memo} from 'react';
 import {Checkbox, List} from 'react-native-paper';
 import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
-import UploadWallpaperSelectImageTags from './UploadWallpaperSelectImageTags';
+import SelectableImageTags from './SelectableImageTags';
 
-function UploadWallpaperTagsInput() {
-  const {isMatureContent, setIsMatureContent} = useUploadWallpaperController();
+function ImageTagsInput() {
+  const {isMatureContent, toggleIsMatureContent} =
+    useUploadWallpaperController();
 
   const tagList = isMatureContent ? NSFWList : SFWList;
 
   return (
     <Fragment>
-      <UploadWallpaperSelectImageTags tagList={tagList} />
+      <SelectableImageTags tagList={tagList} />
 
       <List.Item
         title="This Image Contains Adult Content"
-        onPress={() => setIsMatureContent(!isMatureContent)}
-        left={() =>
-          LeftCheckBox(isMatureContent, () =>
-            setIsMatureContent(!isMatureContent),
-          )
-        }
+        onPress={toggleIsMatureContent}
+        left={() => LeftCheckBox(isMatureContent, toggleIsMatureContent)}
       />
     </Fragment>
   );
@@ -44,4 +41,4 @@ function LeftCheckBox(isMatureContent: boolean, onPress: () => void) {
   );
 }
 
-export default memo(UploadWallpaperTagsInput);
+export default memo(ImageTagsInput);

@@ -15,7 +15,7 @@ import {useAppTheme} from '@app/theme/MaterialYouTheme';
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 const IMG_HEIGHT = SCREEN_WIDTH * 1.3;
 
-function UploadWallpaperPicker() {
+function ImagePicker() {
   const {chooseImage, wallpaperUri} = useUploadWallpaperController();
   const {colors} = useAppTheme();
 
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UploadWallpaperPicker;
+export default ImagePicker;

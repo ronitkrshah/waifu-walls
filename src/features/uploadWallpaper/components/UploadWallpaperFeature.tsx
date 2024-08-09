@@ -6,16 +6,16 @@
  */
 
 import UploadWallpaperContextProvider from '../store/UploadWallpaperContext';
-import UploadWallpaperButton from './UploadWallpaperButton';
-import UploadWallpaperDetailsInput from './UploadWallpaperDetailsInput';
-import UploadWallpaperPicker from './UploadWallpaperPicker';
+import ImagePicker from './ImagePicker';
+import ImageDetailFields from './ImageDetailFields';
+import UploadButton from './UploadButton';
 
 function UploadWallpaperFeature() {
   return (
     <UploadWallpaperContextProvider>
-      <UploadWallpaperPicker />
-      <UploadWallpaperDetailsInput />
-      <UploadWallpaperButton />
+      <ImagePicker />
+      <ImageDetailFields />
+      <UploadButton />
     </UploadWallpaperContextProvider>
   );
 }

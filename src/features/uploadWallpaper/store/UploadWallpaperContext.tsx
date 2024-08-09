@@ -5,24 +5,90 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {PropsWithChildren, createContext, useContext, useState} from 'react';
+import {produce} from 'immer';
+import {
+  Dispatch,
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useReducer,
+} from 'react';
 
-type UploadWallpaperContextState = {
+type UploadWallpaperState = {
   title: string;
-  wallpaperUri: string;
+  orignialAuthor?: string;
+  originalPostLink?: string;
+  imagePath: string;
   wallpaperSize?: number;
   isMatureContent: boolean;
   imageTags: string[];
-  setTitle(title: string): void;
-  setWallpaperUri(uri: string): void;
-  setWallpaperSize(size: number): void;
-  setIsMatureContent(value: boolean): void;
-  setImageTags(tags: string[]): void;
 };
 
-const UploadWallpaperContext = createContext<UploadWallpaperContextState>(
-  {} as UploadWallpaperContextState,
-);
+export const enum UploadWallpaperActionTypes {
+  UPDATE_TITLE,
+  UPDATE_ORIGINAL_AUTHOR,
+  UPDATE_ORIGINAL_POST_LINK,
+  UPDATE_IMAGE_PATH,
+  UPDATE_WALLPAPER_SIZE,
+  UPDATE_IMAGE_TAGS,
+  TOGGLE_MATURE_CONTENT,
+}
+
+type UploadWallpaperAction = {
+  type: UploadWallpaperActionTypes;
+  payload: any;
+};
+
+function reducerFunc(
+  state: UploadWallpaperState,
+  action: UploadWallpaperAction,
+) {
+  switch (action.type) {
+    case UploadWallpaperActionTypes.UPDATE_TITLE:
+      return produce(state, draft => {
+        draft.title = action.payload;
+      });
+    case UploadWallpaperActionTypes.UPDATE_ORIGINAL_AUTHOR:
+      return produce(state, draft => {
+        draft.orignialAuthor = action.payload;
+      });
+    case UploadWallpaperActionTypes.UPDATE_ORIGINAL_POST_LINK:
+      return produce(state, draft => {
+        draft.originalPostLink = action.payload;
+      });
+    case UploadWallpaperActionTypes.UPDATE_IMAGE_PATH:
+      return produce(state, draft => {
+        draft.imagePath = action.payload;
+      });
+    case UploadWallpaperActionTypes.UPDATE_WALLPAPER_SIZE:
+      return produce(state, draft => {
+        draft.wallpaperSize = action.payload;
+      });
+    case UploadWallpaperActionTypes.UPDATE_IMAGE_TAGS:
+      return produce(state, draft => {
+        draft.imageTags = [...action.payload];
+      });
+    case UploadWallpaperActionTypes.TOGGLE_MATURE_CONTENT:
+      return produce(state, draft => {
+        draft.isMatureContent = !draft.isMatureContent;
+        draft.imageTags = [];
+      });
+    default:
+      return state;
+  }
+}
+
+const UploadWallpaperContext = createContext<
+  UploadWallpaperState & {dispatch: Dispatch<UploadWallpaperAction>}
+>({} as UploadWallpaperState & {dispatch: Dispatch<UploadWallpaperAction>});
+
+const initialState: UploadWallpaperState = {
+  title: '',
+  imagePath: '',
+  wallpaperSize: undefined,
+  isMatureContent: false,
+  imageTags: [],
+};
 
 export function useUploadWallpaperContext() {
   const context = useContext(UploadWallpaperContext);
@@ -35,26 +101,9 @@ export function useUploadWallpaperContext() {
 }
 
 function UploadWallpaperContextProvider({children}: PropsWithChildren) {
-  const [title, setTitle] = useState('');
-  const [wallpaperUri, setWallpaperUri] = useState('');
-  const [wallpaperSize, setWallpaperSize] = useState<number>();
-  const [isMatureContent, setIsMatureContent] = useState(false);
-  const [imageTags, setImageTags] = useState<string[]>([]);
-
+  const [state, dispatch] = useReducer(reducerFunc, initialState);
   return (
-    <UploadWallpaperContext.Provider
-      value={{
-        title,
-        wallpaperSize,
-        wallpaperUri,
-        isMatureContent,
-        imageTags,
-        setTitle,
-        setWallpaperSize,
-        setWallpaperUri,
-        setIsMatureContent,
-        setImageTags,
-      }}>
+    <UploadWallpaperContext.Provider value={{...state, dispatch}}>
       {children}
     </UploadWallpaperContext.Provider>
   );

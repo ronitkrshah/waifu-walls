@@ -9,11 +9,15 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-paper';
+import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
 
-function UploadWallpaperButton() {
+function UploadButton() {
+  const {handleUpload} = useUploadWallpaperController();
   return (
     <View style={styles.container}>
-      <Button mode="contained">Upload Wallpaper</Button>
+      <Button onPress={handleUpload} mode="contained">
+        Upload Wallpaper
+      </Button>
     </View>
   );
 }
@@ -25,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UploadWallpaperButton;
+export default UploadButton;

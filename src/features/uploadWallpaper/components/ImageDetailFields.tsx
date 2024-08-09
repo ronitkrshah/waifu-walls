@@ -8,10 +8,13 @@
 import {DefaultStyles} from '@app/utils/constants/style';
 import {StyleSheet, View} from 'react-native';
 import {TextInput} from 'react-native-paper';
-import UploadWallpaperTagsInput from './UploadWallpaperTagsInput';
 import {useState} from 'react';
+import ImageTagsInput from './ImageTagsInput';
+import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
 
-function UploadWallpaperDetailsInput() {
+function ImageDetailFields() {
+  const {updateImageTitle, updateOriginalAuthor, updateOriginalPostLink} =
+    useUploadWallpaperController();
   const [details, setDetails] = useState({
     title: '',
     author: '',
@@ -23,19 +26,34 @@ function UploadWallpaperDetailsInput() {
       <TextInput
         placeholder="Enter Title"
         value={details.title}
-        onChangeText={e => setDetails(s => ({...s, title: e}))}
+        onChangeText={e =>
+          setDetails(s => {
+            updateImageTitle(e);
+            return {...s, title: e};
+          })
+        }
       />
       <TextInput
         placeholder="Enter Author Name (Optional)"
         value={details.author}
-        onChangeText={e => setDetails(s => ({...s, author: e}))}
+        onChangeText={e =>
+          setDetails(s => {
+            updateOriginalAuthor(e);
+            return {...s, author: e};
+          })
+        }
       />
       <TextInput
         value={details.originalLink}
         placeholder="Original Image Link (Optional)"
-        onChangeText={e => setDetails(s => ({...s, originalLink: e}))}
+        onChangeText={e =>
+          setDetails(s => {
+            updateOriginalPostLink(e);
+            return {...s, originalLink: e};
+          })
+        }
       />
-      <UploadWallpaperTagsInput />
+      <ImageTagsInput />
     </View>
   );
 }
@@ -48,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UploadWallpaperDetailsInput;
+export default ImageDetailFields;
