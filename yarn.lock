@@ -5463,6 +5463,7 @@ __metadata:
     react-native-appwrite: ^0.4.0
     react-native-compressor: ^1.8.25
     react-native-config: ^1.5.3
+    react-native-device-info: ^11.1.0
     react-native-device-wallpaper-manager: ^0.0.2
     react-native-fast-image: "https://github.com/HyopeR/react-native-fast-image"
     react-native-gesture-handler: ^2.18.1
@@ -11362,6 +11363,15 @@ __metadata:
     react-native-windows:
       optional: true
   checksum: 0eb74e0a10ae6e96422671482da83dea16571f4f5ad848d1f18015dccbecb9cbc066788df72a88c630abf4aed0edb7616ec27704817cff18bd6ed7d61979d671
+  languageName: node
+  linkType: hard
+
+"react-native-device-info@npm:^11.1.0":
+  version: 11.1.0
+  resolution: "react-native-device-info@npm:11.1.0"
+  peerDependencies:
+    react-native: "*"
+  checksum: 272cab82573933a1f3a9bc394b82a387ccbdf9fbef131fc1f04b8ff78b36f581931b5c643f5aa278f28577cbc320ef2ac588cafdb73292e9b0cf4427d54c44ce
   languageName: node
   linkType: hard
 

@@ -7,6 +7,7 @@
 
 import AppSearchBar from '@app/components/screens/BottomTab/WaifusTab/AppSearchBar';
 import LatestWallpaperFeature from '@app/features/latestWallpaperList/components/LatestWallpaperFeature';
+import CheckAppUpdates from '@app/features/remoteConfig/components/CheckAppUpdates';
 import useGlobalStore from '@app/store';
 import {
   BottomTabNavigationRoutes,
@@ -38,6 +39,7 @@ function WaifusTab({
       {isAuthenticated && (
         <FAB icon={'file-upload'} style={styles.fab} onPress={onFabPress} />
       )}
+      <CheckAppUpdates />
     </Fragment>
   );
 }

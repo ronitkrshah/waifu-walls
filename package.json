@@ -23,6 +23,7 @@
     "react-native-appwrite": "^0.4.0",
     "react-native-compressor": "^1.8.25",
     "react-native-config": "^1.5.3",
+    "react-native-device-info": "^11.1.0",
     "react-native-device-wallpaper-manager": "^0.0.2",
     "react-native-fast-image": "https://github.com/HyopeR/react-native-fast-image",
     "react-native-gesture-handler": "^2.18.1",
