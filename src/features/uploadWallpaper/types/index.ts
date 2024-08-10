@@ -11,6 +11,6 @@ export type UploadWallpaperProps = {
   originalPostLink?: string;
   imagePath: string;
   tags?: string[];
-  isAdultContent: boolean;
+  isAdultContent: boolean | null;
   userId: string;
 };

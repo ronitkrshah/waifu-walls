@@ -58,6 +58,7 @@ class UploadWallpaperService {
       ...props,
       size: imageSize,
       imagePath: localImagePath,
+      isAdultContent: props.isAdultContent ? true : null,
     });
   }
 }
