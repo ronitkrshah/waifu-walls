@@ -47,7 +47,10 @@ function useWallpaperListController(query?: string | string[]) {
    * then api will hit 10 times for refresh the pages.
    */
   function refreshDataOnlyFirstPage() {
-    queryClient.resetQueries({queryKey: ['listWallpapers'], exact: true});
+    queryClient.resetQueries({
+      queryKey: ['listWallpapers', query],
+      exact: true,
+    });
   }
 
   /**
