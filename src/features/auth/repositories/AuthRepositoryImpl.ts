@@ -83,6 +83,13 @@ class AuthRepositoryImpl implements AuthRepository {
     const currentUser: GetLoggedInUserModel = await this._api.account.get();
     return currentUser;
   }
+
+  /**
+   * Delete User Account
+   */
+  async deleteUserAccount(userId: string) {
+    await this._api.account.deleteIdentity(userId);
+  }
 }
 
 export default AuthRepositoryImpl;

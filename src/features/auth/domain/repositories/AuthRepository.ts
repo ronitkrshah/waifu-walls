@@ -22,6 +22,7 @@ interface AuthRepository {
   logOutUser(): Promise<void>;
   createUserDocument(user: RegisterUserModel): Promise<UserDocumentModel>;
   getCurrentUser(): Promise<GetLoggedInUserModel>;
+  deleteUserAccount(userId: string): Promise<void>;
 }
 
 export default AuthRepository;

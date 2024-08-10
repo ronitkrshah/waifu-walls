@@ -6,6 +6,7 @@
  */
 
 import {RegisterUserModel} from '../domain/models/RegisterUserModel';
+import {UserDocumentModel} from '../domain/models/UserDocumentModel';
 import AuthRepository, {
   UserCredentials,
 } from '../domain/repositories/AuthRepository';
@@ -23,18 +24,30 @@ class AuthService {
    * Create and login user
    */
   public async createNewAccount(props: UserCredentials): Promise<User> {
-    const response = await this._repo.registerNewUser({
-      name: props.name,
-      email: props.email,
-      password: props.password,
-    });
-    /** Do Not Call `loginWithEmailAndPassword` method in this class */
-    await this._repo.loginUser({
-      email: props.email,
-      password: props.password,
-    });
-    const databaseUserDocument = await this.createUserDocument(response);
-    return TranformToDTOAuth.toUserDto(databaseUserDocument);
+    let newUser: RegisterUserModel | null = null;
+    let userDocument: UserDocumentModel | null = null;
+
+    try {
+      newUser = await this._repo.registerNewUser({
+        name: props.name,
+        email: props.email,
+        password: props.password,
+      });
+      /** Do Not Call `loginWithEmailAndPassword` method in this class */
+      await this._repo.loginUser({
+        email: props.email,
+        password: props.password,
+      });
+      userDocument = await this.createUserDocument(newUser);
+    } catch (e) {
+      /** If Creating Document Failed then delete new user data */
+      if (userDocument !== null) {
+        await this.logoutUser();
+        await this._repo.deleteUserAccount(newUser!.$id);
+      }
+      throw e;
+    }
+    return TranformToDTOAuth.toUserDto(userDocument);
   }
 
   /**
