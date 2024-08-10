@@ -10,6 +10,7 @@ import UploadWallpaperRepository from '../domain/repositories/UploadWallpaperRep
 import {UploadWallpaperProps} from '../types';
 import * as FileSystem from '@dr.pogodin/react-native-fs';
 import {WallpaperLimits} from '@app/utils/constants/limits';
+import UploadWallpaperTextValidations from '../utils/validations';
 
 class UploadWallpaperService {
   private _repo: UploadWallpaperRepository;
@@ -22,6 +23,13 @@ class UploadWallpaperService {
    * Upload Image
    */
   async uploadWallpaper(props: UploadWallpaperProps) {
+    /** Text Length Validation */
+    UploadWallpaperTextValidations({
+      title: props.title,
+      original_author: props.originalAuthorName,
+      original_post_link: props.originalPostLink,
+    });
+
     const originalFileStats = await FileSystem.stat(props.imagePath);
     let imageSize = originalFileStats.size;
     let localImagePath = props.imagePath;
