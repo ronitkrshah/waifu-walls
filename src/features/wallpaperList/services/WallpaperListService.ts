@@ -36,6 +36,7 @@ class WallpaperListService {
     /**
      * Queries
      */
+
     const queries = [
       Query.orderDesc('$createdAt'),
       Query.limit(WallpaperLimits.MAXIMUM_WALLPAPERS_PER_QUERY),

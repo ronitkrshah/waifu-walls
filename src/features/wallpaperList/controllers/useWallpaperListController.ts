@@ -37,7 +37,7 @@ function useWallpaperListController(query?: string | string[]) {
       wallpaperService.getWallpapers(pageParam, showMatureImages, query),
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.hasNextPage,
-    refetchOnMount: false,
+    staleTime: 300000, // 5 minutes
   });
 
   /**
