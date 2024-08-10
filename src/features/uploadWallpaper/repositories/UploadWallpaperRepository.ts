@@ -8,7 +8,7 @@
 import AppwriteService from '@app/appwrite/AppwriteService';
 import {UploadWallpaperProps} from '../types';
 import {env} from '@app/utils/env/env';
-import {ID} from 'react-native-appwrite';
+import {ID, Models} from 'react-native-appwrite';
 import UploadWallpaperRepository from '../domain/repositories/UploadWallpaperRepository';
 
 class UploadWallpaperRepositoryImpl implements UploadWallpaperRepository {
@@ -18,37 +18,52 @@ class UploadWallpaperRepositoryImpl implements UploadWallpaperRepository {
    * Create A Wallpaper Document In Database
    */
   async uploadWallpaper(props: UploadWallpaperProps & {size: number}) {
-    /** Uploading Image To Bucket */
-    const {$id: imageId} = await this.uploadImage(
-      props.imagePath,
-      props.size,
-      props.title,
-    );
+    let uploadedWallpaper: Models.File | null = null;
 
-    await this._api.database.createDocument(
-      env.APPWRITE_DATABASE_ID,
-      env.APPWRITE_WALLPAPERS_COLLECTION_ID!,
-      imageId,
-      {
-        title: props.title,
-        preview_url: `${this._api.storage.getFilePreview(
-          env.APPWRITE_WALLPAPERS_BUCKET_ID!,
-          imageId,
-        )}`,
-        download_url: `${this._api.storage.getFileDownload(
-          env.APPWRITE_WALLPAPERS_BUCKET_ID!,
-          imageId,
-        )}`,
-        original_author: props.originalAuthorName,
-        original_post_link: props.originalPostLink,
-        is_nsfw: props.isAdultContent,
-        tags: props.tags,
-        image_id: imageId,
-        uploaded_by: props.userId,
-      },
-    );
+    try {
+      /** Uploading Image To Bucket */
+      uploadedWallpaper = await this.uploadImage(
+        props.imagePath,
+        props.size,
+        props.title,
+      );
+
+      /** Creating Document */
+      await this._api.database.createDocument(
+        env.APPWRITE_DATABASE_ID,
+        env.APPWRITE_WALLPAPERS_COLLECTION_ID!,
+        uploadedWallpaper.$id,
+        {
+          title: props.title,
+          original_author: props.originalAuthorName,
+          original_post_link: props.originalPostLink,
+          is_nsfw: props.isAdultContent,
+          tags: props.tags,
+          image_id: uploadedWallpaper.$id,
+          uploaded_by: props.userId,
+          preview_url: `${this._api.storage.getFilePreview(
+            env.APPWRITE_WALLPAPERS_BUCKET_ID!,
+            uploadedWallpaper.$id,
+          )}`,
+          download_url: `${this._api.storage.getFileDownload(
+            env.APPWRITE_WALLPAPERS_BUCKET_ID!,
+            uploadedWallpaper.$id,
+          )}`,
+        },
+      );
+    } catch (e) {
+      /** If Creating Document Fails Then Delete File From Server */
+      if (uploadedWallpaper) {
+        this.deleteImageFromServer(uploadedWallpaper.$id);
+      }
+
+      throw e;
+    }
   }
 
+  /**
+   * Upload Image to bucket
+   */
   private async uploadImage(
     imagePath: string,
     imageSize: number,
@@ -66,6 +81,16 @@ class UploadWallpaperRepositoryImpl implements UploadWallpaperRepository {
     );
 
     return databaseResponse;
+  }
+
+  /**
+   * Cleanup
+   */
+  async deleteImageFromServer(imageId: string) {
+    await this._api.storage.deleteFile(
+      env.APPWRITE_WALLPAPERS_BUCKET_ID,
+      imageId,
+    );
   }
 }
 
