@@ -6,11 +6,9 @@
  */
 
 import {Wallpaper} from '@app/types/api/wallpaper';
-import LatestWallpaperModel from '../domain/models/LatestWallpaperModel';
+import WallpaperModel from '../domain/models/WallpaperModel';
 
-function transformToDto(
-  model: LatestWallpaperModel['data'][number],
-): Wallpaper {
+function transformToDto(model: WallpaperModel['data'][number]): Wallpaper {
   return {
     id: model.image_id,
     title: model.title,

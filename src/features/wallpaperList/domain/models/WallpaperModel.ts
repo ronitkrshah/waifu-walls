@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-type LatestWallpaperModel = {
+type WallpaperModel = {
   currentOffset: number;
   hasNextPage?: number | null;
   total: number;
@@ -42,4 +42,4 @@ type ActualData = {
   $collectionId: string;
 };
 
-export default LatestWallpaperModel;
+export default WallpaperModel;

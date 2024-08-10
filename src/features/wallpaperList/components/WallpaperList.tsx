@@ -6,7 +6,7 @@
  */
 
 import {ActivityIndicator} from 'react-native-paper';
-import useLatestWallpaperFeatureController from '../controllers/useLatestWallpaperFeatureController';
+import useWallpaperListController from '../controllers/useWallpaperListController';
 import {FlatList, StyleSheet} from 'react-native';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
@@ -15,7 +15,11 @@ import WallpaperListItem from '@app/features/shared/components/WallpaperListItem
 import {RefreshControl} from 'react-native-gesture-handler';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 
-function LatestWallpaperFeature() {
+type Props = {
+  query?: string | string[];
+};
+
+function WallpaperList({query}: Props) {
   const {colors} = useAppTheme();
   const {
     isLoading,
@@ -24,7 +28,7 @@ function LatestWallpaperFeature() {
     fetchMore,
     handleWallpaperPress,
     refreshData,
-  } = useLatestWallpaperFeatureController();
+  } = useWallpaperListController(query);
 
   return (
     <Fragment>
@@ -64,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LatestWallpaperFeature;
+export default WallpaperList;

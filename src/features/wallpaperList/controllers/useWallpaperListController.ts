@@ -6,24 +6,24 @@
  */
 
 import {useInfiniteQuery, useQueryClient} from '@tanstack/react-query';
-import LatestWallpaperFeatureService from '../services/WallpaperFeatureService';
+import WallpaperListService from '../services/WallpaperListService';
 import {useNavigation} from '@react-navigation/native';
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
   StackNavigationRoutes,
 } from '@app/types/navigation';
-import LatestWallpaperRepositoryImpl from '../repositories/LatestWallpaperRepositoryImpl';
 import {Wallpaper} from '@app/types/api/wallpaper';
 import useGlobalStore from '@app/store';
+import WallpaperListRepositoryImpl from '../repositories/WallpaperListRepositoryImpl';
 
-function useLatestWallpaperFeatureController() {
+function useWallpaperListController(query?: string | string[]) {
   const queryClient = useQueryClient();
   const showMatureImages = useGlobalStore(
     state => state.appSettings.showMatureContent,
   );
-  const wallpaperService = new LatestWallpaperFeatureService(
-    new LatestWallpaperRepositoryImpl(),
+  const wallpaperService = new WallpaperListService(
+    new WallpaperListRepositoryImpl(),
   );
   const navigation =
     useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.WAIFUS>>();
@@ -32,12 +32,12 @@ function useLatestWallpaperFeatureController() {
    * Infinte Scroll Of Latest Wallpapers
    */
   const wallpaperListQuery = useInfiniteQuery({
-    queryKey: ['latestWallpaper'],
+    queryKey: ['listWallpapers', query],
     queryFn: ({pageParam}) =>
-      wallpaperService.getLatestWallpapers(pageParam, showMatureImages),
+      wallpaperService.getWallpapers(pageParam, showMatureImages, query),
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.hasNextPage,
-    //refetchOnMount: false,
+    refetchOnMount: false,
   });
 
   /**
@@ -47,7 +47,7 @@ function useLatestWallpaperFeatureController() {
    * then api will hit 10 times for refresh the pages.
    */
   function refreshDataOnlyFirstPage() {
-    queryClient.resetQueries({queryKey: ['latestWallpaper'], exact: true});
+    queryClient.resetQueries({queryKey: ['listWallpapers'], exact: true});
   }
 
   /**
@@ -72,4 +72,4 @@ function useLatestWallpaperFeatureController() {
   };
 }
 
-export default useLatestWallpaperFeatureController;
+export default useWallpaperListController;

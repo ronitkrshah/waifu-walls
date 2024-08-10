@@ -5,17 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import WallpaperList from '@app/features/wallpaperList/components/WallpaperList';
 import {
   SearchScreenSearchType,
   StackNavigationParamList,
   StackNavigationRoutes,
+  StackNavigationScreenProps,
 } from '@app/types/navigation';
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Appbar} from 'react-native-paper';
 
-function SearchResultsScreen() {
-  return null;
+function SearchResultsScreen({
+  route,
+}: StackNavigationScreenProps<StackNavigationRoutes.SEARCH_RESULTS_SCREEN>) {
+  return <WallpaperList query={route.params.query} />;
 }
 
 /** Appbar For SearchResultsScreen */

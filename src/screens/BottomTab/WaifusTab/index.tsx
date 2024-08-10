@@ -6,7 +6,7 @@
  */
 
 import AppSearchBar from '@app/components/screens/BottomTab/WaifusTab/AppSearchBar';
-import LatestWallpaperFeature from '@app/features/latestWallpaperList/components/LatestWallpaperFeature';
+import WallpaperList from '@app/features/wallpaperList/components/WallpaperList';
 import CheckAppUpdates from '@app/features/remoteConfig/components/CheckAppUpdates';
 import useGlobalStore from '@app/store';
 import {
@@ -35,7 +35,7 @@ function WaifusTab({
           <AppSearchBar />
         </View>
       </SafeAreaView>
-      <LatestWallpaperFeature />
+      <WallpaperList />
       {isAuthenticated && (
         <FAB icon={'file-upload'} style={styles.fab} onPress={onFabPress} />
       )}
