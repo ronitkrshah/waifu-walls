@@ -5,18 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {FlatList} from 'react-native';
-import useAppSettingsController from '../controllers/useAppSettingsController';
-import AppSettingsFeatureListCheckbox from './AppSettingsFeatureListCheckbox';
+import {ScrollView} from 'react-native';
+import AdultSettingsSection from '../settings/adultSettings/AdultSettingsSection';
+import AppearanceSettingsSection from '../settings/appearanceSettings/AppearanceSettingsSection';
 
 function AppSettingsFeature() {
-  const {AppSettingsList} = useAppSettingsController();
   return (
-    <FlatList
-      data={AppSettingsList}
-      renderItem={({item}) => <AppSettingsFeatureListCheckbox feature={item} />}
-      keyExtractor={item => item.id}
-    />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <AppearanceSettingsSection />
+      <AdultSettingsSection />
+    </ScrollView>
   );
 }
 

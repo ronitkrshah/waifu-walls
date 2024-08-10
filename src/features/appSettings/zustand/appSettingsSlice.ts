@@ -15,8 +15,8 @@ type AppSettingsState = {
 };
 
 type AppSettingsActions = {
-  toggleUseCustomizePreviewScreen(): void;
-  toggleSetShowMatureContent(): void;
+  setUseCustomizePreviewScreen(value: boolean): void;
+  setShowMatureContent(value: boolean): void;
 };
 
 export type AppSettingsSlice = AppSettingsState & AppSettingsActions;
@@ -32,15 +32,13 @@ const createAppSettingsSlice: StateCreator<
   AppSettingsSlice
 > = set => ({
   ...initialState,
-  toggleUseCustomizePreviewScreen: () =>
+  setUseCustomizePreviewScreen: (value: boolean) =>
     set(state => {
-      state.appSettings.useCustomizePreviewScreen =
-        !state.appSettings.useCustomizePreviewScreen;
+      state.appSettings.useCustomizePreviewScreen = value;
     }),
-  toggleSetShowMatureContent: () =>
+  setShowMatureContent: (value: boolean) =>
     set(state => {
-      state.appSettings.showMatureContent =
-        !state.appSettings.showMatureContent;
+      state.appSettings.showMatureContent = value;
     }),
 });
 
