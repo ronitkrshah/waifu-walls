@@ -10,11 +10,11 @@ import {StyleSheet, View} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {useState} from 'react';
 import ImageTagsInput from './ImageTagsInput';
-import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
+import useTextFieldsController from '../controllers/useTextFieldsController';
 
 function ImageDetailFields() {
   const {updateImageTitle, updateOriginalAuthor, updateOriginalPostLink} =
-    useUploadWallpaperController();
+    useTextFieldsController();
   const [details, setDetails] = useState({
     title: '',
     author: '',

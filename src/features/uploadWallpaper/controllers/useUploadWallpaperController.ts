@@ -115,24 +115,6 @@ function useUploadWallpaperController() {
         payload: undefined,
       });
     },
-    updateImageTitle: (str: string) => {
-      dispatch({
-        type: UploadWallpaperActionTypes.UPDATE_TITLE,
-        payload: str,
-      });
-    },
-    updateOriginalAuthor: (author: string) => {
-      dispatch({
-        type: UploadWallpaperActionTypes.UPDATE_ORIGINAL_AUTHOR,
-        payload: author,
-      });
-    },
-    updateOriginalPostLink: (link: string) => {
-      dispatch({
-        type: UploadWallpaperActionTypes.UPDATE_ORIGINAL_POST_LINK,
-        payload: link,
-      });
-    },
     handleUpload,
     isUploading: uploadWallpaperMutation.isPending,
   };
