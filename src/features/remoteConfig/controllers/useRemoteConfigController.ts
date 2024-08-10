@@ -12,15 +12,19 @@ import RemoteConfigService from '../services/RemoteConfigService';
 import RemoteConfigRepositoryImpl from '../repositories/RemoteConfigRepositoryImpl';
 import {useEffect, useState} from 'react';
 import DeviceInfo from 'react-native-device-info';
+import useGlobalStore from '@app/store';
 
 function useRemoteConfigController() {
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const service = new RemoteConfigService(new RemoteConfigRepositoryImpl());
+  const setShouldUploadImages = useGlobalStore(
+    state => state.setShouldUploadImages,
+  );
 
   const {isLoading, data} = useQuery({
     queryKey: ['remoteConfig'],
     queryFn: () => service.getConfig(),
-    refetchOnMount: false,
+    staleTime: 1800000, // 30 Mins
   });
 
   function onUpdatePress() {
@@ -32,11 +36,8 @@ function useRemoteConfigController() {
       return;
     }
     if (data) {
-      const isUpdateAvilable = data.version !== DeviceInfo.getVersion();
-
-      if (isUpdateAvilable) {
-        setShowUpdateDialog(true);
-      }
+      data.version !== DeviceInfo.getVersion() && setShowUpdateDialog(true);
+      setShouldUploadImages(data.shouldUploadImages);
     }
   }, [isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
 

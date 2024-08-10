@@ -5,21 +5,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import CheckRemoteConfig from '@app/features/remoteConfig/components/CheckRemoteConfig';
 import UploadWallpaperFeature from '@app/features/uploadWallpaper/components/UploadWallpaperFeature';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
+import {Fragment} from 'react';
 import {KeyboardAvoidingView, ScrollView, StyleSheet} from 'react-native';
 import {Appbar} from 'react-native-paper';
 
 function UploadWallpaperScreen() {
   return (
-    <KeyboardAvoidingView style={styles.rootContainer} behavior="padding">
-      <ScrollView
-        nestedScrollEnabled
-        style={styles.rootContainer}
-        contentContainerStyle={styles.contentContainer}>
-        <UploadWallpaperFeature />
-      </ScrollView>
-    </KeyboardAvoidingView>
+    <Fragment>
+      <KeyboardAvoidingView style={styles.rootContainer} behavior="padding">
+        <ScrollView
+          nestedScrollEnabled
+          style={styles.rootContainer}
+          contentContainerStyle={styles.contentContainer}>
+          <UploadWallpaperFeature />
+        </ScrollView>
+      </KeyboardAvoidingView>
+
+      {/** Re-Check */}
+      <CheckRemoteConfig />
+    </Fragment>
   );
 }
 

@@ -7,8 +7,7 @@
 
 import AppSearchBar from '@app/components/screens/BottomTab/WaifusTab/AppSearchBar';
 import WallpaperList from '@app/features/wallpaperList/components/WallpaperList';
-import CheckAppUpdates from '@app/features/remoteConfig/components/CheckAppUpdates';
-import useGlobalStore from '@app/store';
+import CheckRemoteConfig from '@app/features/remoteConfig/components/CheckRemoteConfig';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
@@ -17,13 +16,12 @@ import {
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {FAB} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import WallpaperUploadFAB from '@app/components/screens/BottomTab/WaifusTab/WallpaperUploadFAB';
 
 function WaifusTab({
   navigation,
 }: BottomTabNavigationScreenProps<BottomTabNavigationRoutes.WAIFUS>) {
-  const isAuthenticated = useGlobalStore(state => state.user.isAuthenticated);
   function onFabPress() {
     navigation.push(StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN);
   }
@@ -36,10 +34,13 @@ function WaifusTab({
         </View>
       </SafeAreaView>
       <WallpaperList />
-      {isAuthenticated && (
-        <FAB icon={'file-upload'} style={styles.fab} onPress={onFabPress} />
-      )}
-      <CheckAppUpdates />
+      <WallpaperUploadFAB onPress={onFabPress} />
+
+      {/**
+       * Check Remote Configuration
+       * - Show App Update Dialog if updates are available
+       */}
+      <CheckRemoteConfig />
     </Fragment>
   );
 }
@@ -48,11 +49,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: DefaultStyles.SPACING,
     paddingHorizontal: DefaultStyles.SPACING,
-  },
-  fab: {
-    position: 'absolute',
-    bottom: DefaultStyles.SPACING,
-    right: DefaultStyles.SPACING,
   },
 });
 

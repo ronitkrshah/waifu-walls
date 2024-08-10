@@ -7,6 +7,7 @@
 
 type RemoteConfigModel = {
   version: string;
+  should_upload_images: boolean;
   $id: string;
   $tenant: string;
   $createdAt: string;

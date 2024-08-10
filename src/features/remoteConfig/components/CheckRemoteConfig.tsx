@@ -13,9 +13,11 @@ import {Button, Dialog, Portal, Text} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import useRemoteConfigController from '../controllers/useRemoteConfigController';
 
-function CheckAppUpdates() {
+function CheckRemoteConfig() {
   const {colors} = useAppTheme();
   const {onUpdatePress, showUpdateDialog} = useRemoteConfigController();
+
+  /** Show App Update Dialog If App Update Available */
   return (
     <Portal>
       <Dialog visible={showUpdateDialog} dismissable={false}>
@@ -48,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckAppUpdates;
+export default CheckRemoteConfig;

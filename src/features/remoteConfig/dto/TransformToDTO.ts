@@ -12,6 +12,7 @@ class TransformToDTO {
   public static toRemoteConfigDto(model: RemoteConfigModel): RemoteConfigDTO {
     return {
       version: model.version,
+      shouldUploadImages: model.should_upload_images,
     };
   }
 }

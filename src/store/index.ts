@@ -16,10 +16,14 @@ import createMatureContentAgreementSlice, {
   MatureContentAgreementSlice,
 } from '@app/features/matureContentAgreement/zustand/createMatureContentSlice';
 import createUserSlice, {UserSlice} from '@app/features/auth/zustand/userSlice';
+import createRemoteConfigSlice, {
+  RemoteConfigSlice,
+} from '@app/features/remoteConfig/zustand/remoteConfigSlice';
 
 type GloablStoreType = AppSettingsSlice &
   MatureContentAgreementSlice &
-  UserSlice;
+  UserSlice &
+  RemoteConfigSlice;
 
 const useGlobalStore = create<GloablStoreType>()(
   persist(
@@ -27,6 +31,7 @@ const useGlobalStore = create<GloablStoreType>()(
       ...createMatureContentAgreementSlice(...a),
       ...createAppSettingsSlice(...a),
       ...createUserSlice(...a),
+      ...createRemoteConfigSlice(...a),
     })),
     {
       name: 'GLOBAL_STATE',
