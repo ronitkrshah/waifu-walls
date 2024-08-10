@@ -5,13 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {latestImagesDummyData} from '@app/dummy_data';
 import LatestWallpaperRepository from '../domain/repositories/LatestWallpaperRepository';
 import LatestWallpaperModel from '../domain/models/LatestWallpaperModel';
+import AppwriteService from '@app/appwrite/AppwriteService';
+import {env} from '@app/utils/env/env';
+import {Query} from 'react-native-appwrite';
 
 class LatestWallpaperRepositoryImpl implements LatestWallpaperRepository {
+  private _repo = AppwriteService.getInstance();
+
   /** Limit Of Data On Every Page */
-  private LIMIT = 3;
+  private LIMIT = 20;
 
   /**
    * Getting Latest Wallpapers from Database
@@ -20,25 +24,35 @@ class LatestWallpaperRepositoryImpl implements LatestWallpaperRepository {
     offset = 0,
     showAdultImages = false,
   ): Promise<LatestWallpaperModel> {
-    const response = await new Promise(resolve => {
-      setTimeout(() => {
-        resolve({
-          total: latestImagesDummyData.length,
-          data: latestImagesDummyData
-            .slice(offset, this.LIMIT + offset)
-            .filter(item =>
-              showAdultImages ? item : item.is_nsfw === showAdultImages,
-            ),
-        });
-      }, 3000);
-    });
+    const queries = [
+      Query.orderDesc('$createdAt'),
+      Query.offset(offset),
+      Query.limit(this.LIMIT),
+    ];
+
+    /**
+     *
+     * I don't know how to query based on boolean value in appwrite
+     * that's i'm searching for null value :)
+     */
+    if (!showAdultImages) {
+      queries.push(Query.isNull('is_nsfw'));
+    }
+
+    const databseResponse = await this._repo.database.listDocuments(
+      env.APPWRITE_DATABASE_ID,
+      env.APPWRITE_WALLPAPERS_COLLECTION_ID,
+      queries,
+    );
 
     return {
       currentOffset: offset,
       hasNextPage:
-        offset + this.LIMIT < response.total ? offset + this.LIMIT : undefined,
-      data: response.data,
-      total: response.total,
+        offset + this.LIMIT < databseResponse.total
+          ? offset + this.LIMIT
+          : undefined,
+      data: databseResponse.documents as LatestWallpaperModel['data'],
+      total: databseResponse.total,
     };
   }
 }

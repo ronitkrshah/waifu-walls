@@ -13,18 +13,33 @@ type LatestWallpaperModel = {
 };
 
 type ActualData = {
-  id: string;
   title: string;
-  is_nsfw: boolean;
-  tags: string[];
   preview_url: string;
   download_url: string;
-  author?: string;
+  original_author: string;
+  original_post_link: string;
+  is_nsfw: boolean;
+  image_id: string;
+  tags: Array<string>;
+  $id: string;
+  $tenant: string;
+  $createdAt: string;
+  $updatedAt: string;
+  $permissions: Array<string>;
   uploaded_by: {
     name: string;
-    id: string;
+    email: string;
+    user_id: string;
+    $id: string;
+    $tenant: string;
+    $createdAt: string;
+    $updatedAt: string;
+    $permissions: Array<string>;
+    $databaseId: string;
+    $collectionId: string;
   };
-  original_post_link?: string;
+  $databaseId: string;
+  $collectionId: string;
 };
 
 export default LatestWallpaperModel;
