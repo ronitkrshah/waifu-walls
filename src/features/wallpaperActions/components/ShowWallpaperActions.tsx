@@ -17,19 +17,12 @@ type Props = {
   wallpaper: Wallpaper;
 };
 
-/**
- *
- * `ShowWallpaperActions` Components Renders Two Button `Apply` & `Download`
- * this will help users to download wallpaper or directly set wallpaper from
- * the App.
- *
- * Requires `Wallpaper`
- */
 function ShowWallpaperActions({wallpaper}: Props) {
   const [showDestinationOptions, setShowDestinationOptions] = useState(false);
-  const {applyWallpaper, isApplyingWallaper} = useWallpaperActionsController({
-    wallpaper,
-  });
+  const {applyWallpaper, isApplyingWallaper, isDownloading, downloadWallpaper} =
+    useWallpaperActionsController({
+      wallpaper,
+    });
   function onApply() {
     setShowDestinationOptions(true);
   }
@@ -44,7 +37,13 @@ function ShowWallpaperActions({wallpaper}: Props) {
         <Button mode="contained" onPress={onApply}>
           Apply
         </Button>
-        <Button mode="contained">Download</Button>
+        <Button
+          disabled={isDownloading}
+          loading={isDownloading}
+          onPress={downloadWallpaper}
+          mode="contained">
+          Download
+        </Button>
       </View>
 
       {/** Portal For Choosing Destinaion */}

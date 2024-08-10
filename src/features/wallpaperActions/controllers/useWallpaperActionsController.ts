@@ -9,6 +9,7 @@ import {Wallpaper} from '@app/types/api/wallpaper';
 import {useState} from 'react';
 import setWallpaper, {SetWallpaperDestination} from '../utils/setWallpaper';
 import {ToastAndroid} from 'react-native';
+import * as FileSystem from '@dr.pogodin/react-native-fs';
 
 type Props = {
   wallpaper: Wallpaper;
@@ -16,6 +17,7 @@ type Props = {
 
 function useWallpaperActionsController({wallpaper}: Props) {
   const [isApplyingWallaper, setIsApplyingWallpaper] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   /** Function to apply wallpaper */
   async function applyWallpaper(destination: SetWallpaperDestination) {
@@ -30,9 +32,30 @@ function useWallpaperActionsController({wallpaper}: Props) {
     }
   }
 
+  /** Function To Download Wallpaper */
+  function downloadWallpaper() {
+    setIsDownloading(true);
+
+    FileSystem.downloadFile({
+      fromUrl: wallpaper.download_url,
+      toFile: `${FileSystem.PicturesDirectoryPath}/${wallpaper.title}.jpg`,
+    })
+      .promise.then(() => {
+        ToastAndroid.show('Wallpaper Downloaded', ToastAndroid.SHORT);
+      })
+      .catch(() => {
+        ToastAndroid.show('Error Downloading Wallpaper', ToastAndroid.SHORT);
+      })
+      .finally(() => {
+        setIsDownloading(false);
+      });
+  }
+
   return {
     isApplyingWallaper,
+    isDownloading,
     applyWallpaper,
+    downloadWallpaper,
   };
 }
 
