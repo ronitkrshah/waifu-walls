@@ -29,7 +29,8 @@ function AccountTabUserDashboard() {
           variant="headlineMedium">
           {user.name}
         </Text>
-        {/** <AdminsOnlyFeatures /> */}
+
+        {user.isAdmeme && <AdminsOnlyFeatures />}
         <LogoutHandler />
       </Surface>
     </Fragment>

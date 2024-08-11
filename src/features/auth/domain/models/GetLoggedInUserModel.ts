@@ -22,4 +22,5 @@ export type GetLoggedInUserModel = {
   prefs: Record<string, any>;
   targets: any[];
   accessedAt: string;
+  isAdmeme: boolean; // This prop will be available if user is in admin team
 };

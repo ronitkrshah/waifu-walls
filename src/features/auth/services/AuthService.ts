@@ -6,7 +6,7 @@
  */
 
 import {RegisterUserModel} from '../domain/models/RegisterUserModel';
-import {UserDocumentModel} from '../domain/models/UserDocumentModel';
+import {NewUserDocumentModel} from '../domain/models/UserDocumentModel';
 import AuthRepository, {
   UserCredentials,
 } from '../domain/repositories/AuthRepository';
@@ -25,7 +25,7 @@ class AuthService {
    */
   public async createNewAccount(props: UserCredentials): Promise<User> {
     let newUser: RegisterUserModel | null = null;
-    let userDocument: UserDocumentModel | null = null;
+    let userDocument: NewUserDocumentModel | null = null;
 
     try {
       newUser = await this._repo.registerNewUser({
@@ -38,7 +38,7 @@ class AuthService {
         email: props.email,
         password: props.password,
       });
-      userDocument = await this.createUserDocument(newUser);
+      userDocument = await this._createUserDocument(newUser);
     } catch (e) {
       /** If Creating Document Failed then delete new user data */
       if (userDocument !== null) {
@@ -47,7 +47,7 @@ class AuthService {
       }
       throw e;
     }
-    return TranformToDTOAuth.toUserDto(userDocument);
+    return TranformToDTOAuth.fromNewUserDocumentModel(userDocument);
   }
 
   /**
@@ -71,7 +71,7 @@ class AuthService {
   /**
    * Create User Document
    */
-  private async createUserDocument(user: RegisterUserModel) {
+  private async _createUserDocument(user: RegisterUserModel) {
     return await this._repo.createUserDocument(user);
   }
 
@@ -80,7 +80,7 @@ class AuthService {
    */
   async getLoggedInUser() {
     const user = await this._repo.getCurrentUser();
-    return TranformToDTOAuth.toUserDto(user);
+    return TranformToDTOAuth.fromLoggedInUserModel(user);
   }
 }
 

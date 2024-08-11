@@ -6,17 +6,26 @@
  */
 
 import {GetLoggedInUserModel} from '../domain/models/GetLoggedInUserModel';
-import {UserDocumentModel} from '../domain/models/UserDocumentModel';
+import {NewUserDocumentModel} from '../domain/models/UserDocumentModel';
 import {User} from './UserDTO';
 
 class TranformToDTOAuth {
-  public static toUserDto(
-    model: UserDocumentModel | GetLoggedInUserModel,
-  ): User {
+  public static fromLoggedInUserModel(model: GetLoggedInUserModel): User {
     return {
       name: model.name,
       email: model.email,
       userId: model.$id,
+      isAdmeme: model.isAdmeme,
+    };
+  }
+
+  public static fromNewUserDocumentModel(model: NewUserDocumentModel): User {
+    return {
+      name: model.name,
+      email: model.email,
+      userId: model.$id,
+      /** New Users aren't admeme */
+      isAdmeme: false,
     };
   }
 }

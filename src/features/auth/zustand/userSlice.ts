@@ -26,6 +26,7 @@ const initialState: UserState = {
     userId: '',
     name: '',
     email: '',
+    isAdmeme: false,
     isAuthenticated: false,
   },
 };

@@ -8,7 +8,7 @@
 import {GetLoggedInUserModel} from '../models/GetLoggedInUserModel';
 import {LoginSessionModel} from '../models/LoginSessionModel';
 import {RegisterUserModel} from '../models/RegisterUserModel';
-import {UserDocumentModel} from '../models/UserDocumentModel';
+import {NewUserDocumentModel} from '../models/UserDocumentModel';
 
 export type UserCredentials = {
   name: string;
@@ -20,7 +20,7 @@ interface AuthRepository {
   registerNewUser(props: UserCredentials): Promise<RegisterUserModel>;
   loginUser(props: Omit<UserCredentials, 'name'>): Promise<LoginSessionModel>;
   logOutUser(): Promise<void>;
-  createUserDocument(user: RegisterUserModel): Promise<UserDocumentModel>;
+  createUserDocument(user: RegisterUserModel): Promise<NewUserDocumentModel>;
   getCurrentUser(): Promise<GetLoggedInUserModel>;
   deleteUserAccount(userId: string): Promise<void>;
 }

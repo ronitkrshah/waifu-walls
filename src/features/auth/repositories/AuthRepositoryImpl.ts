@@ -13,7 +13,7 @@ import {ID} from 'react-native-appwrite';
 import {RegisterUserModel} from '../domain/models/RegisterUserModel';
 import {LoginSessionModel} from '../domain/models/LoginSessionModel';
 import {env} from '@app/utils/env/env';
-import {UserDocumentModel} from '../domain/models/UserDocumentModel';
+import {NewUserDocumentModel} from '../domain/models/UserDocumentModel';
 import {GetLoggedInUserModel} from '../domain/models/GetLoggedInUserModel';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -54,7 +54,7 @@ class AuthRepositoryImpl implements AuthRepository {
    */
   async createUserDocument(
     user: RegisterUserModel,
-  ): Promise<UserDocumentModel> {
+  ): Promise<NewUserDocumentModel> {
     const databaseResponse = await this._api.database.createDocument(
       env.APPWRITE_DATABASE_ID,
       env.APPWRITE_USERS_COLLECTION_ID,
@@ -66,7 +66,7 @@ class AuthRepositoryImpl implements AuthRepository {
       },
     );
 
-    return databaseResponse as UserDocumentModel;
+    return databaseResponse as NewUserDocumentModel;
   }
 
   /**
@@ -79,9 +79,17 @@ class AuthRepositoryImpl implements AuthRepository {
   /**
    * Get Currently Logged In user
    */
-  async getCurrentUser() {
-    const currentUser: GetLoggedInUserModel = await this._api.account.get();
-    return currentUser;
+  async getCurrentUser(): Promise<GetLoggedInUserModel> {
+    const currentUser = await this._api.account.get();
+    const teamsList = await this._api.teams.list();
+
+    /** Admeme not Admin :) */
+    const isAdmeme = teamsList.teams.find(team => team.name === 'admin');
+
+    return {
+      ...currentUser,
+      isAdmeme: isAdmeme ? true : false,
+    };
   }
 
   /**

@@ -9,4 +9,5 @@ export type User = {
   name: string;
   email: string;
   userId: string;
+  isAdmeme: boolean;
 };
