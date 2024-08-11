@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import SettingsSwitchTile from '@app/features/appSettings/components/SettingsSwitchTile';
+import SwitchButtonTile from '@app/features/shared/components/SwtichButtonTile';
 import useAdultImageSwitchController from './useAdultImageSwitchController';
 
 function ShowAdultImageSwitch() {
   const {handleOnChange, isSwitchEnabled} = useAdultImageSwitchController();
 
   return (
-    <SettingsSwitchTile
+    <SwitchButtonTile
       title="Show Adult Images"
       description="18+ Images"
       leftIcon="no-adult-content"

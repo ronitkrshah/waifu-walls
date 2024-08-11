@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import SettingsSwitchTile from '@app/features/appSettings/components/SettingsSwitchTile';
+import SwitchButtonTile from '@app/features/shared/components/SwtichButtonTile';
 import useCustomPreviewScreenSwitchController from './useCustomPreviewScreenSwitchController';
 
 function CustomPreviewScreenSwitch() {
@@ -13,7 +13,7 @@ function CustomPreviewScreenSwitch() {
     useCustomPreviewScreenSwitchController();
 
   return (
-    <SettingsSwitchTile
+    <SwitchButtonTile
       title="Animated Waifu Preview"
       description="Use Accelerometer to animate Waifu on preview screen"
       leftIcon="animation"

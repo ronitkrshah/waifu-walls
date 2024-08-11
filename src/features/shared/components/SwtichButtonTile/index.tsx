@@ -19,7 +19,7 @@ type Props = {
   onPress(value: boolean): void;
 };
 
-function SettingsSwitchTile(props: Props) {
+function SwitchButtonTile(props: Props) {
   const {colors} = useAppTheme();
 
   return (
@@ -43,7 +43,7 @@ function LeftIcon(icon: string, color?: string) {
   return (
     <MaterialIcons
       name={icon}
-      size={32}
+      size={30}
       style={styles.leftIcon}
       color={color}
     />
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SettingsSwitchTile;
+export default SwitchButtonTile;
