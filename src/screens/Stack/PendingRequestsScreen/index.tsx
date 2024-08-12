@@ -5,11 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import Flex from '@app/components/common/Flex';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
-import {Appbar} from 'react-native-paper';
+import {Appbar, Text} from 'react-native-paper';
 
 function PendingRequestsScreen() {
-  return null;
+  return (
+    <Flex flex={1} center>
+      <Text variant="bodyLarge">Will Be Implemented Soon</Text>
+    </Flex>
+  );
 }
 
 /** Appbar */
