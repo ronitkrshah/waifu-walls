@@ -11,9 +11,10 @@ import {
   StackNavigationProp,
   StackNavigationRoutes,
 } from '@app/types/navigation';
+import {DefaultStrings} from '@app/utils/constants/strings';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
-import {ToastAndroid} from 'react-native';
+import {Linking, ToastAndroid} from 'react-native';
 
 function useMatureContentAgreementController() {
   const [isMatured, setIsMatured] = useState(false);
@@ -35,12 +36,20 @@ function useMatureContentAgreementController() {
     });
   }
 
+  /** Handle Read Terms And Conditions */
+  function handlePressReadTOC() {
+    Linking.openURL(
+      `${DefaultStrings.GITHUB_REPO_LINK}?tab=readme-ov-file#terms-and-conditions`,
+    );
+  }
+
   return {
     isMatured,
     toggleIsMatured: () => setIsMatured(prev => !prev),
     acceptedTOC,
     toggleAcceptedTOC: () => setAcceptedTOC(prev => !prev),
     handleProceed,
+    handlePressReadTOC,
   };
 }
 

@@ -18,6 +18,7 @@ function MatureContentAgreementControls() {
     acceptedTOC,
     toggleAcceptedTOC,
     handleProceed,
+    handlePressReadTOC,
   } = useMatureContentAgreementController();
 
   return (
@@ -33,6 +34,8 @@ function MatureContentAgreementControls() {
         isChecked={acceptedTOC}
         onPress={toggleAcceptedTOC}
       />
+
+      <Button onPress={handlePressReadTOC}>Read Terms And Conditions</Button>
       <Button
         onPress={handleProceed}
         mode="contained"
