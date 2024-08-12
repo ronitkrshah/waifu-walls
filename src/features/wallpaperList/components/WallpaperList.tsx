@@ -45,8 +45,8 @@ function WallpaperList({query}: Props) {
           <RefreshControl
             refreshing={isLoading}
             onRefresh={refreshData}
-            colors={[colors.onPrimaryContainer]}
-            progressBackgroundColor={colors.primaryContainer}
+            colors={[colors.onSecondaryContainer]}
+            progressBackgroundColor={colors.secondaryContainer}
           />
         }
         renderItem={({item}) => (
