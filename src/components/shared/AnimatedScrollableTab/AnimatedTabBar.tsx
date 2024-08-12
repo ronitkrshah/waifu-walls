@@ -7,7 +7,7 @@
 
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {StyleSheet, View, ViewStyle} from 'react-native';
-import {Button} from 'react-native-paper';
+import {Button, MD3Colors} from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 
 type Props = {
@@ -24,7 +24,7 @@ function AnimatedTabbarButton({label, onPress, animatedStyle}: Props) {
       <Animated.View
         style={[
           {
-            backgroundColor: colors.inversePrimary,
+            backgroundColor: colors.primary,
           },
           styles.activeBar,
           animatedStyle,
