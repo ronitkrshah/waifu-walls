@@ -9,6 +9,7 @@ import Flex from '@app/components/common/Flex';
 import AccelerometerImagePreviewScreen from '@app/components/screens/Stack/WallpaperPreviewScreen/AccelerometerImagePreviewScreen';
 import NormalImagePreviewScreen from '@app/components/screens/Stack/WallpaperPreviewScreen/NormalImagePreviewScreen';
 import WallpaperInformationDialog from '@app/components/screens/Stack/WallpaperPreviewScreen/WallpaperInformationDialog';
+import LikeWallpaperButton from '@app/features/likeWallpaper/components/LikeWallpaperButton';
 import useGlobalStore from '@app/store';
 import {Wallpaper} from '@app/types/api/wallpaper';
 import {
@@ -51,6 +52,11 @@ function MyAppbar({wallpaper, backFunc}: MyAppbarProps) {
     <Appbar.Header>
       <Appbar.BackAction onPress={backFunc} />
       <Appbar.Content title={wallpaper.title} />
+      <Appbar.Action
+        icon={({size}) => (
+          <LikeWallpaperButton wallpaper={wallpaper} size={size} />
+        )}
+      />
       <Appbar.Action
         icon={'information-outline'}
         onPress={() => setShowInfo(true)}

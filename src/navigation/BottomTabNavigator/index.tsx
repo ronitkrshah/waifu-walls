@@ -5,7 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {AccountTab, FlavoursTab, WaifusTab} from '@app/screens/BottomTab';
+import {
+  AccountTab,
+  FavouritesTab,
+  FlavoursTab,
+  WaifusTab,
+} from '@app/screens/BottomTab';
 import {
   BottomTabNavigationParamList,
   BottomTabNavigationRoutes,
@@ -44,6 +49,15 @@ function BottomTabNavigator({theme}: Props) {
           tabBarLabel: 'Flavours',
           tabBarIcon: ({color, focused}) =>
             TabBarIcon('shape', 'shape-outline', focused, color),
+        })}
+      />
+      <Tab.Screen
+        name={BottomTabNavigationRoutes.FVAOURITES}
+        component={FavouritesTab}
+        options={() => ({
+          tabBarLabel: 'Favourite',
+          tabBarIcon: ({color, focused}) =>
+            TabBarIcon('heart', 'heart-outline', focused, color),
         })}
       />
       <Tab.Screen

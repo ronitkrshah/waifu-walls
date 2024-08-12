@@ -7,7 +7,7 @@
 
 import {Wallpaper} from '@app/types/api/wallpaper';
 import {DefaultStyles} from '@app/utils/constants/style';
-import {useState} from 'react';
+import {memo, useState} from 'react';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import WallpaperItemSkeletonLoader from './WallpaperItemSkeletonLoader';
@@ -40,6 +40,8 @@ function WallpaperListItem({onPress, wallpaper}: Props) {
         onLoadEnd={handleLoadEnd}
         resizeMode={FastImage.resizeMode.cover}
       />
+
+      {/** Skeleton Loader */}
       <WallpaperItemSkeletonLoader isAnimating={isLoading} />
     </Pressable>
   );
@@ -54,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WallpaperListItem;
+export default memo(WallpaperListItem);

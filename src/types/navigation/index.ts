@@ -41,12 +41,14 @@ export const enum StackNavigationRoutes {
 export const enum BottomTabNavigationRoutes {
   WAIFUS = 'WaifusTab',
   FLAVOURS = 'FlavoursTab',
+  FVAOURITES = 'FavouritesTab',
   ACCOUNT = 'AccountTab',
 }
 
 export type BottomTabNavigationParamList = {
   [BottomTabNavigationRoutes.WAIFUS]: undefined;
   [BottomTabNavigationRoutes.FLAVOURS]: undefined;
+  [BottomTabNavigationRoutes.FVAOURITES]: undefined;
   [BottomTabNavigationRoutes.ACCOUNT]: undefined;
 };
 

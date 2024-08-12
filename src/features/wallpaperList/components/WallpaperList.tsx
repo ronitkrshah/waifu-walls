@@ -11,9 +11,9 @@ import {FlatList, StyleSheet} from 'react-native';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
 import SizedBox from '@app/components/common/SizedBox';
-import WallpaperListItem from '@app/features/shared/components/WallpaperListItem';
 import {RefreshControl} from 'react-native-gesture-handler';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
+import WallpaperListItem from '@app/features/shared/components/WallpaperListItem';
 
 type Props = {
   query?: string | string[];
