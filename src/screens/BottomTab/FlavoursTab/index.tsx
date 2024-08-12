@@ -7,8 +7,7 @@
 
 import FlavoursTabList from '@app/components/screens/BottomTab/FlavoursTab/FlavoursTabList';
 import AnimatedScrollableTab from '@app/components/shared/AnimatedScrollableTab';
-import {NSFWList} from '@app/utils/constants/NSFWList';
-import {SFWList} from '@app/utils/constants/SFWList';
+import {SFWList, NSFWList} from '@app/utils/constants/lists';
 import {Fragment} from 'react';
 import {Appbar} from 'react-native-paper';
 

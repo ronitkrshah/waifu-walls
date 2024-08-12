@@ -5,8 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {NSFWList} from '@app/utils/constants/NSFWList';
-import {SFWList} from '@app/utils/constants/SFWList';
+import {SFWList, NSFWList} from '@app/utils/constants/lists';
 import {Fragment, memo} from 'react';
 import {Checkbox, List} from 'react-native-paper';
 import useUploadWallpaperController from '../controllers/useUploadWallpaperController';
