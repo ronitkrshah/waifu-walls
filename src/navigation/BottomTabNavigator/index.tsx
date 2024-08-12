@@ -23,6 +23,7 @@ const Tab = createMaterialBottomTabNavigator<BottomTabNavigationParamList>();
 function BottomTabNavigator({theme}: Props) {
   return (
     <Tab.Navigator
+      backBehavior="none"
       theme={theme}
       sceneAnimationType="shifting"
       shifting
