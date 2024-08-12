@@ -9,6 +9,7 @@ import {Fragment} from 'react';
 import NormalPreviewImage from './NormalPreviewImage';
 import {Wallpaper} from '@app/types/api/wallpaper';
 import ShowWallpaperActions from '@app/features/wallpaperActions/components/ShowWallpaperActions';
+import LikeWallpaperButton from '@app/features/likeWallpaper/components/LikeWallpaperButton';
 
 type Props = {
   wallpaper: Wallpaper;
@@ -17,7 +18,9 @@ type Props = {
 function NormalImagePreviewScreen({wallpaper}: Props) {
   return (
     <Fragment>
-      <NormalPreviewImage uri={wallpaper.preview_url} />
+      <LikeWallpaperButton wallpaper={wallpaper}>
+        <NormalPreviewImage uri={wallpaper.preview_url} />
+      </LikeWallpaperButton>
       <ShowWallpaperActions wallpaper={wallpaper} />
     </Fragment>
   );

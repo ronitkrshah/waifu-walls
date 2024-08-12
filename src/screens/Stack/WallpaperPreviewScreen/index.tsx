@@ -53,11 +53,6 @@ function MyAppbar({wallpaper, backFunc}: MyAppbarProps) {
       <Appbar.BackAction onPress={backFunc} />
       <Appbar.Content title={wallpaper.title} />
       <Appbar.Action
-        icon={({size}) => (
-          <LikeWallpaperButton wallpaper={wallpaper} size={size} />
-        )}
-      />
-      <Appbar.Action
         icon={'information-outline'}
         onPress={() => setShowInfo(true)}
       />
