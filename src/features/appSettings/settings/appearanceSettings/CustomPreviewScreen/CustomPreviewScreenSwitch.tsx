@@ -7,20 +7,85 @@
 
 import SwitchButtonTile from '@app/features/shared/components/SwtichButtonTile';
 import useCustomPreviewScreenSwitchController from './useCustomPreviewScreenSwitchController';
+import {Fragment, useState} from 'react';
+import {Button, Dialog, Portal, Text} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
 
 function CustomPreviewScreenSwitch() {
+  const [showTipDialog, setShowTipDialog] = useState(false);
   const {handleOnChange, isSwitchEnabled} =
     useCustomPreviewScreenSwitchController();
 
+  /** Hide Tip dialog */
+  function dismissTipDialog() {
+    setShowTipDialog(false);
+  }
+
+  /** Handle Switch Toggle */
+  function handleSwtichChange(value: boolean) {
+    value && setShowTipDialog(true);
+    handleOnChange(value);
+  }
+
   return (
-    <SwitchButtonTile
-      title="Animated Waifu Preview"
-      description="Use Accelerometer to animate Waifu on preview screen"
-      leftIcon="animation"
-      isSwitchEnabled={isSwitchEnabled}
-      onPress={handleOnChange}
-    />
+    <Fragment>
+      <SwitchButtonTile
+        title="Animated Waifu Preview"
+        description="Use Accelerometer to animate Waifu on preview screen"
+        leftIcon="animation"
+        isSwitchEnabled={isSwitchEnabled}
+        onPress={handleSwtichChange}
+      />
+
+      {/** Show Tip on how to use Animated Preview Screen */}
+      <Portal>
+        <Dialog visible={showTipDialog} onDismiss={dismissTipDialog}>
+          <Dialog.Title>Tip</Dialog.Title>
+          <Dialog.Content>
+            <Tip
+              title="Like"
+              description="Double Tap on background blurred Image."
+            />
+            <Tip
+              title="Apply & Download"
+              description="Double Tap on Actual Image."
+            />
+            <Tip
+              title="Wallpaper Information"
+              description="Tap and Hold on Actual Image."
+            />
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={dismissTipDialog}>Okay</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
+    </Fragment>
   );
 }
+
+/** Tip Text */
+type TipProps = {
+  title: string;
+  description: string;
+};
+
+function Tip({title, description}: TipProps) {
+  return (
+    <Fragment>
+      <Text variant="titleMedium" style={styles.tipTitle}>
+        {title}:
+      </Text>
+      <Text>{description}</Text>
+    </Fragment>
+  );
+}
+
+const styles = StyleSheet.create({
+  tipTitle: {
+    fontWeight: 'bold',
+    marginTop: 12,
+  },
+});
 
 export default CustomPreviewScreenSwitch;
