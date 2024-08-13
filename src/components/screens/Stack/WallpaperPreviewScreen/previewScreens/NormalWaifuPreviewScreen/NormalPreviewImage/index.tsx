@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     height: SCREEN_WIDTH * 1.6,
     width: SCREEN_WIDTH - DefaultStyles.SPACING * 2,
     marginHorizontal: 'auto',
+    marginVertical: 'auto',
     borderRadius: DefaultStyles.SPACING * 2,
   },
 });

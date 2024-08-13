@@ -8,7 +8,7 @@
 import {Wallpaper} from '@app/types/api/wallpaper';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment, useEffect} from 'react';
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Animated, {
   Extrapolation,
@@ -24,18 +24,19 @@ import {
   setUpdateIntervalForType,
 } from 'react-native-sensors';
 import DoubleTapShowControls from '../DoubleTabShowControls';
+import DoubleTapLikeWallpaperWrapper from '@app/features/likeWallpaper/components/DoubleTapLikeWallpaperWrapper';
 
 type Props = {
   wallpaper: Wallpaper;
 };
 
-const {width: SCREEN_WIDTH} = Dimensions.get('screen');
+const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('screen');
 
 setUpdateIntervalForType(SensorTypes.accelerometer, 50);
 
 const AImage = Animated.createAnimatedComponent(FastImage);
 
-function AccelerometerPreviewMovingImage({wallpaper}: Props) {
+function AccelerometerPreviewAnimatedImage({wallpaper}: Props) {
   const accXValue = useSharedValue(0);
   const accYValue = useSharedValue(0);
 
@@ -100,20 +101,31 @@ function AccelerometerPreviewMovingImage({wallpaper}: Props) {
         style={[StyleSheet.absoluteFillObject, rBackgroundBlurStyle]}
         blurRadius={10}
       />
-      <Animated.View style={[styles.container, rFloatingImageStyle]}>
-        <DoubleTapShowControls wallpaper={wallpaper}>
-          <AImage
-            entering={FadeIn.duration(800)}
-            source={{uri: wallpaper.preview_url}}
-            style={[StyleSheet.absoluteFillObject]}
-          />
-        </DoubleTapShowControls>
-      </Animated.View>
+
+      <DoubleTapLikeWallpaperWrapper wallpaper={wallpaper}>
+        <View style={styles.rootContainer}>
+          <Animated.View style={[styles.container, rFloatingImageStyle]}>
+            <DoubleTapShowControls wallpaper={wallpaper}>
+              <AImage
+                entering={FadeIn.duration(800)}
+                source={{uri: wallpaper.preview_url}}
+                style={[StyleSheet.absoluteFillObject]}
+              />
+            </DoubleTapShowControls>
+          </Animated.View>
+        </View>
+      </DoubleTapLikeWallpaperWrapper>
     </Fragment>
   );
 }
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   container: {
     width: SCREEN_WIDTH * 0.7,
     height: SCREEN_WIDTH * 1.2,
@@ -123,4 +135,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccelerometerPreviewMovingImage;
+export default AccelerometerPreviewAnimatedImage;

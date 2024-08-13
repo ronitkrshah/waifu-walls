@@ -5,22 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {Fragment} from 'react';
-import AccelerometerPreviewMovingImage from './AccelerometerPreviewMovingImage';
+import AccelerometerPreviewAnimatedImage from './AccelerometerPreviewAnimatedImage';
 import AccelerometerPreviewImageTitle from './AccelerometerPreviewImageTitle';
 import {Wallpaper} from '@app/types/api/wallpaper';
+import Flex from '@app/components/common/Flex';
 
 type Props = {
   wallpaper: Wallpaper;
 };
 
-function AccelerometerPreviewScreen({wallpaper}: Props) {
+function AccelerometerWaifuAnimatedPreviewScreen({wallpaper}: Props) {
   return (
-    <Fragment>
-      <AccelerometerPreviewMovingImage wallpaper={wallpaper} />
+    <Flex flex={1} center>
+      <AccelerometerPreviewAnimatedImage wallpaper={wallpaper} />
       <AccelerometerPreviewImageTitle title={wallpaper.title} />
-    </Fragment>
+    </Flex>
   );
 }
 
-export default AccelerometerPreviewScreen;
+export default AccelerometerWaifuAnimatedPreviewScreen;

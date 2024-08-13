@@ -33,11 +33,7 @@ type Props = {
 const AMaterialIcons = Animated.createAnimatedComponent(MaterialCommuntiyIcons);
 const AIconButton = Animated.createAnimatedComponent(IconButton);
 
-/**
- * This Component is a wrapper of Like Animated Button which will activate
- * on double tab of the children
- */
-function LikeWallpaperButton({
+function DoubleTapLikeWallpaperWrapper({
   wallpaper,
   children,
   animatedIconSize,
@@ -84,27 +80,24 @@ function LikeWallpaperButton({
         {children}
 
         {/** Button For Center Animated Like Icon */}
-        <Animated.View style={[styles.likeButtonContainer]}>
-          <AMaterialIcons
-            name={isLiked ? 'heart' : 'heart-broken'}
-            color={isLiked ? MD3Colors.error50 : MD3Colors.error100}
-            style={[rHeartStyle]}
-          />
-        </Animated.View>
+        <AMaterialIcons
+          name={isLiked ? 'heart' : 'heart-broken'}
+          color={isLiked ? MD3Colors.error50 : MD3Colors.error100}
+          style={[styles.likeButton, rHeartStyle]}
+        />
 
         {/** Floating Button that indicates if the icon is already liked */}
         {isLiked && (
-          <Animated.View style={styles.floatingButtonContainer}>
-            <AIconButton
-              icon={'heart'}
-              size={floatingIconSize ?? 40}
-              iconColor={MD3Colors.error70}
-              containerColor={colors.secondaryContainer}
-              entering={ZoomIn}
-              exiting={ZoomOut}
-              onPress={handleLikeButtonPress}
-            />
-          </Animated.View>
+          <AIconButton
+            icon={'heart'}
+            size={floatingIconSize ?? 40}
+            iconColor={MD3Colors.error70}
+            containerColor={colors.secondaryContainer}
+            entering={ZoomIn}
+            exiting={ZoomOut}
+            onPress={handleLikeButtonPress}
+            style={styles.floatingButton}
+          />
         )}
       </Animated.View>
     </GestureDetector>
@@ -116,16 +109,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  likeButtonContainer: {
+  likeButton: {
     position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  floatingButtonContainer: {
+  floatingButton: {
     position: 'absolute',
+    right: DefaultStyles.SPACING,
     bottom: DefaultStyles.SPACING,
-    right: DefaultStyles.SPACING * 2,
   },
 });
 
-export default memo(LikeWallpaperButton);
+export default memo(DoubleTapLikeWallpaperWrapper);
