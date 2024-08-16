@@ -7,7 +7,7 @@
 
 import {Wallpaper} from '@app/types/api/wallpaper';
 import useLikeWallpaperController from '../controllers/useLikeWallaperController';
-import {PropsWithChildren, memo, useEffect} from 'react';
+import {Fragment, PropsWithChildren, memo, useEffect} from 'react';
 import Animated, {
   ZoomIn,
   ZoomOut,
@@ -28,6 +28,7 @@ type Props = {
   wallpaper: Wallpaper;
   animatedIconSize?: number;
   floatingIconSize?: number;
+  showFloatingIconOutside?: boolean;
 } & Required<PropsWithChildren>;
 
 const AMaterialIcons = Animated.createAnimatedComponent(MaterialCommuntiyIcons);
@@ -37,13 +38,12 @@ function DoubleTapLikeWallpaperWrapper({
   wallpaper,
   children,
   animatedIconSize,
-  floatingIconSize,
+  showFloatingIconOutside,
 }: Props) {
   const animatedValue = useSharedValue(0);
   const {handleLikeButtonPress, isLiked} = useLikeWallpaperController({
     wallpaper,
   });
-  const {colors} = useAppTheme();
 
   const doubleTap = Gesture.Tap()
     .numberOfTaps(2)
@@ -75,32 +75,52 @@ function DoubleTapLikeWallpaperWrapper({
   }, [animatedValue]);
 
   return (
-    <GestureDetector gesture={doubleTap}>
-      <Animated.View style={styles.container}>
-        {children}
+    <Fragment>
+      <GestureDetector gesture={doubleTap}>
+        <Animated.View style={styles.container}>
+          {children}
 
-        {/** Button For Center Animated Like Icon */}
-        <AMaterialIcons
-          name={isLiked ? 'heart' : 'heart-broken'}
-          color={isLiked ? MD3Colors.error50 : MD3Colors.error100}
-          style={[styles.likeButton, rHeartStyle]}
-        />
-
-        {/** Floating Button that indicates if the icon is already liked */}
-        {isLiked && (
-          <AIconButton
-            icon={'heart'}
-            size={floatingIconSize ?? 40}
-            iconColor={MD3Colors.error70}
-            containerColor={colors.secondaryContainer}
-            entering={ZoomIn}
-            exiting={ZoomOut}
-            onPress={handleLikeButtonPress}
-            style={styles.floatingButton}
+          {/** Button For Center Animated Like Icon */}
+          <AMaterialIcons
+            name={isLiked ? 'heart' : 'heart-broken'}
+            color={isLiked ? MD3Colors.error50 : MD3Colors.error100}
+            style={[styles.likeButton, rHeartStyle]}
           />
-        )}
-      </Animated.View>
-    </GestureDetector>
+
+          {/** Floating Button that indicates if the icon is already liked */}
+          {isLiked && !showFloatingIconOutside && (
+            <FloatingLikeButton onPress={handleLikeButtonPress} />
+          )}
+        </Animated.View>
+      </GestureDetector>
+
+      {/** Floating Button that indicates if the icon is already liked */}
+      {isLiked && showFloatingIconOutside && (
+        <FloatingLikeButton onPress={handleLikeButtonPress} />
+      )}
+    </Fragment>
+  );
+}
+
+/** Floating Button */
+type FloatingLikeButtonProps = {
+  onPress(): void;
+};
+
+function FloatingLikeButton({onPress}: FloatingLikeButtonProps) {
+  const {colors} = useAppTheme();
+
+  return (
+    <AIconButton
+      icon={'heart'}
+      size={40}
+      iconColor={MD3Colors.error70}
+      containerColor={colors.secondaryContainer}
+      entering={ZoomIn}
+      exiting={ZoomOut}
+      onPress={onPress}
+      style={styles.floatingButton}
+    />
   );
 }
 

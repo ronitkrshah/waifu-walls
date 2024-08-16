@@ -42,17 +42,14 @@ function CustomPreviewScreenSwitch() {
         <Dialog visible={showTipDialog} onDismiss={dismissTipDialog}>
           <Dialog.Title>Tip</Dialog.Title>
           <Dialog.Content>
-            <Tip
-              title="Like"
-              description="Double Tap on background blurred Image."
-            />
+            <Tip title="Like" description="Double Tap on Image" />
             <Tip
               title="Apply & Download"
-              description="Double Tap on Actual Image."
+              description="Double Tap on background blurred Image"
             />
             <Tip
               title="Wallpaper Information"
-              description="Tap and Hold on Actual Image."
+              description="Tap and Hold anywhere"
             />
           </Dialog.Content>
           <Dialog.Actions>

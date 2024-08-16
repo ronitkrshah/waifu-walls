@@ -102,19 +102,21 @@ function AccelerometerPreviewAnimatedImage({wallpaper}: Props) {
         blurRadius={10}
       />
 
-      <DoubleTapLikeWallpaperWrapper wallpaper={wallpaper}>
+      <DoubleTapShowControls wallpaper={wallpaper}>
         <View style={styles.rootContainer}>
-          <Animated.View style={[styles.container, rFloatingImageStyle]}>
-            <DoubleTapShowControls wallpaper={wallpaper}>
+          <DoubleTapLikeWallpaperWrapper
+            showFloatingIconOutside
+            wallpaper={wallpaper}>
+            <Animated.View style={[styles.container, rFloatingImageStyle]}>
               <AImage
                 entering={FadeIn.duration(800)}
                 source={{uri: wallpaper.preview_url}}
                 style={[StyleSheet.absoluteFillObject]}
               />
-            </DoubleTapShowControls>
-          </Animated.View>
+            </Animated.View>
+          </DoubleTapLikeWallpaperWrapper>
         </View>
-      </DoubleTapLikeWallpaperWrapper>
+      </DoubleTapShowControls>
     </Fragment>
   );
 }
