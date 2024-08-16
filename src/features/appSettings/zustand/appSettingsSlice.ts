@@ -11,18 +11,24 @@ type AppSettingsState = {
   appSettings: {
     useCustomizePreviewScreen: boolean;
     showMatureContent: boolean;
+    customThemeColor?: string;
   };
 };
 
 type AppSettingsActions = {
   setUseCustomizePreviewScreen(value: boolean): void;
   setShowMatureContent(value: boolean): void;
+  setAppThemeColor(color: string): void;
 };
 
 export type AppSettingsSlice = AppSettingsState & AppSettingsActions;
 
 const initialState: AppSettingsState = {
-  appSettings: {useCustomizePreviewScreen: false, showMatureContent: false},
+  appSettings: {
+    useCustomizePreviewScreen: false,
+    showMatureContent: false,
+    customThemeColor: undefined,
+  },
 };
 
 const createAppSettingsSlice: StateCreator<
@@ -40,6 +46,11 @@ const createAppSettingsSlice: StateCreator<
     set(state => {
       state.appSettings.showMatureContent = value;
     }),
+  setAppThemeColor(color) {
+    set(state => {
+      state.appSettings.customThemeColor = color;
+    });
+  },
 });
 
 export default createAppSettingsSlice;

@@ -20,3 +20,6 @@ export const SFWList = [
   'Uniform',
   'Selfie',
 ];
+
+/** Custom Theme Colors */
+export const CustomThemeColors = ['#673ab7', '#e91e63', '#ff9800', '#009688'];

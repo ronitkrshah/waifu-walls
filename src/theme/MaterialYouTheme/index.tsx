@@ -5,31 +5,71 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {Material3Scheme, useMaterial3Theme} from '@pchmn/expo-material3-theme';
-import {PropsWithChildren, useMemo} from 'react';
+// Material3ThemeProvider.tsx
+import {
+  Material3Scheme,
+  Material3Theme,
+  useMaterial3Theme,
+} from '@pchmn/expo-material3-theme';
+import {createContext, useContext} from 'react';
 import {useColorScheme} from 'react-native';
 import {
   MD3DarkTheme,
   MD3LightTheme,
   MD3Theme,
-  PaperProvider,
+  Provider as PaperProvider,
+  ProviderProps,
   useTheme,
 } from 'react-native-paper';
 
-function MaterialYouThemeProvider({children}: Required<PropsWithChildren>) {
+type Material3ThemeProviderProps = {
+  theme: Material3Theme;
+  updateTheme: (sourceColor: string) => void;
+  resetTheme: () => void;
+};
+
+const Material3ThemeProviderContext =
+  createContext<Material3ThemeProviderProps>({} as Material3ThemeProviderProps);
+
+function Material3ThemeProvider({
+  children,
+  sourceColor,
+  fallbackSourceColor,
+  ...otherProps
+}: ProviderProps & {sourceColor?: string; fallbackSourceColor?: string}) {
   const colorScheme = useColorScheme();
-  const {theme} = useMaterial3Theme();
 
-  const paperTheme = useMemo(
-    () =>
-      colorScheme === 'dark'
-        ? {...MD3DarkTheme, colors: theme.dark}
-        : {...MD3LightTheme, colors: theme.light},
-    [colorScheme, theme],
+  const {theme, updateTheme, resetTheme} = useMaterial3Theme({
+    sourceColor,
+    fallbackSourceColor,
+  });
+
+  const paperTheme =
+    colorScheme === 'dark'
+      ? {...MD3DarkTheme, colors: theme.dark}
+      : {...MD3LightTheme, colors: theme.light};
+
+  console.log('Teme');
+
+  return (
+    <Material3ThemeProviderContext.Provider
+      value={{theme, updateTheme, resetTheme}}>
+      <PaperProvider theme={paperTheme} {...otherProps}>
+        {children}
+      </PaperProvider>
+    </Material3ThemeProviderContext.Provider>
   );
-
-  return <PaperProvider theme={paperTheme}>{children}</PaperProvider>;
 }
 
-export default MaterialYouThemeProvider;
+export function useMaterial3ThemeContext() {
+  const ctx = useContext(Material3ThemeProviderContext);
+  if (!ctx) {
+    throw new Error(
+      'useMaterial3ThemeContext must be used inside Material3ThemeProvider',
+    );
+  }
+  return ctx;
+}
+
+export default Material3ThemeProvider;
 export const useAppTheme = useTheme<MD3Theme & {colors: Material3Scheme}>;
