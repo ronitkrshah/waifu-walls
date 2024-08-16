@@ -49,8 +49,6 @@ function Material3ThemeProvider({
       ? {...MD3DarkTheme, colors: theme.dark}
       : {...MD3LightTheme, colors: theme.light};
 
-  console.log('Teme');
-
   return (
     <Material3ThemeProviderContext.Provider
       value={{theme, updateTheme, resetTheme}}>
