@@ -2,6 +2,10 @@
 
 Welcome to WaifuWalls! This Android app is designed for fans of anime and manga, providing a collection of wallpapers featuring anime girls (waifus). Please read the following information to understand how to use the app responsibly and to be aware of the content provided.
 
+## Screenshots
+![1723819545240](https://github.com/user-attachments/assets/f42c58f3-b7c5-4875-87ca-b001b0b3390b)
+
+
 ## Features
 
 - **Diverse Wallpaper Collection**: Access a broad selection of anime girl wallpapers contributed by users.
