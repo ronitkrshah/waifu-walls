@@ -60,6 +60,17 @@
     "react-test-renderer": "18.2.0",
     "typescript": "5.0.4"
   },
+  "expo": {
+    "autolinking": {
+      "android": {
+        "exclude": [
+          "expo-keep-awake",
+          "expo-application",
+          "expo-font"
+        ]
+      }
+    }
+  },
   "engines": {
     "node": ">=18"
   },
