@@ -38,7 +38,7 @@ function BottomTabNavigator({theme}: Props) {
         component={WaifusTab}
         options={() => ({
           tabBarIcon: ({color, focused}) =>
-            TabBarIcon('home', 'home-outline', focused, color),
+            TabBarIcon(focused ? 'home' : 'home-outline', color),
         })}
       />
       <Tab.Screen
@@ -46,7 +46,7 @@ function BottomTabNavigator({theme}: Props) {
         component={FlavoursTab}
         options={() => ({
           tabBarIcon: ({color, focused}) =>
-            TabBarIcon('shape', 'shape-outline', focused, color),
+            TabBarIcon(focused ? 'shape' : 'shape-outline', color),
         })}
       />
       <Tab.Screen
@@ -54,7 +54,7 @@ function BottomTabNavigator({theme}: Props) {
         component={FavouritesTab}
         options={() => ({
           tabBarIcon: ({color, focused}) =>
-            TabBarIcon('heart', 'heart-outline', focused, color),
+            TabBarIcon(focused ? 'heart' : 'heart-outline', color),
         })}
       />
       <Tab.Screen
@@ -62,27 +62,21 @@ function BottomTabNavigator({theme}: Props) {
         component={AccountTab}
         options={() => ({
           tabBarIcon: ({color, focused}) =>
-            TabBarIcon('account', 'account-outline', focused, color),
+            TabBarIcon(focused ? 'account' : 'account-outline', color),
         })}
       />
     </Tab.Navigator>
   );
 }
 
-/** Icon for Tab Bar */
-function TabBarIcon(
-  filled: string,
-  outline: string,
-  focused: boolean,
-  color: string,
-) {
-  return (
-    <MaterialCommunityIcons
-      name={focused ? filled : outline}
-      color={color}
-      size={24}
-    />
-  );
+/**
+ * Tab Bar Navigation Icon
+ *
+ * @param {string} icon - Icon to render
+ * @param {string} color - Color to use
+ */
+function TabBarIcon(icon: string, color: string) {
+  return <MaterialCommunityIcons name={icon} color={color} size={24} />;
 }
 
 export default withTheme(BottomTabNavigator);
