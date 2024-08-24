@@ -44,6 +44,7 @@ function useRemoteConfigController() {
   return {
     onUpdatePress,
     showUpdateDialog,
+    hideUpdateDialog: () => setShowUpdateDialog(false),
   };
 }
 

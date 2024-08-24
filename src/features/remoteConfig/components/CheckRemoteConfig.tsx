@@ -8,14 +8,15 @@
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {DefaultStyles} from '@app/utils/constants/style';
-import {BackHandler, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Button, Dialog, Portal, Text} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import useRemoteConfigController from '../controllers/useRemoteConfigController';
 
 function CheckRemoteConfig() {
   const {colors} = useAppTheme();
-  const {onUpdatePress, showUpdateDialog} = useRemoteConfigController();
+  const {onUpdatePress, showUpdateDialog, hideUpdateDialog} =
+    useRemoteConfigController();
 
   /** Show App Update Dialog If App Update Available */
   return (
@@ -32,7 +33,7 @@ function CheckRemoteConfig() {
           </Text>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={BackHandler.exitApp}>Maybe Later</Button>
+          <Button onPress={hideUpdateDialog}>Later</Button>
           <Button onPress={onUpdatePress}>Update Now</Button>
         </Dialog.Actions>
       </Dialog>
