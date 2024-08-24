@@ -22,12 +22,16 @@ import createRemoteConfigSlice, {
 import createLikedWallpaperSlice, {
   LikeWallpaperSlice,
 } from '@app/features/likeWallpaper/zustand/likeWallpaperSlice';
+import createPreviousSearchSlice, {
+  PreviousSearchSlice,
+} from '@app/features/search/zustand/appSettingsSlice';
 
 type GloablStoreType = AppSettingsSlice &
   MatureContentAgreementSlice &
   UserSlice &
   RemoteConfigSlice &
-  LikeWallpaperSlice;
+  LikeWallpaperSlice &
+  PreviousSearchSlice;
 
 const useGlobalStore = create<GloablStoreType>()(
   persist(
@@ -37,6 +41,7 @@ const useGlobalStore = create<GloablStoreType>()(
       ...createUserSlice(...a),
       ...createRemoteConfigSlice(...a),
       ...createLikedWallpaperSlice(...a),
+      ...createPreviousSearchSlice(...a),
     })),
     {
       name: 'GLOBAL_STATE',

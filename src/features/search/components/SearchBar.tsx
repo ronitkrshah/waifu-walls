@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import useGlobalStore from '@app/store';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {
   BottomTabNavigationProp,
@@ -17,8 +18,9 @@ import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {Searchbar} from 'react-native-paper';
 
-function AppSearchBar() {
+function SearchBar() {
   const [query, setQuery] = useState('');
+  const saveSearchToLocalStorage = useGlobalStore(state => state.addSearch);
   const {colors} = useAppTheme();
   const navigation =
     useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.WAIFUS>>();
@@ -29,6 +31,7 @@ function AppSearchBar() {
 
   function onSubmitQuery() {
     setQuery('');
+    saveSearchToLocalStorage(query);
     navigation.push(StackNavigationRoutes.SEARCH_RESULTS_SCREEN, {
       type: SearchScreenSearchType.QUERY,
       query,
@@ -49,4 +52,4 @@ function AppSearchBar() {
   );
 }
 
-export default AppSearchBar;
+export default SearchBar;
