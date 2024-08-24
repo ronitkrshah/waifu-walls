@@ -9,6 +9,7 @@ import {
   AccountTab,
   FavouritesTab,
   FlavoursTab,
+  SearchTab,
   WaifusTab,
 } from '@app/screens/BottomTab';
 import {
@@ -31,12 +32,13 @@ function BottomTabNavigator({theme}: Props) {
       backBehavior="none"
       theme={theme}
       sceneAnimationType="opacity"
-      sceneAnimationEnabled
-      labeled={false}>
+      shifting
+      sceneAnimationEnabled>
       <Tab.Screen
         name={BottomTabNavigationRoutes.WAIFUS}
         component={WaifusTab}
         options={() => ({
+          tabBarLabel: 'Waifus',
           tabBarIcon: ({color, focused}) =>
             TabBarIcon(focused ? 'home' : 'home-outline', color),
         })}
@@ -45,14 +47,24 @@ function BottomTabNavigator({theme}: Props) {
         name={BottomTabNavigationRoutes.FLAVOURS}
         component={FlavoursTab}
         options={() => ({
+          tabBarLabel: 'Flavours',
           tabBarIcon: ({color, focused}) =>
             TabBarIcon(focused ? 'shape' : 'shape-outline', color),
+        })}
+      />
+      <Tab.Screen
+        name={BottomTabNavigationRoutes.SEARCH}
+        component={SearchTab}
+        options={() => ({
+          tabBarLabel: 'Search',
+          tabBarIcon: ({color}) => TabBarIcon('magnify', color),
         })}
       />
       <Tab.Screen
         name={BottomTabNavigationRoutes.FVAOURITES}
         component={FavouritesTab}
         options={() => ({
+          tabBarLabel: 'Favourite',
           tabBarIcon: ({color, focused}) =>
             TabBarIcon(focused ? 'heart' : 'heart-outline', color),
         })}
@@ -61,6 +73,7 @@ function BottomTabNavigator({theme}: Props) {
         name={BottomTabNavigationRoutes.ACCOUNT}
         component={AccountTab}
         options={() => ({
+          tabBarLabel: 'Profile',
           tabBarIcon: ({color, focused}) =>
             TabBarIcon(focused ? 'account' : 'account-outline', color),
         })}
