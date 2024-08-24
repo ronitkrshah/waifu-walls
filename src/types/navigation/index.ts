@@ -19,6 +19,12 @@ import {
 } from 'react-native-paper';
 import {Wallpaper} from '../api/wallpaper';
 
+/**
+ * Enum for Search Results Query Type
+ *
+ * `QUERY` A Single text search query. Ex : Waifu name
+ * `TAGS` A list of tags from `SFW` or `NSFW`
+ */
 export const enum SearchScreenSearchType {
   QUERY = 'query',
   TAGS = 'tags',
@@ -28,6 +34,7 @@ export const enum StackNavigationRoutes {
   SPLASH_SCREEN = 'SplashScreen',
   HOME_SCREEN = 'HomeScreen',
   REGISTER_AND_LOGIN_SCREEN = 'RegisterAndLoginScreen',
+  SEARCH_SCREEN = 'SearchScreen',
   SEARCH_RESULTS_SCREEN = 'SearchResultsScreen',
   SETTINGS_SCREEN = 'SettingsScreen',
   SETUP_WIZARD_SCREEN = 'SetupScreen',
@@ -38,6 +45,11 @@ export const enum StackNavigationRoutes {
   PENDING_REQUESTS_PREVIEW_SCREEN = 'PendingRequestsPreviewScreen',
 }
 
+/**
+ * Bottom Tab (Material) Navigation Routes enum
+ *
+ * Inside in `StackNavigation`
+ */
 export const enum BottomTabNavigationRoutes {
   WAIFUS = 'WaifusTab',
   FLAVOURS = 'FlavoursTab',
@@ -52,10 +64,14 @@ export type BottomTabNavigationParamList = {
   [BottomTabNavigationRoutes.ACCOUNT]: undefined;
 };
 
+/**
+ * Actual Stack Navigation Routes
+ */
 export type StackNavigationParamList = {
   [StackNavigationRoutes.SPLASH_SCREEN]: undefined;
   [StackNavigationRoutes.HOME_SCREEN]: NavigatorScreenParams<BottomTabNavigationParamList>;
   [StackNavigationRoutes.REGISTER_AND_LOGIN_SCREEN]: undefined;
+  [StackNavigationRoutes.SEARCH_SCREEN]: undefined;
   [StackNavigationRoutes.SEARCH_RESULTS_SCREEN]: {
     type: SearchScreenSearchType;
     query: string | string[];
@@ -71,9 +87,29 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.PENDING_REQUESTS_PREVIEW_SCREEN]: undefined;
 };
 
+/**
+ * Component Props to access `navigation` and `route` in Stack Navigation
+ *
+ * Example:
+ * ```
+ * function SplashScreen(
+ *    {navigation, route}: StackNavigationScreenProps<StackNavigationRoutes.SPLASH_SCREEN>
+ *  ) {}
+ * ```
+ */
 export type StackNavigationScreenProps<T extends StackNavigationRoutes> =
   NativeStackScreenProps<StackNavigationParamList, T>;
 
+/**
+ * Component Props to access `navigation` and `route` in Bottom Tab Navigation
+ *
+ * Example:
+ * ```
+ * function WaifusTab(
+ *    {navigation, route}: BottomTabNavigationScreenProps<BottomTabNavigationRoutes.WAIFUS>
+ *  ) {}
+ * ```
+ */
 export type BottomTabNavigationScreenProps<
   T extends BottomTabNavigationRoutes,
 > = CompositeScreenProps<
@@ -81,10 +117,20 @@ export type BottomTabNavigationScreenProps<
   NativeStackScreenProps<StackNavigationParamList>
 >;
 
+/**
+ * Type for `useNavigation` hook inside StackNavigation
+ */
 export type StackNavigationProp =
   NativeStackNavigationProp<StackNavigationParamList>;
 
-/** Type for useNavigation hook inside tab bar */
+/**
+ * Type for `useNavigation` hook inside BottomTabNavigation
+ *
+ * Example:
+ * ```
+ * const navigation = useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.WAIFUS>>()
+ * ```
+ */
 export type BottomTabNavigationProp<T extends BottomTabNavigationRoutes> =
   CompositeNavigationProp<
     MaterialBottomTabNavigationProp<BottomTabNavigationParamList, T>,

@@ -36,10 +36,6 @@ function WaifusTab({
       <WallpaperList />
       <WallpaperUploadFAB onPress={onFabPress} />
 
-      {/**
-       * Check Remote Configuration
-       * - Show App Update Dialog if updates are available
-       */}
       <CheckRemoteConfig />
     </Fragment>
   );

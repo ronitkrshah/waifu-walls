@@ -13,6 +13,11 @@ import {Button, Dialog, Portal, Text} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import useRemoteConfigController from '../controllers/useRemoteConfigController';
 
+/**
+ * CheckRemoteConfig Component fetches remote config from the api service
+ *
+ * Renders `App Update Dialog` if any update available
+ */
 function CheckRemoteConfig() {
   const {colors} = useAppTheme();
   const {onUpdatePress, showUpdateDialog, hideUpdateDialog} =
