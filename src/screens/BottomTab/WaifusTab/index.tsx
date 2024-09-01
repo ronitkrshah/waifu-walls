@@ -27,7 +27,7 @@ function WaifusTab({
     <Fragment>
       {/** The List of latest wallpapers */}
       <SafeAreaView>
-        <WallpaperFeature.LatestWallpapersScreen />
+        <WallpaperFeature.WallpaperList.LatestWallpapersScreen />
       </SafeAreaView>
 
       {/** Upload Button */}

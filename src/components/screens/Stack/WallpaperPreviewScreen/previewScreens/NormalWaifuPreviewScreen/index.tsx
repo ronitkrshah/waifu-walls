@@ -6,7 +6,7 @@
  */
 
 import NormalPreviewImage from './NormalPreviewImage';
-import {IWallpaper} from '@app/modules/Wallpaper/domain/models';
+import {WallpaperFeature} from '@app/modules';
 import ShowWallpaperActions from '@app/modules/wallpaperActions/components/ShowWallpaperActions';
 import DoubleTapLikeWallpaperWrapper from '@app/modules/likeWallpaper/components/DoubleTapLikeWallpaperWrapper';
 import Flex from '@app/components/common/Flex';
@@ -19,7 +19,7 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import WallpaperInformationDialog from '../../WallpaperInformationDialog';
 
 type Props = {
-  wallpaper: IWallpaper;
+  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
 };
 
 function NormalWaifuPreviewScreen({wallpaper}: Props) {

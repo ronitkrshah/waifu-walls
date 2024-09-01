@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {IWallpaper} from '@app/modules/Wallpaper/domain/models';
+import {WallpaperFeature} from '@app/modules';
 import {useState} from 'react';
 import setWallpaper, {SetWallpaperDestination} from '../utils/setWallpaper';
 import {ToastAndroid} from 'react-native';
 import * as FileSystem from '@dr.pogodin/react-native-fs';
 
 type Props = {
-  wallpaper: IWallpaper;
+  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
 };
 
 function useWallpaperActionsController({wallpaper}: Props) {

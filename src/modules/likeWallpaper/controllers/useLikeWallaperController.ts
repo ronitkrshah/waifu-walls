@@ -6,12 +6,12 @@
  */
 
 import useGlobalStore from '@app/store';
-import {IWallpaper} from '@app/modules/Wallpaper/domain/models';
+import {WallpaperFeature} from '@app/modules';
 import {useEffect, useState} from 'react';
 import {useShallow} from 'zustand/react/shallow';
 
 type Props = {
-  wallpaper: IWallpaper;
+  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
 };
 
 function useLikeWallpaperController({wallpaper}: Props) {

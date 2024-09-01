@@ -6,7 +6,7 @@
  */
 
 import useGlobalStore from '@app/store';
-import {IWallpaper} from '@app/modules/Wallpaper/domain/models';
+import {WallpaperFeature} from '@app/modules';
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
@@ -24,7 +24,7 @@ function useFavouriteWallpaperListController() {
   /**
    * Function To handle on press on waifus
    */
-  function handleWallpaperPress(wallpaper: IWallpaper) {
+  function handleWallpaperPress(wallpaper: WallpaperFeature.WallpaperList.IWallpaper) {
     navigation.push(StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN, {
       wallpaper,
     });

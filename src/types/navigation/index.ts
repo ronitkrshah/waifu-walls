@@ -4,6 +4,7 @@
  * The source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { WallpaperFeature } from '@app/modules';
 import {
   CompositeNavigationProp,
   CompositeScreenProps,
@@ -17,7 +18,7 @@ import {
   MaterialBottomTabNavigationProp,
   MaterialBottomTabScreenProps,
 } from 'react-native-paper';
-import {IWallpaper} from '../../modules/Wallpaper/domain/models';
+
 
 /**
  * Enum for Search Results Query Type
@@ -82,7 +83,7 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.SETUP_WIZARD_SCREEN]: undefined;
   [StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN]: undefined;
   [StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN]: {
-    wallpaper: IWallpaper;
+    wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
   };
   [StackNavigationRoutes.ADMIN_CONTROLS_SCREEN]: undefined;
   [StackNavigationRoutes.PENDING_REQUESTS_SCREEN]: undefined;

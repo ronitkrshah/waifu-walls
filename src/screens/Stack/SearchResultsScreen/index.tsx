@@ -19,7 +19,7 @@ import {Appbar} from 'react-native-paper';
 function SearchResultsScreen({
   route,
 }: StackNavigationScreenProps<StackNavigationRoutes.SEARCH_RESULTS_SCREEN>) {
-  return <WallpaperFeature.LatestWallpapersScreen query={route.params.query} />;
+  return <WallpaperFeature.WallpaperList.LatestWallpapersScreen query={route.params.query} />;
 }
 
 /** Appbar For SearchResultsScreen */
