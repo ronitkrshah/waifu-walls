@@ -15,7 +15,7 @@ import zustandStorage from './storage';
 import createMatureContentAgreementSlice, {
   MatureContentAgreementSlice,
 } from '@app/modules/matureContentAgreement/zustand/createMatureContentSlice';
-import createUserSlice, {UserSlice} from '@app/modules/auth/zustand/userSlice';
+import createUserSlice, {UserSlice} from '@app/modules/Authentication/zustand/userSlice';
 import createRemoteConfigSlice, {
   RemoteConfigSlice,
 } from '@app/modules/remoteConfig/zustand/remoteConfigSlice';

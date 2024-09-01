@@ -10,7 +10,7 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {Surface} from 'react-native-paper';
 import Headline from '../Headline';
-import RegisterHandler from '@app/modules/auth/components/RegisterHandler';
+import {AuthenticationModule} from '@app/modules';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
@@ -22,7 +22,7 @@ function RegisterPage() {
           title={DefaultStrings.SIGN_UP_TITLE}
           subtitle={DefaultStrings.SIGN_UP_GREETING}
         />
-        <RegisterHandler />
+        <AuthenticationModule.RegisterForm />
       </Surface>
     </View>
   );

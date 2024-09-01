@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import {Fragment} from 'react';
 import {Appbar} from 'react-native-paper';
 
@@ -13,7 +13,7 @@ function FavouritesTab() {
   return (
     <Fragment>
       <MyAppbar />
-      <WallpaperFeature.Like.FavoriteList />
+      <WallpaperModule.Like.FavoriteList />
     </Fragment>
   );
 }

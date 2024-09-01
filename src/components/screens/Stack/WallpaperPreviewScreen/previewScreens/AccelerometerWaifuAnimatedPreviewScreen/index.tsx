@@ -7,11 +7,11 @@
 
 import AccelerometerPreviewAnimatedImage from './AccelerometerPreviewAnimatedImage';
 import AccelerometerPreviewImageTitle from './AccelerometerPreviewImageTitle';
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import Flex from '@app/components/common/Flex';
 
 type Props = {
-  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
+  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
 };
 
 function AccelerometerWaifuAnimatedPreviewScreen({wallpaper}: Props) {

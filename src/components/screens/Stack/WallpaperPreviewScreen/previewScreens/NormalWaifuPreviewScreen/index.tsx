@@ -6,7 +6,7 @@
  */
 
 import NormalPreviewImage from './NormalPreviewImage';
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import Flex from '@app/components/common/Flex';
 import {Appbar} from 'react-native-paper';
 import {Fragment, useState} from 'react';
@@ -17,7 +17,7 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import WallpaperInformationDialog from '../../WallpaperInformationDialog';
 
 type Props = {
-  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
+  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
 };
 
 function NormalWaifuPreviewScreen({wallpaper}: Props) {
@@ -26,13 +26,13 @@ function NormalWaifuPreviewScreen({wallpaper}: Props) {
       <MyAppbar wallpaper={wallpaper} />
       <Flex flex={1} center>
         {/** Double Tap Like */}
-        <WallpaperFeature.Like.DoubleTapLikeWrapper wallpaper={wallpaper}>
+        <WallpaperModule.Like.DoubleTapLikeWrapper wallpaper={wallpaper}>
           <NormalPreviewImage uri={wallpaper.preview_url} />
-        </WallpaperFeature.Like.DoubleTapLikeWrapper>
+        </WallpaperModule.Like.DoubleTapLikeWrapper>
 
         {/** Apply & Download Option */}
         <View style={styles.actionsContainer}>
-          <WallpaperFeature.Actions.WallpaperActions wallpaper={wallpaper} />
+          <WallpaperModule.Actions.WallpaperActions wallpaper={wallpaper} />
         </View>
       </Flex>
     </Fragment>

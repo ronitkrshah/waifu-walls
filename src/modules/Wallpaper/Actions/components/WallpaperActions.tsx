@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -14,7 +14,7 @@ import {SetWallpaperDestination} from '../utils/setWallpaper';
 import { useActions } from '../hooks';
 
 type Props = {
-  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
+  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
 };
 
 function WallpaperActions({wallpaper}: Props) {

@@ -11,7 +11,7 @@ import {Dimensions} from 'react-native';
 import {StyleSheet, View} from 'react-native';
 import {Surface} from 'react-native-paper';
 import Headline from '../Headline';
-import LoginHandler from '@app/modules/auth/components/LoginHandler';
+import {AuthenticationModule} from '@app/modules';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
@@ -23,7 +23,7 @@ function LoginPage() {
           title={DefaultStrings.LOGIN_TITLE}
           subtitle={DefaultStrings.LOGIN_GREETING}
         />
-        <LoginHandler />
+        <AuthenticationModule.LoginForm />
       </Surface>
     </View>
   );

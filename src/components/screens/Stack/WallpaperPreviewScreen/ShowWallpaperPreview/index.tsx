@@ -6,13 +6,13 @@
  */
 
 import useGlobalStore from '@app/store';
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import {Fragment} from 'react';
 import NormalWaifuPreviewScreen from '../previewScreens/NormalWaifuPreviewScreen';
 import AccelerometerWaifuAnimatedPreviewScreen from '../previewScreens/AccelerometerWaifuAnimatedPreviewScreen';
 
 type Props = {
-  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
+  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
 };
 
 function ShowWallpaperPreview({wallpaper}: Props) {

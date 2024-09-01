@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import {useFavorite} from '../hooks';
 import {Fragment, PropsWithChildren, memo, useEffect} from 'react';
 import Animated, {
@@ -25,7 +25,7 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 
 type Props = {
-  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
+  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
   animatedIconSize?: number;
   floatingIconSize?: number;
   showFloatingIconOutside?: boolean;

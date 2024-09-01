@@ -1,2 +1,3 @@
-export * as WallpaperFeature from "./Wallpaper"
-export * as SearchFeature from "./Search"
+export * as WallpaperModule from "./Wallpaper"
+export * as SearchModule from "./Search"
+export * as AuthenticationModule from "./Authentication"

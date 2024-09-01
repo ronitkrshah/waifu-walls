@@ -7,13 +7,18 @@
 
 import Flex from '@app/components/common/Flex';
 import AnimatedLoadingCircleIndicator from '@app/components/shared/AnimatedLoadingCircleIndicator';
-import GetLoggedInUser from '@app/modules/auth/components/GetLoggedInUser';
+import {AuthenticationModule} from '@app/modules';
+import { useEffect } from 'react';
 
 function SplashScreen() {
+
+  useEffect(() => {
+    AuthenticationModule.getLoggedIUser()
+  }, [])
+
   return (
     <Flex flex={1} center>
       <AnimatedLoadingCircleIndicator />
-      <GetLoggedInUser />
     </Flex>
   );
 }

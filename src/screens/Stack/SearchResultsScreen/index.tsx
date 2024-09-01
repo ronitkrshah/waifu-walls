@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import {
   SearchScreenSearchType,
   StackNavigationParamList,
@@ -19,7 +19,7 @@ import {Appbar} from 'react-native-paper';
 function SearchResultsScreen({
   route,
 }: StackNavigationScreenProps<StackNavigationRoutes.SEARCH_RESULTS_SCREEN>) {
-  return <WallpaperFeature.WallpaperList.LatestWallpapersScreen query={route.params.query} />;
+  return <WallpaperModule.WallpaperList.LatestWallpapersScreen query={route.params.query} />;
 }
 
 /** Appbar For SearchResultsScreen */

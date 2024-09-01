@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import {Fragment} from 'react';
 import {Linking, StyleSheet, View} from 'react-native';
 import {Button, Dialog, Portal, Text} from 'react-native-paper';
@@ -13,7 +13,7 @@ import {Button, Dialog, Portal, Text} from 'react-native-paper';
 type Props = {
   show: boolean;
   onDismiss(): void;
-  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
+  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
 };
 
 function WallpaperInformationDialog({wallpaper, show, onDismiss}: Props) {

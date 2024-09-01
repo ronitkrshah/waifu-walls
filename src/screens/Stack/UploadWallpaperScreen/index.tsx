@@ -6,7 +6,7 @@
  */
 
 import CheckRemoteConfig from '@app/modules/remoteConfig/components/CheckRemoteConfig';
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Fragment} from 'react';
 import {KeyboardAvoidingView, ScrollView, StyleSheet} from 'react-native';
@@ -20,7 +20,7 @@ function UploadWallpaperScreen() {
           nestedScrollEnabled
           style={styles.rootContainer}
           contentContainerStyle={styles.contentContainer}>
-          <WallpaperFeature.Upload.UploadScreen />
+          <WallpaperModule.Upload.UploadScreen />
         </ScrollView>
       </KeyboardAvoidingView>
 

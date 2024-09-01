@@ -6,12 +6,12 @@
  */
 
 import useGlobalStore from '@app/store';
-import {WallpaperFeature} from '@app/modules';
+import {WallpaperModule} from '@app/modules';
 import {useEffect, useState} from 'react';
 import {useShallow} from 'zustand/react/shallow';
 
 type Props = {
-  wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
+  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
 };
 
 function useFavorite({wallpaper}: Props) {
