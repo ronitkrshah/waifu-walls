@@ -7,7 +7,7 @@
 
 import {WallpaperFeature} from '@app/modules';
 import {useState} from 'react';
-import setWallpaper, {SetWallpaperDestination} from '../utils/setWallpaper';
+import {SetWallpaperDestination,setWallpaper} from '../utils';
 import {ToastAndroid} from 'react-native';
 import * as FileSystem from '@dr.pogodin/react-native-fs';
 
@@ -15,7 +15,7 @@ type Props = {
   wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
 };
 
-function useWallpaperActionsController({wallpaper}: Props) {
+function useActions({wallpaper}: Props) {
   const [isApplyingWallaper, setIsApplyingWallpaper] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
 
@@ -59,4 +59,4 @@ function useWallpaperActionsController({wallpaper}: Props) {
   };
 }
 
-export default useWallpaperActionsController;
+export default useActions;

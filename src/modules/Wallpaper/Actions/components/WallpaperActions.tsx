@@ -10,17 +10,16 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator, Button, Dialog, Portal} from 'react-native-paper';
-import useWallpaperActionsController from '../controllers/useWallpaperActionsController';
 import {SetWallpaperDestination} from '../utils/setWallpaper';
+import { useActions } from '../hooks';
 
 type Props = {
   wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
 };
 
-function ShowWallpaperActions({wallpaper}: Props) {
+function WallpaperActions({wallpaper}: Props) {
   const [showDestinationOptions, setShowDestinationOptions] = useState(false);
-  const {applyWallpaper, isApplyingWallaper, isDownloading, downloadWallpaper} =
-    useWallpaperActionsController({
+  const {applyWallpaper, isApplyingWallaper, isDownloading, downloadWallpaper} = useActions({
       wallpaper,
     });
   function onApply() {
@@ -94,4 +93,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShowWallpaperActions;
+export default WallpaperActions;
