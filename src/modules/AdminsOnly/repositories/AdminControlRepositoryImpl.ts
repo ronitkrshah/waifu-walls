@@ -6,10 +6,10 @@
  */
 
 import AppwriteService from '@app/appwrite/AppwriteService';
-import AdminControlRepository from '../domain/repositories/AdminControlRepository';
+import {IAdminControlRepository} from '../domain/repositories';
 import {env} from '@app/utils/env/env';
 
-class AdminControlRepositoryImpl implements AdminControlRepository {
+class AdminControlRepositoryImpl implements IAdminControlRepository {
   private _api = AppwriteService.getInstance();
 
   async enableWallpaperUpload(): Promise<void> {

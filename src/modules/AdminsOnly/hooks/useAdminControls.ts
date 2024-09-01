@@ -12,7 +12,7 @@ import AdminControlRepositoryImpl from '../repositories/AdminControlRepositoryIm
 import {ToastAndroid} from 'react-native';
 import {AppwriteException} from 'react-native-appwrite';
 
-function useAdminControlController() {
+function useAdminControls() {
   const [isUploadImageFeatureEnabled, setIsUploadImageFeatureEnabled] =
     useState(false);
   const service = new AdminControlService(new AdminControlRepositoryImpl());
@@ -58,4 +58,4 @@ function useAdminControlController() {
   };
 }
 
-export default useAdminControlController;
+export default useAdminControls;

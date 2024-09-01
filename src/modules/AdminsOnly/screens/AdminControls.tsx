@@ -6,18 +6,18 @@
  */
 
 import {ScrollView} from 'react-native';
-import useAdminControlController from '../controllers/useAdminControlsController';
+import {useAdminControls} from '../hooks';
 import {Fragment} from 'react';
 import {ActivityIndicator} from 'react-native-paper';
 import SwitchButtonTile from '@app/modules/shared/components/SwtichButtonTile';
 
-function AdminControlsFeature() {
+function AdminControls() {
   const {
     isLoadingSettings,
     setUploadImageFeature,
     isUploadImageFeatureEnabled,
     isUpdatingUploadImageFeatureSetting,
-  } = useAdminControlController();
+  } = useAdminControls();
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {isLoadingSettings || isUpdatingUploadImageFeatureSetting ? (
@@ -37,4 +37,4 @@ function AdminControlsFeature() {
   );
 }
 
-export default AdminControlsFeature;
+export default AdminControls;

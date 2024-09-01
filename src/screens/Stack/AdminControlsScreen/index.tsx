@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import AdminControlsFeature from '@app/modules/adminControls/components/AdminControlsFeature';
+import {AdminsOnlyModule} from '@app/modules';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Appbar} from 'react-native-paper';
 
 function AdminControlsScreen() {
-  return <AdminControlsFeature />;
+  return <AdminsOnlyModule.AdminControlsScreen />;
 }
 
 /** Appbar */

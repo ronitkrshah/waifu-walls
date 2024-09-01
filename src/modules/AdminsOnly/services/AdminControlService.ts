@@ -7,12 +7,12 @@
 
 import RemoteConfigRepositoryImpl from '@app/modules/remoteConfig/repositories/RemoteConfigRepositoryImpl';
 import RemoteConfigService from '@app/modules/remoteConfig/services/RemoteConfigService';
-import AdminControlRepository from '../domain/repositories/AdminControlRepository';
+import IAdminControlRepository from '../domain/repositories/IAdminControlRepository';
 
 class AdminControlService extends RemoteConfigService {
-  private _repository: AdminControlRepository;
+  private _repository: IAdminControlRepository;
 
-  constructor(repo: AdminControlRepository) {
+  constructor(repo: IAdminControlRepository) {
     super(new RemoteConfigRepositoryImpl());
     this._repository = repo;
   }
