@@ -24,7 +24,7 @@ import createLikedWallpaperSlice, {
 } from '@app/modules/likeWallpaper/zustand/likeWallpaperSlice';
 import createPreviousSearchSlice, {
   PreviousSearchSlice,
-} from '@app/modules/search/zustand/appSettingsSlice';
+} from '@app/modules/Search/zustand/appSettingsSlice';
 
 type GloablStoreType = AppSettingsSlice &
   MatureContentAgreementSlice &

@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import PreviousSearchList from './PreviousSearchList';
-import SearchBar from './SearchBar';
+import {PreviousSearchList, SearchBar} from '../components';
 
-function SearchFeature() {
+
+function Search() {
   return (
     <>
       <SearchBar />
@@ -17,4 +17,4 @@ function SearchFeature() {
   );
 }
 
-export default SearchFeature;
+export default Search;
