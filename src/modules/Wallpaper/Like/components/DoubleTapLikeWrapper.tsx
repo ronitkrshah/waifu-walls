@@ -6,7 +6,7 @@
  */
 
 import {WallpaperFeature} from '@app/modules';
-import useLikeWallpaperController from '../controllers/useLikeWallaperController';
+import {useFavorite} from '../hooks';
 import {Fragment, PropsWithChildren, memo, useEffect} from 'react';
 import Animated, {
   ZoomIn,
@@ -34,14 +34,14 @@ type Props = {
 const AMaterialIcons = Animated.createAnimatedComponent(MaterialCommuntiyIcons);
 const AIconButton = Animated.createAnimatedComponent(IconButton);
 
-function DoubleTapLikeWallpaperWrapper({
+function DoubleTapLikeWrapper({
   wallpaper,
   children,
   animatedIconSize,
   showFloatingIconOutside,
 }: Props) {
   const animatedValue = useSharedValue(0);
-  const {handleLikeButtonPress, isLiked} = useLikeWallpaperController({
+  const {handleLikeButtonPress, isLiked} = useFavorite({
     wallpaper,
   });
 
@@ -139,4 +139,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(DoubleTapLikeWallpaperWrapper);
+export default memo(DoubleTapLikeWrapper);

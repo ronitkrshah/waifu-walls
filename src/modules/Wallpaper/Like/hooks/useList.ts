@@ -14,7 +14,7 @@ import {
 } from '@app/types/navigation';
 import {useNavigation} from '@react-navigation/native';
 
-function useFavouriteWallpaperListController() {
+function useList() {
   const list = useGlobalStore(state => state.likedWallpapers);
   const navigation =
     useNavigation<
@@ -36,4 +36,4 @@ function useFavouriteWallpaperListController() {
   };
 }
 
-export default useFavouriteWallpaperListController;
+export default useList;

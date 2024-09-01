@@ -24,7 +24,7 @@ import {
   setUpdateIntervalForType,
 } from 'react-native-sensors';
 import DoubleTapShowControls from '../DoubleTabShowControls';
-import DoubleTapLikeWallpaperWrapper from '@app/modules/likeWallpaper/components/DoubleTapLikeWallpaperWrapper';
+import DoubleTapLikeWrapper from '@app/modules/Wallpaper/Like/components/DoubleTapLikeWrapper';
 
 type Props = {
   wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
@@ -104,7 +104,7 @@ function AccelerometerPreviewAnimatedImage({wallpaper}: Props) {
 
       <DoubleTapShowControls wallpaper={wallpaper}>
         <View style={styles.rootContainer}>
-          <DoubleTapLikeWallpaperWrapper
+          <DoubleTapLikeWrapper
             showFloatingIconOutside
             wallpaper={wallpaper}>
             <Animated.View style={[styles.container, rFloatingImageStyle]}>
@@ -114,7 +114,7 @@ function AccelerometerPreviewAnimatedImage({wallpaper}: Props) {
                 style={[StyleSheet.absoluteFillObject]}
               />
             </Animated.View>
-          </DoubleTapLikeWallpaperWrapper>
+          </DoubleTapLikeWrapper>
         </View>
       </DoubleTapShowControls>
     </Fragment>

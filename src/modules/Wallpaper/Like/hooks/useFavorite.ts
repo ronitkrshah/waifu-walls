@@ -14,18 +14,20 @@ type Props = {
   wallpaper: WallpaperFeature.WallpaperList.IWallpaper;
 };
 
-function useLikeWallpaperController({wallpaper}: Props) {
+function useFavorite({wallpaper}: Props) {
   const [isLiked, setIsLiked] = useState(false);
-  const {addNewWallpaper, checkIfAlreadyAdded, removeFromFavourites} =
+  const {addNewWallpaper, checkIfAlreadyAdded, removeFromFavourites, wallpaperList} =
     useGlobalStore(
       useShallow(state => ({
         addNewWallpaper: state.addNewWallpaperToFavourites,
         checkIfAlreadyAdded: state.checkIfWallpaperAlreadyAddedInFavourites,
         removeFromFavourites: state.removeWallpaperFromFavouritesById,
+        wallpaperList: state.likedWallpapers
       })),
     );
-
-  /** Handle Press on Like Button */
+  /**
+   * Handle Press on Like Button
+   */
   function handleLikeButtonPress() {
     if (isLiked) {
       removeFromFavourites(wallpaper.id);
@@ -36,6 +38,7 @@ function useLikeWallpaperController({wallpaper}: Props) {
     }
   }
 
+
   useEffect(() => {
     setIsLiked(checkIfAlreadyAdded(wallpaper.id));
   }, [checkIfAlreadyAdded, wallpaper.id]);
@@ -43,7 +46,8 @@ function useLikeWallpaperController({wallpaper}: Props) {
   return {
     handleLikeButtonPress,
     isLiked,
+    wallpaperList,
   };
 }
 
-export default useLikeWallpaperController;
+export default useFavorite;

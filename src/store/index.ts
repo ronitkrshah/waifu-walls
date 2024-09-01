@@ -19,9 +19,9 @@ import createUserSlice, {UserSlice} from '@app/modules/auth/zustand/userSlice';
 import createRemoteConfigSlice, {
   RemoteConfigSlice,
 } from '@app/modules/remoteConfig/zustand/remoteConfigSlice';
-import createLikedWallpaperSlice, {
-  LikeWallpaperSlice,
-} from '@app/modules/likeWallpaper/zustand/likeWallpaperSlice';
+import {
+  LikeWallpaperSlice,createLikedWallpaperSlice
+} from '@app/modules/Wallpaper/Like/zustand';
 import createPreviousSearchSlice, {
   PreviousSearchSlice,
 } from '@app/modules/Search/zustand/appSettingsSlice';

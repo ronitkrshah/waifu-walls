@@ -7,12 +7,11 @@
 
 import {DefaultStyles} from '@app/utils/constants/style';
 import {FlatList, StyleSheet} from 'react-native';
-import useFavouriteWallpaperListController from '../controllers/useFavouriteWallpaperListController';
 import WallpaperListItem from '@app/modules/shared/components/WallpaperListItem';
+import {useList} from "../hooks"
 
-function FavouritesWallpaperList() {
-  const {handleWallpaperPress, wallpaperList} =
-    useFavouriteWallpaperListController();
+function FavoriteList() {
+  const {handleWallpaperPress, wallpaperList} = useList();
 
   return (
     <FlatList
@@ -34,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FavouritesWallpaperList;
+export default FavoriteList;
