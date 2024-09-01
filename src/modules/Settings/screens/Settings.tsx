@@ -6,10 +6,10 @@
  */
 
 import {ScrollView} from 'react-native';
-import AdultSettingsSection from '../settings/adultSettings/AdultSettingsSection';
-import AppearanceSettingsSection from '../settings/appearanceSettings/AppearanceSettingsSection';
+import AdultSettingsSection from '../components/adultSettings/AdultSettingsSection';
+import AppearanceSettingsSection from '../components/appearanceSettings/AppearanceSettingsSection';
 
-function AppSettingsFeature() {
+function Settings() {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <AppearanceSettingsSection />
@@ -18,4 +18,4 @@ function AppSettingsFeature() {
   );
 }
 
-export default AppSettingsFeature;
+export default Settings;

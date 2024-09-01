@@ -7,7 +7,7 @@
 
 import createAppSettingsSlice, {
   AppSettingsSlice,
-} from '@app/modules/appSettings/zustand/appSettingsSlice';
+} from '@app/modules/Settings/zustand/appSettingsSlice';
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
