@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import FavouritesWallpaperList from '@app/features/likeWallpaper/components/FavouriteWallpaperList';
+import FavouritesWallpaperList from '@app/modules/likeWallpaper/components/FavouriteWallpaperList';
 import {Fragment} from 'react';
 import {Appbar} from 'react-native-paper';
 

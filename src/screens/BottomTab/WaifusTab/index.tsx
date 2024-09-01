@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import WallpaperList from '@app/features/wallpaperList/components/WallpaperList';
-import CheckRemoteConfig from '@app/features/remoteConfig/components/CheckRemoteConfig';
+import {WallpaperFeature} from '@app/modules';
+import CheckRemoteConfig from '@app/modules/remoteConfig/components/CheckRemoteConfig';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
@@ -25,11 +25,15 @@ function WaifusTab({
 
   return (
     <Fragment>
+      {/** The List of latest wallpapers */}
       <SafeAreaView>
-        <WallpaperList />
+        <WallpaperFeature.LatestWallpapersScreen />
       </SafeAreaView>
+
+      {/** Upload Button */}
       <WallpaperUploadFAB onPress={onFabPress} />
 
+      {/** Remote Config */}
       <CheckRemoteConfig />
     </Fragment>
   );

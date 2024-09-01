@@ -7,7 +7,7 @@
 
 import Flex from '@app/components/common/Flex';
 import AnimatedLoadingCircleIndicator from '@app/components/shared/AnimatedLoadingCircleIndicator';
-import GetLoggedInUser from '@app/features/auth/components/GetLoggedInUser';
+import GetLoggedInUser from '@app/modules/auth/components/GetLoggedInUser';
 
 function SplashScreen() {
   return (

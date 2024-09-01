@@ -1,0 +1,1 @@
+export {LatestWallpapersScreen} from "./screens"

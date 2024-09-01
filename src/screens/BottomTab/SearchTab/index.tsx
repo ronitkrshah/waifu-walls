@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import SearchFeature from '@app/features/search/components/SearchFeature';
+import SearchFeature from '@app/modules/search/components/SearchFeature';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import AppSettingsFeature from '@app/features/appSettings/components/AppSettingsFeature';
+import AppSettingsFeature from '@app/modules/appSettings/components/AppSettingsFeature';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Appbar} from 'react-native-paper';
 

@@ -6,9 +6,9 @@
  */
 
 import NormalPreviewImage from './NormalPreviewImage';
-import {Wallpaper} from '@app/types/api/wallpaper';
-import ShowWallpaperActions from '@app/features/wallpaperActions/components/ShowWallpaperActions';
-import DoubleTapLikeWallpaperWrapper from '@app/features/likeWallpaper/components/DoubleTapLikeWallpaperWrapper';
+import {IWallpaper} from '@app/modules/Wallpaper/domain/models';
+import ShowWallpaperActions from '@app/modules/wallpaperActions/components/ShowWallpaperActions';
+import DoubleTapLikeWallpaperWrapper from '@app/modules/likeWallpaper/components/DoubleTapLikeWallpaperWrapper';
 import Flex from '@app/components/common/Flex';
 import {Appbar} from 'react-native-paper';
 import {Fragment, useState} from 'react';
@@ -19,7 +19,7 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import WallpaperInformationDialog from '../../WallpaperInformationDialog';
 
 type Props = {
-  wallpaper: Wallpaper;
+  wallpaper: IWallpaper;
 };
 
 function NormalWaifuPreviewScreen({wallpaper}: Props) {

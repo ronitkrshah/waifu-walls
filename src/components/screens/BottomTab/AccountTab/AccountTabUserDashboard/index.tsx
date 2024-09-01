@@ -11,7 +11,7 @@ import {Fragment} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 import {Avatar, Surface, Text} from 'react-native-paper';
 import AdminsOnlyFeatures from './AdminsOnlyOptions';
-import LogoutHandler from '@app/features/auth/components/LogoutHandler';
+import LogoutHandler from '@app/modules/auth/components/LogoutHandler';
 import useGlobalStore from '@app/store';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import MatureContentAgreementControls from '@app/features/matureContentAgreement/components/MatureContentAgreementControls';
+import MatureContentAgreementControls from '@app/modules/matureContentAgreement/components/MatureContentAgreementControls';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {DefaultStyles} from '@app/utils/constants/style';

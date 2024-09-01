@@ -17,7 +17,7 @@ import {
   MaterialBottomTabNavigationProp,
   MaterialBottomTabScreenProps,
 } from 'react-native-paper';
-import {Wallpaper} from '../api/wallpaper';
+import {IWallpaper} from '../../modules/Wallpaper/domain/models';
 
 /**
  * Enum for Search Results Query Type
@@ -82,7 +82,7 @@ export type StackNavigationParamList = {
   [StackNavigationRoutes.SETUP_WIZARD_SCREEN]: undefined;
   [StackNavigationRoutes.UPLOAD_WALLPAPER_SCREEN]: undefined;
   [StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN]: {
-    wallpaper: Wallpaper;
+    wallpaper: IWallpaper;
   };
   [StackNavigationRoutes.ADMIN_CONTROLS_SCREEN]: undefined;
   [StackNavigationRoutes.PENDING_REQUESTS_SCREEN]: undefined;

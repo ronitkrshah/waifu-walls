@@ -5,15 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import ShowWallpaperActions from '@app/features/wallpaperActions/components/ShowWallpaperActions';
-import {Wallpaper} from '@app/types/api/wallpaper';
+import ShowWallpaperActions from '@app/modules/wallpaperActions/components/ShowWallpaperActions';
+import {IWallpaper} from '@app/modules/Wallpaper/domain/models';
 import {Fragment, PropsWithChildren, useState} from 'react';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {Dialog, Portal} from 'react-native-paper';
 import WallpaperInformationDialog from '../../../WallpaperInformationDialog';
 
 type Props = {
-  wallpaper: Wallpaper;
+  wallpaper: IWallpaper;
 } & Required<PropsWithChildren>;
 
 function DoubleTapShowControls({wallpaper, children}: Props) {

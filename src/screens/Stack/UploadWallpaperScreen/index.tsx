@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import CheckRemoteConfig from '@app/features/remoteConfig/components/CheckRemoteConfig';
-import UploadWallpaperFeature from '@app/features/uploadWallpaper/components/UploadWallpaperFeature';
+import CheckRemoteConfig from '@app/modules/remoteConfig/components/CheckRemoteConfig';
+import UploadWallpaperFeature from '@app/modules/uploadWallpaper/components/UploadWallpaperFeature';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Fragment} from 'react';
 import {KeyboardAvoidingView, ScrollView, StyleSheet} from 'react-native';

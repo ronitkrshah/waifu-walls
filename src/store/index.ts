@@ -7,24 +7,24 @@
 
 import createAppSettingsSlice, {
   AppSettingsSlice,
-} from '@app/features/appSettings/zustand/appSettingsSlice';
+} from '@app/modules/appSettings/zustand/appSettingsSlice';
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 import zustandStorage from './storage';
 import createMatureContentAgreementSlice, {
   MatureContentAgreementSlice,
-} from '@app/features/matureContentAgreement/zustand/createMatureContentSlice';
-import createUserSlice, {UserSlice} from '@app/features/auth/zustand/userSlice';
+} from '@app/modules/matureContentAgreement/zustand/createMatureContentSlice';
+import createUserSlice, {UserSlice} from '@app/modules/auth/zustand/userSlice';
 import createRemoteConfigSlice, {
   RemoteConfigSlice,
-} from '@app/features/remoteConfig/zustand/remoteConfigSlice';
+} from '@app/modules/remoteConfig/zustand/remoteConfigSlice';
 import createLikedWallpaperSlice, {
   LikeWallpaperSlice,
-} from '@app/features/likeWallpaper/zustand/likeWallpaperSlice';
+} from '@app/modules/likeWallpaper/zustand/likeWallpaperSlice';
 import createPreviousSearchSlice, {
   PreviousSearchSlice,
-} from '@app/features/search/zustand/appSettingsSlice';
+} from '@app/modules/search/zustand/appSettingsSlice';
 
 type GloablStoreType = AppSettingsSlice &
   MatureContentAgreementSlice &

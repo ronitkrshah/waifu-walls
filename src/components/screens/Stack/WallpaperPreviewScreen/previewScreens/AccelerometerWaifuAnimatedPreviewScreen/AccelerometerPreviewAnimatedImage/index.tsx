@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {Wallpaper} from '@app/types/api/wallpaper';
+import {IWallpaper} from '@app/modules/Wallpaper/domain/models';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment, useEffect} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
@@ -24,10 +24,10 @@ import {
   setUpdateIntervalForType,
 } from 'react-native-sensors';
 import DoubleTapShowControls from '../DoubleTabShowControls';
-import DoubleTapLikeWallpaperWrapper from '@app/features/likeWallpaper/components/DoubleTapLikeWallpaperWrapper';
+import DoubleTapLikeWallpaperWrapper from '@app/modules/likeWallpaper/components/DoubleTapLikeWallpaperWrapper';
 
 type Props = {
-  wallpaper: Wallpaper;
+  wallpaper: IWallpaper;
 };
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('screen');

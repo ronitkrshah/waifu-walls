@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import AdminControlsFeature from '@app/features/adminControls/components/AdminControlsFeature';
+import AdminControlsFeature from '@app/modules/adminControls/components/AdminControlsFeature';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Appbar} from 'react-native-paper';
 
