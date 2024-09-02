@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import CheckRemoteConfig from '@app/modules/remoteConfig/components/CheckRemoteConfig';
 import {WallpaperModule} from '@app/modules';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Fragment} from 'react';
@@ -23,9 +22,6 @@ function UploadWallpaperScreen() {
           <WallpaperModule.Upload.UploadScreen />
         </ScrollView>
       </KeyboardAvoidingView>
-
-      {/** Re-Check */}
-      <CheckRemoteConfig />
     </Fragment>
   );
 }

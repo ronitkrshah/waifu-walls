@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import RemoteConfigRepositoryImpl from '@app/modules/remoteConfig/repositories/RemoteConfigRepositoryImpl';
-import RemoteConfigService from '@app/modules/remoteConfig/services/RemoteConfigService';
+import RemoteConfigRepositoryImpl from '@app/modules/RemoteConfig/repository/RemoteConfigRepositoryImpl';
+import RemoteConfigService from '@app/modules/RemoteConfig/services/RemoteConfigService';
 import IAdminControlRepository from '../domain/repositories/IAdminControlRepository';
 
 class AdminControlService extends RemoteConfigService {

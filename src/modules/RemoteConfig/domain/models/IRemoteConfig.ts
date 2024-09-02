@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-type RemoteConfigDTO = {
+interface IRemoteConfig {
   version: string;
   shouldUploadImages: boolean;
 };
 
-export default RemoteConfigDTO;
+export default IRemoteConfig;

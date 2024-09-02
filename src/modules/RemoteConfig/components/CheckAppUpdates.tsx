@@ -11,17 +11,17 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import {StyleSheet} from 'react-native';
 import {Button, Dialog, Portal, Text} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import useRemoteConfigController from '../controllers/useRemoteConfigController';
+import useRemoteConfig from '../hooks/useRemoteConfig';
 
 /**
  * CheckRemoteConfig Component fetches remote config from the api service
  *
  * Renders `App Update Dialog` if any update available
  */
-function CheckRemoteConfig() {
+function CheckAppUpdates() {
   const {colors} = useAppTheme();
   const {onUpdatePress, showUpdateDialog, hideUpdateDialog} =
-    useRemoteConfigController();
+    useRemoteConfig();
 
   /** Show App Update Dialog If App Update Available */
   return (
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckRemoteConfig;
+export default CheckAppUpdates;

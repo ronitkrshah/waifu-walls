@@ -9,12 +9,12 @@ import {DefaultStrings} from '@app/utils/constants/strings';
 import {useQuery} from '@tanstack/react-query';
 import {Linking} from 'react-native';
 import RemoteConfigService from '../services/RemoteConfigService';
-import RemoteConfigRepositoryImpl from '../repositories/RemoteConfigRepositoryImpl';
+import RemoteConfigRepositoryImpl from '../repository/RemoteConfigRepositoryImpl';
 import {useEffect, useState} from 'react';
 import DeviceInfo from 'react-native-device-info';
 import useGlobalStore from '@app/store';
 
-function useRemoteConfigController() {
+function useRemoteConfig() {
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const service = new RemoteConfigService(new RemoteConfigRepositoryImpl());
   const setShouldUploadImages = useGlobalStore(
@@ -48,4 +48,4 @@ function useRemoteConfigController() {
   };
 }
 
-export default useRemoteConfigController;
+export default useRemoteConfig;

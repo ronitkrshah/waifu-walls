@@ -7,10 +7,10 @@
 
 import AppwriteService from '@app/appwrite/AppwriteService';
 import {env} from '@app/utils/env/env';
-import RemoteConfigRepository from '../domain/repositories/RemoteConfigRepository';
-import RemoteConfigModel from '../domain/models/RemoteConfigModel';
+import IRemoteConfigRepository from '../domain/repositories/IRemoteConfigRepository';
+import IRemoteConfigDto from '../dto/IRemoteConfigDto';
 
-class RemoteConfigRepositoryImpl implements RemoteConfigRepository {
+class RemoteConfigRepositoryImpl implements IRemoteConfigRepository {
   private _api = AppwriteService.getInstance();
 
   /**
@@ -23,7 +23,7 @@ class RemoteConfigRepositoryImpl implements RemoteConfigRepository {
       env.APPWRITE_REMOTE_CONFIG_DOCUMENT_ID,
     );
 
-    return config as RemoteConfigModel;
+    return config as IRemoteConfigDto;
   }
 }
 

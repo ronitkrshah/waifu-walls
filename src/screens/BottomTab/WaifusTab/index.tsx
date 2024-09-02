@@ -6,7 +6,7 @@
  */
 
 import {WallpaperModule} from '@app/modules';
-import CheckRemoteConfig from '@app/modules/remoteConfig/components/CheckRemoteConfig';
+import {RemoteConfigModule} from '@app/modules';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
@@ -34,7 +34,7 @@ function WaifusTab({
       <WallpaperUploadFAB onPress={onFabPress} />
 
       {/** Remote Config */}
-      <CheckRemoteConfig />
+      <RemoteConfigModule.CheckAppUpdates />
     </Fragment>
   );
 }

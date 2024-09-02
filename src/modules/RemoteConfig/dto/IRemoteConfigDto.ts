@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-type RemoteConfigModel = {
+interface IRemoteConfigDto {
   version: string;
   should_upload_images: boolean;
   $id: string;
@@ -17,4 +17,4 @@ type RemoteConfigModel = {
   $collectionId: string;
 };
 
-export default RemoteConfigModel;
+export default IRemoteConfigDto;

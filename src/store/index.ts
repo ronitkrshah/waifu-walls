@@ -19,7 +19,7 @@ import  {
 import createUserSlice, {UserSlice} from '@app/modules/Authentication/zustand/userSlice';
 import createRemoteConfigSlice, {
   RemoteConfigSlice,
-} from '@app/modules/remoteConfig/zustand/remoteConfigSlice';
+} from '@app/modules/RemoteConfig/zustand/remoteConfigSlice';
 import {
   LikeWallpaperSlice,createLikedWallpaperSlice
 } from '@app/modules/Wallpaper/Like/zustand';
