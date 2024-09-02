@@ -7,8 +7,8 @@
 
 import AppwriteService from '@app/appwrite/AppwriteService';
 import {env} from '@app/utils/env/env';
-import IRemoteConfigRepository from '../domain/repositories/IRemoteConfigRepository';
-import IRemoteConfigDto from '../dto/IRemoteConfigDto';
+import {type IRemoteConfigRepository} from '../domain/repositories';
+import {type IRemoteConfigDto} from '../dto';
 
 class RemoteConfigRepositoryImpl implements IRemoteConfigRepository {
   private _api = AppwriteService.getInstance();

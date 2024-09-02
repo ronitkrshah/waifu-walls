@@ -5,10 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface IAdminControlRepository {
+export interface IAdminControlRepository {
   disableWallpaperUpload(): Promise<void>;
   
   enableWallpaperUpload(): Promise<void>;
 }
 
-export default IAdminControlRepository;

@@ -24,7 +24,7 @@ const initialState: LikeWallpaperState = {
   likedWallpapers: [],
 };
 
-const createLikedWallpaperSlice: StateCreator<
+export const createLikedWallpaperSlice: StateCreator<
   LikeWallpaperSlice,
   [['zustand/immer', never], never],
   [],
@@ -55,4 +55,3 @@ const createLikedWallpaperSlice: StateCreator<
   },
 });
 
-export default createLikedWallpaperSlice;

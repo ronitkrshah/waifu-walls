@@ -6,15 +6,18 @@
  */
 
 import AppwriteService from '@app/appwrite/AppwriteService';
-import IAuthRepository, {
-  IUserCredentials,
-} from '../domain/repositories/IAuthRepository';
+import {
+  type IAuthRepository,
+  type IUserCredentials,
+} from '../domain/repositories';
 import {ID} from 'react-native-appwrite';
-import {IRegisterUserDto} from '../dto/models/IRegisterUserDto';
-import {IActiveSessionDto} from '../dto/models/IActiveSessionDto';
+import {
+  type IRegisterUserDto,
+  type IActiveSessionDto,
+  type INewUserDocumentDto,
+  type ILoggedInUserDto,
+} from '../dto/models';
 import {env} from '@app/utils/env/env';
-import {INewUserDocumentDto} from '../dto/models/INewUserDocumentDto';
-import {ILoggedInUserDto} from '../dto/models/ILoggedInUserDto';
 
 class AuthRepositoryImpl implements IAuthRepository {
   private _api: AppwriteService;

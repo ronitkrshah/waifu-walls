@@ -31,7 +31,7 @@ const initialState: UserState = {
   },
 };
 
-const createUserSlice: StateCreator<
+export const createUserSlice: StateCreator<
   UserSlice,
   [['zustand/immer', never], never],
   [],
@@ -48,4 +48,3 @@ const createUserSlice: StateCreator<
     }),
 });
 
-export default createUserSlice;

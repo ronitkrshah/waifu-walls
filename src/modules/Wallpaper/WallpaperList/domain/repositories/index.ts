@@ -1,3 +1,1 @@
-import IWallpaperRepository from "./IWallpaperRepository"
-
-export {type IWallpaperRepository}
+export {type IWallpaperRepository} from "./IWallpaperRepository"

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface IRemoteConfigDto {
+export interface IRemoteConfigDto {
   version: string;
   should_upload_images: boolean;
   $id: string;
@@ -17,4 +17,3 @@ interface IRemoteConfigDto {
   $collectionId: string;
 };
 
-export default IRemoteConfigDto;

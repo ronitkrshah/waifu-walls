@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {IRemoteConfigRepository} from '../domain/repositories';
+import {type IRemoteConfigRepository} from '../domain/repositories';
 import {mapRemoteConfigDtoToDomain} from '../dto';
 
 class RemoteConfigService {

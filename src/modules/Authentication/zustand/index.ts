@@ -1,3 +1,1 @@
-import userSilce from "./userSlice"
-
-export {userSilce}
+export {createUserSlice, type UserSlice}  from "./userSlice"

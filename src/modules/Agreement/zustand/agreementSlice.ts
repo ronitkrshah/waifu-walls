@@ -24,7 +24,7 @@ const initialState: AgreementState = {
   matureContentAgreement: {isAgreementAccepted: false},
 };
 
-const createAgreementSlice: StateCreator<
+export const createAgreementSlice: StateCreator<
   AgreementSlice,
   [['zustand/immer', never], never],
   [],
@@ -37,4 +37,3 @@ const createAgreementSlice: StateCreator<
     }),
 });
 
-export default createAgreementSlice;

@@ -1,3 +1,1 @@
-import IRemoteConfigRepository from "./IRemoteConfigRepository"
-
-export {type IRemoteConfigRepository}
+export {type IRemoteConfigRepository} from "./IRemoteConfigRepository"

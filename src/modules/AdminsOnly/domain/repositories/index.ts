@@ -1,3 +1,1 @@
-import IAdminControlRepository from "./IAdminControlRepository"
-
-export {type IAdminControlRepository}
+export {type IAdminControlRepository} from "./IAdminControlRepository"

@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import IRemoteConfigDto from './IRemoteConfigDto';
-import {IRemoteConfig} from '../domain/models';
+import {type IRemoteConfigDto} from './IRemoteConfigDto';
+import {type IRemoteConfig} from '../domain/models';
 
 function mapRemoteConfigDtoToDomain(dto: IRemoteConfigDto): IRemoteConfig {
   return {

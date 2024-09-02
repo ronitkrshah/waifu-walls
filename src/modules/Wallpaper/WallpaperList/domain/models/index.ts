@@ -1,3 +1,1 @@
-import IWallpaper from "./IWallpaper"
-
-export {type IWallpaper}
+export {type IWallpaper} from "./IWallpaper"

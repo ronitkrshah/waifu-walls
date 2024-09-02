@@ -31,7 +31,7 @@ const initialState: AppSettingsState = {
   },
 };
 
-const createAppSettingsSlice: StateCreator<
+export const createAppSettingsSlice: StateCreator<
   AppSettingsSlice,
   [['zustand/immer', never], never],
   [],
@@ -52,5 +52,3 @@ const createAppSettingsSlice: StateCreator<
     });
   },
 });
-
-export default createAppSettingsSlice;

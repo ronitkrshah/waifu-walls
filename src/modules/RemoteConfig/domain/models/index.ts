@@ -1,3 +1,1 @@
-import IRemoteConfig from "./IRemoteConfig"
-
-export {type IRemoteConfig}
+export {type IRemoteConfig} from "./IRemoteConfig"

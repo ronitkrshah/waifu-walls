@@ -13,7 +13,7 @@ export interface IUserCredentials {
   password: string;
 };
 
-interface IAuthRepository {
+export interface IAuthRepository {
   registerNewUser(props: IUserCredentials): Promise<IRegisterUserDto>;
 
   loginUser(props: Omit<IUserCredentials, 'name'>): Promise<IActiveSessionDto>;
@@ -26,5 +26,3 @@ interface IAuthRepository {
 
   deleteUserAccount(userId: string): Promise<void>;
 }
-
-export default IAuthRepository;

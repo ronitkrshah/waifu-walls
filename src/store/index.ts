@@ -5,30 +5,37 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import createAppSettingsSlice, {
-  AppSettingsSlice,
-} from '@app/modules/Settings/zustand/appSettingsSlice';
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 import zustandStorage from './storage';
-import  {
-  AgreementSlice,
-  createAgreementSlice
-} from '@app/modules/Agreement/zustand';
-import createUserSlice, {UserSlice} from '@app/modules/Authentication/zustand/userSlice';
-import createRemoteConfigSlice, {
-  RemoteConfigSlice,
-} from '@app/modules/RemoteConfig/zustand/remoteConfigSlice';
 import {
-  LikeWallpaperSlice,createLikedWallpaperSlice
+  type AppSettingsSlice,
+  createAppSettingsSlice,
+} from '@app/modules/Settings/zustand';
+import {
+  type AgreementSlice,
+  createAgreementSlice,
+} from '@app/modules/Agreement/zustand';
+import {
+  type UserSlice,
+  createUserSlice,
+} from '@app/modules/Authentication/zustand';
+import {
+  type RemoteConfigSlice,
+  createRemoteConfigSlice,
+} from '@app/modules/RemoteConfig/zustand';
+import {
+  type LikeWallpaperSlice,
+  createLikedWallpaperSlice,
 } from '@app/modules/Wallpaper/Like/zustand';
-import createPreviousSearchSlice, {
-  PreviousSearchSlice,
-} from '@app/modules/Search/zustand/appSettingsSlice';
+import {
+  type PreviousSearchSlice,
+  createPreviousSearchSlice,
+} from '@app/modules/Search/zustand';
 
 type GloablStoreType = AppSettingsSlice &
-AgreementSlice &
+  AgreementSlice &
   UserSlice &
   RemoteConfigSlice &
   LikeWallpaperSlice &

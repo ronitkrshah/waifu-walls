@@ -22,7 +22,7 @@ const initialState: PreviousSearchState = {
   previousSearchs: [],
 };
 
-const createPreviousSearchSlice: StateCreator<
+export const createPreviousSearchSlice: StateCreator<
   PreviousSearchSlice,
   [['zustand/immer', never], never],
   [],
@@ -44,4 +44,3 @@ const createPreviousSearchSlice: StateCreator<
   },
 });
 
-export default createPreviousSearchSlice;

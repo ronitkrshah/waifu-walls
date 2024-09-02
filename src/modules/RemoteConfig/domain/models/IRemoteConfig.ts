@@ -5,9 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface IRemoteConfig {
+export interface IRemoteConfig {
   version: string;
   shouldUploadImages: boolean;
 };
 
-export default IRemoteConfig;

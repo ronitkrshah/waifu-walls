@@ -7,8 +7,6 @@
 
 import {UploadWallpaperProps} from '../../types';
 
-interface IUploadRepository {
+export interface IUploadRepository {
   uploadWallpaper(props: UploadWallpaperProps & {size: number}): Promise<void>;
 }
-
-export default IUploadRepository;

@@ -25,7 +25,7 @@ const initialState: RemoteConfigState = {
   },
 };
 
-const createRemoteConfigSlice: StateCreator<
+export const createRemoteConfigSlice: StateCreator<
   RemoteConfigSlice,
   [['zustand/immer', never], never],
   [],
@@ -37,5 +37,3 @@ const createRemoteConfigSlice: StateCreator<
       state.remoteConfig.shouldUploadImages = value;
     }),
 });
-
-export default createRemoteConfigSlice;

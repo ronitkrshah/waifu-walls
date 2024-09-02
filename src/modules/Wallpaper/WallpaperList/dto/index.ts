@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {IWallpaperDto} from './IWallpaperDto';
+
 import mapWallpaperDtoToDomain from './mapWallpaperDtoToDomain';
 
-export {type IWallpaperDto, mapWallpaperDtoToDomain};
+export {type IWallpaperDto} from './IWallpaperDto';
+export {mapWallpaperDtoToDomain};

@@ -1,3 +1,1 @@
-import IUploadRepository from "./IUploadRepository"
-
-export {type IUploadRepository }
+export {type IUploadRepository} from "./IUploadRepository"

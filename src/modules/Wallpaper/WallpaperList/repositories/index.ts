@@ -1,3 +1,3 @@
-import WallpaperRepositoryImpl from "./WallpaperRepositoryImpl"
+import WallpaperRepositoryImpl from './WallpaperRepositoryImpl';
 
-export {WallpaperRepositoryImpl}
+export {WallpaperRepositoryImpl};

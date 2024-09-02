@@ -5,13 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {IRegisterUserDto} from '../dto/models/IRegisterUserDto';
-import {INewUserDocumentDto} from '../dto/models/INewUserDocumentDto';
-import IAuthRepository, {
-  IUserCredentials,
-} from '../domain/repositories/IAuthRepository';
-import UserDtoMapper from '../dto/mapper/UserDtoMapper';
-import {IUser} from '../domain/models';
+import {UserDtoMapper} from '../dto/mapper';
+import {type INewUserDocumentDto, type IRegisterUserDto} from '../dto/models';
+import {type IUserCredentials, type IAuthRepository} from '../domain/repositories';
+import {type IUser} from '../domain/models';
 
 class AuthService {
   private _repo: IAuthRepository;
@@ -53,7 +50,9 @@ class AuthService {
   /**
    * Login With Email And Password
    */
-  public async loginWithEmailAndPassword(props: Omit<IUserCredentials, 'name'>) {
+  public async loginWithEmailAndPassword(
+    props: Omit<IUserCredentials, 'name'>,
+  ) {
     await this._repo.loginUser({
       email: props.email,
       password: props.password,
