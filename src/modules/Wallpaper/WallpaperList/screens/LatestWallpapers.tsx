@@ -13,7 +13,7 @@ import {Fragment} from 'react';
 import SizedBox from '@app/components/common/SizedBox';
 import {RefreshControl} from 'react-native-gesture-handler';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
-import WallpaperListItem from '@app/modules/shared/components/WallpaperListItem';
+import {WallpaperListItem} from '@app/modules/Wallpaper/shared/components'
 
 type Props = {
   query?: string | string[];

@@ -10,7 +10,7 @@ import {DefaultStyles} from '@app/utils/constants/style';
 import {memo, useState} from 'react';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import WallpaperItemSkeletonLoader from './WallpaperItemSkeletonLoader';
+import SkeletonLoader from './SkeletonLoader';
 
 type Props = {
   wallpaper: WallpaperModule.WallpaperList.IWallpaper;
@@ -42,7 +42,7 @@ function WallpaperListItem({onPress, wallpaper}: Props) {
       />
 
       {/** Skeleton Loader */}
-      <WallpaperItemSkeletonLoader isAnimating={isLoading} />
+      <SkeletonLoader isAnimating={isLoading} />
     </Pressable>
   );
 }
