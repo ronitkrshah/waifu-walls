@@ -5,21 +5,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {ActivityIndicator} from 'react-native-paper';
-import useWallpaperList from '../hooks/useWallpaperList';
-import {FlatList, StyleSheet} from 'react-native';
+import {ActivityIndicator, Text} from 'react-native-paper';
+import {useWallpaperList} from '../hooks';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {DefaultStyles} from '@app/utils/constants/style';
 import {Fragment} from 'react';
 import SizedBox from '@app/components/common/SizedBox';
 import {RefreshControl} from 'react-native-gesture-handler';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
-import {WallpaperListItem} from '@app/modules/Wallpaper/shared/components'
+import {WallpaperListItem} from '@app/modules/Wallpaper/shared/components';
+import {SuggestionsList} from '..';
 
 type Props = {
   query?: string | string[];
+  showHeaderSuggestions?: boolean;
 };
 
-function LatestWallpapers({query}: Props) {
+function LatestWallpapers({query, showHeaderSuggestions = false}: Props) {
   const {colors} = useAppTheme();
   const {
     isLoading,
@@ -35,6 +37,17 @@ function LatestWallpapers({query}: Props) {
       <SizedBox vertical={DefaultStyles.SPACING} />
       <FlatList
         numColumns={2}
+        ListHeaderComponent={
+          showHeaderSuggestions ? (
+            <>
+              <View style={styles.appbarMimic}>
+                <Text variant="headlineMedium">Waifus</Text>
+              </View>
+              <SuggestionsList />
+            </>
+          ) : undefined
+        }
+        ListHeaderComponentStyle={styles.header}
         columnWrapperStyle={styles.columnWrapper}
         onEndReachedThreshold={0.5}
         onEndReached={() => fetchMore()}
@@ -61,7 +74,15 @@ const styles = StyleSheet.create({
   columnWrapper: {
     justifyContent: 'center',
     gap: 10,
-    marginBottom: DefaultStyles.SPACING - 4,
+    paddingVertical: 10,
+  },
+  header: {
+    paddingHorizontal: DefaultStyles.SPACING,
+  },
+  appbarMimic: {
+    height: 152,
+    justifyContent: 'flex-end',
+    paddingBottom: 10,
   },
   footer: {
     paddingBottom: 24,

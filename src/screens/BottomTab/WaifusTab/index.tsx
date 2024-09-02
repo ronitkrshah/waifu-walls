@@ -16,6 +16,8 @@ import {Fragment} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import WallpaperUploadFAB from '@app/components/screens/BottomTab/WaifusTab/WallpaperUploadFAB';
 
+const {LatestWallpapersScreen} = WallpaperModule.WallpaperList;
+
 function WaifusTab({
   navigation,
 }: BottomTabNavigationScreenProps<BottomTabNavigationRoutes.WAIFUS>) {
@@ -27,7 +29,7 @@ function WaifusTab({
     <Fragment>
       {/** The List of latest wallpapers */}
       <SafeAreaView>
-        <WallpaperModule.WallpaperList.LatestWallpapersScreen />
+        <LatestWallpapersScreen showHeaderSuggestions />
       </SafeAreaView>
 
       {/** Upload Button */}

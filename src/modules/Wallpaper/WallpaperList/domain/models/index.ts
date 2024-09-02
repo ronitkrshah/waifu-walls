@@ -1,1 +1,1 @@
-export {type IWallpaper} from "./IWallpaper"
+export {type IWallpaper} from './IWallpaper';
