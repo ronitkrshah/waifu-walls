@@ -16,7 +16,7 @@ type Props = {
   onPress(): void;
 };
 
-function MatureContentCheckBox({label, isChecked, onPress}: Props) {
+function CheckBox({label, isChecked, onPress}: Props) {
   const {colors} = useAppTheme();
 
   return (
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MatureContentCheckBox;
+export default CheckBox;

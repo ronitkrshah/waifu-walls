@@ -5243,6 +5243,7 @@ __metadata:
   resolution: "com.rks.waifuwalls@workspace:."
   dependencies:
     "@babel/core": ^7.20.0
+    "@babel/plugin-transform-export-namespace-from": ^7.24.7
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
     "@dr.pogodin/react-native-fs": ^2.27.1

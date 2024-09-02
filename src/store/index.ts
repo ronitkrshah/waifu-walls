@@ -12,9 +12,10 @@ import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 import zustandStorage from './storage';
-import createMatureContentAgreementSlice, {
-  MatureContentAgreementSlice,
-} from '@app/modules/matureContentAgreement/zustand/createMatureContentSlice';
+import  {
+  AgreementSlice,
+  createAgreementSlice
+} from '@app/modules/Agreement/zustand';
 import createUserSlice, {UserSlice} from '@app/modules/Authentication/zustand/userSlice';
 import createRemoteConfigSlice, {
   RemoteConfigSlice,
@@ -27,7 +28,7 @@ import createPreviousSearchSlice, {
 } from '@app/modules/Search/zustand/appSettingsSlice';
 
 type GloablStoreType = AppSettingsSlice &
-  MatureContentAgreementSlice &
+AgreementSlice &
   UserSlice &
   RemoteConfigSlice &
   LikeWallpaperSlice &
@@ -36,7 +37,7 @@ type GloablStoreType = AppSettingsSlice &
 const useGlobalStore = create<GloablStoreType>()(
   persist(
     immer((...a) => ({
-      ...createMatureContentAgreementSlice(...a),
+      ...createAgreementSlice(...a),
       ...createAppSettingsSlice(...a),
       ...createUserSlice(...a),
       ...createRemoteConfigSlice(...a),

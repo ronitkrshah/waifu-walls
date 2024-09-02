@@ -6,9 +6,9 @@
  */
 
 import {Fragment} from 'react';
-import MatureContentCheckBox from './MatureContentCheckBox';
+import CheckBox from './CheckBox';
 import {DefaultStrings} from '@app/utils/constants/strings';
-import useMatureContentAgreementController from '../controllers/useMatureContentAgreementController';
+import {useAgreement} from '../hooks';
 import {Button} from 'react-native-paper';
 
 function MatureContentAgreementControls() {
@@ -19,17 +19,17 @@ function MatureContentAgreementControls() {
     toggleAcceptedTOC,
     handleProceed,
     handlePressReadTOC,
-  } = useMatureContentAgreementController();
+  } = useAgreement();
 
   return (
     <Fragment>
-      <MatureContentCheckBox
+      <CheckBox
         label={DefaultStrings.MATURE_CONTENT_ACKNOWLEDGEMENT}
         isChecked={isMatured}
         onPress={toggleIsMatured}
       />
 
-      <MatureContentCheckBox
+      <CheckBox
         label={'I agree to the terms and conditions.'}
         isChecked={acceptedTOC}
         onPress={toggleAcceptedTOC}

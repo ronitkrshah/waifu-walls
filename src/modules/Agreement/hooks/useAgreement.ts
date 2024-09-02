@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {Linking, ToastAndroid} from 'react-native';
 
-function useMatureContentAgreementController() {
+function useAgreement() {
   const [isMatured, setIsMatured] = useState(false);
   const [acceptedTOC, setAcceptedTOC] = useState(false);
   const navigation = useNavigation<StackNavigationProp>();
@@ -53,4 +53,4 @@ function useMatureContentAgreementController() {
   };
 }
 
-export default useMatureContentAgreementController;
+export default useAgreement;

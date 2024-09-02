@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import MatureContentAgreementControls from '@app/modules/matureContentAgreement/components/MatureContentAgreementControls';
+import {AgreementModule} from '@app/modules';
 import {useAppTheme} from '@app/theme/MaterialYouTheme';
 import {DefaultStrings} from '@app/utils/constants/strings';
 import {DefaultStyles} from '@app/utils/constants/style';
@@ -38,7 +38,9 @@ function SetupWizardScreen() {
           {DefaultStrings.MATURE_CONTENT_DISCLAIMER}
         </Text>
       </View>
-      <MatureContentAgreementControls />
+
+      {/** Checkboxes for user agreement */}
+      <AgreementModule.AgreementChecks />
     </View>
   );
 }

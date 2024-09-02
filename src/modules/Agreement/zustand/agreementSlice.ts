@@ -7,28 +7,28 @@
 
 import {StateCreator} from 'zustand';
 
-type MatureContentAgreementState = {
+type AgreementState = {
   matureContentAgreement: {
     isAgreementAccepted: boolean;
   };
 };
 
-type MatureContentAgreementActions = {
+type AgreementActions = {
   acceptMatureContentAgreement(): void;
 };
 
-export type MatureContentAgreementSlice = MatureContentAgreementState &
-  MatureContentAgreementActions;
+export type AgreementSlice = AgreementState &
+  AgreementActions;
 
-const initialState: MatureContentAgreementState = {
+const initialState: AgreementState = {
   matureContentAgreement: {isAgreementAccepted: false},
 };
 
-const createMatureContentAgreementSlice: StateCreator<
-  MatureContentAgreementSlice,
+const createAgreementSlice: StateCreator<
+  AgreementSlice,
   [['zustand/immer', never], never],
   [],
-  MatureContentAgreementSlice
+  AgreementSlice
 > = set => ({
   ...initialState,
   acceptMatureContentAgreement: () =>
@@ -37,4 +37,4 @@ const createMatureContentAgreementSlice: StateCreator<
     }),
 });
 
-export default createMatureContentAgreementSlice;
+export default createAgreementSlice;
