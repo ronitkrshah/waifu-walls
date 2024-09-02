@@ -25,7 +25,7 @@ class UploadRepositoryImpl implements IUploadRepository {
       uploadedWallpaper = await this.uploadImage(
         props.imagePath,
         props.size,
-        props.title,
+        props.title ?? 'Undefined',
       );
 
       /** Creating Document */
@@ -34,7 +34,7 @@ class UploadRepositoryImpl implements IUploadRepository {
         env.APPWRITE_WALLPAPERS_COLLECTION_ID!,
         uploadedWallpaper.$id,
         {
-          title: props.title,
+          title: props.title ?? 'Undefined',
           original_author: props.originalAuthorName,
           original_post_link: props.originalPostLink,
           is_nsfw: props.isAdultContent,
