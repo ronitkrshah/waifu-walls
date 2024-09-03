@@ -5,11 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import SwitchButtonTile from '@app/modules/shared/components/SwtichButtonTile';
 import useCustomPreviewScreenSwitchController from './useCustomPreviewScreenSwitchController';
 import {Fragment, useState} from 'react';
 import {Button, Dialog, Portal, Text} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
+import {SwitchButtonTile} from '@core/components/shared';
 
 function CustomPreviewScreenSwitch() {
   const [showTipDialog, setShowTipDialog] = useState(false);

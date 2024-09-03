@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import SwitchButtonTile from '@app/modules/shared/components/SwtichButtonTile';
+import {SwitchButtonTile} from '@core/components/shared';
 import useAdultImageSwitchController from './useAdultImageSwitchController';
 
 function ShowAdultImageSwitch() {

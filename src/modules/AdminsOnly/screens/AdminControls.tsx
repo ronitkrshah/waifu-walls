@@ -9,7 +9,7 @@ import {ScrollView} from 'react-native';
 import {useAdminControls} from '../hooks';
 import {Fragment} from 'react';
 import {ActivityIndicator} from 'react-native-paper';
-import SwitchButtonTile from '@app/modules/shared/components/SwtichButtonTile';
+import {SwitchButtonTile} from '@core/components/shared';
 
 function AdminControls() {
   const {
