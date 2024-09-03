@@ -18,20 +18,14 @@ import {memo} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import {List} from 'react-native-paper';
 import Animated, {FadeIn} from 'react-native-reanimated';
-import {useShallow} from 'zustand/react/shallow';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function PreviousSearchList() {
-  const previousSearch = useGlobalStore(
-    useShallow(state => ({
-      list: state.previousSearchs,
-      remove: state.removeSearch,
-    })),
-  );
+  const previousList = useGlobalStore(state => state.previousSearchs);
 
   return (
     <FlatList
-      data={previousSearch.list}
+      data={previousList}
       contentContainerStyle={styles.container}
       renderItem={({item, index}) => <ListItem search={item} index={index} />}
     />
