@@ -8,7 +8,7 @@
 import {useGlobalStore} from '@core/store';
 import {useShallow} from 'zustand/react/shallow';
 
-function useCustomPreviewScreenSwitchController() {
+function useCustomPreview() {
   const {showCustomPreviewScreen, setShowCustomPreviewScreen} = useGlobalStore(
     useShallow(state => ({
       showCustomPreviewScreen: state.appSettings.useCustomizePreviewScreen,
@@ -29,4 +29,4 @@ function useCustomPreviewScreenSwitchController() {
   };
 }
 
-export default useCustomPreviewScreenSwitchController;
+export default useCustomPreview;

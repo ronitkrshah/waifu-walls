@@ -8,7 +8,7 @@
 import {useGlobalStore} from '@core/store';
 import {useShallow} from 'zustand/react/shallow';
 
-function useAdultImageSwitchController() {
+function useShowAdultImages() {
   const {showMatureContent, setShowMatureContent} = useGlobalStore(
     useShallow(state => ({
       showMatureContent: state.appSettings.showMatureContent,
@@ -29,4 +29,4 @@ function useAdultImageSwitchController() {
   };
 }
 
-export default useAdultImageSwitchController;
+export default useShowAdultImages;

@@ -9,7 +9,7 @@ import {useGlobalStore} from '@core/store';
 import {useMaterial3ThemeContext} from '@core/theme';
 import {useShallow} from 'zustand/react/shallow';
 
-function useCustomThemeController() {
+function useCustomTheme() {
   const {updateTheme: updateMaterialTheme} = useMaterial3ThemeContext();
   const {currentTheme, setCurrentTheme} = useGlobalStore(
     useShallow(state => ({
@@ -29,4 +29,4 @@ function useCustomThemeController() {
   };
 }
 
-export default useCustomThemeController;
+export default useCustomTheme;

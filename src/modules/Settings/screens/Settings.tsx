@@ -6,14 +6,13 @@
  */
 
 import {ScrollView} from 'react-native';
-import AdultSettingsSection from '../components/adultSettings/AdultSettingsSection';
-import AppearanceSettingsSection from '../components/appearanceSettings/AppearanceSettingsSection';
+import {AdultSection, AppearanceSection} from '../sections';
 
 function Settings() {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <AppearanceSettingsSection />
-      <AdultSettingsSection />
+      <AppearanceSection />
+      <AdultSection />
     </ScrollView>
   );
 }

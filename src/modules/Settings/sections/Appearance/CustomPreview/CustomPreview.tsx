@@ -5,16 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import useCustomPreviewScreenSwitchController from './useCustomPreviewScreenSwitchController';
+import useCustomPreview from './useCustomPreview';
 import {Fragment, useState} from 'react';
 import {Button, Dialog, Portal, Text} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
 import {SwitchButtonTile} from '@core/components/shared';
 
-function CustomPreviewScreenSwitch() {
+function CustomPreview() {
   const [showTipDialog, setShowTipDialog] = useState(false);
   const {handleOnChange, isSwitchEnabled} =
-    useCustomPreviewScreenSwitchController();
+    useCustomPreview();
 
   /** Hide Tip dialog */
   function dismissTipDialog() {
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomPreviewScreenSwitch;
+export default CustomPreview;

@@ -6,10 +6,10 @@
  */
 
 import {SwitchButtonTile} from '@core/components/shared';
-import useAdultImageSwitchController from './useAdultImageSwitchController';
+import useShowAdultImages from './useShowAdultImages';
 
-function ShowAdultImageSwitch() {
-  const {handleOnChange, isSwitchEnabled} = useAdultImageSwitchController();
+function ShowAdultImages() {
+  const {handleOnChange, isSwitchEnabled} = useShowAdultImages();
 
   return (
     <SwitchButtonTile
@@ -22,4 +22,4 @@ function ShowAdultImageSwitch() {
   );
 }
 
-export default ShowAdultImageSwitch;
+export default ShowAdultImages;

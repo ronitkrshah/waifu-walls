@@ -6,18 +6,18 @@
  */
 
 import {List} from 'react-native-paper';
-import ShowAdultImageSwitch from './showAdultImages/ShowAdultImageSwitch';
+import {ShowAdultImages} from './ShowAdultImages';
 import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 import {StyleSheet} from 'react-native';
 
-function AdultSettingsSection() {
+function AdultSettings() {
   const {colors} = useAppTheme();
 
   return (
     <List.Section
       title="Adult Settings"
       titleStyle={{color: colors.primary, ...styles.titleStyle}}>
-      <ShowAdultImageSwitch />
+      <ShowAdultImages />
     </List.Section>
   );
 }
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdultSettingsSection;
+export default AdultSettings;

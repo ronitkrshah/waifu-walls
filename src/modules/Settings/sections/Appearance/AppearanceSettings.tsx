@@ -8,21 +8,21 @@
 import {List} from 'react-native-paper';
 import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 import {Platform, StyleSheet} from 'react-native';
-import CustomPreviewScreenSwitch from './CustomPreviewScreenSwitch';
-import CustomTheme from './CustomTheme';
+import CustomPreview from './CustomPreview/CustomPreview';
+import CustomTheme from './CustomTheme/CustomTheme';
 import {SizedBox} from '@core/components/common';
 import {Fragment} from 'react';
 
 const ANDROID_API_VERSION = Platform.Version;
 
-function AppearanceSettingsSection() {
+function AppearanceSettings() {
   const {colors} = useAppTheme();
 
   return (
     <List.Section
       title="Appearance"
       titleStyle={{color: colors.primary, ...styles.titleStyle}}>
-      <CustomPreviewScreenSwitch />
+      <CustomPreview />
 
       {/** Show Custom Theme Colors Only if user is below android 12 */}
       {typeof ANDROID_API_VERSION === 'number' && ANDROID_API_VERSION < 31 && (
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppearanceSettingsSection;
+export default AppearanceSettings;

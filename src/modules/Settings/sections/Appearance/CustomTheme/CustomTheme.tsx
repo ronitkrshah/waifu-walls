@@ -7,14 +7,14 @@
 
 import {AppStyles, AppSizes} from '@core/constants';
 import {Pressable, View, StyleSheet} from 'react-native';
-import useCustomThemeController from './useCustomThemeController';
+import useCustomTheme from './useCustomTheme';
 import MaterialCommuntiyIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
 
 const AIcon = Animated.createAnimatedComponent(MaterialCommuntiyIcons);
 
 function CustomTheme() {
-  const {updateTheme, currentTheme} = useCustomThemeController();
+  const {updateTheme, currentTheme} = useCustomTheme();
 
   return (
     <View style={styles.colorContainer}>
