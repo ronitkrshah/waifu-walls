@@ -16,23 +16,20 @@ import {
   StackNavigationProp,
   StackNavigationRoutes,
 } from '@app/navigation/types';
-import {useShallow} from 'zustand/react/shallow';
+import {useCurrentUser} from '@core/hooks';
 
 function useLoggedIn() {
   const service = new AuthService(new AuthRepositoryImpl());
-  const store = useGlobalStore(
-    useShallow(state => ({
-      setUserGlobalStore: state.setUser,
-      removeUserGlobalStore: state.removeUser,
-      isAgreementAccepted: state.matureContentAgreement.isAgreementAccepted,
-    })),
+  const {removeUser, setUser} = useCurrentUser();
+  const isAgreementAccepted = useGlobalStore(
+    state => state.matureContentAgreement.isAgreementAccepted,
   );
   const navigation = useNavigation<StackNavigationProp>();
 
   const loggedInUserQuery = useQuery({
     queryKey: ['loggedInUser'],
     queryFn: () => service.getLoggedInUser(),
-    enabled: store.isAgreementAccepted,
+    enabled: isAgreementAccepted,
     retry: false,
   });
 
@@ -41,7 +38,7 @@ function useLoggedIn() {
    * stuffs
    */
   useEffect(() => {
-    if (!store.isAgreementAccepted) {
+    if (!isAgreementAccepted) {
       navigation.replace(StackNavigationRoutes.SETUP_WIZARD_SCREEN);
       return;
     }
@@ -51,9 +48,9 @@ function useLoggedIn() {
     }
 
     if (loggedInUserQuery.isSuccess) {
-      store.setUserGlobalStore(loggedInUserQuery.data);
+      setUser(loggedInUserQuery.data);
     } else if (loggedInUserQuery.isError) {
-      store.removeUserGlobalStore();
+      removeUser();
     }
     navigation.replace(StackNavigationRoutes.HOME_SCREEN, {
       screen: BottomTabNavigationRoutes.WAIFUS,

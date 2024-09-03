@@ -12,25 +12,25 @@ import {Dimensions, StyleSheet} from 'react-native';
 import {Avatar, Surface, Text} from 'react-native-paper';
 import AdminsOnlyFeatures from './AdminsOnlyOptions';
 import {AuthenticationModule} from '@app/modules';
-import {useGlobalStore} from '@core/store';
+import {useCurrentUser} from '@core/hooks';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
 function AccountTabUserDashboard() {
-  const user = useGlobalStore(state => state.user);
+  const {currentUser} = useCurrentUser();
   const {colors} = useAppTheme();
 
   return (
     <Fragment>
       <Surface style={styles.surface}>
-        <Avatar.Text label={user.name.charAt(0)} style={styles.avatar} />
+        <Avatar.Text label={currentUser.name.charAt(0)} style={styles.avatar} />
         <Text
           style={[{color: colors.primary}, styles.textCenter]}
           variant="headlineMedium">
-          {user.name}
+          {currentUser.name}
         </Text>
 
-        {user.isAdmeme && <AdminsOnlyFeatures />}
+        {currentUser.isAdmeme && <AdminsOnlyFeatures />}
         <AuthenticationModule.LogoutButton />
       </Surface>
     </Fragment>

@@ -9,21 +9,19 @@ import {useGlobalStore} from '@core/store';
 import {AppSizes} from '@core/constants';
 import {StyleSheet} from 'react-native';
 import {FAB} from 'react-native-paper';
-import {useShallow} from 'zustand/react/shallow';
+import {useCurrentUser} from '@core/hooks';
 
 type Props = {
   onPress(): void;
 };
 
 function WallpaperUploadFAB({onPress}: Props) {
-  const {isAuthenticated, shouldUploadImages} = useGlobalStore(
-    useShallow(state => ({
-      isAuthenticated: state.user.isAuthenticated,
-      shouldUploadImages: state.remoteConfig.shouldUploadImages,
-    })),
+  const {currentUser} = useCurrentUser();
+  const shouldUploadImages = useGlobalStore(
+    state => state.remoteConfig.shouldUploadImages,
   );
 
-  return isAuthenticated && shouldUploadImages ? (
+  return currentUser.isAuthenticated && shouldUploadImages ? (
     <FAB icon={'file-upload'} style={styles.fab} onPress={onPress} />
   ) : null;
 }

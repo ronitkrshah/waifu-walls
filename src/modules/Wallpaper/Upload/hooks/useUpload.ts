@@ -16,15 +16,13 @@ import {useMutation} from '@tanstack/react-query';
 import {UploadService} from '../services';
 import {UploadRepositoryImpl} from '../repositories';
 import {UploadWallpaperProps} from '../types';
-import {useGlobalStore} from '@core/store';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@app/navigation/types';
+import {useCurrentUser} from '@core/hooks';
 
 function useUpload() {
-  const uploadService = new UploadService(
-    new UploadRepositoryImpl(),
-  );
-  const userId = useGlobalStore(state => state.user.userId);
+  const uploadService = new UploadService(new UploadRepositoryImpl());
+  const {currentUser} = useCurrentUser();
   const navigation = useNavigation<StackNavigationProp>();
   const {
     isMatureContent,
@@ -97,7 +95,7 @@ function useUpload() {
       originalPostLink,
       imagePath,
       tags: imageTags,
-      userId,
+      userId: currentUser.userId,
       isAdultContent: isMatureContent,
       originalAuthorName: orignialAuthor,
     });
