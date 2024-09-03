@@ -10,7 +10,7 @@ import {useWallpaperList} from '../hooks';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {AppSizes} from '@core/constants';
 import {Fragment} from 'react';
-import {SizedBox} from '@core/components/common';
+import {SizedBox} from '@core/components/ui';
 import {RefreshControl} from 'react-native-gesture-handler';
 import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 import {WallpaperListItem} from '@app/modules/Wallpaper/shared/components';

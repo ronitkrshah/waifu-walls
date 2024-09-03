@@ -8,7 +8,7 @@
 import AccelerometerPreviewAnimatedImage from './AccelerometerPreviewAnimatedImage';
 import AccelerometerPreviewImageTitle from './AccelerometerPreviewImageTitle';
 import {WallpaperModule} from '@app/modules';
-import {Flex} from '@core/components/common';
+import {Flex} from '@core/components/ui';
 
 type Props = {
   wallpaper: WallpaperModule.WallpaperList.IWallpaper;

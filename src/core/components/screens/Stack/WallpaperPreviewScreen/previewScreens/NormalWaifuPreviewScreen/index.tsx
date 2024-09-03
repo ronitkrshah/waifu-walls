@@ -7,7 +7,7 @@
 
 import NormalPreviewImage from './NormalPreviewImage';
 import {WallpaperModule} from '@app/modules';
-import {Flex} from '@core/components/common';
+import {Flex} from '@core/components/ui';
 import {Appbar} from 'react-native-paper';
 import {Fragment, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';

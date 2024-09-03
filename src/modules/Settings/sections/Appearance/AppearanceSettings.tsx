@@ -10,7 +10,7 @@ import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 import {Platform, StyleSheet} from 'react-native';
 import CustomPreview from './CustomPreview/CustomPreview';
 import CustomTheme from './CustomTheme/CustomTheme';
-import {SizedBox} from '@core/components/common';
+import {SizedBox} from '@core/components/ui';
 import {Fragment} from 'react';
 
 const ANDROID_API_VERSION = Platform.Version;

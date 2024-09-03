@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {Flex} from '@core/components/common';
+import {Flex} from '@core/components/ui';
 import {AnimatedCircle} from '@core/components/shared';
 import {AuthenticationModule} from '@app/modules';
 
