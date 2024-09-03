@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Flex from '@app/components/common/Flex';
-import AnimatedLoadingCircleIndicator from '@app/components/shared/AnimatedLoadingCircleIndicator';
+import {Flex} from '@core/components/common';
+import AnimatedLoadingCircleIndicator from '@core/components/shared/AnimatedLoadingCircleIndicator';
 import {AuthenticationModule} from '@app/modules';
 
 function SplashScreen() {

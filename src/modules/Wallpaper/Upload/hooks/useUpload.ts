@@ -16,9 +16,9 @@ import {useMutation} from '@tanstack/react-query';
 import {UploadService} from '../services';
 import {UploadRepositoryImpl} from '../repositories';
 import {UploadWallpaperProps} from '../types';
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@app/types/navigation';
+import {StackNavigationProp} from '@app/navigation/types';
 
 function useUpload() {
   const uploadService = new UploadService(

@@ -7,8 +7,8 @@
 
 import {IWallpaperRepository} from '../domain/repositories';
 import AppwriteService from '@app/appwrite/AppwriteService';
-import {env} from '@app/utils/env/env';
-import {WallpaperLimits} from '@app/utils/constants/limits';
+import {EnviromentVariables} from '@core/enviroment';
+import {WallpaperLimits} from '@core/constants';
 import {IWallpaperDto} from '../dto';
 
 class WallpaperListRepositoryImpl implements IWallpaperRepository {
@@ -19,8 +19,8 @@ class WallpaperListRepositoryImpl implements IWallpaperRepository {
    */
   async getWallpapers(offset: number, queries: string[]) {
     const databseResponse = await this._repo.database.listDocuments(
-      env.APPWRITE_DATABASE_ID,
-      env.APPWRITE_WALLPAPERS_COLLECTION_ID,
+      EnviromentVariables.APPWRITE_DATABASE_ID,
+      EnviromentVariables.APPWRITE_WALLPAPERS_COLLECTION_ID,
       queries,
     );
 

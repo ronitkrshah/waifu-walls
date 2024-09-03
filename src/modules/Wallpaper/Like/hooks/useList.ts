@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import {WallpaperModule} from '@app/modules';
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
   StackNavigationRoutes,
-} from '@app/types/navigation';
+} from '@app/navigation/types';
 import {useNavigation} from '@react-navigation/native';
 
 function useList() {

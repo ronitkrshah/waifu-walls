@@ -8,7 +8,7 @@
 import {useMutation} from '@tanstack/react-query';
 import AuthRepositoryImpl from '../repository/AuthRepositoryImpl';
 import AuthService from '../services/AuthService';
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import {ToastAndroid} from 'react-native';
 
 function useLogout() {

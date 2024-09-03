@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
+import {AppSizes} from '@core/constants';
 import {StyleSheet} from 'react-native';
 import {List, Switch} from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -58,7 +58,7 @@ function RightSwitchButton(value: boolean, onPress: (value: boolean) => void) {
 /** Styles */
 const styles = StyleSheet.create({
   tileStyle: {
-    paddingHorizontal: DefaultStyles.SPACING,
+    paddingHorizontal: AppSizes.spacing,
   },
   title: {
     fontWeight: 'bold',

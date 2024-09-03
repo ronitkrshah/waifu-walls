@@ -11,10 +11,10 @@ import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
   StackNavigationRoutes,
-} from '@app/types/navigation';
+} from '@app/navigation/types';
 import {Fragment} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import WallpaperUploadFAB from '@app/components/screens/BottomTab/WaifusTab/WallpaperUploadFAB';
+import WallpaperUploadFAB from '@core/components/screens/BottomTab/WaifusTab/WallpaperUploadFAB';
 
 const {LatestWallpapersScreen} = WallpaperModule.WallpaperList;
 

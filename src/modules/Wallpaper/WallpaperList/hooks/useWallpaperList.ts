@@ -12,9 +12,9 @@ import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
   StackNavigationRoutes,
-} from '@app/types/navigation';
+} from '@app/navigation/types';
 import {IWallpaper} from '../domain/models';
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import WallpaperListRepositoryImpl from '../repositories/WallpaperRepositoryImpl';
 
 function useWallpaperList(query?: string | string[]) {

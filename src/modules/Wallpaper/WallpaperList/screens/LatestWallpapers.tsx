@@ -8,11 +8,11 @@
 import {ActivityIndicator, Text} from 'react-native-paper';
 import {useWallpaperList} from '../hooks';
 import {FlatList, StyleSheet, View} from 'react-native';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {Fragment} from 'react';
-import SizedBox from '@app/components/common/SizedBox';
+import {SizedBox} from '@core/components/common';
 import {RefreshControl} from 'react-native-gesture-handler';
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 import {WallpaperListItem} from '@app/modules/Wallpaper/shared/components';
 import {SuggestionsList} from '..';
 
@@ -34,7 +34,7 @@ function LatestWallpapers({query, showHeaderSuggestions = false}: Props) {
 
   return (
     <Fragment>
-      <SizedBox vertical={DefaultStyles.SPACING} />
+      <SizedBox vertical={AppSizes.spacing} />
       <FlatList
         numColumns={2}
         ListHeaderComponent={
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   header: {
-    paddingHorizontal: DefaultStyles.SPACING,
+    paddingHorizontal: AppSizes.spacing,
   },
   appbarMimic: {
     height: 152,

@@ -7,7 +7,7 @@
 
 import {Fragment} from 'react';
 import CheckBox from './CheckBox';
-import {DefaultStrings} from '@app/utils/constants/strings';
+import {DefaultStrings} from '@core/constants';
 import {useAgreement} from '../hooks';
 import {Button} from 'react-native-paper';
 

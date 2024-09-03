@@ -8,14 +8,14 @@
 import {useQuery} from '@tanstack/react-query';
 import {AuthRepositoryImpl} from '../repository';
 import {AuthService} from '../services';
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
   BottomTabNavigationRoutes,
   StackNavigationProp,
   StackNavigationRoutes,
-} from '@app/types/navigation';
+} from '@app/navigation/types';
 import {useShallow} from 'zustand/react/shallow';
 
 function useLoggedIn() {

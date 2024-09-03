@@ -6,7 +6,7 @@
  */
 
 import {SearchModule} from '@app/modules';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
@@ -20,8 +20,8 @@ function SearchTab() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: DefaultStyles.SPACING,
-    paddingTop: DefaultStyles.SPACING,
+    paddingHorizontal: AppSizes.spacing,
+    paddingTop: AppSizes.spacing,
   },
 });
 

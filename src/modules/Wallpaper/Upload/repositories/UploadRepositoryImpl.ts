@@ -7,7 +7,7 @@
 
 import AppwriteService from '@app/appwrite/AppwriteService';
 import {UploadWallpaperProps} from '../types';
-import {env} from '@app/utils/env/env';
+import {EnviromentVariables} from '@core/enviroment';
 import {ID, Models} from 'react-native-appwrite';
 import {IUploadRepository} from '../domain/repositories';
 
@@ -30,8 +30,8 @@ class UploadRepositoryImpl implements IUploadRepository {
 
       /** Creating Document */
       await this._api.database.createDocument(
-        env.APPWRITE_DATABASE_ID,
-        env.APPWRITE_WALLPAPERS_COLLECTION_ID!,
+        EnviromentVariables.APPWRITE_DATABASE_ID,
+        EnviromentVariables.APPWRITE_WALLPAPERS_COLLECTION_ID!,
         uploadedWallpaper.$id,
         {
           title: props.title ?? 'Undefined',
@@ -42,11 +42,11 @@ class UploadRepositoryImpl implements IUploadRepository {
           image_id: uploadedWallpaper.$id,
           uploaded_by: props.userId,
           preview_url: `${this._api.storage.getFilePreview(
-            env.APPWRITE_WALLPAPERS_BUCKET_ID!,
+            EnviromentVariables.APPWRITE_WALLPAPERS_BUCKET_ID!,
             uploadedWallpaper.$id,
           )}`,
           download_url: `${this._api.storage.getFileDownload(
-            env.APPWRITE_WALLPAPERS_BUCKET_ID!,
+            EnviromentVariables.APPWRITE_WALLPAPERS_BUCKET_ID!,
             uploadedWallpaper.$id,
           )}`,
         },
@@ -70,7 +70,7 @@ class UploadRepositoryImpl implements IUploadRepository {
     fileName: string,
   ) {
     const databaseResponse = await this._api.storage.createFile(
-      env.APPWRITE_WALLPAPERS_BUCKET_ID!,
+      EnviromentVariables.APPWRITE_WALLPAPERS_BUCKET_ID!,
       ID.unique(),
       {
         uri: imagePath,
@@ -88,7 +88,7 @@ class UploadRepositoryImpl implements IUploadRepository {
    */
   async deleteImageFromServer(imageId: string) {
     await this._api.storage.deleteFile(
-      env.APPWRITE_WALLPAPERS_BUCKET_ID,
+      EnviromentVariables.APPWRITE_WALLPAPERS_BUCKET_ID,
       imageId,
     );
   }

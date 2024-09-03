@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {Fragment} from 'react';
 import {Dimensions, Image, Pressable, StyleSheet, View} from 'react-native';
 import {Icon, Text} from 'react-native-paper';
 import {useUpload} from '../hooks';
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 const IMG_HEIGHT = SCREEN_WIDTH * 1.3;
@@ -45,17 +45,17 @@ function ImagePicker() {
 
 const styles = StyleSheet.create({
   pressable: {
-    width: SCREEN_WIDTH - DefaultStyles.SPACING * 2,
+    width: SCREEN_WIDTH - AppSizes.spacing * 2,
     height: IMG_HEIGHT,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 'auto',
-    borderRadius: DefaultStyles.SPACING * 3,
+    borderRadius: AppSizes.spacing * 3,
     overflow: 'hidden',
   },
   imageChangeContainer: {
-    padding: DefaultStyles.SPACING,
-    borderRadius: DefaultStyles.SPACING,
+    padding: AppSizes.spacing,
+    borderRadius: AppSizes.spacing,
     backgroundColor: 'hsla(0, 0%, 0%, 0.43)',
   },
   imageChangeText: {

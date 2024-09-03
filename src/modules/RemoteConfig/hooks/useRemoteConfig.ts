@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {DefaultStrings} from '@app/utils/constants/strings';
+import {DefaultStrings} from '@core/constants';
 import {useQuery} from '@tanstack/react-query';
 import {Linking} from 'react-native';
 import RemoteConfigService from '../services/RemoteConfigService';
 import RemoteConfigRepositoryImpl from '../repository/RemoteConfigRepositoryImpl';
 import {useEffect, useState} from 'react';
 import DeviceInfo from 'react-native-device-info';
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 
 function useRemoteConfig() {
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);

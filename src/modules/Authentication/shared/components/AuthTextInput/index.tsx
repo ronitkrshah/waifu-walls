@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
+import {AppSizes} from '@core/constants';
 import {StyleSheet, TextInput} from 'react-native';
 import {TextInputProps} from 'react-native';
 
@@ -32,8 +32,8 @@ function AuthTextInput(props: TextInputProps) {
 
 const styles = StyleSheet.create({
   textInput: {
-    borderRadius: DefaultStyles.SPACING * 2,
-    paddingHorizontal: DefaultStyles.SPACING,
+    borderRadius: AppSizes.spacing * 2,
+    paddingHorizontal: AppSizes.spacing,
   },
 });
 

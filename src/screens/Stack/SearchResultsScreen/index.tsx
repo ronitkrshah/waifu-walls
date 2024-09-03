@@ -11,7 +11,7 @@ import {
   StackNavigationParamList,
   StackNavigationRoutes,
   StackNavigationScreenProps,
-} from '@app/types/navigation';
+} from '@app/navigation/types';
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {Appbar} from 'react-native-paper';

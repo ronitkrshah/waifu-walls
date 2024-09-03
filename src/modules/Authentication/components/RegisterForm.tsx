@@ -14,7 +14,7 @@ import {
   Portal,
   Text,
 } from 'react-native-paper';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {useRegister} from '../hooks';
 import {Fragment} from 'react';
 
@@ -76,8 +76,8 @@ function ShowStatus({visible}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    gap: DefaultStyles.SPACING * 0.8,
-    marginVertical: DefaultStyles.SPACING,
+    gap: AppSizes.spacing * 0.8,
+    marginVertical: AppSizes.spacing,
   },
 });
 

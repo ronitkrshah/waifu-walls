@@ -6,7 +6,7 @@
  */
 
 import AppwriteService from '@app/appwrite/AppwriteService';
-import {env} from '@app/utils/env/env';
+import {EnviromentVariables} from '@core/enviroment';
 import {type IRemoteConfigRepository} from '../domain/repositories';
 import {type IRemoteConfigDto} from '../dto';
 
@@ -18,9 +18,9 @@ class RemoteConfigRepositoryImpl implements IRemoteConfigRepository {
    */
   async getConfig() {
     const config = await this._api.database.getDocument(
-      env.APPWRITE_DATABASE_ID,
-      env.APPWRITE_REMOTE_CONFIG_COLLECTION_ID,
-      env.APPWRITE_REMOTE_CONFIG_DOCUMENT_ID,
+      EnviromentVariables.APPWRITE_DATABASE_ID,
+      EnviromentVariables.APPWRITE_REMOTE_CONFIG_COLLECTION_ID,
+      EnviromentVariables.APPWRITE_REMOTE_CONFIG_DOCUMENT_ID,
     );
 
     return config as IRemoteConfigDto;

@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {DefaultStrings} from '@app/utils/constants/strings';
-import {env} from '@app/utils/env/env';
+import {DefaultStrings} from '@core/constants';
+import {EnviromentVariables} from '@core/enviroment';
 import {
   Account,
   Client,
@@ -26,8 +26,8 @@ class AppwriteService {
 
   private constructor() {
     this.client = new Client()
-      .setProject(env.APPWRITE_PROJECT_ID)
-      .setEndpoint(env.APPWRITE_PROJECT_URL)
+      .setProject(EnviromentVariables.APPWRITE_PROJECT_ID)
+      .setEndpoint(EnviromentVariables.APPWRITE_PROJECT_URL)
       .setPlatform(DefaultStrings.PACKAGE_NAME);
 
     this.account = new Account(this.client);

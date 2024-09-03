@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import AccountTabLoginBox from '@app/components/screens/BottomTab/AccountTab/AccountTabLoginBox';
-import AccountTabUserDashboard from '@app/components/screens/BottomTab/AccountTab/AccountTabUserDashboard';
-import useGlobalStore from '@app/store';
+import AccountTabLoginBox from '@core/components/screens/BottomTab/AccountTab/AccountTabLoginBox';
+import AccountTabUserDashboard from '@core/components/screens/BottomTab/AccountTab/AccountTabUserDashboard';
+import {useGlobalStore} from '@core/store';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
   StackNavigationRoutes,
-} from '@app/types/navigation';
+} from '@app/navigation/types';
 import {Fragment} from 'react';
 import {Appbar} from 'react-native-paper';
 

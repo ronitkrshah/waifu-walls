@@ -21,8 +21,8 @@ import {StyleSheet} from 'react-native';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import MaterialCommuntiyIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {IconButton, MD3Colors} from 'react-native-paper';
-import {DefaultStyles} from '@app/utils/constants/style';
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
+import {AppSizes} from '@core/constants';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 
 type Props = {
   wallpaper: WallpaperModule.WallpaperList.IWallpaper;
@@ -134,8 +134,8 @@ const styles = StyleSheet.create({
   },
   floatingButton: {
     position: 'absolute',
-    right: DefaultStyles.SPACING,
-    bottom: DefaultStyles.SPACING,
+    right: AppSizes.spacing,
+    bottom: AppSizes.spacing,
   },
 });
 

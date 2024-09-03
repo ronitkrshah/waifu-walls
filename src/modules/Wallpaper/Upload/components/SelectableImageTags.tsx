@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {StyleSheet, View} from 'react-native';
 import {Chip, Text} from 'react-native-paper';
 import {useUpload} from '../hooks';
 import {Fragment} from 'react';
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 
 type Props = {
   tagList: string[];
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: DefaultStyles.SPACING,
+    gap: AppSizes.spacing,
     justifyContent: 'center',
   },
 });

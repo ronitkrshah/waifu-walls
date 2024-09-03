@@ -7,7 +7,7 @@
 
 import {List} from 'react-native-paper';
 import ShowAdultImageSwitch from './showAdultImages/ShowAdultImageSwitch';
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 import {StyleSheet} from 'react-native';
 
 function AdultSettingsSection() {

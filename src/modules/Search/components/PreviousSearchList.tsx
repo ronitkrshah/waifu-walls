@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
   SearchScreenSearchType,
   StackNavigationRoutes,
-} from '@app/types/navigation';
-import {DefaultStyles} from '@app/utils/constants/style';
+} from '@app/navigation/types';
+import {AppSizes} from '@core/constants';
 import {useNavigation} from '@react-navigation/native';
 import {memo} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
@@ -77,7 +77,7 @@ const ListItem = memo(function ({
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: DefaultStyles.SPACING,
+    borderRadius: AppSizes.spacing,
     overflow: 'hidden',
     marginTop: 10,
   },

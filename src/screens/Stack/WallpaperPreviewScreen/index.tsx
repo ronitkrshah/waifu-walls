@@ -5,11 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import ShowWallpaperPreview from '@app/components/screens/Stack/WallpaperPreviewScreen/ShowWallpaperPreview';
+import ShowWallpaperPreview from '@core/components/screens/Stack/WallpaperPreviewScreen/ShowWallpaperPreview';
 import {
   StackNavigationRoutes,
   StackNavigationScreenProps,
-} from '@app/types/navigation';
+} from '@app/navigation/types';
 
 function WallpaperPreviewScreen({
   route,

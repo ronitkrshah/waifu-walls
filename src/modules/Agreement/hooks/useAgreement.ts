@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import {
   BottomTabNavigationRoutes,
   StackNavigationProp,
   StackNavigationRoutes,
-} from '@app/types/navigation';
-import {DefaultStrings} from '@app/utils/constants/strings';
+} from '@app/navigation/types';
+import {DefaultStrings} from '@core/constants';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {Linking, ToastAndroid} from 'react-native';

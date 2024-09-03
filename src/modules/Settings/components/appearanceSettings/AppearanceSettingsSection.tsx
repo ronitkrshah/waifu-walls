@@ -6,11 +6,11 @@
  */
 
 import {List} from 'react-native-paper';
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 import {Platform, StyleSheet} from 'react-native';
 import CustomPreviewScreenSwitch from './CustomPreviewScreenSwitch';
 import CustomTheme from './CustomTheme';
-import SizedBox from '@app/components/common/SizedBox';
+import {SizedBox} from '@core/components/common';
 import {Fragment} from 'react';
 
 const ANDROID_API_VERSION = Platform.Version;

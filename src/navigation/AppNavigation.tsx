@@ -10,7 +10,7 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native';
-import StackNavigator from './StackNavigator';
+import {StackNavigator} from './navigators';
 import {StatusBar, useColorScheme} from 'react-native';
 
 function AppNavigation() {

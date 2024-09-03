@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import FlavoursTabList from '@app/components/screens/BottomTab/FlavoursTab/FlavoursTabList';
-import AnimatedScrollableTab from '@app/components/shared/AnimatedScrollableTab';
-import {SFWList, NSFWList} from '@app/utils/constants/lists';
+import FlavoursTabList from '@core/components/screens/BottomTab/FlavoursTab/FlavoursTabList';
+import AnimatedScrollableTab from '@core/components/shared/AnimatedScrollableTab';
+import {FlavorsList} from '@core/constants';
 import {Fragment} from 'react';
 import {Appbar} from 'react-native-paper';
 
@@ -16,8 +16,8 @@ function FlavoursTab() {
     <Fragment>
       <MyAppbar />
       <AnimatedScrollableTab buttonLabelOne="SFW" buttonLabelTwo="NSFW">
-        <FlavoursTabList list={SFWList} />
-        <FlavoursTabList list={NSFWList} />
+        <FlavoursTabList list={FlavorsList.SFW} />
+        <FlavoursTabList list={FlavorsList.NSFW} />
       </AnimatedScrollableTab>
     </Fragment>
   );

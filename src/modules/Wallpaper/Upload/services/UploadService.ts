@@ -9,7 +9,7 @@ import {Image as Compressor} from 'react-native-compressor';
 import {IUploadRepository} from '../domain/repositories/';
 import {UploadWallpaperProps} from '../types';
 import * as FileSystem from '@dr.pogodin/react-native-fs';
-import {WallpaperLimits} from '@app/utils/constants/limits';
+import {WallpaperLimits} from '@core/constants';
 import {uploadWallpaperTextValidations} from '../utils';
 
 class UploadService {

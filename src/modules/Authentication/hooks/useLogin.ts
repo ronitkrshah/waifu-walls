@@ -8,11 +8,11 @@
 import {useMutation} from '@tanstack/react-query';
 import AuthRepositoryImpl from '../repository/AuthRepositoryImpl';
 import AuthService from '../services/AuthService';
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import {ToastAndroid} from 'react-native';
 import {IUserCredentials} from '../domain/repositories/IAuthRepository';
 import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@app/types/navigation';
+import {StackNavigationProp} from '@app/navigation/types';
 import {useFormik} from 'formik';
 import {loginSchema} from '../schemas/LoginSchema';
 

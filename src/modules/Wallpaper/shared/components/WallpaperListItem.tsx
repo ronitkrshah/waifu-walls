@@ -6,7 +6,7 @@
  */
 
 import {WallpaperModule} from '@app/modules/';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {memo, useState} from 'react';
 import {Dimensions, Pressable, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -49,9 +49,9 @@ function WallpaperListItem({onPress, wallpaper}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH / 2 - DefaultStyles.SPACING,
+    width: SCREEN_WIDTH / 2 - AppSizes.spacing,
     height: SCREEN_WIDTH * 0.85,
-    borderRadius: DefaultStyles.SPACING,
+    borderRadius: AppSizes.spacing,
     overflow: 'hidden',
   },
 });

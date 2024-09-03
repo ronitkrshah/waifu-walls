@@ -5,8 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {CustomThemeColors} from '@app/utils/constants/lists';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppStyles, AppSizes} from '@core/constants';
 import {Pressable, View, StyleSheet} from 'react-native';
 import useCustomThemeController from './useCustomThemeController';
 import MaterialCommuntiyIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -19,7 +18,7 @@ function CustomTheme() {
 
   return (
     <View style={styles.colorContainer}>
-      {CustomThemeColors.map(color => (
+      {AppStyles.CustomThemeColors.map(color => (
         <Color
           key={color}
           color={color}
@@ -54,7 +53,7 @@ function Color({color, onPress, isActive}: ColorProps) {
 const styles = StyleSheet.create({
   colorContainer: {
     flexDirection: 'row',
-    paddingHorizontal: DefaultStyles.SPACING,
+    paddingHorizontal: AppSizes.spacing,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexWrap: 'wrap',

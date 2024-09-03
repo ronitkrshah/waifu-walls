@@ -6,7 +6,7 @@
  */
 
 import {WallpaperModule} from '@app/modules';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {Fragment, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator, Button, Dialog, Portal} from 'react-native-paper';
@@ -86,10 +86,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    gap: DefaultStyles.SPACING,
+    gap: AppSizes.spacing,
   },
   content: {
-    gap: DefaultStyles.SPACING,
+    gap: AppSizes.spacing,
   },
 });
 

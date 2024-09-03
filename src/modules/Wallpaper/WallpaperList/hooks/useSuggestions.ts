@@ -10,7 +10,7 @@ import {
   BottomTabNavigationRoutes,
   SearchScreenSearchType,
   StackNavigationRoutes,
-} from '@app/types/navigation';
+} from '@app/navigation/types';
 import {useNavigation} from '@react-navigation/native';
 
 export function useSuggestions() {

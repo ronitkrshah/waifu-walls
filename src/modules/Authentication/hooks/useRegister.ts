@@ -12,9 +12,9 @@ import AuthService from '../services/AuthService';
 import {AuthRepositoryImpl} from '../repository';
 import {IUserCredentials} from '../domain/repositories';
 import {ToastAndroid} from 'react-native';
-import useGlobalStore from '@app/store';
+import {useGlobalStore} from '@core/store';
 import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@app/types/navigation';
+import {StackNavigationProp} from '@app/navigation/types';
 
 function useRegister() {
   const setUserGlobalStore = useGlobalStore(state => state.setUser);

@@ -7,7 +7,7 @@
 
 import {Query} from 'react-native-appwrite';
 import {IWallpaperRepository} from '../domain/repositories';
-import {WallpaperLimits} from '@app/utils/constants/limits';
+import {WallpaperLimits} from '@core/constants';
 import {mapWallpaperDtoToDomain} from '../dto';
 
 class WallpaperService {

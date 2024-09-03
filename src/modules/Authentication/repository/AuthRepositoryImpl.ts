@@ -17,7 +17,7 @@ import {
   type INewUserDocumentDto,
   type ILoggedInUserDto,
 } from '../dto/models';
-import {env} from '@app/utils/env/env';
+import {EnviromentVariables} from '@core/enviroment';
 
 class AuthRepositoryImpl implements IAuthRepository {
   private _api: AppwriteService;
@@ -59,8 +59,8 @@ class AuthRepositoryImpl implements IAuthRepository {
     user: IRegisterUserDto,
   ): Promise<INewUserDocumentDto> {
     const databaseResponse = await this._api.database.createDocument(
-      env.APPWRITE_DATABASE_ID,
-      env.APPWRITE_USERS_COLLECTION_ID,
+      EnviromentVariables.APPWRITE_DATABASE_ID,
+      EnviromentVariables.APPWRITE_USERS_COLLECTION_ID,
       user.$id,
       {
         name: user.name,

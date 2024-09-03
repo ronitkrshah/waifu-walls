@@ -5,9 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
-import {DefaultStrings} from '@app/utils/constants/strings';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
+import {DefaultStrings, AppSizes} from '@core/constants';
 import {StyleSheet} from 'react-native';
 import {Button, Dialog, Portal, Text} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -49,7 +48,7 @@ function CheckAppUpdates() {
 const styles = StyleSheet.create({
   contentContainer: {
     alignItems: 'center',
-    gap: DefaultStyles.SPACING,
+    gap: AppSizes.spacing,
   },
   updateText: {
     textAlign: 'center',

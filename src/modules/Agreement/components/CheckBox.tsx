@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
+import {AppSizes} from '@core/constants';
 import {Pressable, StyleSheet, View} from 'react-native';
 import {Checkbox, Text} from 'react-native-paper';
 
@@ -39,14 +39,14 @@ function CheckBox({label, isChecked, onPress}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: DefaultStyles.SPACING,
+    borderRadius: AppSizes.spacing,
     overflow: 'hidden',
   },
   pressable: {
-    paddingHorizontal: DefaultStyles.SPACING * 0.3,
-    paddingVertical: DefaultStyles.SPACING * 0.4,
+    paddingHorizontal: AppSizes.spacing * 0.3,
+    paddingVertical: AppSizes.spacing * 0.4,
     flexDirection: 'row',
-    gap: DefaultStyles.SPACING,
+    gap: AppSizes.spacing,
   },
   textContainer: {
     flex: 1,

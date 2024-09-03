@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {FlatList, StyleSheet} from 'react-native';
 import {WallpaperListItem} from '@app/modules/Wallpaper/shared/components';
 import {useList} from "../hooks"
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   columnWrapper: {
     justifyContent: 'center',
     gap: 10,
-    marginBottom: DefaultStyles.SPACING - 4,
+    marginBottom: AppSizes.spacing - 4,
   },
 });
 

@@ -6,9 +6,8 @@
  */
 
 import {AgreementModule} from '@app/modules';
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
-import {DefaultStrings} from '@app/utils/constants/strings';
-import {DefaultStyles} from '@app/utils/constants/style';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
+import {DefaultStrings, AppSizes} from '@core/constants';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
 
@@ -26,12 +25,7 @@ function SetupWizardScreen() {
       <View style={styles.disclaimerContainer}>
         <Text
           variant="headlineSmall"
-          style={[
-            {
-              color: colors.error,
-            },
-            styles.textUnderline,
-          ]}>
+          style={[{color: colors.error}, styles.textUnderline]}>
           Disclaimer
         </Text>
         <Text variant="bodyLarge">
@@ -49,16 +43,16 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: DefaultStyles.SPACING,
-    gap: DefaultStyles.SPACING,
+    paddingHorizontal: AppSizes.spacing,
+    gap: AppSizes.spacing,
   },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    marginBottom: DefaultStyles.SPACING * 2,
+    marginBottom: AppSizes.spacing * 2,
   },
   disclaimerContainer: {
-    gap: DefaultStyles.SPACING * 0.8,
+    gap: AppSizes.spacing * 0.8,
   },
   textUnderline: {textDecorationLine: 'underline'},
 });

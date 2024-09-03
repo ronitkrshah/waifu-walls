@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {DefaultStyles} from '@app/utils/constants/style';
+import {AppSizes} from '@core/constants';
 import {StyleSheet, View} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {useState} from 'react';
@@ -60,9 +60,9 @@ function ImageDetailFields() {
 
 const styles = StyleSheet.create({
   container: {
-    gap: DefaultStyles.SPACING * 2,
-    marginVertical: DefaultStyles.SPACING * 2,
-    paddingHorizontal: DefaultStyles.SPACING,
+    gap: AppSizes.spacing * 2,
+    marginVertical: AppSizes.spacing * 2,
+    paddingHorizontal: AppSizes.spacing,
   },
 });
 

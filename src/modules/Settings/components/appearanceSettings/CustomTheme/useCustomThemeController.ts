@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import useGlobalStore from '@app/store';
-import {useMaterial3ThemeContext} from '@app/theme/MaterialYouTheme';
+import {useGlobalStore} from '@core/store';
+import {useMaterial3ThemeContext} from '@core/theme';
 import {useShallow} from 'zustand/react/shallow';
 
 function useCustomThemeController() {

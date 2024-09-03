@@ -5,15 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import useGlobalStore from '@app/store';
-import {useAppTheme} from '@app/theme/MaterialYouTheme';
+import {useGlobalStore} from '@core/store';
+import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
   SearchScreenSearchType,
   StackNavigationRoutes,
-} from '@app/types/navigation';
-import {DefaultStrings} from '@app/utils/constants/strings';
+} from '@app/navigation/types';
+import {DefaultStrings} from '@core/constants';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {Searchbar} from 'react-native-paper';

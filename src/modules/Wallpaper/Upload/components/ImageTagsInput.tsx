@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {SFWList, NSFWList} from '@app/utils/constants/lists';
+import {FlavorsList} from '@core/constants';
 import {Fragment, memo} from 'react';
 import {Checkbox, List} from 'react-native-paper';
 import {useUpload} from '../hooks';
@@ -15,7 +15,7 @@ function ImageTagsInput() {
   const {isMatureContent, toggleIsMatureContent} =
     useUpload();
 
-  const tagList = isMatureContent ? NSFWList : SFWList;
+  const tagList = isMatureContent ? FlavorsList.NSFW : FlavorsList.SFW;
 
   return (
     <Fragment>
