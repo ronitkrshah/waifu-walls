@@ -10,13 +10,13 @@ import {AppSizes} from '@core/constants';
 import {Fragment} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 import {Avatar, Surface, Text} from 'react-native-paper';
-import AdminsOnlyFeatures from './AdminsOnlyOptions';
+import AdminsOnly from './AdminsOnly/AdminsOnly';
 import {AuthenticationModule} from '@app/modules';
 import {useCurrentUser} from '@core/hooks';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
-function AccountTabUserDashboard() {
+function UserDashboard() {
   const {currentUser} = useCurrentUser();
   const {colors} = useAppTheme();
 
@@ -30,7 +30,7 @@ function AccountTabUserDashboard() {
           {currentUser.name}
         </Text>
 
-        {currentUser.isAdmeme && <AdminsOnlyFeatures />}
+        {currentUser.isAdmeme && <AdminsOnly />}
         <AuthenticationModule.LogoutButton />
       </Surface>
     </Fragment>
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccountTabUserDashboard;
+export default UserDashboard;

@@ -8,12 +8,12 @@
 import {DefaultStrings, AppSizes} from '@core/constants';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {Surface} from 'react-native-paper';
-import Headline from '../Headline';
+import Headline from './Headline';
 import {AuthenticationModule} from '@app/modules';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
-function RegisterPage() {
+function RegisterScreen() {
   return (
     <View style={styles.rootContainer}>
       <Surface style={styles.surfaceContainer}>
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterPage;
+export default RegisterScreen;

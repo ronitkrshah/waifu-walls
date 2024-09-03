@@ -16,7 +16,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import AnimatedTabbarButton from './AnimatedTabBar';
+import Tabs from './Tabs';
 import {AnimatedScrollView} from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
 type Props = {
@@ -26,11 +26,8 @@ type Props = {
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
-function AnimatedScrollableTab({
-  buttonLabelOne,
-  buttonLabelTwo,
-  children,
-}: Props) {
+function AnimatedSwipeableTabs(props: Props) {
+  const {buttonLabelOne, buttonLabelTwo, children} = props;
   const scrollX = useSharedValue(0);
   const scrollViewRef = useAnimatedRef<AnimatedScrollView>();
 
@@ -70,13 +67,13 @@ function AnimatedScrollableTab({
   return (
     <Fragment>
       <View style={styles.container}>
-        <AnimatedTabbarButton
+        <Tabs
           label={buttonLabelOne}
           onPress={scrollToFirstPage}
           animatedStyle={firstBtnBarAnimatedStyle}
         />
 
-        <AnimatedTabbarButton
+        <Tabs
           label={buttonLabelTwo}
           onPress={scrollToSecondPage}
           animatedStyle={secondBtnBarAnimatedStyle}
@@ -102,4 +99,4 @@ const styles = StyleSheet.create({
     gap: AppSizes.spacing,
   },
 });
-export default AnimatedScrollableTab;
+export default AnimatedSwipeableTabs;

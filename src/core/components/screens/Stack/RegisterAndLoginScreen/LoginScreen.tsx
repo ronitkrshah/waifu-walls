@@ -9,12 +9,12 @@ import {DefaultStrings, AppSizes} from '@core/constants';
 import {Dimensions} from 'react-native';
 import {StyleSheet, View} from 'react-native';
 import {Surface} from 'react-native-paper';
-import Headline from '../Headline';
+import Headline from './Headline';
 import {AuthenticationModule} from '@app/modules';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
 
-function LoginPage() {
+function LoginScreen() {
   return (
     <View style={styles.rootContainer}>
       <Surface style={styles.surfaceContainer}>
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginPage;
+export default LoginScreen;

@@ -18,7 +18,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-function AnimatedLoadingCircleIndicator() {
+function AnimatedCircle() {
   const circle = useSharedValue(0);
   const {colors} = useAppTheme();
 
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AnimatedLoadingCircleIndicator;
+export default AnimatedCircle;

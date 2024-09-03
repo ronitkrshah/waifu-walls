@@ -16,7 +16,7 @@ type Props = {
   animatedStyle: ViewStyle;
 };
 
-function AnimatedTabbarButton({label, onPress, animatedStyle}: Props) {
+function Tabs({label, onPress, animatedStyle}: Props) {
   const {colors} = useAppTheme();
   return (
     <View style={styles.container}>
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AnimatedTabbarButton;
+export default Tabs;

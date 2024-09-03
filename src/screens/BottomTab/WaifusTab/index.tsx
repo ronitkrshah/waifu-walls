@@ -5,8 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperModule} from '@app/modules';
-import {RemoteConfigModule} from '@app/modules';
+import {WallpaperModule, RemoteConfigModule} from '@app/modules';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
@@ -14,7 +13,7 @@ import {
 } from '@app/navigation/types';
 import {Fragment} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import WallpaperUploadFAB from '@core/components/screens/BottomTab/WaifusTab/WallpaperUploadFAB';
+import {WaifusTabComponents} from '@core/components/screens/BottomTab';
 
 const {LatestWallpapersScreen} = WallpaperModule.WallpaperList;
 
@@ -33,7 +32,7 @@ function WaifusTab({
       </SafeAreaView>
 
       {/** Upload Button */}
-      <WallpaperUploadFAB onPress={onFabPress} />
+      <WaifusTabComponents.WallpaperUploadFAB onPress={onFabPress} />
 
       {/** Remote Config */}
       <RemoteConfigModule.CheckAppUpdates />

@@ -6,7 +6,7 @@
  */
 
 import {Flex} from '@core/components/common';
-import AnimatedLoadingCircleIndicator from '@core/components/shared/AnimatedLoadingCircleIndicator';
+import {AnimatedCircle} from '@core/components/shared';
 import {AuthenticationModule} from '@app/modules';
 
 function SplashScreen() {
@@ -14,7 +14,7 @@ function SplashScreen() {
 
   return (
     <Flex flex={1} center>
-      <AnimatedLoadingCircleIndicator />
+      <AnimatedCircle />
     </Flex>
   );
 }

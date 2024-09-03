@@ -23,7 +23,7 @@ type Props = {
 
 const {width: SCREEN_WIDTH, height: SCREN_HEIGHT} = Dimensions.get('screen');
 
-function FlavoursTabList({list}: Props) {
+function FlavoursList({list}: Props) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const navigation =
     useNavigation<
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlavoursTabList;
+export default FlavoursList;

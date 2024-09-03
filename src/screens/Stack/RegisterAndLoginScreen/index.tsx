@@ -5,18 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import RegisterPage from '@core/components/screens/Stack/RegisterAndLoginScreen/RegisterPage';
-import LoginPage from '@core/components/screens/Stack/RegisterAndLoginScreen/LoginPage';
+import {RegisterAndLoginComponents} from '@core/components/screens/Stack';
 import {Appbar} from 'react-native-paper';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
-import AnimatedScrollableTab from '@core/components/shared/AnimatedScrollableTab';
+import {AnimatedSwipeableTabs} from '@core/components/shared';
 
 function RegisterAndLoginScreen() {
   return (
-    <AnimatedScrollableTab buttonLabelOne="Sign In" buttonLabelTwo="Sign Up">
-      <LoginPage />
-      <RegisterPage />
-    </AnimatedScrollableTab>
+    <AnimatedSwipeableTabs buttonLabelOne="Sign In" buttonLabelTwo="Sign Up">
+      <RegisterAndLoginComponents.LoginScreen />
+      <RegisterAndLoginComponents.RegisterScreen />
+    </AnimatedSwipeableTabs>
   );
 }
 

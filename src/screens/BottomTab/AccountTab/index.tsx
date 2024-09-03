@@ -5,8 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import AccountTabLoginBox from '@core/components/screens/BottomTab/AccountTab/AccountTabLoginBox';
-import AccountTabUserDashboard from '@core/components/screens/BottomTab/AccountTab/AccountTabUserDashboard';
+import {AccountTabComponents} from '@core/components/screens/BottomTab';
 import {
   BottomTabNavigationRoutes,
   BottomTabNavigationScreenProps,
@@ -28,9 +27,9 @@ function AccountTab({
     <Fragment>
       <MyAppbar onCogPress={navigateToSettings} />
       {currentUser.isAuthenticated ? (
-        <AccountTabUserDashboard />
+        <AccountTabComponents.UserDashboard />
       ) : (
-        <AccountTabLoginBox />
+        <AccountTabComponents.RequestLogin />
       )}
     </Fragment>
   );

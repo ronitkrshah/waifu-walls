@@ -15,7 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
 import {Avatar, Button, Surface} from 'react-native-paper';
 
-function AccountTabLoginBox() {
+function RequestLogin() {
   const navigation =
     useNavigation<BottomTabNavigationProp<BottomTabNavigationRoutes.ACCOUNT>>();
 
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccountTabLoginBox;
+export default RequestLogin;

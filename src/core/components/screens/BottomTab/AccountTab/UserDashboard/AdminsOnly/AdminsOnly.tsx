@@ -10,7 +10,7 @@ import AdminControlsButton from './AdminControlsButton';
 import {StyleSheet, View} from 'react-native';
 import {AppSizes} from '@core/constants';
 
-function AdminsOnlyFeatures() {
+function AdminsOnly() {
   const theme = useAppTheme();
   return (
     <View
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdminsOnlyFeatures;
+export default AdminsOnly;
