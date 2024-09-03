@@ -1,3 +1,3 @@
-import CustomPreview from "./CustomPreview";
+import CustomPreview from './CustomPreview';
 
-export {CustomPreview}
+export {CustomPreview};

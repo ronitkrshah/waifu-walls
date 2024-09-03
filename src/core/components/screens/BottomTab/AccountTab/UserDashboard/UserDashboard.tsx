@@ -10,8 +10,8 @@ import {AppSizes} from '@core/constants';
 import {Fragment} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 import {Avatar, Surface, Text} from 'react-native-paper';
-import AdminsOnly from './AdminsOnly/AdminsOnly';
-import {AuthenticationModule} from '@app/modules';
+import {AdminsOnly} from './AdminsOnly';
+import {AdminsOnlyModule, AuthenticationModule} from '@app/modules';
 import {useCurrentUser} from '@core/hooks';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen');
@@ -30,7 +30,11 @@ function UserDashboard() {
           {currentUser.name}
         </Text>
 
-        {currentUser.isAdmeme && <AdminsOnly />}
+        <AdminsOnlyModule.AdminProtected>
+          <AdminsOnly />
+        </AdminsOnlyModule.AdminProtected>
+
+        {/** Log Out */}
         <AuthenticationModule.LogoutButton />
       </Surface>
     </Fragment>

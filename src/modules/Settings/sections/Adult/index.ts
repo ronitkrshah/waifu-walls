@@ -1,3 +1,3 @@
-import AdultSettings from "./AdultSettings";
+import AdultSettings from './AdultSettings';
 
-export {AdultSettings}
+export {AdultSettings};

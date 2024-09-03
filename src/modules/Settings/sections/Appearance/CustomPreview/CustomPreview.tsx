@@ -13,8 +13,7 @@ import {SwitchButtonTile} from '@core/components/shared';
 
 function CustomPreview() {
   const [showTipDialog, setShowTipDialog] = useState(false);
-  const {handleOnChange, isSwitchEnabled} =
-    useCustomPreview();
+  const {handleOnChange, isSwitchEnabled} = useCustomPreview();
 
   /** Hide Tip dialog */
   function dismissTipDialog() {

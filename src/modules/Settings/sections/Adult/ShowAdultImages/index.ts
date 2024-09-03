@@ -1,3 +1,3 @@
-import ShowAdultImages from "./ShowAdultImages";
+import ShowAdultImages from './ShowAdultImages';
 
-export {ShowAdultImages}
+export {ShowAdultImages};

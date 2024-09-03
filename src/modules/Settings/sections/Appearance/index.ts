@@ -1,3 +1,3 @@
-import AppearanceSettings from "./AppearanceSettings";
+import AppearanceSettings from './AppearanceSettings';
 
-export {AppearanceSettings}
+export {AppearanceSettings};
