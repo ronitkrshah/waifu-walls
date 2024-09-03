@@ -16,4 +16,4 @@ export interface INewUserDocumentDto {
   $tenant: string;
   $databaseId: string;
   $collectionId: string;
-};
+}

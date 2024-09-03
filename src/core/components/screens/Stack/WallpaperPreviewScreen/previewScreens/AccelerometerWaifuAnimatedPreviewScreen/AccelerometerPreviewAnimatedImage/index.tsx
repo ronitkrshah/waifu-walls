@@ -104,9 +104,7 @@ function AccelerometerPreviewAnimatedImage({wallpaper}: Props) {
 
       <DoubleTapShowControls wallpaper={wallpaper}>
         <View style={styles.rootContainer}>
-          <DoubleTapLikeWrapper
-            showFloatingIconOutside
-            wallpaper={wallpaper}>
+          <DoubleTapLikeWrapper showFloatingIconOutside wallpaper={wallpaper}>
             <Animated.View style={[styles.container, rFloatingImageStyle]}>
               <AImage
                 entering={FadeIn.duration(800)}

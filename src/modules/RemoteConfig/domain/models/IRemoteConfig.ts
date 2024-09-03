@@ -8,5 +8,4 @@
 export interface IRemoteConfig {
   version: string;
   shouldUploadImages: boolean;
-};
-
+}

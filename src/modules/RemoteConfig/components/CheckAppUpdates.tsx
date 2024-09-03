@@ -19,8 +19,7 @@ import useRemoteConfig from '../hooks/useRemoteConfig';
  */
 function CheckAppUpdates() {
   const {colors} = useAppTheme();
-  const {onUpdatePress, showUpdateDialog, hideUpdateDialog} =
-    useRemoteConfig();
+  const {onUpdatePress, showUpdateDialog, hideUpdateDialog} = useRemoteConfig();
 
   /** Show App Update Dialog If App Update Available */
   return (

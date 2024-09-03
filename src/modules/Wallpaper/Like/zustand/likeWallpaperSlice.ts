@@ -13,8 +13,12 @@ type LikeWallpaperState = {
 };
 
 type LikeWallpaperActions = {
-  removeWallpaperFromFavouritesById: (wallpaperId: WallpaperModule.WallpaperList.IWallpaper['id']) => void;
-  addNewWallpaperToFavourites: (wallpaper: WallpaperModule.WallpaperList.IWallpaper) => void;
+  removeWallpaperFromFavouritesById: (
+    wallpaperId: WallpaperModule.WallpaperList.IWallpaper['id'],
+  ) => void;
+  addNewWallpaperToFavourites: (
+    wallpaper: WallpaperModule.WallpaperList.IWallpaper,
+  ) => void;
   checkIfWallpaperAlreadyAddedInFavourites: (wallpaperId: string) => boolean;
 };
 
@@ -54,4 +58,3 @@ export const createLikedWallpaperSlice: StateCreator<
       : false;
   },
 });
-

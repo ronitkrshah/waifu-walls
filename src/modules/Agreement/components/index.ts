@@ -1,3 +1,3 @@
-import AgreementChecks from "./AgreementChecks"
+import AgreementChecks from './AgreementChecks';
 
-export {AgreementChecks}
+export {AgreementChecks};

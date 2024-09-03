@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export interface ILoggedInUserDto  {
+export interface ILoggedInUserDto {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
@@ -23,4 +23,4 @@ export interface ILoggedInUserDto  {
   targets: any[];
   accessedAt: string;
   isAdmeme: boolean; // This prop will be available if user is in admin team
-};
+}

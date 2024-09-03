@@ -7,7 +7,6 @@
 
 export interface IAdminControlRepository {
   disableWallpaperUpload(): Promise<void>;
-  
+
   enableWallpaperUpload(): Promise<void>;
 }
-

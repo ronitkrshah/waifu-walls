@@ -1,4 +1,4 @@
-import mapRemoteConfigDtoToDomain from "./mapRemoteConfigDtoToDomain"
+import mapRemoteConfigDtoToDomain from './mapRemoteConfigDtoToDomain';
 
-export {type IRemoteConfigDto} from "./IRemoteConfigDto"
-export {mapRemoteConfigDtoToDomain}
+export {type IRemoteConfigDto} from './IRemoteConfigDto';
+export {mapRemoteConfigDtoToDomain};

@@ -1,3 +1,3 @@
-import WallpaperService from "./WallpaperService"
+import WallpaperService from './WallpaperService';
 
-export {WallpaperService}
+export {WallpaperService};

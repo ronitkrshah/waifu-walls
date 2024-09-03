@@ -1,1 +1,1 @@
-export {AgreementChecks} from "./components"
+export {AgreementChecks} from './components';

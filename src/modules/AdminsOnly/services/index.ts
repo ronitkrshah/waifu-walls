@@ -1,3 +1,3 @@
-import AdminControlService from "./AdminControlService"
+import AdminControlService from './AdminControlService';
 
-export {AdminControlService}
+export {AdminControlService};

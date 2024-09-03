@@ -1,3 +1,3 @@
-import AnimatedSwipeableTabs from "./AnimatedSwipeableTabs";
+import AnimatedSwipeableTabs from './AnimatedSwipeableTabs';
 
-export {AnimatedSwipeableTabs}
+export {AnimatedSwipeableTabs};

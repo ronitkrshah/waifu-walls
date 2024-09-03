@@ -1,3 +1,10 @@
-import UploadWallpaperContextProvider, {UploadWallpaperActionTypes,useUploadWallpaperContext} from "./UploadWallpaperContext"
+import UploadWallpaperContextProvider, {
+  UploadWallpaperActionTypes,
+  useUploadWallpaperContext,
+} from './UploadWallpaperContext';
 
-export {UploadWallpaperContextProvider, UploadWallpaperActionTypes,useUploadWallpaperContext}
+export {
+  UploadWallpaperContextProvider,
+  UploadWallpaperActionTypes,
+  useUploadWallpaperContext,
+};

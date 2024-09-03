@@ -8,7 +8,7 @@
 import {AppSizes} from '@core/constants';
 import {FlatList, StyleSheet} from 'react-native';
 import {WallpaperListItem} from '@app/modules/Wallpaper/shared/components';
-import {useList} from "../hooks"
+import {useList} from '../hooks';
 
 function FavoriteList() {
   const {handleWallpaperPress, wallpaperList} = useList();

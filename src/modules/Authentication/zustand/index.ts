@@ -1,1 +1,1 @@
-export {createUserSlice, type UserSlice}  from "./userSlice"
+export {createUserSlice, type UserSlice} from './userSlice';

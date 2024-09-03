@@ -11,7 +11,7 @@ import {Fragment, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator, Button, Dialog, Portal} from 'react-native-paper';
 import {SetWallpaperDestination} from '../utils/setWallpaper';
-import { useActions } from '../hooks';
+import {useActions} from '../hooks';
 
 type Props = {
   wallpaper: WallpaperModule.WallpaperList.IWallpaper;
@@ -19,7 +19,8 @@ type Props = {
 
 function WallpaperActions({wallpaper}: Props) {
   const [showDestinationOptions, setShowDestinationOptions] = useState(false);
-  const {applyWallpaper, isApplyingWallaper, isDownloading, downloadWallpaper} = useActions({
+  const {applyWallpaper, isApplyingWallaper, isDownloading, downloadWallpaper} =
+    useActions({
       wallpaper,
     });
   function onApply() {

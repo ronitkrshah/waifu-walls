@@ -5,8 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-
-import { IWallpaper } from '../domain/models';
+import {IWallpaper} from '../domain/models';
 import {IWallpaperDto} from './IWallpaperDto';
 
 function mapWallpaperDtoToDomain(dto: IWallpaperDto['data'][0]): IWallpaper {

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export interface IActiveSessionDto  {
+export interface IActiveSessionDto {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
@@ -35,4 +35,4 @@ export interface IActiveSessionDto  {
   factors: string[];
   secret: string;
   mfaUpdatedAt: string;
-};
+}

@@ -7,7 +7,6 @@
 
 import {PreviousSearchList, SearchBar} from '../components';
 
-
 function Search() {
   return (
     <>

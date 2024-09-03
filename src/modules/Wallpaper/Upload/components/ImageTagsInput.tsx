@@ -12,8 +12,7 @@ import {useUpload} from '../hooks';
 import SelectableImageTags from './SelectableImageTags';
 
 function ImageTagsInput() {
-  const {isMatureContent, toggleIsMatureContent} =
-    useUpload();
+  const {isMatureContent, toggleIsMatureContent} = useUpload();
 
   const tagList = isMatureContent ? FlavorsList.NSFW : FlavorsList.SFW;
 

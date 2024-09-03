@@ -10,7 +10,7 @@ import {
   BottomTabNavigationRoutes,
   StackNavigationRoutes,
 } from '@app/navigation/types';
-import {AppSizes} from "@core/constants"
+import {AppSizes} from '@core/constants';
 import {useNavigation} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
 import {Avatar, Button, Surface} from 'react-native-paper';

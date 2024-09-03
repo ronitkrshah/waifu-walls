@@ -1,3 +1,3 @@
-import useActions from "./useActions";
+import useActions from './useActions';
 
-export {useActions}
+export {useActions};

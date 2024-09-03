@@ -10,4 +10,3 @@ import {IRemoteConfigDto} from '../../dto';
 export interface IRemoteConfigRepository {
   getConfig(): Promise<IRemoteConfigDto>;
 }
-

@@ -1,3 +1,3 @@
-import RequestLogin from "./RequestLogin";
+import RequestLogin from './RequestLogin';
 
-export {RequestLogin}
+export {RequestLogin};

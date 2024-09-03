@@ -1,3 +1,3 @@
-import RemoteConfigRepositoryImpl from "./RemoteConfigRepositoryImpl";
+import RemoteConfigRepositoryImpl from './RemoteConfigRepositoryImpl';
 
-export {RemoteConfigRepositoryImpl}
+export {RemoteConfigRepositoryImpl};

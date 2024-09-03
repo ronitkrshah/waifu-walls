@@ -1,4 +1,4 @@
-import useUpload from "./useUpload";
-import useTextFields from "./useTextFields";
+import useUpload from './useUpload';
+import useTextFields from './useTextFields';
 
-export {useUpload, useTextFields}
+export {useUpload, useTextFields};

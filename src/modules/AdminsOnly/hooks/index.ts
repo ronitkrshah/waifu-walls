@@ -1,3 +1,3 @@
-import useAdminControls from "./useAdminControls"
+import useAdminControls from './useAdminControls';
 
-export {useAdminControls}
+export {useAdminControls};

@@ -1,3 +1,3 @@
-import CheckAppUpdates from "./CheckAppUpdates"
+import CheckAppUpdates from './CheckAppUpdates';
 
-export {CheckAppUpdates}
+export {CheckAppUpdates};

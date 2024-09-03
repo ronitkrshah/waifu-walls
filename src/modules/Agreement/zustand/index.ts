@@ -1,1 +1,1 @@
-export {createAgreementSlice, type AgreementSlice} from "./agreementSlice";
+export {createAgreementSlice, type AgreementSlice} from './agreementSlice';

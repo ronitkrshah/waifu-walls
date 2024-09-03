@@ -1,4 +1,4 @@
-import AppNavigation from "./AppNavigation";
+import AppNavigation from './AppNavigation';
 
-export {AppNavigation}
-export * from "./types"
+export {AppNavigation};
+export * from './types';

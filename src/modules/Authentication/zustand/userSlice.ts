@@ -47,4 +47,3 @@ export const createUserSlice: StateCreator<
       state.user = initialState.user;
     }),
 });
-

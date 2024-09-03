@@ -1,3 +1,3 @@
-import FavoriteList from "./FavoriteList";
+import FavoriteList from './FavoriteList';
 
-export {FavoriteList}
+export {FavoriteList};

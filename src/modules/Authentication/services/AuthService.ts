@@ -7,7 +7,10 @@
 
 import {UserDtoMapper} from '../dto/mapper';
 import {type INewUserDocumentDto, type IRegisterUserDto} from '../dto/models';
-import {type IUserCredentials, type IAuthRepository} from '../domain/repositories';
+import {
+  type IUserCredentials,
+  type IAuthRepository,
+} from '../domain/repositories';
 import {type IUser} from '../domain/models';
 
 class AuthService {

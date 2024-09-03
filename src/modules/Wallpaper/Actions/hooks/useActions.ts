@@ -7,7 +7,7 @@
 
 import {WallpaperModule} from '@app/modules';
 import {useState} from 'react';
-import {SetWallpaperDestination,setWallpaper} from '../utils';
+import {SetWallpaperDestination, setWallpaper} from '../utils';
 import {ToastAndroid} from 'react-native';
 import * as FileSystem from '@dr.pogodin/react-native-fs';
 

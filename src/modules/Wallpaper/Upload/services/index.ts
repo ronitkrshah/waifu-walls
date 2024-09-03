@@ -1,3 +1,3 @@
-import UploadService from "./UploadService"
+import UploadService from './UploadService';
 
-export {UploadService}
+export {UploadService};

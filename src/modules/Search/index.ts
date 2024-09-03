@@ -1,1 +1,1 @@
-export {SearchScreen} from "./screens"
+export {SearchScreen} from './screens';

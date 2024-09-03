@@ -1,3 +1,3 @@
-import Settings from "./Settings";
+import Settings from './Settings';
 
-export {Settings as SettingsScreen}
+export {Settings as SettingsScreen};

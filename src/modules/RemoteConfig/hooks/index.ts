@@ -1,3 +1,3 @@
-import useRemoteConfig from "./useRemoteConfig";
+import useRemoteConfig from './useRemoteConfig';
 
-export {useRemoteConfig}
+export {useRemoteConfig};

@@ -24,7 +24,9 @@ function useList() {
   /**
    * Function To handle on press on waifus
    */
-  function handleWallpaperPress(wallpaper: WallpaperModule.WallpaperList.IWallpaper) {
+  function handleWallpaperPress(
+    wallpaper: WallpaperModule.WallpaperList.IWallpaper,
+  ) {
     navigation.push(StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN, {
       wallpaper,
     });

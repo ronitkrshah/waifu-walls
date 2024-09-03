@@ -1,3 +1,3 @@
-import useAgreement from "./useAgreement";
+import useAgreement from './useAgreement';
 
-export {useAgreement}
+export {useAgreement};

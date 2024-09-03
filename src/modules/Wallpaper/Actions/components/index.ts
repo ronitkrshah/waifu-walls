@@ -1,3 +1,3 @@
-import WallpaperActions from "./WallpaperActions"
+import WallpaperActions from './WallpaperActions';
 
-export {WallpaperActions}
+export {WallpaperActions};

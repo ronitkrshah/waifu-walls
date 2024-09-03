@@ -1,4 +1,4 @@
-import { FavoriteList } from "./screens";
-import { DoubleTapLikeWrapper } from "./components";
+import {FavoriteList} from './screens';
+import {DoubleTapLikeWrapper} from './components';
 
-export {FavoriteList, DoubleTapLikeWrapper}
+export {FavoriteList, DoubleTapLikeWrapper};

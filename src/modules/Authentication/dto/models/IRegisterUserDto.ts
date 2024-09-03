@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export interface IRegisterUserDto  {
+export interface IRegisterUserDto {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
@@ -22,11 +22,11 @@ export interface IRegisterUserDto  {
   prefs: IPrefs;
   targets: ITarget[];
   accessedAt: string;
-};
+}
 
-interface IPrefs  {};
+interface IPrefs {}
 
-interface ITarget  {
+interface ITarget {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
@@ -35,4 +35,4 @@ interface ITarget  {
   providerId?: string;
   providerType: string;
   identifier: string;
-};
+}

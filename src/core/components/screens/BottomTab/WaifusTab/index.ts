@@ -1,3 +1,3 @@
-import WallpaperUploadFAB from "./WallpaperUploadFAB";
+import WallpaperUploadFAB from './WallpaperUploadFAB';
 
-export {WallpaperUploadFAB}
+export {WallpaperUploadFAB};

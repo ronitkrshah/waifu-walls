@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export interface IUser  {
+export interface IUser {
   name: string;
   email: string;
   userId: string;
   isAdmeme: boolean;
-};
+}

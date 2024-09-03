@@ -1,1 +1,1 @@
-export {type IRemoteConfigRepository} from "./IRemoteConfigRepository"
+export {type IRemoteConfigRepository} from './IRemoteConfigRepository';

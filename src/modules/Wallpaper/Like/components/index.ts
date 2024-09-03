@@ -1,3 +1,3 @@
-import DoubleTapLikeWrapper from "./DoubleTapLikeWrapper";
+import DoubleTapLikeWrapper from './DoubleTapLikeWrapper';
 
-export {DoubleTapLikeWrapper}
+export {DoubleTapLikeWrapper};

@@ -1,3 +1,3 @@
-import setWallpaper, {SetWallpaperDestination} from "./setWallpaper"
+import setWallpaper, {SetWallpaperDestination} from './setWallpaper';
 
-export {setWallpaper, SetWallpaperDestination}
+export {setWallpaper, SetWallpaperDestination};

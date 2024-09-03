@@ -1,3 +1,3 @@
-import AdminControls from "./AdminControls";
+import AdminControls from './AdminControls';
 
-export {AdminControls as AdminControlsScreen}
+export {AdminControls as AdminControlsScreen};

@@ -1,1 +1,1 @@
-export {type IRemoteConfig} from "./IRemoteConfig"
+export {type IRemoteConfig} from './IRemoteConfig';

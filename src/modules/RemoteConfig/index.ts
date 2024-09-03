@@ -1,3 +1,3 @@
-import { CheckAppUpdates } from "./components";
+import {CheckAppUpdates} from './components';
 
-export {CheckAppUpdates}
+export {CheckAppUpdates};

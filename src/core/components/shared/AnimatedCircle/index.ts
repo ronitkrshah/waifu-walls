@@ -1,3 +1,3 @@
-import AnimatedCircle from "./AnimatedCircle";
+import AnimatedCircle from './AnimatedCircle';
 
-export {AnimatedCircle}
+export {AnimatedCircle};

@@ -1,3 +1,3 @@
-import SizedBox from "./SizedBox";
+import SizedBox from './SizedBox';
 
-export {SizedBox}
+export {SizedBox};

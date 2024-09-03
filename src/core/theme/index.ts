@@ -1,1 +1,1 @@
-export * from "./MaterialYouTheme"
+export * from './MaterialYouTheme';

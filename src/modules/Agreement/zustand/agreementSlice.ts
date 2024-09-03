@@ -17,8 +17,7 @@ type AgreementActions = {
   acceptMatureContentAgreement(): void;
 };
 
-export type AgreementSlice = AgreementState &
-  AgreementActions;
+export type AgreementSlice = AgreementState & AgreementActions;
 
 const initialState: AgreementState = {
   matureContentAgreement: {isAgreementAccepted: false},
@@ -36,4 +35,3 @@ export const createAgreementSlice: StateCreator<
       state.matureContentAgreement.isAgreementAccepted = true;
     }),
 });
-

@@ -6,7 +6,7 @@
  */
 
 import {UploadWallpaperContextProvider} from '../context';
-import {UploadButton, ImageDetailFields, ImagePicker } from '../components';
+import {UploadButton, ImageDetailFields, ImagePicker} from '../components';
 
 function Upload() {
   return (

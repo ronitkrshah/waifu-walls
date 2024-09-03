@@ -1,3 +1,3 @@
-import UploadRepositoryImpl from "./UploadRepositoryImpl"
+import UploadRepositoryImpl from './UploadRepositoryImpl';
 
-export {UploadRepositoryImpl}
+export {UploadRepositoryImpl};

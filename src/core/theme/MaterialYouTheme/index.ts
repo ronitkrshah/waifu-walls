@@ -1,3 +1,6 @@
-import MaterialYouThemeProvider ,{useAppTheme, useMaterial3ThemeContext} from "./MaterialYouThemeProvider"
+import MaterialYouThemeProvider, {
+  useAppTheme,
+  useMaterial3ThemeContext,
+} from './MaterialYouThemeProvider';
 
-export {MaterialYouThemeProvider, useAppTheme, useMaterial3ThemeContext}
+export {MaterialYouThemeProvider, useAppTheme, useMaterial3ThemeContext};

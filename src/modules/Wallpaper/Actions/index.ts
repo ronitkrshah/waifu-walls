@@ -1,1 +1,1 @@
-export {WallpaperActions} from "./components"
+export {WallpaperActions} from './components';

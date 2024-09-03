@@ -8,6 +8,8 @@
 import {IWallpaperDto} from '../../dto';
 
 export interface IWallpaperRepository {
-  getWallpapers(offset?: number, query?: string[]): Promise<IWallpaperDto & {hasNextPage?: number | null}>;
+  getWallpapers(
+    offset?: number,
+    query?: string[],
+  ): Promise<IWallpaperDto & {hasNextPage?: number | null}>;
 }
-

@@ -1,3 +1,3 @@
-import RemoteConfigService from "./RemoteConfigService"
+import RemoteConfigService from './RemoteConfigService';
 
-export {RemoteConfigService}
+export {RemoteConfigService};

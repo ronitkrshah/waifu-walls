@@ -1,4 +1,4 @@
-import PreviousSearchList from "./PreviousSearchList"
-import SearchBar from "./SearchBar"
+import PreviousSearchList from './PreviousSearchList';
+import SearchBar from './SearchBar';
 
-export {PreviousSearchList, SearchBar}
+export {PreviousSearchList, SearchBar};

@@ -1,2 +1,2 @@
-export {AnimatedCircle} from "./AnimatedCircle"
-export {AnimatedSwipeableTabs} from "./AnimatedSwipeableTabs"
+export {AnimatedCircle} from './AnimatedCircle';
+export {AnimatedSwipeableTabs} from './AnimatedSwipeableTabs';

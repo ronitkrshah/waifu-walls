@@ -1,3 +1,3 @@
-import AuthRepositoryImpl from "./AuthRepositoryImpl";
+import AuthRepositoryImpl from './AuthRepositoryImpl';
 
-export {AuthRepositoryImpl}
+export {AuthRepositoryImpl};

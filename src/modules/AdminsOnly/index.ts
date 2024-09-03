@@ -1,1 +1,1 @@
-export {AdminControlsScreen} from "./screens"
+export {AdminControlsScreen} from './screens';

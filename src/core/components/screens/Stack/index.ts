@@ -1,1 +1,1 @@
-export * as RegisterAndLoginComponents from "./RegisterAndLoginScreen"
+export * as RegisterAndLoginComponents from './RegisterAndLoginScreen';

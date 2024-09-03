@@ -1,3 +1,3 @@
-import AdminsOnly from './AdminsOnly'
+import AdminsOnly from './AdminsOnly';
 
-export {AdminsOnly}
+export {AdminsOnly};

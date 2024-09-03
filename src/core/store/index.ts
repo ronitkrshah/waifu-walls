@@ -1,1 +1,1 @@
-export {useGlobalStore} from './store'
+export {useGlobalStore} from './store';

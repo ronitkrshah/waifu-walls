@@ -1,4 +1,4 @@
-import BottomTabNavigator from "./BottomTabNavigator";
-import StackNavigator from "./StackNavigator";
+import BottomTabNavigator from './BottomTabNavigator';
+import StackNavigator from './StackNavigator';
 
-export {BottomTabNavigator, StackNavigator}
+export {BottomTabNavigator, StackNavigator};

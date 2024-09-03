@@ -1,4 +1,4 @@
-import pickImageFromGallery from "./pickImageFromGallery"
-import uploadWallpaperTextValidations from "./validations"
+import pickImageFromGallery from './pickImageFromGallery';
+import uploadWallpaperTextValidations from './validations';
 
-export {pickImageFromGallery, uploadWallpaperTextValidations }
+export {pickImageFromGallery, uploadWallpaperTextValidations};

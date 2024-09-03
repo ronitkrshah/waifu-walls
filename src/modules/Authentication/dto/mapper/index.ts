@@ -1,3 +1,3 @@
-import UserDtoMapper from "./UserDtoMapper"
+import UserDtoMapper from './UserDtoMapper';
 
-export {UserDtoMapper}
+export {UserDtoMapper};

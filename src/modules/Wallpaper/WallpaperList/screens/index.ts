@@ -1,3 +1,3 @@
-import LatestWallpapers from "./LatestWallpapers"
+import LatestWallpapers from './LatestWallpapers';
 
-export {LatestWallpapers as LatestWallpapersScreen}
+export {LatestWallpapers as LatestWallpapersScreen};

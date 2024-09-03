@@ -1,1 +1,4 @@
-export {createAppSettingsSlice, type AppSettingsSlice} from "./appSettingsSlice"
+export {
+  createAppSettingsSlice,
+  type AppSettingsSlice,
+} from './appSettingsSlice';

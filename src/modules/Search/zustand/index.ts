@@ -1,1 +1,4 @@
-export {createPreviousSearchSlice, type PreviousSearchSlice} from "./appSettingsSlice"
+export {
+  createPreviousSearchSlice,
+  type PreviousSearchSlice,
+} from './appSettingsSlice';

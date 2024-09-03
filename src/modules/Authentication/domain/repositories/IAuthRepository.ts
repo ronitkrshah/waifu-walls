@@ -5,13 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {ILoggedInUserDto, IActiveSessionDto, IRegisterUserDto, INewUserDocumentDto} from '../../dto/models';
+import {
+  ILoggedInUserDto,
+  IActiveSessionDto,
+  IRegisterUserDto,
+  INewUserDocumentDto,
+} from '../../dto/models';
 
 export interface IUserCredentials {
   name: string;
   email: string;
   password: string;
-};
+}
 
 export interface IAuthRepository {
   registerNewUser(props: IUserCredentials): Promise<IRegisterUserDto>;

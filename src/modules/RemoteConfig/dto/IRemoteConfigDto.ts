@@ -15,5 +15,4 @@ export interface IRemoteConfigDto {
   $permissions: Array<string>;
   $databaseId: string;
   $collectionId: string;
-};
-
+}

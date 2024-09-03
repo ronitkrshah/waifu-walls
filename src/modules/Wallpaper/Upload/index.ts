@@ -1,1 +1,1 @@
-export { UploadScreen } from "./screens";
+export {UploadScreen} from './screens';

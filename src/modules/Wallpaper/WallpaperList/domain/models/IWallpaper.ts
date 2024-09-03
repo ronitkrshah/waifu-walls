@@ -8,7 +8,7 @@
 /**
  * Domain Interface for Wallpaper
  */
-export interface IWallpaper  {
+export interface IWallpaper {
   id: string;
   title: string;
   is_nsfw: boolean;
@@ -19,4 +19,4 @@ export interface IWallpaper  {
   uploader_name: string;
   uploader_id: string;
   original_post_link?: string;
-};
+}

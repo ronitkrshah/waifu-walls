@@ -1,3 +1,3 @@
-import Upload from "./Upload"
+import Upload from './Upload';
 
-export {Upload as UploadScreen} 
+export {Upload as UploadScreen};
