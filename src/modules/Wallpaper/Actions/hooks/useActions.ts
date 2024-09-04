@@ -38,7 +38,7 @@ function useActions({wallpaper}: Props) {
 
     FileSystem.downloadFile({
       fromUrl: wallpaper.download_url,
-      toFile: `${FileSystem.PicturesDirectoryPath}/${wallpaper.title}.jpg`,
+      toFile: `${FileSystem.PicturesDirectoryPath}/${wallpaper.id}.jpg`,
     })
       .promise.then(() => {
         ToastAndroid.show('Wallpaper Downloaded', ToastAndroid.SHORT);
