@@ -15,6 +15,9 @@ function UploadWallpaperTextValidations(props: Props) {
   if (props.original_post_link && props.original_post_link.length > 249) {
     throw new Error('Post Link Must Be Within 250 Characters');
   }
+  if (props.title.length < 2) {
+    throw new Error('Title Is Required!');
+  }
   if (props.title.length > 19) {
     throw new Error('Title Must Be Within 20 Characters');
   }

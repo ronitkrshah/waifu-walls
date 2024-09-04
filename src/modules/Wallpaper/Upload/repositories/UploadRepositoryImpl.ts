@@ -25,7 +25,7 @@ class UploadRepositoryImpl implements IUploadRepository {
       uploadedWallpaper = await this.uploadImage(
         props.imagePath,
         props.size,
-        props.title ?? 'Undefined',
+        props.title,
       );
 
       /** Creating Document */
