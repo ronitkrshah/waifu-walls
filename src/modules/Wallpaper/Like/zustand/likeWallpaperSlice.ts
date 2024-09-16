@@ -5,20 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperModule} from '@app/modules';
+import {IWallpaper} from '@core/interfaces';
 import {StateCreator} from 'zustand';
 
 type LikeWallpaperState = {
-  likedWallpapers: WallpaperModule.WallpaperList.IWallpaper[];
+  likedWallpapers: IWallpaper[];
 };
 
 type LikeWallpaperActions = {
-  removeWallpaperFromFavouritesById: (
-    wallpaperId: WallpaperModule.WallpaperList.IWallpaper['id'],
-  ) => void;
-  addNewWallpaperToFavourites: (
-    wallpaper: WallpaperModule.WallpaperList.IWallpaper,
-  ) => void;
+  removeWallpaperFromFavouritesById: (wallpaperId: IWallpaper['id']) => void;
+  addNewWallpaperToFavourites: (wallpaper: IWallpaper) => void;
   checkIfWallpaperAlreadyAddedInFavourites: (wallpaperId: string) => boolean;
 };
 

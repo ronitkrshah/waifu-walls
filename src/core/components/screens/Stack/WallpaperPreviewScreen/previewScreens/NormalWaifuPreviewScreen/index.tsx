@@ -15,9 +15,10 @@ import {StackNavigationProp} from '@app/navigation/types';
 import {StyleSheet, View} from 'react-native';
 import {AppSizes} from '@core/constants';
 import WallpaperInformationDialog from '../../WallpaperInformationDialog';
+import {IWallpaper} from '@core/interfaces';
 
 type Props = {
-  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
+  wallpaper: IWallpaper;
 };
 
 function NormalWaifuPreviewScreen({wallpaper}: Props) {

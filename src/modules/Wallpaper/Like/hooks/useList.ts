@@ -6,13 +6,13 @@
  */
 
 import {useGlobalStore} from '@core/store';
-import {WallpaperModule} from '@app/modules';
 import {
   BottomTabNavigationProp,
   BottomTabNavigationRoutes,
   StackNavigationRoutes,
 } from '@app/navigation/types';
 import {useNavigation} from '@react-navigation/native';
+import {IWallpaper} from '@core/interfaces';
 
 function useList() {
   const list = useGlobalStore(state => state.likedWallpapers);
@@ -24,9 +24,7 @@ function useList() {
   /**
    * Function To handle on press on waifus
    */
-  function handleWallpaperPress(
-    wallpaper: WallpaperModule.WallpaperList.IWallpaper,
-  ) {
+  function handleWallpaperPress(wallpaper: IWallpaper) {
     navigation.push(StackNavigationRoutes.WALLPAPER_PREVIEW_SCREEN, {
       wallpaper,
     });

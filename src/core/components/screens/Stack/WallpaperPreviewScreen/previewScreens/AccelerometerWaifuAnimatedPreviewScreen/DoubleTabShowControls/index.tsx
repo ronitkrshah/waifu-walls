@@ -10,9 +10,10 @@ import {Fragment, PropsWithChildren, useState} from 'react';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {Dialog, Portal} from 'react-native-paper';
 import WallpaperInformationDialog from '../../../WallpaperInformationDialog';
+import {IWallpaper} from '@core/interfaces';
 
 type Props = {
-  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
+  wallpaper: IWallpaper;
 } & Required<PropsWithChildren>;
 
 function DoubleTapShowControls({wallpaper, children}: Props) {

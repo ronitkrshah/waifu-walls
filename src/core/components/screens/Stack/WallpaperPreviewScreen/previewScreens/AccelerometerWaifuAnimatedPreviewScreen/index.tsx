@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {IWallpaper} from '@core/interfaces';
 import AccelerometerPreviewAnimatedImage from './AccelerometerPreviewAnimatedImage';
 import AccelerometerPreviewImageTitle from './AccelerometerPreviewImageTitle';
-import {WallpaperModule} from '@app/modules';
 import {Flex} from '@core/components/ui';
 
 type Props = {
-  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
+  wallpaper: IWallpaper;
 };
 
 function AccelerometerWaifuAnimatedPreviewScreen({wallpaper}: Props) {

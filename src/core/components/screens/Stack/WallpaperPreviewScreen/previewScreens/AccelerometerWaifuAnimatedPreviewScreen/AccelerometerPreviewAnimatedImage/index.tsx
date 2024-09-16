@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperModule} from '@app/modules';
 import {AppSizes} from '@core/constants';
 import {Fragment, useEffect} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
@@ -25,9 +24,10 @@ import {
 } from 'react-native-sensors';
 import DoubleTapShowControls from '../DoubleTabShowControls';
 import DoubleTapLikeWrapper from '@app/modules/Wallpaper/Like/components/DoubleTapLikeWrapper';
+import {IWallpaper} from '@core/interfaces';
 
 type Props = {
-  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
+  wallpaper: IWallpaper;
 };
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('screen');

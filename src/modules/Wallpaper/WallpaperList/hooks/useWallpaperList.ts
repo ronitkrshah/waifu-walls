@@ -13,7 +13,7 @@ import {
   BottomTabNavigationRoutes,
   StackNavigationRoutes,
 } from '@app/navigation/types';
-import {IWallpaper} from '../domain/models';
+import {IWallpaper} from '@core/interfaces';
 import {useGlobalStore} from '@core/store';
 import WallpaperListRepositoryImpl from '../repositories/WallpaperRepositoryImpl';
 

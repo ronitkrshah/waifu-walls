@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {WallpaperModule} from '@app/modules';
 import {useFavorite} from '../hooks';
 import {Fragment, PropsWithChildren, memo, useEffect} from 'react';
 import Animated, {
@@ -23,9 +22,10 @@ import MaterialCommuntiyIcons from 'react-native-vector-icons/MaterialCommunityI
 import {IconButton, MD3Colors} from 'react-native-paper';
 import {AppSizes} from '@core/constants';
 import {useAppTheme} from '@app/core/theme/MaterialYouTheme';
+import {IWallpaper} from '@core/interfaces';
 
 type Props = {
-  wallpaper: WallpaperModule.WallpaperList.IWallpaper;
+  wallpaper: IWallpaper;
   animatedIconSize?: number;
   floatingIconSize?: number;
   showFloatingIconOutside?: boolean;

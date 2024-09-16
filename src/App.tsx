@@ -11,6 +11,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {MaterialYouThemeProvider} from './core/theme';
 import {useGlobalStore} from './core/store';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {StyleSheet} from 'react-native';
 
 const queryClient = new QueryClient();
 
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GestureHandlerRootView style={{flex: 1}}>
+      <GestureHandlerRootView style={styles.container}>
         <MaterialYouThemeProvider sourceColor={customThemeColor}>
           <SafeAreaProvider>
             <AppNavigation />
@@ -31,5 +32,11 @@ function App() {
     </QueryClientProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default App;
