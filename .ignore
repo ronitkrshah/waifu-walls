@@ -1,0 +1,7 @@
+node_modules/
+android/
+assets/
+yarn.lock
+package.json
+tsconfig.json
+babel.config.js
