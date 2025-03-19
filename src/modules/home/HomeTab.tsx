@@ -19,8 +19,6 @@ type TProps = CompositeScreenProps<
 export default function HomeTab({ navigation }: TProps) {
   const [wallpapers, setWallpapers] = useState<Wallpaper[]>([]);
 
-  console.log("render");
-
   useEffect(() => {
     WallpaperService.getWallpapers("sfw", WallpaperCategorySFW.Waifu).then((walls) => {
       walls.length > 0 && setWallpapers((p) => [...p, ...walls]);
@@ -28,7 +26,7 @@ export default function HomeTab({ navigation }: TProps) {
   }, []);
 
   function handleWallpaperItemPress(wallpaper: Wallpaper) {
-    console.log(wallpaper);
+    navigation.push("WallpaperPreviewScreen", { wallpaper });
   }
 
   return (

@@ -17,7 +17,9 @@ export class WallpaperService {
     const wallpaperIds = wallpapers.files.map((item) => item.split("/").pop()!.split(".").shift());
 
     this._isFetching = false;
-    return wallpapers.files.map((uri, index) => new Wallpaper(wallpaperIds[index]!, uri));
+    return wallpapers.files.map(
+      (uri, index) => new Wallpaper(wallpaperIds[index]!, uri, type, category, index % 2 === 0),
+    );
   }
 
   /**
