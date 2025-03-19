@@ -1,3 +1,10 @@
+import { Fragment } from "react";
+import { AppHeader } from "~/components";
+
 export default function HomeTab() {
-  return null;
+  return (
+    <Fragment>
+      <AppHeader title="Waifus" />
+    </Fragment>
+  );
 }
