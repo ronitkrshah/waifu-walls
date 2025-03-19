@@ -1,4 +1,10 @@
-import { TWallpaperCategory, TWallpaperType, WallpaperApi } from "~/api";
+import {
+  TWallpaperCategory,
+  TWallpaperType,
+  WallpaperApi,
+  WallpaperCategoryNSFW,
+  WallpaperCategorySFW,
+} from "~/api";
 import { Wallpaper } from "~/models";
 import Base64 from "react-native-base64";
 
@@ -18,7 +24,7 @@ export class WallpaperService {
 
     this._isFetching = false;
     return wallpapers.files.map(
-      (uri, index) => new Wallpaper(wallpaperIds[index]!, uri, type, category, index % 2 === 0),
+      (uri, index) => new Wallpaper(wallpaperIds[index]!, uri, type, category, index % 2 === 0)
     );
   }
 
@@ -29,5 +35,14 @@ export class WallpaperService {
     const response = await fetch(imageUri);
     const buffer = await response.arrayBuffer();
     return Base64.encodeFromByteArray(new Uint8Array(buffer));
+  }
+
+  /**
+   * Get Random Category
+   */
+  public static getRandomCategory(type: TWallpaperType) {
+    const categories = type === "sfw" ? WallpaperCategorySFW : WallpaperCategoryNSFW;
+    const randomNumber = Math.floor(Math.random() * Object.keys(categories).length);
+    return Object.entries(categories)[randomNumber][1];
   }
 }
