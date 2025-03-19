@@ -1,8 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image } from "expo-image";
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useRef } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
-import { Grayscale } from "react-native-color-matrix-image-filters";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { DefaultStyles } from "~/constants";
 import { TStackNavigationRoutes } from "~/navigation";
@@ -32,23 +31,12 @@ export function WallpaperPreviewScreen({ route }: TProps) {
 
   return (
     <Fragment>
-      {wallpaper.isFavourite ? (
-        <AnimatedImage
-          source={{ uri: wallpaper.wallpaperUri }}
-          style={StyleSheet.absoluteFillObject}
-          entering={FadeIn.duration(1000)}
-          blurRadius={20}
-        />
-      ) : (
-        <Grayscale style={StyleSheet.absoluteFillObject}>
-          <AnimatedImage
-            source={{ uri: wallpaper.wallpaperUri }}
-            style={StyleSheet.absoluteFillObject}
-            entering={FadeIn.duration(1000)}
-            blurRadius={20}
-          />
-        </Grayscale>
-      )}
+      <AnimatedImage
+        source={{ uri: wallpaper.wallpaperUri }}
+        style={StyleSheet.absoluteFillObject}
+        entering={FadeIn.duration(1000)}
+        blurRadius={20}
+      />
       <View style={styles.container}>
         <GestureDetector gesture={tapGesture}>
           <AnimatedImage
