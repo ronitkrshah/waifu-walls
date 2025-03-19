@@ -2,9 +2,9 @@ import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Dimensions, StyleSheet, ToastAndroid } from "react-native";
 import { IconButton } from "react-native-paper";
 import { Wallpaper } from "~/models";
-import { StorageAccessFramework } from "expo-file-system";
+import * as FileSystem from "expo-file-system";
 import { Platform } from "react-native";
-import { WallpaperService } from "~/services";
+import { NotificationService, WallpaperService } from "~/services";
 import { useState } from "react";
 
 type TProps = {
@@ -16,32 +16,49 @@ const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 function BottomSheetWallpaperActions({ wallpaper }: TProps) {
   const [isDownloading, setIsDownloading] = useState(false);
 
+  /** Android 11+ */
+  async function getSAFDirectoryPath() {
+    const result = await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
+    if (result.granted) {
+      return result.directoryUri;
+    }
+    return null;
+  }
+
   async function saveWallpaperToDevice() {
     setIsDownloading(true);
+    // Default for below Android 11 devices
+    let directoryPath = "file:///sdcard/Pictures";
+
     try {
       if (Number(Platform.Version) >= 30) {
-        const result = await StorageAccessFramework.requestDirectoryPermissionsAsync();
-        if (result.granted) {
-          const base64 = await WallpaperService.getBase64FromImageURI(wallpaper.wallpaperUri);
-          if (!base64) {
-            throw new Error("Invalid base64");
-          }
-          const mimeType = wallpaper.wallpaperUri.endsWith(".png") ? "image/png" : "image/jpeg";
-          const filePath = await StorageAccessFramework.createFileAsync(
-            result.directoryUri,
-            wallpaper.wallpaperId,
-            mimeType
-          );
-          await StorageAccessFramework.writeAsStringAsync(filePath, base64, {
-            encoding: "base64",
-          });
+        const path = await getSAFDirectoryPath();
+        if (!path) {
+          throw new Error("SAF Access Not Available");
         }
-      } else {
-        throw new Error("Not Implemented");
+        directoryPath = path;
       }
+
+      const fileExtension = wallpaper.wallpaperUri.split(".").pop() || "jpg";
+      const mimeType = fileExtension === "png" ? "image/png" : "image/jpeg";
+      let filePath = `${directoryPath}/${wallpaper.wallpaperId}.${fileExtension}`;
+      if (Number(Platform.Version) >= 30) {
+        filePath = await FileSystem.StorageAccessFramework.createFileAsync(
+          directoryPath,
+          wallpaper.wallpaperId,
+          mimeType
+        );
+      }
+      const base64 = await WallpaperService.getBase64FromImageURI(wallpaper.wallpaperUri);
+
+      await FileSystem.writeAsStringAsync(filePath, base64, { encoding: "base64" });
+      NotificationService.sendNotification(
+        "New Fear Unlocked",
+        "Your waifu steals the spotlight in your gallery."
+      );
     } catch (error) {
       ToastAndroid.show(
-        error instanceof Error ? error.message : "Failed to download wallpaper",
+        error instanceof Error ? error.message : "Failed To Download",
         ToastAndroid.SHORT
       );
     } finally {
