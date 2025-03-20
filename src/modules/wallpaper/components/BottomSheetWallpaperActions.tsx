@@ -1,11 +1,12 @@
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Dimensions, StyleSheet, ToastAndroid } from "react-native";
-import { IconButton } from "react-native-paper";
+import { Dialog, IconButton, Text } from "react-native-paper";
 import { Wallpaper } from "~/models";
 import * as FileSystem from "expo-file-system";
 import { Platform } from "react-native";
 import { NotificationService, WallpaperService } from "~/services";
-import { useState } from "react";
+import { Fragment, useRef, useState } from "react";
+import { DialogModal, DialogModalRef } from "~/components";
 
 type TProps = {
   wallpaper: Wallpaper;
@@ -15,6 +16,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 function BottomSheetWallpaperActions({ wallpaper }: TProps) {
   const [isDownloading, setIsDownloading] = useState(false);
+  const dialogModalRef = useRef<DialogModalRef>(null);
 
   /** Android 11+ */
   async function getSAFDirectoryPath() {
@@ -46,7 +48,7 @@ function BottomSheetWallpaperActions({ wallpaper }: TProps) {
         filePath = await FileSystem.StorageAccessFramework.createFileAsync(
           directoryPath,
           wallpaper.wallpaperId,
-          mimeType
+          mimeType,
         );
       }
       const base64 = await WallpaperService.getBase64FromImageURI(wallpaper.wallpaperUri);
@@ -54,12 +56,12 @@ function BottomSheetWallpaperActions({ wallpaper }: TProps) {
       await FileSystem.writeAsStringAsync(filePath, base64, { encoding: "base64" });
       NotificationService.sendNotification(
         "New Fear Unlocked",
-        "Your waifu steals the spotlight in your gallery."
+        "Your waifu steals the spotlight in your gallery.",
       );
     } catch (error) {
       ToastAndroid.show(
         error instanceof Error ? error.message : "Failed To Download",
-        ToastAndroid.SHORT
+        ToastAndroid.SHORT,
       );
     } finally {
       setIsDownloading(false);
@@ -67,23 +69,33 @@ function BottomSheetWallpaperActions({ wallpaper }: TProps) {
   }
 
   return (
-    <BottomSheetView style={styles.container}>
-      <IconButton
-        mode="contained"
-        icon="heart"
-        size={60}
-        onPress={() => console.log("Heart icon pressed")}
-      />
-      <IconButton
-        animated
-        loading={isDownloading}
-        disabled={isDownloading}
-        mode="contained"
-        icon="download"
-        size={60}
-        onPress={saveWallpaperToDevice}
-      />
-    </BottomSheetView>
+    <Fragment>
+      <BottomSheetView style={styles.container}>
+        <IconButton
+          mode="contained"
+          icon="heart"
+          size={60}
+          onPress={() => {
+            dialogModalRef.current?.show();
+          }}
+        />
+        <IconButton
+          animated
+          loading={isDownloading}
+          disabled={isDownloading}
+          mode="contained"
+          icon="download"
+          size={60}
+          onPress={saveWallpaperToDevice}
+        />
+      </BottomSheetView>
+      <DialogModal onDismiss={() => dialogModalRef.current?.hide()} ref={dialogModalRef}>
+        <Dialog.Title>Information</Dialog.Title>
+        <Dialog.Content>
+          <Text>Not Implemented Yet</Text>
+        </Dialog.Content>
+      </DialogModal>
+    </Fragment>
   );
 }
 
