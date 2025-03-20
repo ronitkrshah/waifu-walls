@@ -1,4 +1,33 @@
 export class WallpaperCategorySFW {
   public static readonly Waifu = "waifu";
   public static readonly Neko = "neko";
+  public static readonly Shinobu = "shinobu";
+  public static readonly Megumin = "megumin";
+  public static readonly Bully = "bully";
+  public static readonly Cuddle = "cuddle";
+  public static readonly Cry = "cry";
+  public static readonly Hug = "hug";
+  public static readonly Awoo = "awoo";
+  public static readonly Kiss = "kiss";
+  public static readonly Lick = "lick";
+  public static readonly Pat = "pat";
+  public static readonly Smug = "smug";
+  public static readonly Bonk = "bonk";
+  public static readonly Yeet = "yeet";
+  public static readonly Blush = "blush";
+  public static readonly Smile = "smile";
+  public static readonly Wave = "wave";
+  public static readonly Highfive = "highfive";
+  public static readonly Handhold = "handhold";
+  public static readonly Nom = "nom";
+  public static readonly Bite = "bite";
+  public static readonly Glomp = "glomp";
+  public static readonly Slap = "slap";
+  public static readonly Kill = "kill";
+  public static readonly Kick = "kick";
+  public static readonly Happy = "happy";
+  public static readonly Wink = "wink";
+  public static readonly Poke = "poke";
+  public static readonly Dance = "dance";
+  public static readonly Cringe = "cringe";
 }
