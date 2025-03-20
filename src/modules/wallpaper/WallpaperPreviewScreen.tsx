@@ -5,10 +5,14 @@ import { Dimensions, StyleSheet, ToastAndroid, View } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { DefaultStyles } from "~/constants";
 import { TStackNavigationRoutes } from "~/navigation";
-import { Dialog, IconButton, Text } from "react-native-paper";
+import { Button, Dialog, IconButton, Text } from "react-native-paper";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { DialogModal, DialogModalRef } from "~/components";
-import { saveWallpaperToDevice } from "./actions";
+import {
+  applyWallpaperOnDevice,
+  saveWallpaperToDevice,
+  TWallpaperApplyDestination,
+} from "./actions";
 import { NotificationService } from "~/services";
 
 type TProps = NativeStackScreenProps<TStackNavigationRoutes, "WallpaperPreviewScreen">;
@@ -21,13 +25,14 @@ const AnimatedImage = Animated.createAnimatedComponent(Image);
 export function WallpaperPreviewScreen({ route }: TProps) {
   const [isDownloading, setIsDownloading] = useState(false);
   const { wallpaper } = route.params;
-  const dialogModalRef = useRef<DialogModalRef>(null);
+  const informationActionDialogRef = useRef<DialogModalRef>(null);
+  const applyWallpaperDialogRef = useRef<DialogModalRef>(null);
   const tapGesture = Gesture.Tap();
 
   tapGesture
     .numberOfTaps(2)
     .onEnd(() => {
-      dialogModalRef.current?.show();
+      informationActionDialogRef.current?.show();
     })
     .runOnJS(true);
 
@@ -45,6 +50,20 @@ export function WallpaperPreviewScreen({ route }: TProps) {
       })
       .finally(() => {
         setIsDownloading(false);
+      });
+  }
+
+  function handleApplyWallpaper(destination: TWallpaperApplyDestination) {
+    ToastAndroid.show("Applying Wallpaper", ToastAndroid.SHORT);
+    applyWallpaperDialogRef.current?.hide();
+    informationActionDialogRef.current?.show();
+
+    applyWallpaperOnDevice(wallpaper, destination)
+      .then(() => {
+        ToastAndroid.show("Wallpaper Applied", ToastAndroid.SHORT);
+      })
+      .catch(() => {
+        ToastAndroid.show("Error Applying Wallpaper", ToastAndroid.SHORT);
       });
   }
 
@@ -67,7 +86,10 @@ export function WallpaperPreviewScreen({ route }: TProps) {
       </View>
 
       {/** Dialog Modal */}
-      <DialogModal ref={dialogModalRef} onDismiss={() => dialogModalRef.current?.hide()}>
+      <DialogModal
+        ref={informationActionDialogRef}
+        onDismiss={() => informationActionDialogRef.current?.hide()}
+      >
         <Dialog.Title>Waifu</Dialog.Title>
         <Dialog.Content>
           {[
@@ -92,7 +114,50 @@ export function WallpaperPreviewScreen({ route }: TProps) {
               loading={isDownloading}
               onPress={handleWallpaperDownload}
             />
-            <IconButton size={ICON_BUTTON_SIZE} icon={"image"} />
+            <IconButton
+              size={ICON_BUTTON_SIZE}
+              icon={"image"}
+              onPress={() => {
+                informationActionDialogRef.current?.hide();
+                applyWallpaperDialogRef.current?.show();
+              }}
+            />
+          </View>
+        </Dialog.Content>
+      </DialogModal>
+
+      {/** Apply Wallpaper Dialog */}
+      <DialogModal
+        ref={applyWallpaperDialogRef}
+        onDismiss={() => {
+          applyWallpaperDialogRef.current?.hide();
+          informationActionDialogRef.current?.show();
+        }}
+      >
+        <Dialog.Title>Set Wallpaper On</Dialog.Title>
+        <Dialog.Content>
+          <View style={styles.wallpaperActionContainer}>
+            <Button
+              icon={"cellphone-cog"}
+              mode="contained"
+              onPress={() => handleApplyWallpaper("system")}
+            >
+              Home
+            </Button>
+            <Button
+              icon={"cellphone-lock"}
+              mode="contained"
+              onPress={() => handleApplyWallpaper("lock")}
+            >
+              Lock
+            </Button>
+            <Button
+              icon={"cellphone"}
+              mode="contained"
+              onPress={() => handleApplyWallpaper("both")}
+            >
+              Both
+            </Button>
           </View>
         </Dialog.Content>
       </DialogModal>

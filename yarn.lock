@@ -4877,6 +4877,11 @@ react-native-base64@^0.2.1:
   resolved "https://registry.yarnpkg.com/react-native-base64/-/react-native-base64-0.2.1.tgz#3d0e73a649c4c0129f7b7695d3912456aebae847"
   integrity sha512-eHgt/MA8y5ZF0aHfZ1aTPcIkDWxza9AaEk4GcpIX+ZYfZ04RcaNahO+527KR7J44/mD3efYfM23O2C1N44ByWA==
 
+react-native-device-wallpaper-manager@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-device-wallpaper-manager/-/react-native-device-wallpaper-manager-0.0.3.tgz#cae1bf2e33520efdae180b814f66a48854368fd7"
+  integrity sha512-CknhKiMmUu6oPHXmS13KJs2sxSzX1N4pCSy1L1rQD8nXF8OTL6CqJdUi13kwNSlX1ETaUSIuthrzPF4rqJHkKQ==
+
 react-native-gesture-handler@~2.20.2:
   version "2.20.2"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.20.2.tgz#73844c8e9c417459c2f2981bc4d8f66ba8a5ee66"

@@ -9,7 +9,7 @@ type TProps = NativeStackScreenProps<TStackNavigationRoutes, "SplashScreen">;
 
 export default function SplashScreen({ navigation }: TProps) {
   function handleExplorePress() {
-    navigation.push("BottomTabNavigator", { screen: "HomeTab" });
+    navigation.replace("BottomTabNavigator", { screen: "HomeTab" });
   }
 
   return (

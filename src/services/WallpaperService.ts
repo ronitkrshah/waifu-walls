@@ -23,9 +23,20 @@ export class WallpaperService {
     const wallpaperIds = wallpapers.files.map((item) => item.split("/").pop()!.split(".").shift());
 
     this._isFetching = false;
-    return wallpapers.files.map(
-      (uri, index) => new Wallpaper(wallpaperIds[index]!, uri, type, category),
-    );
+    return wallpapers.files.map((uri, index) => {
+      const fileExtension = uri.split(".").pop() || "jpg";
+      const mimeType = fileExtension === "png" ? "image/png" : "image/jpeg";
+      return new Wallpaper(
+        wallpaperIds[index]!,
+        uri,
+        type,
+        category,
+        fileExtension,
+        mimeType,
+        false,
+        undefined,
+      );
+    });
   }
 
   /**

@@ -4,19 +4,25 @@ import { Storage } from "expo-sqlite/kv-store";
 import { Platform } from "react-native";
 import { WallpaperService } from "~/services";
 
+type TGetDirectoryOptions = {
+  askForDirectory?: boolean;
+};
+
 /** Android 11+ */
-async function getDirectoryPath() {
-  if (Number(Platform.Version) < 31) {
+export async function getDirectoryPath(options: TGetDirectoryOptions = { askForDirectory: true }) {
+  if (Number(Platform.Version) < 30) {
     return "file:///sdcard/Pictures";
   }
   const savedDirectory = await Storage.getItemAsync("downloadDirectory");
   if (savedDirectory) {
     return savedDirectory;
   }
-  const result = await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
-  if (result.granted) {
-    Storage.setItemAsync("downloadDirectory", result.directoryUri);
-    return result.directoryUri;
+  if (options.askForDirectory) {
+    const result = await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
+    if (result.granted) {
+      Storage.setItemAsync("downloadDirectory", result.directoryUri);
+      return result.directoryUri;
+    }
   }
   return null;
 }
@@ -27,15 +33,13 @@ export async function saveWallpaperToDevice(wallpaper: Wallpaper) {
   if (!directoryToSave) {
     throw new Error("Directory Not Found");
   }
-  const fileExtension = wallpaper.wallpaperUri.split(".").pop() || "jpg";
-  const mimeType = fileExtension === "png" ? "image/png" : "image/jpeg";
 
-  let filePath = `${directoryToSave}/${wallpaper.wallpaperId}.${fileExtension}`;
-  if (Number(Platform.Version) > 30) {
+  let filePath = `${directoryToSave}/${wallpaper.wallpaperId}.${wallpaper.extension}`;
+  if (Number(Platform.Version) >= 30) {
     filePath = await FileSystem.StorageAccessFramework.createFileAsync(
       directoryToSave,
       wallpaper.wallpaperId,
-      mimeType,
+      wallpaper.mimeType,
     );
   }
 
@@ -45,7 +49,7 @@ export async function saveWallpaperToDevice(wallpaper: Wallpaper) {
   } catch (e) {}
 
   if (!base64) {
-    if (Number(Platform.Version) > 30) {
+    if (Number(Platform.Version) >= 30) {
       FileSystem.StorageAccessFramework.deleteAsync(filePath, { idempotent: true });
     }
     throw new Error("Error Downloading Wallpaper");
