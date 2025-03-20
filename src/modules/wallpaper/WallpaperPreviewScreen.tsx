@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image } from "expo-image";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Dimensions, StyleSheet, ToastAndroid, View } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { DefaultStyles } from "~/constants";
@@ -11,9 +11,12 @@ import { DialogModal, DialogModalRef } from "~/components";
 import {
   applyWallpaperOnDevice,
   saveWallpaperToDevice,
+  addWallpaperToFavourites,
   TWallpaperApplyDestination,
+  removeWallpaperFromFavourites,
 } from "./actions";
 import { NotificationService } from "~/services";
+import { db, TDBFavourites } from "~/database";
 
 type TProps = NativeStackScreenProps<TStackNavigationRoutes, "WallpaperPreviewScreen">;
 
@@ -24,6 +27,7 @@ const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 export function WallpaperPreviewScreen({ route }: TProps) {
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
   const { wallpaper } = route.params;
   const informationActionDialogRef = useRef<DialogModalRef>(null);
   const applyWallpaperDialogRef = useRef<DialogModalRef>(null);
@@ -36,21 +40,19 @@ export function WallpaperPreviewScreen({ route }: TProps) {
     })
     .runOnJS(true);
 
-  function handleWallpaperDownload() {
+  async function handleWallpaperDownload() {
     setIsDownloading(true);
-    saveWallpaperToDevice(wallpaper)
-      .then(() => {
-        NotificationService.sendNotification(
-          "New Fear Unlocked",
-          "Your waifu steals the spotlight in your gallery.",
-        );
-      })
-      .catch((e) => {
-        ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
-      })
-      .finally(() => {
-        setIsDownloading(false);
-      });
+    try {
+      await saveWallpaperToDevice(wallpaper);
+      NotificationService.sendNotification(
+        "New Fear Unlocked",
+        "Your waifu steals the spotlight in your gallery.",
+      );
+    } catch (e) {
+      ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
+    } finally {
+      setIsDownloading(false);
+    }
   }
 
   function handleApplyWallpaper(destination: TWallpaperApplyDestination) {
@@ -66,6 +68,31 @@ export function WallpaperPreviewScreen({ route }: TProps) {
         ToastAndroid.show("Error Applying Wallpaper", ToastAndroid.SHORT);
       });
   }
+
+  function handleWallpaperLike() {
+    if (isFavourite) {
+      setIsFavourite(false);
+      removeWallpaperFromFavourites(wallpaper).catch(() => {
+        setIsFavourite(true);
+      });
+    } else {
+      setIsFavourite(true);
+      addWallpaperToFavourites(wallpaper).catch(() => {
+        setIsFavourite(false);
+      });
+    }
+  }
+
+  useEffect(() => {
+    db.getFirstAsync<Omit<TDBFavourites, "id">>(
+      "SELECT wallpaperId from favourites WHERE wallpaperId = ?;",
+      [wallpaper.wallpaperId],
+    ).then((data) => {
+      if (data) {
+        setIsFavourite(true);
+      }
+    });
+  }, []);
 
   return (
     <Fragment>
@@ -106,7 +133,8 @@ export function WallpaperPreviewScreen({ route }: TProps) {
             <IconButton
               size={ICON_BUTTON_SIZE}
               icon={"heart"}
-              mode={wallpaper.isFavourite ? "contained" : undefined}
+              mode={isFavourite ? "contained" : undefined}
+              onPress={handleWallpaperLike}
             />
             <IconButton
               size={ICON_BUTTON_SIZE}

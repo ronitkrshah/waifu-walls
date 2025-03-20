@@ -8,7 +8,6 @@ export class Wallpaper {
     public readonly category: TWallpaperCategory,
     public readonly extension: string,
     public readonly mimeType: string,
-    public readonly isFavourite = false,
     public readonly wallpaperBase64: string | undefined = undefined,
   ) {}
 }

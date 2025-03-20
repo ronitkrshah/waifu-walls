@@ -7,6 +7,7 @@ import {
 } from "~/api";
 import { Wallpaper } from "~/models";
 import Base64 from "react-native-base64";
+import { db, TDBWallpaper } from "~/database";
 
 export class WallpaperService {
   private static _isFetching = false;
@@ -33,7 +34,6 @@ export class WallpaperService {
         category,
         fileExtension,
         mimeType,
-        false,
         undefined,
       );
     });
@@ -55,5 +55,16 @@ export class WallpaperService {
     const categories = type === "sfw" ? WallpaperCategorySFW : WallpaperCategoryNSFW;
     const randomNumber = Math.floor(Math.random() * Object.keys(categories).length);
     return Object.entries(categories)[randomNumber][1];
+  }
+
+  /**
+   * Get favourite wallpapers
+   */
+  public static async getFavouriteWallpapers() {
+    return await db.getAllAsync<Wallpaper>(`
+      SELECT wallpapers.*
+      FROM wallpapers
+      JOIN favourites ON wallpapers.wallpaperId = favourites.wallpaperId;
+    `);
   }
 }

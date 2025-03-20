@@ -1,4 +1,4 @@
 import RootNavigation from "./RootNavigation";
-import type { TStackNavigationRoutes } from "./navigators";
+import type { TBottomTabNavigationRoutes, TStackNavigationRoutes } from "./navigators";
 
-export { RootNavigation, TStackNavigationRoutes };
+export { RootNavigation, TStackNavigationRoutes, TBottomTabNavigationRoutes };
