@@ -24,7 +24,7 @@ export class WallpaperService {
 
     this._isFetching = false;
     return wallpapers.files.map(
-      (uri, index) => new Wallpaper(wallpaperIds[index]!, uri, type, category, index % 2 === 0)
+      (uri, index) => new Wallpaper(wallpaperIds[index]!, uri, type, category),
     );
   }
 

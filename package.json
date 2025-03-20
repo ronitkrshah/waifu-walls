@@ -9,7 +9,6 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@gorhom/bottom-sheet": "^5",
     "@react-navigation/native": "^6.x",
     "@react-navigation/native-stack": "^6.x",
     "expo": "~52.0.38",
