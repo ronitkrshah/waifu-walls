@@ -9,6 +9,21 @@ import { Wallpaper } from "~/models";
 import Base64 from "react-native-base64";
 import { db, TDBWallpaper } from "~/database";
 
+const mimeTypes = [
+  {
+    extension: "png",
+    type: "image/png",
+  },
+  {
+    extension: "jpg,jpeg",
+    type: "image/jpeg",
+  },
+  {
+    extension: "gif",
+    type: "image/gif",
+  },
+];
+
 export class WallpaperService {
   private static _isFetching = false;
 
@@ -26,7 +41,10 @@ export class WallpaperService {
     this._isFetching = false;
     return wallpapers.files.map((uri, index) => {
       const fileExtension = uri.split(".").pop() || "jpg";
-      const mimeType = fileExtension === "png" ? "image/png" : "image/jpeg";
+      const mimeType =
+        mimeTypes.find((item) => item.extension.includes(fileExtension.toLowerCase()))?.type ||
+        "image/jpeg";
+
       return new Wallpaper(
         wallpaperIds[index]!,
         uri,
