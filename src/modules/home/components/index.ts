@@ -1,1 +1,3 @@
-export * from "./WallpaperListItem";
+import WallpaperListItem from "./WallpaperListItem";
+
+export { WallpaperListItem };

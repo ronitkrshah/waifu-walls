@@ -1,6 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
-import { FlatList, RefreshControl, StyleSheet } from "react-native";
-import { WallpaperCategorySFW } from "~/api";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { FlatList, RefreshControl, StyleSheet, TouchableOpacity } from "react-native";
+import { WallpaperCategoryNSFW, WallpaperCategorySFW } from "~/api";
 import { AppHeader } from "~/components";
 import { Wallpaper } from "~/models";
 import { WallpaperService } from "~/services";
@@ -19,39 +19,52 @@ type TProps = CompositeScreenProps<
 
 export default function HomeTab({ navigation }: TProps) {
   const [wallpapers, setWallpapers] = useState<Wallpaper[]>([]);
+  const [isRefetching, setIsRefetching] = useState(false);
   const theme = useTheme();
+  const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
     fetchWallpapers();
   }, []);
 
   function fetchWallpapers() {
-    WallpaperService.getWallpapers("sfw", WallpaperCategorySFW.Waifu).then((walls) => {
-      if (walls.length > 0) {
-        Image.prefetch(
-          walls.map((item) => item.wallpaperUri),
-          { cachePolicy: "disk" }
-        );
-        setWallpapers((p) => [...p, ...walls]);
-      }
-    });
+    WallpaperService.getWallpapers("sfw", WallpaperService.getRandomCategory("sfw")).then(
+      (walls) => {
+        if (walls.length > 0) {
+          Image.prefetch(
+            walls.map((item) => item.wallpaperUri),
+            { cachePolicy: "disk" },
+          );
+          setWallpapers((p) => [...p, ...walls]);
+        }
+      },
+    );
   }
 
   function handleWallpaperItemPress(wallpaper: Wallpaper) {
     navigation.push("WallpaperPreviewScreen", { wallpaper });
   }
 
+  function refreshWallpapers() {
+    setIsRefetching(true);
+    setWallpapers([]);
+    fetchWallpapers();
+    setIsRefetching(false);
+  }
+
   return (
     <Fragment>
       <AppHeader title="Waifus" />
       <FlatList
+        ref={flatListRef}
         data={wallpapers}
         numColumns={2}
         initialNumToRender={30}
         columnWrapperStyle={styles.columnWrapper}
         refreshControl={
           <RefreshControl
-            refreshing={true}
+            onRefresh={refreshWallpapers}
+            refreshing={isRefetching}
             colors={[theme.dark ? theme.colors.inversePrimary : theme.colors.primary]}
           />
         }

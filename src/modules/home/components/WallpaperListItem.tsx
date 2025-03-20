@@ -2,6 +2,7 @@ import { Wallpaper } from "~/models";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 import { useTheme } from "react-native-paper";
+import { memo } from "react";
 
 type TProps = {
   wallpaper: Wallpaper;
@@ -10,7 +11,7 @@ type TProps = {
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
-export function WallpaperListItem({ wallpaper, onPress }: TProps) {
+function WallpaperListItem({ wallpaper, onPress }: TProps) {
   const theme = useTheme();
 
   function handlePress() {
@@ -19,11 +20,10 @@ export function WallpaperListItem({ wallpaper, onPress }: TProps) {
 
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
-      {/** Skeleton Like Without Animation */}
-      <View
+      <Image
+        source={{ uri: wallpaper.wallpaperUri }}
         style={[StyleSheet.absoluteFillObject, { backgroundColor: theme.colors.surfaceDisabled }]}
       />
-      <Image source={{ uri: wallpaper.wallpaperUri }} style={StyleSheet.absoluteFillObject} />
     </TouchableOpacity>
   );
 }
@@ -36,3 +36,5 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
 });
+
+export default memo(WallpaperListItem);

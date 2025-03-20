@@ -7,6 +7,7 @@ import { Platform } from "react-native";
 import { NotificationService, WallpaperService } from "~/services";
 import { Fragment, useRef, useState } from "react";
 import { DialogModal, DialogModalRef } from "~/components";
+import { Storage } from "expo-sqlite/kv-store";
 
 type TProps = {
   wallpaper: Wallpaper;
@@ -20,8 +21,13 @@ function BottomSheetWallpaperActions({ wallpaper }: TProps) {
 
   /** Android 11+ */
   async function getSAFDirectoryPath() {
+    const savedDirectory = await Storage.getItemAsync("downloadDirectory");
+    if (savedDirectory) {
+      return savedDirectory;
+    }
     const result = await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
     if (result.granted) {
+      Storage.setItemAsync("downloadDirectory", result.directoryUri);
       return result.directoryUri;
     }
     return null;
