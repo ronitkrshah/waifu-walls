@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@pchmn/expo-material3-theme": "^1.3.2",
     "@react-navigation/native": "^6.x",
     "@react-navigation/native-stack": "^6.x",
     "expo": "~52.0.38",
