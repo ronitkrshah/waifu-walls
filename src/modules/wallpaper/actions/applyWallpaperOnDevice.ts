@@ -17,12 +17,11 @@ export async function applyWallpaperOnDevice(
 
   let file: FileSystem.FileInfo | undefined = undefined;
   try {
+    // FIX: Not working on A11+ System
     file = await FileSystem.getInfoAsync(
       `${directory}/${wallpaper.wallpaperId}.${wallpaper.extension}`,
     );
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
   if (!file) {
     await RTNDeviceWallpaper?.setWallpaper(wallpaper.wallpaperUri, destination);
     return;

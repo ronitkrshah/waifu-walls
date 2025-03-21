@@ -18,12 +18,9 @@ export default function FavouritesTab({ navigation }: TProps) {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
-      WallpaperService.getFavouriteWallpapers()
-        .then((data) => {
-          console.log(data);
-          setWallpapers(data);
-        })
-        .catch(console.log);
+      WallpaperService.getFavouriteWallpapers().then((data) => {
+        setWallpapers(data);
+      });
     });
 
     return unsubscribe;
