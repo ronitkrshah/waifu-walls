@@ -6,7 +6,6 @@ import { CompositeScreenProps } from "@react-navigation/native";
 import { MaterialBottomTabScreenProps } from "react-native-paper";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { TStackNavigationRoutes, TBottomTabNavigationRoutes } from "~/navigation";
-import { Image } from "expo-image";
 import { WallpaperList } from "../shared";
 import { WallpaperCategorySFW } from "~/api";
 
@@ -26,10 +25,6 @@ export default function HomeTab({ navigation }: TProps) {
     WallpaperService.getWallpapers("sfw", WallpaperCategorySFW.Waifu).then((walls) => {
       if (walls.length > 0) {
         setWallpapers((p) => [...p, ...walls]);
-        Image.prefetch(
-          walls.map((item) => item.wallpaperUri),
-          { cachePolicy: "disk" },
-        );
       }
     });
   }
