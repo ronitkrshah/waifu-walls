@@ -1,13 +1,13 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image } from "expo-image";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Dimensions, StyleSheet, ToastAndroid, View } from "react-native";
+import { Dimensions, InteractionManager, StyleSheet, ToastAndroid, View } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { DefaultStyles } from "~/constants";
 import { TStackNavigationRoutes } from "~/navigation";
 import { Button, Dialog, IconButton, Text } from "react-native-paper";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import { DialogModal, DialogModalRef } from "~/components";
+import { DialogModal, DialogModalRef, useActivityLoader } from "~/components";
 import {
   applyWallpaperOnDevice,
   saveWallpaperToDevice,
@@ -26,11 +26,11 @@ const ICON_BUTTON_SIZE = 30;
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 export function WallpaperPreviewScreen({ route }: TProps) {
-  const [isDownloading, setIsDownloading] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const { wallpaper } = route.params;
   const informationActionDialogRef = useRef<DialogModalRef>(null);
   const applyWallpaperDialogRef = useRef<DialogModalRef>(null);
+  const activityLoader = useActivityLoader();
   const tapGesture = Gesture.Tap();
 
   tapGesture
@@ -41,7 +41,8 @@ export function WallpaperPreviewScreen({ route }: TProps) {
     .runOnJS(true);
 
   async function handleWallpaperDownload() {
-    setIsDownloading(true);
+    informationActionDialogRef.current?.hide();
+    activityLoader.present("Downloading...");
     saveWallpaperToDevice(wallpaper)
       .then(() => {
         NotificationService.sendNotification(
@@ -53,7 +54,8 @@ export function WallpaperPreviewScreen({ route }: TProps) {
         ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
       })
       .finally(() => {
-        setIsDownloading(false);
+        activityLoader.close();
+        informationActionDialogRef.current?.show();
       });
   }
 
@@ -141,7 +143,6 @@ export function WallpaperPreviewScreen({ route }: TProps) {
             <IconButton
               size={ICON_BUTTON_SIZE}
               icon={"download"}
-              loading={isDownloading}
               onPress={handleWallpaperDownload}
             />
             <IconButton
