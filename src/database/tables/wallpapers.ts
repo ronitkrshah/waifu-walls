@@ -5,8 +5,8 @@ export type TDBWallpaper = {
   wallpaperId: string;
   wallpaperUri: string;
   wallpaperBase64?: string;
-  wallpaperType: string;
-  wallpaperCategory: string;
+  type: string;
+  category: string;
   mimeType: string;
   extension: string;
 };
