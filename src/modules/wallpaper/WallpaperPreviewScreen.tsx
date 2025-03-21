@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image } from "expo-image";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Dimensions, InteractionManager, StyleSheet, ToastAndroid, View } from "react-native";
+import { Dimensions, StyleSheet, ToastAndroid, View } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { DefaultStyles } from "~/constants";
 import { TStackNavigationRoutes } from "~/navigation";
@@ -40,37 +40,38 @@ export function WallpaperPreviewScreen({ route }: TProps) {
     })
     .runOnJS(true);
 
+  /** Download Wallpaper */
   async function handleWallpaperDownload() {
     informationActionDialogRef.current?.hide();
     activityLoader.present("Downloading...");
-    saveWallpaperToDevice(wallpaper)
-      .then(() => {
-        NotificationService.sendNotification(
-          "New Fear Unlocked",
-          "Your waifu steals the spotlight in your gallery.",
-        );
-      })
-      .catch((e) => {
-        ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
-      })
-      .finally(() => {
-        activityLoader.close();
-        informationActionDialogRef.current?.show();
-      });
+
+    try {
+      await saveWallpaperToDevice(wallpaper);
+      NotificationService.sendNotification(
+        "New Fear Unlocked",
+        "Your waifu steals the spotlight in your gallery.",
+      );
+    } catch (e) {
+      ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
+    } finally {
+      activityLoader.close();
+      informationActionDialogRef.current?.show();
+    }
   }
 
+  /** Download And Apply Wallpaper */
   async function handleApplyWallpaper(destination: TWallpaperApplyDestination) {
-    ToastAndroid.show("Applying Wallpaper", ToastAndroid.SHORT);
     applyWallpaperDialogRef.current?.hide();
-    informationActionDialogRef.current?.show();
+    activityLoader.present("Applying Wallpaper");
 
-    applyWallpaperOnDevice(wallpaper, destination)
-      .then(() => {
-        ToastAndroid.show("Wallpaper Applied", ToastAndroid.SHORT);
-      })
-      .catch(() => {
-        ToastAndroid.show("Error Applying Wallpaper", ToastAndroid.SHORT);
-      });
+    try {
+      await applyWallpaperOnDevice(wallpaper, destination);
+      activityLoader.close();
+    } catch (e) {
+      ToastAndroid.show("Error Applying Wallpaper", ToastAndroid.SHORT);
+    } finally {
+      informationActionDialogRef.current?.show();
+    }
   }
 
   async function handleWallpaperLike() {
