@@ -56,7 +56,7 @@ export default function SearchTab({ navigation }: TProps) {
                 onPress={() => {
                   handlePress("sfw", item.value);
                 }}
-                key={item.value}
+                key={"sfw" + item.value}
                 mode={index % 2 === 0 ? "contained" : "contained-tonal"}
               >
                 {item.title}
@@ -72,7 +72,7 @@ export default function SearchTab({ navigation }: TProps) {
                 onPress={() => {
                   handlePress("nsfw", item.value);
                 }}
-                key={item.value}
+                key={"nsfw" + item.value}
                 mode={index % 2 === 0 ? "contained" : "contained-tonal"}
               >
                 {item.title}
@@ -87,7 +87,7 @@ export default function SearchTab({ navigation }: TProps) {
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH,
+    maxWidth: SCREEN_WIDTH,
   },
   buttonContainer: {
     flexDirection: "row",
