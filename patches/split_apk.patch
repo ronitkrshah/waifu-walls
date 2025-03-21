@@ -1,0 +1,32 @@
+diff --git a/android/app/build.gradle b/android/app/build.gradle
+index 55f2b04..a5fb7fb 100644
+--- a/android/app/build.gradle
++++ b/android/app/build.gradle
+@@ -94,6 +94,14 @@ android {
+         versionCode 1
+         versionName "0.1.0"
+     }
++    splits {
++        abi {
++            reset()
++            enable true
++            universalApk false
++            include "armeabi-v7a", "arm64-v8a"
++        }
++    }
+     signingConfigs {
+         debug {
+             storeFile file('debug.keystore')
+diff --git a/android/gradle.properties b/android/gradle.properties
+index 7531e9e..4aff03b 100644
+--- a/android/gradle.properties
++++ b/android/gradle.properties
+@@ -28,7 +28,7 @@ android.enablePngCrunchInReleaseBuilds=true
+ # Use this property to specify which architecture you want to build.
+ # You can also override it from the CLI using
+ # ./gradlew <task> -PreactNativeArchitectures=x86_64
+-reactNativeArchitectures=armeabi-v7a,arm64-v8a,x86,x86_64
++reactNativeArchitectures=armeabi-v7a,arm64-v8a
+ 
+ # Use this property to enable support to the new architecture.
+ # This will allow you to use TurboModules and the Fabric render in
