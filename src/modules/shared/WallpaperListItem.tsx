@@ -1,5 +1,5 @@
 import { Wallpaper } from "~/models";
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Dimensions, StyleSheet, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { useTheme } from "react-native-paper";
 import { memo } from "react";

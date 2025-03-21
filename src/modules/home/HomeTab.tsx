@@ -7,7 +7,7 @@ import { MaterialBottomTabScreenProps } from "react-native-paper";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { TStackNavigationRoutes, TBottomTabNavigationRoutes } from "~/navigation";
 import { Image } from "expo-image";
-import { WallpaperList } from "../wallpaper";
+import { WallpaperList } from "../shared";
 import { WallpaperCategorySFW } from "~/api";
 
 type TProps = CompositeScreenProps<

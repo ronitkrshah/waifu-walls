@@ -11,7 +11,12 @@ type TProps = {
   onEndReached?(): void;
 };
 
-export function WallpaperList({ wallpapers, onItemPress, onRefresh, onEndReached }: TProps) {
+export default function WallpaperList({
+  wallpapers,
+  onItemPress,
+  onRefresh,
+  onEndReached,
+}: TProps) {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const theme = useTheme();
 

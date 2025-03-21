@@ -6,7 +6,7 @@ import { AppHeader } from "~/components";
 import { Wallpaper } from "~/models";
 import { TStackNavigationRoutes, TBottomTabNavigationRoutes } from "~/navigation";
 import { WallpaperService } from "~/services";
-import { WallpaperList } from "../wallpaper";
+import { WallpaperList } from "../shared";
 
 type TProps = CompositeScreenProps<
   MaterialBottomTabScreenProps<TBottomTabNavigationRoutes, "HomeTab">,
