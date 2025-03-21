@@ -55,7 +55,7 @@ export function WallpaperPreviewScreen({ route }: TProps) {
     }
   }
 
-  function handleApplyWallpaper(destination: TWallpaperApplyDestination) {
+  async function handleApplyWallpaper(destination: TWallpaperApplyDestination) {
     ToastAndroid.show("Applying Wallpaper", ToastAndroid.SHORT);
     applyWallpaperDialogRef.current?.hide();
     informationActionDialogRef.current?.show();
@@ -69,7 +69,7 @@ export function WallpaperPreviewScreen({ route }: TProps) {
       });
   }
 
-  function handleWallpaperLike() {
+  async function handleWallpaperLike() {
     if (isFavourite) {
       setIsFavourite(false);
       removeWallpaperFromFavourites(wallpaper).catch(() => {
