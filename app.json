@@ -2,6 +2,7 @@
   "expo": {
     "name": "Waifu Walls",
     "slug": "waifuwalls",
+    "scheme": "waifuwalls",
     "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.jpg",
@@ -15,6 +16,15 @@
         "foregroundImage": "./assets/adaptive-icon.jpg",
         "backgroundColor": "#ffffff"
       },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": {
+            "scheme": "waifuwalls",
+            "host": "wallpaper"
+          }
+        }
+      ],
       "package": "com.rks.waifuwalls"
     },
     "web": {

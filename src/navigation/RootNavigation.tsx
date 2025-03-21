@@ -14,8 +14,18 @@ function RootNavigation({ theme }: TProps) {
   StatusBar.setBackgroundColor(theme.colors.surface);
   StatusBar.setBarStyle(theme.dark ? "light-content" : "dark-content");
 
+  const linking = {
+    prefixes: ["waifuwalls://"],
+    config: {
+      initialRouteName: "SplashScreen" as const,
+      screens: {
+        SplashScreen: "wallpaper",
+      },
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <StackNavigator />
     </NavigationContainer>
   );

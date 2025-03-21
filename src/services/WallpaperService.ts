@@ -7,7 +7,7 @@ import {
 } from "~/api";
 import { Wallpaper } from "~/models";
 import Base64 from "react-native-base64";
-import { db, TDBWallpaper } from "~/database";
+import { db } from "~/database";
 
 const mimeTypes = [
   {
@@ -55,6 +55,23 @@ export class WallpaperService {
         undefined,
       );
     });
+  }
+
+  /**
+   * Get wallpaper with id
+   */
+  public static getWallpaperWithId(
+    id: string,
+    type: TWallpaperType,
+    category: TWallpaperCategory,
+    extension: string,
+  ) {
+    const imageUrl = "https://i.waifu.pics/" + id + "." + extension;
+
+    const mimeType =
+      mimeTypes.find((item) => item.extension.includes(extension))?.type || "image/jpeg";
+
+    return new Wallpaper(id, imageUrl, type, category, extension, mimeType, undefined);
   }
 
   /**

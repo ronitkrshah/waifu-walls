@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image } from "expo-image";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Dimensions, StyleSheet, ToastAndroid, View } from "react-native";
+import { Dimensions, Share, StyleSheet, ToastAndroid, View } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { DefaultStyles } from "~/constants";
 import { TStackNavigationRoutes } from "~/navigation";
@@ -152,6 +152,15 @@ export function WallpaperPreviewScreen({ route }: TProps) {
               onPress={() => {
                 informationActionDialogRef.current?.hide();
                 applyWallpaperDialogRef.current?.show();
+              }}
+            />
+            <IconButton
+              size={ICON_BUTTON_SIZE}
+              icon={"share-variant"}
+              onPress={() => {
+                Share.share({
+                  message: `waifuwalls://wallpaper?id=${wallpaper.wallpaperId}&type=${wallpaper.type}&category=${wallpaper.category}&imageType=${wallpaper.extension}`,
+                });
               }}
             />
           </View>

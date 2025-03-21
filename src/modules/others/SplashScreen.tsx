@@ -13,6 +13,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { DefaultStyles } from "~/constants";
 import { TStackNavigationRoutes } from "~/navigation";
+import * as Linking from "expo-linking";
+import { WallpaperService } from "~/services";
+import { TWallpaperType } from "~/api";
 
 type TProps = NativeStackScreenProps<TStackNavigationRoutes, "SplashScreen">;
 
@@ -24,14 +27,41 @@ export default function SplashScreen({ navigation }: TProps) {
     borderWidth: interpolate(circle.value, [0, 1], [0, 8], Extrapolation.CLAMP),
   }));
 
-  useEffect(() => {
-    circle.value = withRepeat(withTiming(1, { duration: 600 }), Infinity, true);
-    const timeout = setTimeout(() => {
+  async function handleDeepLinking() {
+    const url = await Linking.getInitialURL();
+    if (!url) {
       navigation.replace("BottomTabNavigator", { screen: "HomeTab" });
-    }, 1500);
+      return;
+    }
+    const { queryParams } = Linking.parse(url);
+    if (!queryParams) {
+      navigation.replace("BottomTabNavigator", { screen: "HomeTab" });
+      return;
+    }
+    const { id, type, category, imageType } = queryParams;
+    if (!id || !type || !category || !imageType) {
+      navigation.replace("BottomTabNavigator", { screen: "HomeTab" });
+      return;
+    }
+
+    navigation.replace("WallpaperPreviewScreen", {
+      wallpaper: WallpaperService.getWallpaperWithId(
+        id as string,
+        type as TWallpaperType,
+        category,
+        imageType as string,
+      ),
+    });
+  }
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      handleDeepLinking();
+    }, 500);
+    circle.value = withRepeat(withTiming(1, { duration: 600 }), Infinity, true);
     return () => {
       cancelAnimation(circle);
-      clearTimeout(timeout);
+      clearTimeout(t);
     };
   }, [circle]);
 
