@@ -22,7 +22,7 @@ export default function HomeTab({ navigation }: TProps) {
     fetchWallpapers();
   }, []);
 
-  function fetchWallpapers() {
+  async function fetchWallpapers() {
     WallpaperService.getWallpapers("sfw", WallpaperCategorySFW.Waifu).then((walls) => {
       if (walls.length > 0) {
         setWallpapers((p) => [...p, ...walls]);
