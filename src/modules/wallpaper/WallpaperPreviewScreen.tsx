@@ -42,17 +42,19 @@ export function WallpaperPreviewScreen({ route }: TProps) {
 
   async function handleWallpaperDownload() {
     setIsDownloading(true);
-    try {
-      await saveWallpaperToDevice(wallpaper);
-      NotificationService.sendNotification(
-        "New Fear Unlocked",
-        "Your waifu steals the spotlight in your gallery.",
-      );
-    } catch (e) {
-      ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
-    } finally {
-      setIsDownloading(false);
-    }
+    saveWallpaperToDevice(wallpaper)
+      .then(() => {
+        NotificationService.sendNotification(
+          "New Fear Unlocked",
+          "Your waifu steals the spotlight in your gallery.",
+        );
+      })
+      .catch((e) => {
+        ToastAndroid.show((e as Error).message, ToastAndroid.SHORT);
+      })
+      .finally(() => {
+        setIsDownloading(false);
+      });
   }
 
   async function handleApplyWallpaper(destination: TWallpaperApplyDestination) {
