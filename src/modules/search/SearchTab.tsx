@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { SwipeableTabs } from "./components";
 import { AppHeader } from "~/components";
 import { Dimensions, StyleSheet, View } from "react-native";
@@ -8,11 +8,12 @@ import {
   WallpaperCategoryNSFW,
   WallpaperCategorySFW,
 } from "~/api";
-import { Button, MaterialBottomTabScreenProps, Text } from "react-native-paper";
+import { Button, MaterialBottomTabScreenProps } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { TBottomTabNavigationRoutes, TStackNavigationRoutes } from "~/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 type TProps = CompositeScreenProps<
   MaterialBottomTabScreenProps<TBottomTabNavigationRoutes, "SearchTab">,
@@ -20,11 +21,28 @@ type TProps = CompositeScreenProps<
 >;
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
+const AnimatedButton = Animated.createAnimatedComponent(Button);
 
 export default function SearchTab({ navigation }: TProps) {
+  const [sfwList, setSfwList] = useState<{ title: string; value: string }[]>([]);
+  const [nsfwList, setNsfwList] = useState<{ title: string; value: string }[]>([]);
+
   async function handlePress(type: TWallpaperType, category: TWallpaperCategory) {
     navigation.push("SearchResultsScreen", { wallpaperType: type, wallpaperCategory: category });
   }
+
+  useEffect(() => {
+    const sfw = Object.entries(WallpaperCategorySFW).map(([key, value]) => ({
+      title: key,
+      value,
+    }));
+    const nsfw = Object.entries(WallpaperCategoryNSFW).map(([key, value]) => ({
+      title: key,
+      value,
+    }));
+    setSfwList(sfw);
+    setNsfwList(nsfw);
+  }, []);
 
   return (
     <Fragment>
@@ -32,31 +50,33 @@ export default function SearchTab({ navigation }: TProps) {
       <SwipeableTabs buttonLabelOne="SFW" buttonLabelTwo="NSFW">
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.buttonContainer}>
-            {Object.entries(WallpaperCategorySFW).map(([title, value], index) => (
-              <Button
+            {sfwList.map((item, index) => (
+              <AnimatedButton
+                entering={FadeIn.delay(index * 50)}
                 onPress={() => {
-                  handlePress("sfw", value);
+                  handlePress("sfw", item.value);
                 }}
-                key={value}
+                key={item.value}
                 mode={index % 2 === 0 ? "contained" : "contained-tonal"}
               >
-                {title}
-              </Button>
+                {item.title}
+              </AnimatedButton>
             ))}
           </ScrollView>
         </View>
         <View style={styles.container}>
           <View style={styles.buttonContainer}>
-            {Object.entries(WallpaperCategoryNSFW).map(([title, value], index) => (
-              <Button
+            {nsfwList.map((item, index) => (
+              <AnimatedButton
+                entering={FadeIn.delay(index * 50)}
                 onPress={() => {
-                  handlePress("nsfw", value);
+                  handlePress("nsfw", item.value);
                 }}
-                key={value}
+                key={item.value}
                 mode={index % 2 === 0 ? "contained" : "contained-tonal"}
               >
-                {title}
-              </Button>
+                {item.title}
+              </AnimatedButton>
             ))}
           </View>
         </View>
