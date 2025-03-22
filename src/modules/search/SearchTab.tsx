@@ -27,10 +27,6 @@ export default function SearchTab({ navigation }: TProps) {
   const [sfwList, setSfwList] = useState<{ title: string; value: string }[]>([]);
   const [nsfwList, setNsfwList] = useState<{ title: string; value: string }[]>([]);
 
-  async function handlePress(type: TWallpaperType, category: TWallpaperCategory) {
-    navigation.push("SearchResultsScreen", { wallpaperType: type, wallpaperCategory: category });
-  }
-
   useEffect(() => {
     const sfw = Object.entries(WallpaperCategorySFW).map(([key, value]) => ({
       title: key,
@@ -48,38 +44,40 @@ export default function SearchTab({ navigation }: TProps) {
     <Fragment>
       <AppHeader title="Search" />
       <SwipeableTabs buttonLabelOne="SFW" buttonLabelTwo="NSFW">
-        <View style={styles.container}>
-          <ScrollView contentContainerStyle={styles.buttonContainer}>
-            {sfwList.map((item, index) => (
-              <AnimatedButton
-                entering={FadeIn.delay(index * 50)}
-                onPress={() => {
-                  handlePress("sfw", item.value);
-                }}
-                key={"sfw" + item.value}
-                mode={index % 2 === 0 ? "contained" : "contained-tonal"}
-              >
-                {item.title}
-              </AnimatedButton>
-            ))}
-          </ScrollView>
-        </View>
-        <View style={styles.container}>
-          <View style={styles.buttonContainer}>
-            {nsfwList.map((item, index) => (
-              <AnimatedButton
-                entering={FadeIn.delay(index * 50)}
-                onPress={() => {
-                  handlePress("nsfw", item.value);
-                }}
-                key={"nsfw" + item.value}
-                mode={index % 2 === 0 ? "contained" : "contained-tonal"}
-              >
-                {item.title}
-              </AnimatedButton>
-            ))}
-          </View>
-        </View>
+        <ScrollView contentContainerStyle={styles.container}>
+          {sfwList.map((item, index) => (
+            <AnimatedButton
+              entering={FadeIn.delay(index * 50)}
+              onPress={() => {
+                navigation.push("SearchResultsScreen", {
+                  wallpaperType: "sfw",
+                  wallpaperCategory: item.value,
+                });
+              }}
+              key={"sfw_" + item.value}
+              mode={index % 2 === 0 ? "contained" : "contained-tonal"}
+            >
+              {item.title}
+            </AnimatedButton>
+          ))}
+        </ScrollView>
+        <ScrollView contentContainerStyle={styles.container}>
+          {nsfwList.map((item, index) => (
+            <AnimatedButton
+              entering={FadeIn.delay(index * 50)}
+              onPress={() => {
+                navigation.push("SearchResultsScreen", {
+                  wallpaperType: "nsfw",
+                  wallpaperCategory: item.value,
+                });
+              }}
+              key={"nsfw_" + item.value}
+              mode={index % 2 === 0 ? "contained" : "contained-tonal"}
+            >
+              {item.title}
+            </AnimatedButton>
+          ))}
+        </ScrollView>
       </SwipeableTabs>
     </Fragment>
   );
@@ -87,9 +85,7 @@ export default function SearchTab({ navigation }: TProps) {
 
 const styles = StyleSheet.create({
   container: {
-    maxWidth: SCREEN_WIDTH,
-  },
-  buttonContainer: {
+    width: SCREEN_WIDTH,
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",

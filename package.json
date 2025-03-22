@@ -17,6 +17,7 @@
     "expo-image": "~2.0.6",
     "expo-linking": "~7.0.5",
     "expo-notifications": "~0.29.14",
+    "expo-splash-screen": "~0.29.22",
     "expo-sqlite": "~15.1.2",
     "expo-system-ui": "~4.0.8",
     "react": "18.3.1",
