@@ -21,6 +21,9 @@ export function StackNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
+        statusBarAnimation: "fade",
+        statusBarStyle: theme.dark ? "light" : "dark",
+        statusBarColor: theme.colors.surface,
         headerShown: false,
         contentStyle: {
           backgroundColor: theme.colors.surface,
