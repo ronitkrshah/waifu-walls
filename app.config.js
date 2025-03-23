@@ -1,6 +1,6 @@
 module.exports = {
   expo: {
-    name: "Waifu Walls",
+    name: "Waifu Walls DEV",
     slug: "waifuwalls",
     scheme: "waifuwalls",
     version: "0.1.0",
@@ -24,7 +24,7 @@ module.exports = {
           },
         },
       ],
-      package: "com.rks.waifuwalls",
+      package: "com.rks.waifuwalls_dev",
     },
     plugins: [
       "expo-sqlite",
