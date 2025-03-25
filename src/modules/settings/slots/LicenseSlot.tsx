@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Dimensions, ScrollView, ScrollViewBase, StyleSheet, View } from "react-native";
 import { Button, Dialog, Surface, Text, useTheme } from "react-native-paper";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { DialogModal, DialogModalRef } from "~/components";
 
 const licenseList = [
@@ -28,9 +29,9 @@ export default function LicenseSlot() {
   }
 
   return (
-    <Fragment>
+    <Animated.View entering={FadeIn} exiting={FadeOut}>
       {licenseList.map((license) => (
-        <Surface key={license.name} style={styles.surface}>
+        <Surface key={license.name} style={styles.surface} mode="flat">
           <View style={styles.headerContainer}>
             <Text variant="titleMedium" style={{ color: theme.colors.primary, flex: 1 }}>
               {license.name}
@@ -54,7 +55,7 @@ export default function LicenseSlot() {
           </ScrollView>
         </Dialog.Content>
       </DialogModal>
-    </Fragment>
+    </Animated.View>
   );
 }
 

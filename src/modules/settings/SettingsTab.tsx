@@ -2,9 +2,14 @@ import React, { Fragment, useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, useTheme } from "react-native-paper";
 import { AppHeader } from "~/components";
-import { LicenseSlot } from "./slots";
+import { GeneralSlot, LicenseSlot } from "./slots";
 
 const SlotsList = [
+  {
+    id: "general",
+    title: "General",
+    slot: <GeneralSlot />,
+  },
   {
     id: "license",
     title: "Open Source Licenses",
@@ -15,7 +20,7 @@ const SlotsList = [
 type TSelectedType = (typeof SlotsList)[number]["id"];
 
 function SettingsTab() {
-  const [selectdSlot, setSelectedSlot] = useState<TSelectedType>("license");
+  const [selectdSlot, setSelectedSlot] = useState<TSelectedType>("general");
   const [selectedSlotComponent, setSelectedSlotComponent] = useState<React.JSX.Element | null>(
     null,
   );
