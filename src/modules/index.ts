@@ -3,3 +3,4 @@ export * as HomeModules from "./home";
 export * as SearchModules from "./search";
 export * as FavouriteModule from "./favourite";
 export * as WallpaperModule from "./wallpaper";
+export * as SettingsModule from "./settings";
