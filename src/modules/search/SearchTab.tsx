@@ -57,7 +57,7 @@ export default function SearchTab({ navigation }: TProps) {
     <Fragment>
       <AppHeader title="Search" />
       <ScrollView contentContainerStyle={styles.contentContainer} stickyHeaderIndices={[0]}>
-        <View style={[styles.stickyHeader, { backgroundColor: theme.colors.surfaceDisabled }]}>
+        <View style={[styles.stickyHeader, { backgroundColor: theme.colors.elevation.level2 }]}>
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={() => setActiveType("sfw")}>
               <Animated.View style={[styles.button, rSfwBtnStyle]}>
