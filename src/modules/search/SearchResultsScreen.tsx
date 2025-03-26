@@ -18,6 +18,10 @@ export default function SearchResultsScreen({ navigation, route }: TProps) {
       (walls) => {
         if (walls.length > 0) {
           setWallpapers((p) => [...p, ...walls]);
+          Image.prefetch(
+            walls.map((item) => item.wallpaperUri),
+            { cachePolicy: "disk" },
+          );
         }
       },
     );
